@@ -24,6 +24,8 @@
 		AD52BF471651E4EF0090723E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD52BF1F1651E4EF0090723E /* Foundation.framework */; };
 		AD52BF4F1651E4EF0090723E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD52BF4D1651E4EF0090723E /* InfoPlist.strings */; };
 		AD52BF521651E4EF0090723E /* DinesafeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD52BF511651E4EF0090723E /* DinesafeTests.m */; };
+		AD52BF601651ED350090723E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD52BF5F1651ED350090723E /* MapKit.framework */; };
+		AD52BFB51651FDF90090723E /* DinesafeEstablishment.m in Sources */ = {isa = PBXBuildFile; fileRef = AD52BFB41651FDF90090723E /* DinesafeEstablishment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,9 @@
 		AD52BF4E1651E4EF0090723E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AD52BF501651E4EF0090723E /* DinesafeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DinesafeTests.h; sourceTree = "<group>"; };
 		AD52BF511651E4EF0090723E /* DinesafeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DinesafeTests.m; sourceTree = "<group>"; };
+		AD52BF5F1651ED350090723E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		AD52BFB31651FDF90090723E /* DinesafeEstablishment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeEstablishment.h; sourceTree = "<group>"; };
+		AD52BFB41651FDF90090723E /* DinesafeEstablishment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeEstablishment.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD52BF601651ED350090723E /* MapKit.framework in Frameworks */,
 				AD52BF1E1651E4EF0090723E /* UIKit.framework in Frameworks */,
 				AD52BF201651E4EF0090723E /* Foundation.framework in Frameworks */,
 				AD52BF221651E4EF0090723E /* CoreGraphics.framework in Frameworks */,
@@ -89,6 +95,7 @@
 		AD52BF0E1651E4EF0090723E = {
 			isa = PBXGroup;
 			children = (
+				AD52BF5F1651ED350090723E /* MapKit.framework */,
 				AD52BF231651E4EF0090723E /* Dinesafe */,
 				AD52BF4A1651E4EF0090723E /* DinesafeTests */,
 				AD52BF1C1651E4EF0090723E /* Frameworks */,
@@ -119,6 +126,7 @@
 		AD52BF231651E4EF0090723E /* Dinesafe */ = {
 			isa = PBXGroup;
 			children = (
+				AD52BFB21651F85E0090723E /* Classes */,
 				AD52BF2C1651E4EF0090723E /* DinesafeAppDelegate.h */,
 				AD52BF2D1651E4EF0090723E /* DinesafeAppDelegate.m */,
 				AD52BF351651E4EF0090723E /* MainStoryboard_iPhone.storyboard */,
@@ -161,6 +169,15 @@
 				AD52BF4D1651E4EF0090723E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AD52BFB21651F85E0090723E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				AD52BFB31651FDF90090723E /* DinesafeEstablishment.h */,
+				AD52BFB41651FDF90090723E /* DinesafeEstablishment.m */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +295,7 @@
 				AD52BF2A1651E4EF0090723E /* main.m in Sources */,
 				AD52BF2E1651E4EF0090723E /* DinesafeAppDelegate.m in Sources */,
 				AD52BF3D1651E4EF0090723E /* DinesafeViewController.m in Sources */,
+				AD52BFB51651FDF90090723E /* DinesafeEstablishment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +480,7 @@
 				AD52BF571651E4EF0090723E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD52BF581651E4EF0090723E /* Build configuration list for PBXNativeTarget "DinesafeTests" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +489,7 @@
 				AD52BF5A1651E4EF0090723E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
