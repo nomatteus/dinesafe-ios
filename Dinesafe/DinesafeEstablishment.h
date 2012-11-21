@@ -11,12 +11,11 @@
 
 @interface DinesafeEstablishment : NSObject
 
+@property (nonatomic, strong) NSString *eId;
 @property (nonatomic, strong) NSString *latest_name;
 @property (nonatomic, strong) NSString *latest_type;
 @property (nonatomic, strong) NSString *address;
-@property (nonatomic, readwrite) CLLocationCoordinate2D Coord;
-@property (nonatomic, readwrite) CLLocationDegrees *lat;
-@property (nonatomic, readwrite) CLLocationDegrees *lng;
+@property (nonatomic, readwrite) CLLocationCoordinate2D location;
 @property (nonatomic, strong) NSMutableArray *inspections;
 
 @end
