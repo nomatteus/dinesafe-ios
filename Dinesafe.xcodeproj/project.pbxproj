@@ -18,7 +18,6 @@
 		AD52BF341651E4EF0090723E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD52BF331651E4EF0090723E /* Default-568h@2x.png */; };
 		AD52BF371651E4EF0090723E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD52BF351651E4EF0090723E /* MainStoryboard_iPhone.storyboard */; };
 		AD52BF3A1651E4EF0090723E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD52BF381651E4EF0090723E /* MainStoryboard_iPad.storyboard */; };
-		AD52BF3D1651E4EF0090723E /* DinesafeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD52BF3C1651E4EF0090723E /* DinesafeViewController.m */; };
 		AD52BF451651E4EF0090723E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD52BF441651E4EF0090723E /* SenTestingKit.framework */; };
 		AD52BF461651E4EF0090723E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD52BF1D1651E4EF0090723E /* UIKit.framework */; };
 		AD52BF471651E4EF0090723E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD52BF1F1651E4EF0090723E /* Foundation.framework */; };
@@ -30,6 +29,8 @@
 		AD97D51C165B157900A57ECB /* DinesafeInspection.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51A165B157900A57ECB /* DinesafeInspection.m */; };
 		AD97D520165B16C400A57ECB /* DinesafeInfraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51F165B16C400A57ECB /* DinesafeInfraction.m */; };
 		AD97D521165B16C400A57ECB /* DinesafeInfraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51F165B16C400A57ECB /* DinesafeInfraction.m */; };
+		ADC48AA8165C78F3001AEA3B /* DinesafeRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AA7165C78F3001AEA3B /* DinesafeRootTableViewController.m */; };
+		ADC48AAB165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +59,6 @@
 		AD52BF331651E4EF0090723E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AD52BF361651E4EF0090723E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		AD52BF391651E4EF0090723E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		AD52BF3B1651E4EF0090723E /* DinesafeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DinesafeViewController.h; sourceTree = "<group>"; };
-		AD52BF3C1651E4EF0090723E /* DinesafeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DinesafeViewController.m; sourceTree = "<group>"; };
 		AD52BF431651E4EF0090723E /* DinesafeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DinesafeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD52BF441651E4EF0090723E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		AD52BF4C1651E4EF0090723E /* DinesafeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DinesafeTests-Info.plist"; sourceTree = "<group>"; };
@@ -73,6 +72,10 @@
 		AD97D51A165B157900A57ECB /* DinesafeInspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeInspection.m; sourceTree = "<group>"; };
 		AD97D51E165B16C400A57ECB /* DinesafeInfraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeInfraction.h; sourceTree = "<group>"; };
 		AD97D51F165B16C400A57ECB /* DinesafeInfraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeInfraction.m; sourceTree = "<group>"; };
+		ADC48AA6165C78F3001AEA3B /* DinesafeRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeRootTableViewController.h; sourceTree = "<group>"; };
+		ADC48AA7165C78F3001AEA3B /* DinesafeRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeRootTableViewController.m; sourceTree = "<group>"; };
+		ADC48AA9165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeEstablishmentTableViewCell.h; sourceTree = "<group>"; };
+		ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeEstablishmentTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,8 +142,10 @@
 				AD52BF2D1651E4EF0090723E /* DinesafeAppDelegate.m */,
 				AD52BF351651E4EF0090723E /* MainStoryboard_iPhone.storyboard */,
 				AD52BF381651E4EF0090723E /* MainStoryboard_iPad.storyboard */,
-				AD52BF3B1651E4EF0090723E /* DinesafeViewController.h */,
-				AD52BF3C1651E4EF0090723E /* DinesafeViewController.m */,
+				ADC48AA6165C78F3001AEA3B /* DinesafeRootTableViewController.h */,
+				ADC48AA7165C78F3001AEA3B /* DinesafeRootTableViewController.m */,
+				ADC48AA9165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.h */,
+				ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m */,
 				AD52BF241651E4EF0090723E /* Supporting Files */,
 			);
 			path = Dinesafe;
@@ -306,10 +311,11 @@
 			files = (
 				AD52BF2A1651E4EF0090723E /* main.m in Sources */,
 				AD52BF2E1651E4EF0090723E /* DinesafeAppDelegate.m in Sources */,
-				AD52BF3D1651E4EF0090723E /* DinesafeViewController.m in Sources */,
 				AD52BFB51651FDF90090723E /* DinesafeEstablishment.m in Sources */,
 				AD97D51B165B157900A57ECB /* DinesafeInspection.m in Sources */,
 				AD97D520165B16C400A57ECB /* DinesafeInfraction.m in Sources */,
+				ADC48AA8165C78F3001AEA3B /* DinesafeRootTableViewController.m in Sources */,
+				ADC48AAB165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
