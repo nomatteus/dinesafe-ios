@@ -8,8 +8,9 @@
 
 #import "DinesafeRootTableViewController.h"
 
-@interface DinesafeRootTableViewController ()
+@interface DinesafeRootTableViewController () {
 
+}
 @end
 
 @implementation DinesafeRootTableViewController
@@ -32,7 +33,32 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.establishments = [[NSMutableArray alloc] init];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //code executed in the background
+        NSData* dinesafeData = [NSData dataWithContentsOfURL:
+                            [NSURL URLWithString:@"http://dinesafe.dev/api/1.0/establishments.json"]
+                            ];
+
+        NSDictionary* json = nil;
+        if (dinesafeData) {
+            json = [NSJSONSerialization
+                    JSONObjectWithData:dinesafeData
+                    options:kNilOptions
+                    error:nil];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //code executed on the main queue
+            [self updateUIWithDictionary: json];
+        });
+        
+    });
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -40,20 +66,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 1; // Everything in one section for now
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    return [self.establishments count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -61,13 +86,45 @@
     static NSString *CellIdentifier = @"EstablishmentCell";
     DinesafeEstablishmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    DinesafeEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
+    
     UILabel *nameLabel = (UILabel *)[cell viewWithTag:10];
-    nameLabel.text = @"Matt";
+    nameLabel.text = establishment.latestName;
     UILabel *addressLabel = (UILabel *)[cell viewWithTag:20];
-    addressLabel.text = @"2241 Bloor St W";
+    addressLabel.text = establishment.address;
     // Configure the cell...
     
     return cell;
+}
+
+-(void)updateUIWithDictionary:(NSDictionary*)json {
+    @try {
+        for (NSDictionary *establishmentInfo in json[@"data"]) {
+//            NSLog(@"establishment: %@", establishmentInfo[@"latest_name"]);
+            DinesafeEstablishment *establishment = [[DinesafeEstablishment alloc] init];
+            establishment.latestName = establishmentInfo[@"latest_name"];
+            establishment.address = establishmentInfo[@"address"];
+            [self.establishments addObject:establishment];
+        }
+//        NSLog(@"number of establishments in array: %i", self.establishments.count);
+//        NSString *text = [NSString stringWithFormat:
+//                      @"Establishment %@ of type %@ is located at %@ . Establishment id: %@ ",
+//                      json[@"data"][0][@"latest_name"],
+//                      json[@"data"][0][@"latest_type"],
+//                      json[@"data"][0][@"address"],
+//                      json[@"data"][0][@"id"],
+//                      nil];
+//        NSLog(@"%@", text);
+        [self.tableView reloadData];
+    }
+    @catch (NSException *exception) {
+        [[[UIAlertView alloc] initWithTitle:@"Error"
+                                    message:@"Could not parse the JSON feed."
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles: nil] show];
+        NSLog(@"Exception: %@", exception);
+    }
 }
 
 /*
@@ -109,6 +166,7 @@
 }
 */
 
+     
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "DinesafeEstablishment.h"
+
 #import "DinesafeEstablishmentTableViewCell.h"
 
 @interface DinesafeRootTableViewController : UITableViewController
+
+@property (nonatomic, strong) NSMutableArray *establishments;
 
 @end
