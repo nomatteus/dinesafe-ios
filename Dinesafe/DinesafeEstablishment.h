@@ -11,10 +11,11 @@
 
 @interface DinesafeEstablishment : NSObject
 
-@property (nonatomic, strong) NSString *eId;
+@property (nonatomic, strong) NSString *establishmentId;
 @property (nonatomic, strong) NSString *latestName;
 @property (nonatomic, strong) NSString *latestType;
 @property (nonatomic, strong) NSString *address;
+@property (nonatomic) double distance;
 @property (nonatomic, readwrite) CLLocationCoordinate2D location;
 @property (nonatomic, strong) NSMutableArray *inspections;
 

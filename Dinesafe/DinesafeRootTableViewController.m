@@ -39,7 +39,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         //code executed in the background
         NSData* dinesafeData = [NSData dataWithContentsOfURL:
-                            [NSURL URLWithString:@"http://dinesafe.dev/api/1.0/establishments.json"]
+                            [NSURL URLWithString:@"http://dinesafe.dev/api/1.0/establishments.json?near=43.65100,-79.47702"]
                             ];
 
         NSDictionary* json = nil;
@@ -88,10 +88,9 @@
     
     DinesafeEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
     
-    UILabel *nameLabel = (UILabel *)[cell viewWithTag:10];
-    nameLabel.text = establishment.latestName;
-    UILabel *addressLabel = (UILabel *)[cell viewWithTag:20];
-    addressLabel.text = establishment.address;
+    [cell setEstablishment: establishment];
+    [cell updateCellContent];
+    
     // Configure the cell...
     
     return cell;
@@ -102,8 +101,11 @@
         for (NSDictionary *establishmentInfo in json[@"data"]) {
 //            NSLog(@"establishment: %@", establishmentInfo[@"latest_name"]);
             DinesafeEstablishment *establishment = [[DinesafeEstablishment alloc] init];
+            establishment.establishmentId = establishmentInfo[@"id"];
             establishment.latestName = establishmentInfo[@"latest_name"];
+            establishment.latestType = establishmentInfo[@"latest_type"];
             establishment.address = establishmentInfo[@"address"];
+            establishment.distance = [establishmentInfo[@"distance"] doubleValue];
             [self.establishments addObject:establishment];
         }
 //        NSLog(@"number of establishments in array: %i", self.establishments.count);

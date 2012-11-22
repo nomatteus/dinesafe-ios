@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DinesafeEstablishment.h"
 
 @interface DinesafeEstablishmentTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) DinesafeEstablishment *establishment;
+
+- (void)updateCellContent;
 
 @end
