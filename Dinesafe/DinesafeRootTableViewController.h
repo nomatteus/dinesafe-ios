@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AFNetworking.h"
+#import "DinesafeApiClient.h"
 #import "DinesafeEstablishment.h"
 #import "DinesafeEstablishmentTableViewCell.h"
 

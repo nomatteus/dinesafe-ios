@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD2D3FC7166175E30050699C /* DinesafeApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D3FC6166175E30050699C /* DinesafeApiClient.m */; };
+		AD2D3FC8166175E30050699C /* DinesafeApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D3FC6166175E30050699C /* DinesafeApiClient.m */; };
 		AD52BF1E1651E4EF0090723E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD52BF1D1651E4EF0090723E /* UIKit.framework */; };
 		AD52BF201651E4EF0090723E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD52BF1F1651E4EF0090723E /* Foundation.framework */; };
 		AD52BF221651E4EF0090723E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD52BF211651E4EF0090723E /* CoreGraphics.framework */; };
@@ -46,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		AD2D3FC5166175E30050699C /* DinesafeApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeApiClient.h; sourceTree = "<group>"; };
+		AD2D3FC6166175E30050699C /* DinesafeApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeApiClient.m; sourceTree = "<group>"; };
 		AD52BF191651E4EF0090723E /* Dinesafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dinesafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD52BF1D1651E4EF0090723E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AD52BF1F1651E4EF0090723E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -199,6 +203,8 @@
 				AD97D51A165B157900A57ECB /* DinesafeInspection.m */,
 				AD97D51E165B16C400A57ECB /* DinesafeInfraction.h */,
 				AD97D51F165B16C400A57ECB /* DinesafeInfraction.m */,
+				AD2D3FC5166175E30050699C /* DinesafeApiClient.h */,
+				AD2D3FC6166175E30050699C /* DinesafeApiClient.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -337,6 +343,7 @@
 				AD97D520165B16C400A57ECB /* DinesafeInfraction.m in Sources */,
 				ADC48AA8165C78F3001AEA3B /* DinesafeRootTableViewController.m in Sources */,
 				ADC48AAB165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m in Sources */,
+				AD2D3FC7166175E30050699C /* DinesafeApiClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +354,7 @@
 				AD52BF521651E4EF0090723E /* DinesafeTests.m in Sources */,
 				AD97D51C165B157900A57ECB /* DinesafeInspection.m in Sources */,
 				AD97D521165B16C400A57ECB /* DinesafeInfraction.m in Sources */,
+				AD2D3FC8166175E30050699C /* DinesafeApiClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

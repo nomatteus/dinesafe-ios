@@ -33,26 +33,25 @@
     
     self.establishments = [[NSMutableArray alloc] init];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //code executed in the background
-        NSData* dinesafeData = [NSData dataWithContentsOfURL:
-                            [NSURL URLWithString:@"http://dinesafe.dev/api/1.0/establishments.json?near=43.65100,-79.47702"]
-                            ];
-
-        NSDictionary* json = nil;
-        if (dinesafeData) {
-            json = [NSJSONSerialization
-                    JSONObjectWithData:dinesafeData
-                    options:kNilOptions
-                    error:nil];
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //code executed on the main queue
-            [self updateUIWithDictionary: json];
-        });
-        
-    });
+    [[DinesafeApiClient sharedInstance] getPath:@"establishments.json" parameters:nil success:
+     ^(AFHTTPRequestOperation *operation, id response) {
+         //
+         NSLog(@"Response: %@", response);
+         NSMutableArray *results = [NSMutableArray array];
+         for (id establishmentDictionary in response[@"data"]) {
+             DinesafeEstablishment *establishment = [[DinesafeEstablishment alloc] initWithDictionary:establishmentDictionary];
+             [results addObject:establishment];
+         }
+         self.establishments = results;
+         [self.tableView reloadData];
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [[[UIAlertView alloc] initWithTitle:@"Error Fetching Data"
+                                    message:@"Please try again later."
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles: nil] show];
+        NSLog(@"%@", error);
+     }];
 }
 
 
@@ -92,25 +91,6 @@
     return cell;
 }
 
--(void)updateUIWithDictionary:(NSDictionary*)json {
-    @try {
-        for (NSDictionary *establishmentInfo in json[@"data"]) {
-            DinesafeEstablishment *establishment = [[DinesafeEstablishment alloc] initWithDictionary:establishmentInfo];
-
-            [self.establishments addObject:establishment];
-        }
-
-        [self.tableView reloadData];
-    }
-    @catch (NSException *exception) {
-        [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:@"Could not parse the JSON feed."
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles: nil] show];
-        NSLog(@"Exception: %@", exception);
-    }
-}
 
 /*
 // Override to support conditional editing of the table view.
