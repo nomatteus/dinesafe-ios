@@ -19,4 +19,6 @@
 @property (nonatomic, readwrite) CLLocationCoordinate2D location;
 @property (nonatomic, strong) NSMutableArray *inspections;
 
+-(id) initWithDictionary:(NSDictionary *) dictionary;
+
 @end

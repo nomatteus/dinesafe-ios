@@ -67,15 +67,17 @@
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3Cn-eo-ubf">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="192" id="BTe-T6-aJa"/>
+                                                <constraint firstAttribute="width" constant="240" id="QMA-4T-xuQ"/>
+                                                <constraint firstAttribute="height" constant="21" id="sY9-4b-vfV"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="shadowColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="20" contentMode="left" text="Address" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="1O3-oE-SqJ">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="20" contentMode="left" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="1O3-oE-SqJ">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="144" id="yat-E8-yCQ"/>
+                                                <constraint firstAttribute="width" constant="273" id="1GP-kc-KoN"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -83,9 +85,9 @@
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="30" contentMode="left" text="Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="7oH-j4-uvI">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="108" id="mKl-xK-xJy"/>
+                                                <constraint firstAttribute="height" constant="21" id="5Oy-Tf-oi4"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
@@ -99,13 +101,14 @@
                                 </view>
                                 <constraints>
                                     <constraint firstItem="3Cn-eo-ubf" firstAttribute="top" secondItem="1Dt-0i-tVI" secondAttribute="top" constant="11" id="4VZ-80-Ip8"/>
-                                    <constraint firstItem="fnX-sX-3hx" firstAttribute="trailing" secondItem="1O3-oE-SqJ" secondAttribute="trailing" type="default" id="9I5-Js-w7C"/>
-                                    <constraint firstItem="fnX-sX-3hx" firstAttribute="baseline" secondItem="3Cn-eo-ubf" secondAttribute="baseline" type="default" id="CfO-9Y-8kT"/>
-                                    <constraint firstItem="1O3-oE-SqJ" firstAttribute="baseline" secondItem="7oH-j4-uvI" secondAttribute="baseline" type="default" id="i06-nX-2st"/>
-                                    <constraint firstItem="1O3-oE-SqJ" firstAttribute="leading" secondItem="7oH-j4-uvI" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="kow-vG-A6Y"/>
+                                    <constraint firstItem="1O3-oE-SqJ" firstAttribute="leading" secondItem="1Dt-0i-tVI" secondAttribute="leading" constant="20" type="default" id="FOA-n3-q0X"/>
+                                    <constraint firstItem="1O3-oE-SqJ" firstAttribute="top" secondItem="1Dt-0i-tVI" secondAttribute="top" constant="38" id="JzX-Q5-lTc"/>
+                                    <constraint firstItem="7oH-j4-uvI" firstAttribute="top" secondItem="1O3-oE-SqJ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="PwM-E9-67L"/>
+                                    <constraint firstItem="fnX-sX-3hx" firstAttribute="baseline" secondItem="3Cn-eo-ubf" secondAttribute="baseline" type="default" id="Zlo-ox-wWN"/>
+                                    <constraint firstAttribute="trailing" secondItem="fnX-sX-3hx" secondAttribute="trailing" constant="20" type="default" id="ejp-aa-xW2"/>
                                     <constraint firstItem="7oH-j4-uvI" firstAttribute="leading" secondItem="1Dt-0i-tVI" secondAttribute="leading" constant="20" type="default" id="mb8-8V-QkM"/>
-                                    <constraint firstAttribute="bottom" secondItem="7oH-j4-uvI" secondAttribute="bottom" constant="10" id="pfL-n7-XDN"/>
                                     <constraint firstItem="3Cn-eo-ubf" firstAttribute="leading" secondItem="1Dt-0i-tVI" secondAttribute="leading" constant="20" type="default" id="vrt-r6-H8l"/>
+                                    <constraint firstItem="1O3-oE-SqJ" firstAttribute="trailing" secondItem="7oH-j4-uvI" secondAttribute="trailing" type="default" id="xI5-BB-yXa"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="Mpe-Dt-NdP" kind="push" id="xyL-wc-TmR"/>

@@ -99,24 +99,11 @@
 -(void)updateUIWithDictionary:(NSDictionary*)json {
     @try {
         for (NSDictionary *establishmentInfo in json[@"data"]) {
-//            NSLog(@"establishment: %@", establishmentInfo[@"latest_name"]);
-            DinesafeEstablishment *establishment = [[DinesafeEstablishment alloc] init];
-            establishment.establishmentId = establishmentInfo[@"id"];
-            establishment.latestName = establishmentInfo[@"latest_name"];
-            establishment.latestType = establishmentInfo[@"latest_type"];
-            establishment.address = establishmentInfo[@"address"];
-            establishment.distance = [establishmentInfo[@"distance"] doubleValue];
+            DinesafeEstablishment *establishment = [[DinesafeEstablishment alloc] initWithDictionary:establishmentInfo];
+
             [self.establishments addObject:establishment];
         }
-//        NSLog(@"number of establishments in array: %i", self.establishments.count);
-//        NSString *text = [NSString stringWithFormat:
-//                      @"Establishment %@ of type %@ is located at %@ . Establishment id: %@ ",
-//                      json[@"data"][0][@"latest_name"],
-//                      json[@"data"][0][@"latest_type"],
-//                      json[@"data"][0][@"address"],
-//                      json[@"data"][0][@"id"],
-//                      nil];
-//        NSLog(@"%@", text);
+
         [self.tableView reloadData];
     }
     @catch (NSException *exception) {
