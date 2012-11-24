@@ -31,6 +31,7 @@
 		AD97D521165B16C400A57ECB /* DinesafeInfraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51F165B16C400A57ECB /* DinesafeInfraction.m */; };
 		ADC48AA8165C78F3001AEA3B /* DinesafeRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AA7165C78F3001AEA3B /* DinesafeRootTableViewController.m */; };
 		ADC48AAB165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m */; };
+		B5768E3F5F1642BAA9C412B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD264E67C5A14A179CC93943 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		AD52BF191651E4EF0090723E /* Dinesafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dinesafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD52BF1D1651E4EF0090723E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AD52BF1F1651E4EF0090723E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -76,6 +78,7 @@
 		ADC48AA7165C78F3001AEA3B /* DinesafeRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeRootTableViewController.m; sourceTree = "<group>"; };
 		ADC48AA9165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeEstablishmentTableViewCell.h; sourceTree = "<group>"; };
 		ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeEstablishmentTableViewCell.m; sourceTree = "<group>"; };
+		FD264E67C5A14A179CC93943 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,7 @@
 				AD52BF1E1651E4EF0090723E /* UIKit.framework in Frameworks */,
 				AD52BF201651E4EF0090723E /* Foundation.framework in Frameworks */,
 				AD52BF221651E4EF0090723E /* CoreGraphics.framework in Frameworks */,
+				B5768E3F5F1642BAA9C412B6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +115,7 @@
 				AD52BF4A1651E4EF0090723E /* DinesafeTests */,
 				AD52BF1C1651E4EF0090723E /* Frameworks */,
 				AD52BF1A1651E4EF0090723E /* Products */,
+				AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +135,7 @@
 				AD52BF1F1651E4EF0090723E /* Foundation.framework */,
 				AD52BF211651E4EF0090723E /* CoreGraphics.framework */,
 				AD52BF441651E4EF0090723E /* SenTestingKit.framework */,
+				FD264E67C5A14A179CC93943 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -207,6 +213,7 @@
 				AD52BF151651E4EF0090723E /* Sources */,
 				AD52BF161651E4EF0090723E /* Frameworks */,
 				AD52BF171651E4EF0090723E /* Resources */,
+				1DE0E940B67D4C369A9AE5E0 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -289,6 +296,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1DE0E940B67D4C369A9AE5E0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
 		AD52BF411651E4EF0090723E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -429,10 +450,12 @@
 		};
 		AD52BF561651E4EF0090723E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -440,10 +463,12 @@
 		};
 		AD52BF571651E4EF0090723E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AFNetworking.h"
 #import "DinesafeEstablishment.h"
-
 #import "DinesafeEstablishmentTableViewCell.h"
 
 @interface DinesafeRootTableViewController : UITableViewController
