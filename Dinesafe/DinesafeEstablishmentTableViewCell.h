@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DinesafeEstablishment.h"
+#import "DinesafeScorebarView.h"
 
 @interface DinesafeEstablishmentTableViewCell : UITableViewCell
 

@@ -29,6 +29,7 @@
 		AD52BF521651E4EF0090723E /* DinesafeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD52BF511651E4EF0090723E /* DinesafeTests.m */; };
 		AD52BF601651ED350090723E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD52BF5F1651ED350090723E /* MapKit.framework */; };
 		AD52BFB51651FDF90090723E /* DinesafeEstablishment.m in Sources */ = {isa = PBXBuildFile; fileRef = AD52BFB41651FDF90090723E /* DinesafeEstablishment.m */; };
+		AD7D769B1661C5E7001BFB20 /* DinesafeScorebarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7D769A1661C5E7001BFB20 /* DinesafeScorebarView.m */; };
 		AD97D51B165B157900A57ECB /* DinesafeInspection.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51A165B157900A57ECB /* DinesafeInspection.m */; };
 		AD97D51C165B157900A57ECB /* DinesafeInspection.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51A165B157900A57ECB /* DinesafeInspection.m */; };
 		AD97D520165B16C400A57ECB /* DinesafeInfraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51F165B16C400A57ECB /* DinesafeInfraction.m */; };
@@ -78,6 +79,8 @@
 		AD52BF5F1651ED350090723E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		AD52BFB31651FDF90090723E /* DinesafeEstablishment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeEstablishment.h; sourceTree = "<group>"; };
 		AD52BFB41651FDF90090723E /* DinesafeEstablishment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeEstablishment.m; sourceTree = "<group>"; };
+		AD7D76991661C5E7001BFB20 /* DinesafeScorebarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeScorebarView.h; sourceTree = "<group>"; };
+		AD7D769A1661C5E7001BFB20 /* DinesafeScorebarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeScorebarView.m; sourceTree = "<group>"; };
 		AD97D519165B157900A57ECB /* DinesafeInspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeInspection.h; sourceTree = "<group>"; };
 		AD97D51A165B157900A57ECB /* DinesafeInspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeInspection.m; sourceTree = "<group>"; };
 		AD97D51E165B16C400A57ECB /* DinesafeInfraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeInfraction.h; sourceTree = "<group>"; };
@@ -151,18 +154,13 @@
 		AD52BF231651E4EF0090723E /* Dinesafe */ = {
 			isa = PBXGroup;
 			children = (
-				AD52BFB21651F85E0090723E /* Classes */,
+				AD52BFB21651F85E0090723E /* Models */,
+				AD7D76981661C356001BFB20 /* Views */,
 				AD52BF2C1651E4EF0090723E /* DinesafeAppDelegate.h */,
 				AD52BF2D1651E4EF0090723E /* DinesafeAppDelegate.m */,
 				AD52BF351651E4EF0090723E /* MainStoryboard_iPhone.storyboard */,
 				AD52BF381651E4EF0090723E /* MainStoryboard_iPad.storyboard */,
-				ADC48AA6165C78F3001AEA3B /* DinesafeRootTableViewController.h */,
-				ADC48AA7165C78F3001AEA3B /* DinesafeRootTableViewController.m */,
-				ADC48AA9165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.h */,
-				ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m */,
 				AD52BF241651E4EF0090723E /* Supporting Files */,
-				AD2D3FC9166194810050699C /* DinesafeLoadingTableViewCell.h */,
-				AD2D3FCA166194810050699C /* DinesafeLoadingTableViewCell.m */,
 			);
 			path = Dinesafe;
 			sourceTree = "<group>";
@@ -200,7 +198,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AD52BFB21651F85E0090723E /* Classes */ = {
+		AD52BFB21651F85E0090723E /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				AD52BFB31651FDF90090723E /* DinesafeEstablishment.h */,
@@ -212,7 +210,22 @@
 				AD2D3FC5166175E30050699C /* DinesafeApiClient.h */,
 				AD2D3FC6166175E30050699C /* DinesafeApiClient.m */,
 			);
-			name = Classes;
+			name = Models;
+			sourceTree = "<group>";
+		};
+		AD7D76981661C356001BFB20 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ADC48AA6165C78F3001AEA3B /* DinesafeRootTableViewController.h */,
+				ADC48AA7165C78F3001AEA3B /* DinesafeRootTableViewController.m */,
+				ADC48AA9165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.h */,
+				ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m */,
+				AD2D3FC9166194810050699C /* DinesafeLoadingTableViewCell.h */,
+				AD2D3FCA166194810050699C /* DinesafeLoadingTableViewCell.m */,
+				AD7D76991661C5E7001BFB20 /* DinesafeScorebarView.h */,
+				AD7D769A1661C5E7001BFB20 /* DinesafeScorebarView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,6 +364,7 @@
 				ADC48AAB165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m in Sources */,
 				AD2D3FC7166175E30050699C /* DinesafeApiClient.m in Sources */,
 				AD2D3FCB166194810050699C /* DinesafeLoadingTableViewCell.m in Sources */,
+				AD7D769B1661C5E7001BFB20 /* DinesafeScorebarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

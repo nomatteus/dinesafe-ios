@@ -86,9 +86,10 @@
 }
 
 // Use this if need different heights for different cells
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return 99;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Keep this in sync with changes in storyboard. Apparently there's bug that won't pick up row height changes in storyboard...
+    return 125;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.establishments.count) {
@@ -117,7 +118,7 @@
     [[DinesafeApiClient sharedInstance] getPath:@"establishments.json" parameters:parameters success:
      ^(AFHTTPRequestOperation *operation, id response) {
          
-         NSLog(@"Response: %@", response);
+         //NSLog(@"Response: %@", response);
          _totalPages = [response[@"paging"][@"total_pages"] intValue];
          
          for (id establishmentDictionary in response[@"data"]) {

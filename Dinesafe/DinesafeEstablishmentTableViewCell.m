@@ -10,14 +10,12 @@
 
 @implementation DinesafeEstablishmentTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+
+- (void)awakeFromNib {
+    // Initialization code
+    [self setBackgroundColor:[UIColor grayColor]];
 }
+
 
 - (void)updateCellContent
 {
@@ -25,6 +23,10 @@
     self.address.text = self.establishment.address;
     self.type.text = self.establishment.latestType;
     self.distance.text = [NSString stringWithFormat:@"%.2f km", self.establishment.distance];
+    
+    DinesafeScorebarView *scorebarView = [[DinesafeScorebarView alloc] initWithInspections:self.establishment.inspections];
+    
+    [self addSubview:scorebarView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

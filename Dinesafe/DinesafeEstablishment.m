@@ -18,9 +18,13 @@
         self.latestType = dictionary[@"latest_type"];
         self.address = dictionary[@"address"];
         self.distance = [dictionary[@"distance"] doubleValue];
+  
+        self.inspections = [NSMutableArray array];
+        for (id inspection in dictionary[@"inspections"]) {
+            [self.inspections addObject:[[DinesafeInspection alloc] initWithDictionary:inspection]];
+        }
         
         // self.location = TODO;
-        // self.inspections = TODO;
     }
     return self;
 }
