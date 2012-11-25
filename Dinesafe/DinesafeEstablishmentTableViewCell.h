@@ -13,6 +13,11 @@
 
 @property (nonatomic, strong) DinesafeEstablishment *establishment;
 
+@property (nonatomic, strong) IBOutlet UILabel *name;
+@property (nonatomic, strong) IBOutlet UILabel *address;
+@property (nonatomic, strong) IBOutlet UILabel *type;
+@property (nonatomic, strong) IBOutlet UILabel *distance;
+
 - (void)updateCellContent;
 
 @end

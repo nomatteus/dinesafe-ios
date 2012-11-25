@@ -8,7 +8,7 @@
 
 #import "DinesafeApiClient.h"
 
-#define DinesafeApiBaseURLString @"http://dinesafe.dev/api/1.0/"
+#define DINESAFE_API_BASE_URL @"http://dinesafe.dev/api/1.0/"
 
 @implementation DinesafeApiClient
 
@@ -17,7 +17,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         __sharedInstance = [[DinesafeApiClient alloc] initWithBaseURL:
-                            [NSURL URLWithString:DinesafeApiBaseURLString]];
+                            [NSURL URLWithString:DINESAFE_API_BASE_URL]];
     });
     
     return __sharedInstance;
@@ -28,7 +28,6 @@
     if (self) {
         // custom settings/headers
         // [self setDefaultHeader:@"x-api-token" value:DinesafeApiToken];
-        
         
         [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     }

@@ -8,9 +8,9 @@
 
 #import "DinesafeRootTableViewController.h"
 
-@interface DinesafeRootTableViewController () {
-
-}
+@interface DinesafeRootTableViewController ()
+@property (nonatomic, strong) NSMutableArray *establishments;
+- (void)fetchEstablishments;
 @end
 
 @implementation DinesafeRootTableViewController
@@ -31,27 +31,8 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    self.establishments = [[NSMutableArray alloc] init];
-    
-    [[DinesafeApiClient sharedInstance] getPath:@"establishments.json" parameters:nil success:
-     ^(AFHTTPRequestOperation *operation, id response) {
-         //
-         NSLog(@"Response: %@", response);
-         NSMutableArray *results = [NSMutableArray array];
-         for (id establishmentDictionary in response[@"data"]) {
-             DinesafeEstablishment *establishment = [[DinesafeEstablishment alloc] initWithDictionary:establishmentDictionary];
-             [results addObject:establishment];
-         }
-         self.establishments = results;
-         [self.tableView reloadData];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [[[UIAlertView alloc] initWithTitle:@"Error Fetching Data"
-                                    message:@"Please try again later."
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles: nil] show];
-        NSLog(@"%@", error);
-     }];
+    self.establishments = [NSMutableArray array];
+    _currentPage = 0; // no pages means we'll show single cell activity indicator
 }
 
 
@@ -73,24 +54,92 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
+    // Loading cell only
+    if (_currentPage == 0) {
+        return 1;
+    }
+    
+    // Establishments + loading cell at bottom
+    if (_currentPage < _totalPages) {
+        return self.establishments.count + 1;
+    }
+    
+    // On last page, so no loading cell
     return [self.establishments count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)establishmentCellForIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"EstablishmentCell";
-    DinesafeEstablishmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    DinesafeEstablishmentTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
     DinesafeEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
-    
     [cell setEstablishment: establishment];
-    [cell updateCellContent];
     
-    // Configure the cell...
+    [cell updateCellContent];
     
     return cell;
 }
 
+- (UITableViewCell *)loadingCell {
+    DinesafeLoadingTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"LoadingCell"];
+    return cell;
+}
+
+// Use this if need different heights for different cells
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return 99;
+//}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row < self.establishments.count) {
+        return [self establishmentCellForIndexPath:indexPath];
+    } else {
+        return [self loadingCell];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (cell.tag == kLoadingCellTag) {
+        _currentPage++;
+        [self fetchEstablishments];
+    }
+}
+
+
+#pragma mark = fetching data
+
+- (void)fetchEstablishments {
+    
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                @"43.65100,-79.47702", @"near",
+                                [NSString stringWithFormat:@"%d", _currentPage], @"page",
+                                nil];
+    [[DinesafeApiClient sharedInstance] getPath:@"establishments.json" parameters:parameters success:
+     ^(AFHTTPRequestOperation *operation, id response) {
+         
+         NSLog(@"Response: %@", response);
+         _totalPages = [response[@"paging"][@"total_pages"] intValue];
+         
+         for (id establishmentDictionary in response[@"data"]) {
+             DinesafeEstablishment *establishment = [[DinesafeEstablishment alloc] initWithDictionary:establishmentDictionary];
+             [self.establishments addObject:establishment];
+         }
+         
+         [self.tableView reloadData];
+         
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         
+         [[[UIAlertView alloc] initWithTitle:@"Error Fetching Data"
+                                     message:@"Please try again later."
+                                    delegate:nil
+                           cancelButtonTitle:@"Close"
+                           otherButtonTitles: nil] show];
+         
+         NSLog(@"%@", error);
+         
+     }];
+    
+}
 
 /*
 // Override to support conditional editing of the table view.

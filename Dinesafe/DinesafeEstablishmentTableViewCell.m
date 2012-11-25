@@ -21,15 +21,10 @@
 
 - (void)updateCellContent
 {
-    UILabel *nameLabel = (UILabel *)[self viewWithTag:10];
-    nameLabel.text = self.establishment.latestName;
-    UILabel *addressLabel = (UILabel *)[self viewWithTag:20];
-    addressLabel.text = self.establishment.address;
-    UILabel *typeLabel = (UILabel *)[self viewWithTag:30];
-    typeLabel.text = self.establishment.latestType;
-    NSLog(@"%@", self.establishment.latestType);
-    UILabel *distanceLabel = (UILabel *)[self viewWithTag:40];
-    distanceLabel.text = [NSString stringWithFormat:@"%.2f km", self.establishment.distance];
+    self.name.text = self.establishment.latestName;
+    self.address.text = self.establishment.address;
+    self.type.text = self.establishment.latestType;
+    self.distance.text = [NSString stringWithFormat:@"%.2f km", self.establishment.distance];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

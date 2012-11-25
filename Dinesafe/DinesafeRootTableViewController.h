@@ -10,9 +10,11 @@
 #import "DinesafeApiClient.h"
 #import "DinesafeEstablishment.h"
 #import "DinesafeEstablishmentTableViewCell.h"
+#import "DinesafeLoadingTableViewCell.h"
 
-@interface DinesafeRootTableViewController : UITableViewController
-
-@property (nonatomic, strong) NSMutableArray *establishments;
+@interface DinesafeRootTableViewController : UITableViewController {
+    NSInteger _currentPage;
+    NSInteger _totalPages;
+}
 
 @end
