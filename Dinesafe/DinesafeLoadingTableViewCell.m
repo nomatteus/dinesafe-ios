@@ -14,13 +14,6 @@
 //   - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 - (void)awakeFromNib {
     // Initialization code
-    //UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]
-//                                                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    //activityIndicator.center = self.center;
-//    [self addSubview:activityIndicator];
-    
-  //  [activityIndicator startAnimating];
-    
     self.tag = kLoadingCellTag;
 }
 
