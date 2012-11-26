@@ -10,6 +10,6 @@
 
 #define kLoadingCellTag 1273
 
-@interface DinesafeLoadingTableViewCell : UITableViewCell
+@interface DinesafeLoadingCell : UITableViewCell
 
 @end

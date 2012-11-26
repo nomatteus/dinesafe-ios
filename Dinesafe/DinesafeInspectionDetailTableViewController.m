@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
 
-    
+    [self fetchEstablishment];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -71,7 +71,10 @@
 
 
 - (UITableViewCell *)establishmentInfoCell {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EstablishmentInfo"];
+    DinesafeEstablishmentTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EstablishmentInfo"];
+    cell.establishment = self.establishment;
+    NSLog(@"self.establishment: %@", self.establishment);
+    [cell updateCellContent];
     return cell;
 }
 
@@ -128,6 +131,41 @@
     return YES;
 }
 */
+
+
+#pragma mark = fetching data
+
+- (void)fetchEstablishment {
+    
+    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                @"43.65100,-79.47702", @"near",
+                                nil];
+    NSString *establishmentPath = [NSString stringWithFormat:@"establishments.json/%@.json", self.establishment.establishmentId];
+    [[DinesafeApiClient sharedInstance] getPath:establishmentPath parameters:parameters success:
+     ^(AFHTTPRequestOperation *operation, id response) {
+         //NSLog(@"Response: %@", response);
+         // TODO: Change this to load a single establishment
+         
+//         for (id establishmentDictionary in response[@"data"]) {
+//             DinesafeEstablishment *establishment = [[DinesafeEstablishment alloc] initWithDictionary:establishmentDictionary];
+//             [self.establishments addObject:establishment];
+//         }
+         
+         [self.tableView reloadData];
+         
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         
+         [[[UIAlertView alloc] initWithTitle:@"Error Fetching Data"
+                                     message:@"Please try again later."
+                                    delegate:nil
+                           cancelButtonTitle:@"Close"
+                           otherButtonTitles: nil] show];
+         
+         NSLog(@"%@", error);
+         
+     }];
+    
+}
 
 #pragma mark - Table view delegate
 

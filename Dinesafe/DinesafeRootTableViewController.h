@@ -10,7 +10,8 @@
 #import "DinesafeApiClient.h"
 #import "DinesafeEstablishment.h"
 #import "DinesafeEstablishmentTableViewCell.h"
-#import "DinesafeLoadingTableViewCell.h"
+#import "DinesafeLoadingCell.h"
+#import "DinesafeInspectionDetailTableViewController.h"
 
 @interface DinesafeRootTableViewController : UITableViewController {
     NSInteger _currentPage;

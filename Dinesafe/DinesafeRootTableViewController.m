@@ -81,7 +81,7 @@
 }
 
 - (UITableViewCell *)loadingCell {
-    DinesafeLoadingTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"LoadingCell"];
+    DinesafeLoadingCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"LoadingCell"];
     return cell;
 }
 
@@ -193,6 +193,16 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if (([[segue identifier] isEqualToString:@"EstablishmentListToDetailView"])) {
+        DinesafeInspectionDetailTableViewController *detailView = [segue destinationViewController];
+        // TODO: Return the selected establishment.
+        detailView.establishment = self.establishments[1];
+    }
 }
 
 @end

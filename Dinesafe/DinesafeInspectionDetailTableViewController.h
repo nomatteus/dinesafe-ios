@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import "DinesafeApiClient.h"
+#import "DinesafeEstablishment.h"
+#import "DinesafeEstablishmentTableViewCell.h"
 
 @interface DinesafeInspectionDetailTableViewController : UITableViewController
+
+@property (nonatomic, strong) DinesafeEstablishment *establishment;
+
 
 @end
