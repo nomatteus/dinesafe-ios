@@ -58,7 +58,15 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 225;
+    if (indexPath.row == 0) {
+        // Establishment Info
+        return 322;
+    } else {
+        // Inspections List & Infractions
+        // Infraction is 44, infraction list is 280
+        return 280;
+        // TODO: Height will be higher for infractions list active cells (i.e. "tap to show" infractions)
+    }
 }
 
 
@@ -67,18 +75,19 @@
     return cell;
 }
 
+- (UITableViewCell *)inspectionCell {
+    static NSString *CellIdentifier = @"InspectionInfractionsCell";
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    return cell;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
         return [self establishmentInfoCell];
+    } else {
+        return [self inspectionCell];
     }
-    // TODO: handle other types of cells..
-    static NSString *CellIdentifier = @"InspectionCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    // Configure the cell...
-    
-    return cell;
 }
 
 /*

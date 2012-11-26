@@ -221,14 +221,14 @@
 			children = (
 				ADC48AA6165C78F3001AEA3B /* DinesafeRootTableViewController.h */,
 				ADC48AA7165C78F3001AEA3B /* DinesafeRootTableViewController.m */,
+				ADD0C2361662443D00A68A1B /* DinesafeInspectionDetailTableViewController.h */,
+				ADD0C2371662443D00A68A1B /* DinesafeInspectionDetailTableViewController.m */,
 				ADC48AA9165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.h */,
 				ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m */,
 				AD2D3FC9166194810050699C /* DinesafeLoadingTableViewCell.h */,
 				AD2D3FCA166194810050699C /* DinesafeLoadingTableViewCell.m */,
 				AD7D76991661C5E7001BFB20 /* DinesafeScorebarView.h */,
 				AD7D769A1661C5E7001BFB20 /* DinesafeScorebarView.m */,
-				ADD0C2361662443D00A68A1B /* DinesafeInspectionDetailTableViewController.h */,
-				ADD0C2371662443D00A68A1B /* DinesafeInspectionDetailTableViewController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
