@@ -10,7 +10,7 @@
 #import "DinesafeEstablishment.h"
 #import "DinesafeScorebarView.h"
 
-@interface DinesafeEstablishmentTableViewCell : UITableViewCell
+@interface DinesafeEstablishmentCell : UITableViewCell
 
 @property (nonatomic, strong) DinesafeEstablishment *establishment;
 

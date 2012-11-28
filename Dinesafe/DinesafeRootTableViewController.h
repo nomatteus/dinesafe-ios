@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DinesafeApiClient.h"
 #import "DinesafeEstablishment.h"
-#import "DinesafeEstablishmentTableViewCell.h"
+#import "DinesafeEstablishmentCell.h"
 #import "DinesafeLoadingCell.h"
 #import "DinesafeInspectionDetailTableViewController.h"
 

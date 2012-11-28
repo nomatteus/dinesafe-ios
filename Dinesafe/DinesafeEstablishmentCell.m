@@ -6,14 +6,14 @@
 //  Copyright (c) 2012 Matt Ruten. All rights reserved.
 //
 
-#import "DinesafeEstablishmentTableViewCell.h"
+#import "DinesafeEstablishmentCell.h"
 
-@implementation DinesafeEstablishmentTableViewCell
+@implementation DinesafeEstablishmentCell
 
 
 - (void)awakeFromNib {
     // Initialization code
-    [self setBackgroundColor:[UIColor grayColor]];
+    // [self setBackgroundColor:[UIColor grayColor]];
 }
 
 

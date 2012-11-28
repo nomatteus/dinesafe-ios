@@ -35,7 +35,8 @@
 		AD97D520165B16C400A57ECB /* DinesafeInfraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51F165B16C400A57ECB /* DinesafeInfraction.m */; };
 		AD97D521165B16C400A57ECB /* DinesafeInfraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51F165B16C400A57ECB /* DinesafeInfraction.m */; };
 		ADC48AA8165C78F3001AEA3B /* DinesafeRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AA7165C78F3001AEA3B /* DinesafeRootTableViewController.m */; };
-		ADC48AAB165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m */; };
+		ADC48AAB165C801B001AEA3B /* DinesafeEstablishmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentCell.m */; };
+		ADC81A771665D01600BD7793 /* DinesafeInspectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC81A761665D01600BD7793 /* DinesafeInspectionCell.m */; };
 		ADD0C2381662443D00A68A1B /* DinesafeInspectionDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD0C2371662443D00A68A1B /* DinesafeInspectionDetailTableViewController.m */; };
 		B5768E3F5F1642BAA9C412B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD264E67C5A14A179CC93943 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -88,8 +89,10 @@
 		AD97D51F165B16C400A57ECB /* DinesafeInfraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeInfraction.m; sourceTree = "<group>"; };
 		ADC48AA6165C78F3001AEA3B /* DinesafeRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeRootTableViewController.h; sourceTree = "<group>"; };
 		ADC48AA7165C78F3001AEA3B /* DinesafeRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeRootTableViewController.m; sourceTree = "<group>"; };
-		ADC48AA9165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeEstablishmentTableViewCell.h; sourceTree = "<group>"; };
-		ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeEstablishmentTableViewCell.m; sourceTree = "<group>"; };
+		ADC48AA9165C801B001AEA3B /* DinesafeEstablishmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeEstablishmentCell.h; sourceTree = "<group>"; };
+		ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeEstablishmentCell.m; sourceTree = "<group>"; };
+		ADC81A751665D01500BD7793 /* DinesafeInspectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeInspectionCell.h; sourceTree = "<group>"; };
+		ADC81A761665D01600BD7793 /* DinesafeInspectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeInspectionCell.m; sourceTree = "<group>"; };
 		ADD0C2361662443D00A68A1B /* DinesafeInspectionDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeInspectionDetailTableViewController.h; sourceTree = "<group>"; };
 		ADD0C2371662443D00A68A1B /* DinesafeInspectionDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeInspectionDetailTableViewController.m; sourceTree = "<group>"; };
 		FD264E67C5A14A179CC93943 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,8 +226,10 @@
 				ADC48AA7165C78F3001AEA3B /* DinesafeRootTableViewController.m */,
 				ADD0C2361662443D00A68A1B /* DinesafeInspectionDetailTableViewController.h */,
 				ADD0C2371662443D00A68A1B /* DinesafeInspectionDetailTableViewController.m */,
-				ADC48AA9165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.h */,
-				ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m */,
+				ADC48AA9165C801B001AEA3B /* DinesafeEstablishmentCell.h */,
+				ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentCell.m */,
+				ADC81A751665D01500BD7793 /* DinesafeInspectionCell.h */,
+				ADC81A761665D01600BD7793 /* DinesafeInspectionCell.m */,
 				AD2D3FC9166194810050699C /* DinesafeLoadingCell.h */,
 				AD2D3FCA166194810050699C /* DinesafeLoadingCell.m */,
 				AD7D76991661C5E7001BFB20 /* DinesafeScorebarView.h */,
@@ -366,11 +371,12 @@
 				AD97D51B165B157900A57ECB /* DinesafeInspection.m in Sources */,
 				AD97D520165B16C400A57ECB /* DinesafeInfraction.m in Sources */,
 				ADC48AA8165C78F3001AEA3B /* DinesafeRootTableViewController.m in Sources */,
-				ADC48AAB165C801B001AEA3B /* DinesafeEstablishmentTableViewCell.m in Sources */,
+				ADC48AAB165C801B001AEA3B /* DinesafeEstablishmentCell.m in Sources */,
 				AD2D3FC7166175E30050699C /* DinesafeApiClient.m in Sources */,
 				AD2D3FCB166194810050699C /* DinesafeLoadingCell.m in Sources */,
 				AD7D769B1661C5E7001BFB20 /* DinesafeScorebarView.m in Sources */,
 				ADD0C2381662443D00A68A1B /* DinesafeInspectionDetailTableViewController.m in Sources */,
+				ADC81A771665D01600BD7793 /* DinesafeInspectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

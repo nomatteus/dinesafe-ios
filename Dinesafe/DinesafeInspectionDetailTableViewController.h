@@ -10,7 +10,8 @@
 #import <MapKit/MapKit.h>
 #import "DinesafeApiClient.h"
 #import "DinesafeEstablishment.h"
-#import "DinesafeEstablishmentTableViewCell.h"
+#import "DinesafeEstablishmentCell.h"
+#import "DinesafeInspectionCell.h"
 
 @interface DinesafeInspectionDetailTableViewController : UITableViewController
 

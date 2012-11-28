@@ -54,7 +54,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 4;
+    return self.establishment.inspections.count + 1; // +1 for the main establishment cell. this may change.
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -64,23 +64,29 @@
     } else {
         // Inspections List & Infractions
         // Infraction is 44, infraction list is 280
-        return 280;
+        return 44;
         // TODO: Height will be higher for infractions list active cells (i.e. "tap to show" infractions)
     }
 }
 
 
 - (UITableViewCell *)establishmentInfoCell {
-    DinesafeEstablishmentTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EstablishmentInfo"];
+    DinesafeEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EstablishmentInfo"];
     cell.establishment = self.establishment;
-    NSLog(@"self.establishment: %@", self.establishment);
+    // TODO: Map?! Add that as an option to the tableviewcell class?
     [cell updateCellContent];
     return cell;
 }
 
-- (UITableViewCell *)inspectionCell {
-    static NSString *CellIdentifier = @"InspectionInfractionsCell";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+- (UITableViewCell *)inspectionCellForIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"InspectionCell";
+    DinesafeInspectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    int inspectionIndex = indexPath.row - 1;
+    NSLog(@"inspectionIndex: %d", inspectionIndex);
+    NSLog(@"self.establishment.inspections.count: %d", self.establishment.inspections.count);
+    NSLog(@"self.establishment.inspections[inspectionIndex]: %@", self.establishment.inspections[inspectionIndex]);
+    cell.inspection = self.establishment.inspections[inspectionIndex];
+    [cell updateCellContent];
     return cell;
 }
 
@@ -89,7 +95,7 @@
     if (indexPath.row == 0) {
         return [self establishmentInfoCell];
     } else {
-        return [self inspectionCell];
+        return [self inspectionCellForIndexPath:indexPath];
     }
 }
 
@@ -140,17 +146,11 @@
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                                 @"43.65100,-79.47702", @"near",
                                 nil];
-    NSString *establishmentPath = [NSString stringWithFormat:@"establishments.json/%@.json", self.establishment.establishmentId];
+    NSString *establishmentPath = [NSString stringWithFormat:@"establishments/%d.json", self.establishment.establishmentId];
     [[DinesafeApiClient sharedInstance] getPath:establishmentPath parameters:parameters success:
      ^(AFHTTPRequestOperation *operation, id response) {
-         //NSLog(@"Response: %@", response);
-         // TODO: Change this to load a single establishment
          
-//         for (id establishmentDictionary in response[@"data"]) {
-//             DinesafeEstablishment *establishment = [[DinesafeEstablishment alloc] initWithDictionary:establishmentDictionary];
-//             [self.establishments addObject:establishment];
-//         }
-         
+         [self.establishment updateWithDictionary:response[@"data"]];
          [self.tableView reloadData];
          
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

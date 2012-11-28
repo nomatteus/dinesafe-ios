@@ -10,7 +10,7 @@
 
 @interface DinesafeInspection : NSObject
 
-@property (nonatomic, strong) NSString *inspectionId;
+@property (nonatomic) NSUInteger inspectionId;
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic) int minimumInspectionsPerYear;
 @property (nonatomic, strong) NSDate *date;
@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) NSMutableArray *infractions;
 
--(id) initWithDictionary:(NSDictionary *) dictionary;
+- (id)initWithDictionary:(NSDictionary *) dictionary;
+- (void)updateWithDictionary:(NSDictionary *) dictionary;
 
 @end

@@ -156,7 +156,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
         CGContextFillPath(ctx);
         
         // Divider line
-        CGFloat *lineColor = (CGFloat[]){1, 1, 1, 0.1};
+        CGFloat *lineColor = (CGFloat[]){1, 1, 1, 0.25};
         CGContextSetFillColor(ctx, lineColor);
         
         CGRect divider_line = CGRectMake(xOffset + kScoreBoxWidth - 1, yOffset, 1, kScoreBoxHeight);

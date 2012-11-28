@@ -10,6 +10,8 @@
 
 @interface DinesafeRootTableViewController ()
 @property (nonatomic, strong) NSMutableArray *establishments;
+// TODO: Is this a proper private var?
+@property (nonatomic, strong) DinesafeEstablishment *_currentEstablishment;
 - (void)fetchEstablishments;
 @end
 
@@ -70,7 +72,7 @@
 
 - (UITableViewCell *)establishmentCellForIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"EstablishmentCell";
-    DinesafeEstablishmentTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    DinesafeEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     DinesafeEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
     [cell setEstablishment: establishment];
@@ -193,6 +195,7 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    self._currentEstablishment = self.establishments[indexPath.row];
 }
 
 #pragma mark - Segues
@@ -200,8 +203,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if (([[segue identifier] isEqualToString:@"EstablishmentListToDetailView"])) {
         DinesafeInspectionDetailTableViewController *detailView = [segue destinationViewController];
-        // TODO: Return the selected establishment.
-        detailView.establishment = self.establishments[1];
+        detailView.establishment = [sender establishment];
     }
 }
 
