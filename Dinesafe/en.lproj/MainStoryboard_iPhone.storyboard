@@ -246,9 +246,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="November 25, 2012" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Z7-DC-AuO">
-                                            <rect key="frame" x="129" y="10" width="150" height="21"/>
+                                            <rect key="frame" x="128" y="11" width="172" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
@@ -256,13 +256,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pass" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9pw-0l-l4X">
-                                                    <rect key="frame" x="0.0" y="11" width="100" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pass" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="9pw-0l-l4X">
+                                                    <rect key="frame" x="7" y="11" width="87" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
-                                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="calibratedRGB"/>
+                                                    <size key="shadowOffset" width="0.0" height="1"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.89835258152173914" green="0.89443140126068688" blue="0.88266786047753021" alpha="1" colorSpace="calibratedRGB"/>
@@ -273,6 +274,7 @@
                                 <connections>
                                     <outlet property="date" destination="3Z7-DC-AuO" id="H4U-on-unQ"/>
                                     <outlet property="status" destination="9pw-0l-l4X" id="y5D-ue-XDd"/>
+                                    <outlet property="statusBox" destination="Agu-ri-zap" id="eOh-sh-JI9"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InspectionInfractionsCell" rowHeight="280" id="dCv-nV-JH0">
@@ -399,6 +401,7 @@
             <relationships>
                 <relationship kind="outlet" name="date" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="status" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statusBox" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="DinesafeInspectionDetailTableViewController" superclassName="UITableViewController">

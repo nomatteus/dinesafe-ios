@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *status;
 @property (nonatomic, strong) IBOutlet UILabel *date;
+@property (strong, nonatomic) IBOutlet UIView *statusBox;
 
 - (void)updateCellContent;
 

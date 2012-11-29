@@ -24,8 +24,14 @@
     self.type.text = self.establishment.latestType;
     self.distance.text = [NSString stringWithFormat:@"%.2f km", self.establishment.distance];
     
-    DinesafeScorebarView *scorebarView = [[DinesafeScorebarView alloc] initWithInspections:self.establishment.inspections];
+    // Clear out old scorebarView if exists -- TODO: is there a better way to do this?
+    for (UIView *view in self.subviews) {
+        if ([view isKindOfClass:[DinesafeScorebarView class]]) {
+            [view removeFromSuperview];
+        }
+    }
     
+    DinesafeScorebarView *scorebarView = [[DinesafeScorebarView alloc] initWithInspections:self.establishment.inspections];
     [self addSubview:scorebarView];
 }
 

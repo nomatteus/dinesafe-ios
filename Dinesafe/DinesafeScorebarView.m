@@ -116,8 +116,8 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
 {
     // Drawing code
     CGContextRef ctx = UIGraphicsGetCurrentContext();
+
 //    CGRect bounds = [self bounds]; // Uncomment when needed
-    
 //    float totalWidth = self.inspections.count * (kScoreBoxWidth + kScoreBoxGap);
 //    float totalHeight = kScoreBoxHeight;
     
