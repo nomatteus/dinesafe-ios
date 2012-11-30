@@ -10,11 +10,16 @@
 
 @interface DinesafeInfraction : NSObject
 
-//@property (nonatomic, strong) NSString *inspectionId;
+@property (nonatomic) NSUInteger infractionId;
 @property (nonatomic, strong) NSString *details;
 @property (nonatomic, strong) NSString *severity;
 @property (nonatomic, strong) NSString *action;
 @property (nonatomic, strong) NSString *courtOutcome;
-@property (nonatomic) float amountFined;
+@property (nonatomic) double amountFined;
+
+
+
+- (id) initWithDictionary:(NSDictionary *) dictionary;
+- (void)updateWithDictionary:(NSDictionary *) dictionary;
 
 @end

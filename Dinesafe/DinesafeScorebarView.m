@@ -11,14 +11,6 @@
 const float kScoreBoxWidth = 16;
 const float kScoreBoxHeight = 12;
 const float kScoreBoxGap = 0;  // Gap between boxes
-const double kScoreBoxPassTopColorRGB[] = {19, 148, 24};
-const double kScoreBoxPassBottomColorRGB[] = {0, 128, 22};
-const double kScoreBoxConditionalPassTopColorRGB[] = {250, 242, 7};
-const double kScoreBoxConditionalPassBottomColorRGB[] = {236, 230, 15};
-const double kScoreBoxClosedTopColorRGB[] = {242, 10, 0};
-const double kScoreBoxClosedBottomColorRGB[] = {218, 9, 0};
-const double kScoreBoxOtherTopColorRGB[] = {130, 130, 130};
-const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
 
 @implementation DinesafeScorebarView
 
@@ -33,80 +25,6 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
         [self setBackgroundColor:[UIColor clearColor]];
     }
     return self;
-}
-
-#pragma mark - Helper Methods
-
-// Return a color for an inspection status
-// status is "Pass", "Conditional Pass", or "Close". Position is 0=top, 1=bottom
-// TODO: This needs some major refactoring!!
-- (CGFloat[4])colorForStatus:(NSString *)status atPosition:(int)position {
-    if ([status isEqualToString:@"Pass"]) {
-        if (position == 0) {
-            return (CGFloat[]){
-                kScoreBoxPassTopColorRGB[0]/255,
-                kScoreBoxPassTopColorRGB[1]/255,
-                kScoreBoxPassTopColorRGB[2]/255,
-                1.0
-            };
-        } else {
-            return (CGFloat[]){
-                kScoreBoxPassBottomColorRGB[0]/255,
-                kScoreBoxPassBottomColorRGB[1]/255,
-                kScoreBoxPassBottomColorRGB[2]/255,
-                1.0
-            };
-        }
-    } else if ([status isEqualToString:@"Conditional Pass"]) {
-        if (position == 0) {
-            return (CGFloat[]){
-                kScoreBoxConditionalPassTopColorRGB[0]/255,
-                kScoreBoxConditionalPassTopColorRGB[1]/255,
-                kScoreBoxConditionalPassTopColorRGB[2]/255,
-                1.0
-            };
-        } else {
-            return (CGFloat[]){
-                kScoreBoxConditionalPassBottomColorRGB[0]/255,
-                kScoreBoxConditionalPassBottomColorRGB[1]/255,
-                kScoreBoxConditionalPassBottomColorRGB[2]/255,
-                1.0
-            };
-        }
-    } else if ([status isEqualToString:@"Closed"]) {
-        if (position == 0) {
-            return (CGFloat[]){
-                kScoreBoxClosedTopColorRGB[0]/255,
-                kScoreBoxClosedTopColorRGB[1]/255,
-                kScoreBoxClosedTopColorRGB[2]/255,
-                1.0
-            };
-        } else {
-            return (CGFloat[]){
-                kScoreBoxClosedBottomColorRGB[0]/255,
-                kScoreBoxClosedBottomColorRGB[1]/255,
-                kScoreBoxClosedBottomColorRGB[2]/255,
-                1.0
-            };
-        }
-    } else {
-        // "Out of Business" or anything else: Use gray
-        if (position == 0) {
-            return (CGFloat[]){
-                kScoreBoxOtherTopColorRGB[0]/255,
-                kScoreBoxOtherTopColorRGB[1]/255,
-                kScoreBoxOtherTopColorRGB[2]/255,
-                1.0
-            };
-        } else {
-            return (CGFloat[]){
-                kScoreBoxOtherBottomColorRGB[0]/255,
-                kScoreBoxOtherBottomColorRGB[1]/255,
-                kScoreBoxOtherBottomColorRGB[2]/255,
-                1.0
-            };
-        }
-    }
 }
 
 
@@ -143,14 +61,14 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     for (id inspection in self.inspections) {
         
         // Top of box
-        CGFloat *topColor = [self colorForStatus:[inspection status] atPosition:0];
+        CGFloat *topColor = [inspection colorForStatusAtPositionRGBA:0];
         CGContextSetFillColor(ctx, topColor);
         CGRect box_top = CGRectMake(xOffset, yOffset, kScoreBoxWidth, kScoreBoxHeight / 2);
         CGContextAddRect(ctx, box_top);
         CGContextFillPath(ctx);
         
         // Bottom of box
-        CGContextSetFillColor(ctx, [self colorForStatus:[inspection status] atPosition:1]);
+        CGContextSetFillColor(ctx, [inspection colorForStatusAtPositionRGBA:1]);
         CGRect box_bottom = CGRectMake(xOffset, kScoreBoxHeight / 2 + yOffset, kScoreBoxWidth, kScoreBoxHeight / 2);
         CGContextAddRect(ctx, box_bottom);
         CGContextFillPath(ctx);

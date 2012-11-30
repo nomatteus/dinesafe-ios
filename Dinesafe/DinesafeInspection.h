@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DinesafeInfraction.h"
 
 @interface DinesafeInspection : NSObject
 
@@ -21,5 +22,8 @@
 
 - (id)initWithDictionary:(NSDictionary *) dictionary;
 - (void)updateWithDictionary:(NSDictionary *) dictionary;
+
+- (CGFloat[4])colorForStatusAtPositionRGBA:(int)position;
+- (UIColor *)colorForStatusAtPositionUIColor:(int)position;
 
 @end

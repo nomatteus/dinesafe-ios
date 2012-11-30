@@ -63,9 +63,13 @@
         return 322;
     } else {
         // Inspections List & Infractions
-        // Infraction is 44, infraction list is 280
-        return 44;
-        // TODO: Height will be higher for infractions list active cells (i.e. "tap to show" infractions)
+        DinesafeInspection *inspection = self.establishment.inspections[indexPath.row - 1];
+        if (inspection.infractions.count > 0) {
+            // 120 is base height, then 50 for each infraction
+            return 120 + inspection.infractions.count * 50;
+        } else {
+            return 40;
+        }
     }
 }
 
@@ -73,7 +77,6 @@
 - (UITableViewCell *)establishmentInfoCell {
     DinesafeEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EstablishmentInfo"];
     cell.establishment = self.establishment;
-    // TODO: Map?! Add that as an option to the tableviewcell class?
     [cell updateCellContent];
     return cell;
 }
@@ -82,9 +85,6 @@
     static NSString *CellIdentifier = @"InspectionCell";
     DinesafeInspectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     int inspectionIndex = indexPath.row - 1;
-    NSLog(@"inspectionIndex: %d", inspectionIndex);
-    NSLog(@"self.establishment.inspections.count: %d", self.establishment.inspections.count);
-    NSLog(@"self.establishment.inspections[inspectionIndex]: %@", self.establishment.inspections[inspectionIndex]);
     cell.inspection = self.establishment.inspections[inspectionIndex];
     [cell updateCellContent];
     return cell;

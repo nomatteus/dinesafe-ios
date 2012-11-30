@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DinesafeInspection.h"
+#import "DinesafeInfraction.h"
 
 @interface DinesafeInspectionCell : UITableViewCell
 
@@ -15,7 +16,8 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *status;
 @property (nonatomic, strong) IBOutlet UILabel *date;
-@property (strong, nonatomic) IBOutlet UIView *statusBox;
+@property (nonatomic, strong) IBOutlet UIView *statusBox;
+@property (nonatomic, strong) IBOutlet UIView *infractionsView;
 
 - (void)updateCellContent;
 
