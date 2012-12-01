@@ -12,10 +12,15 @@
 @property (nonatomic, strong) NSMutableArray *establishments;
 // TODO: Is this a proper private var?
 @property (nonatomic, strong) DinesafeEstablishment *_currentEstablishment;
+@property (nonatomic) NSInteger _currentPage;
+@property (nonatomic) NSInteger _totalPages;
+@property (nonatomic, strong) CLLocation *_currentLocation;
+// @property (nonatomic, strong) UIAlertView *_alertView;
 - (void)fetchEstablishments;
 @end
 
 @implementation DinesafeRootTableViewController
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,9 +37,15 @@
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    self._currentLocation = nil;
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    [self.locationManager setDelegate:self];
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    [self.locationManager startUpdatingLocation];
     
     self.establishments = [NSMutableArray array];
-    _currentPage = 0; // no pages means we'll show single cell activity indicator
+    self._currentPage = 0; // no pages means we'll show single cell activity indicator
 }
 
 
@@ -57,12 +68,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Loading cell only
-    if (_currentPage == 0) {
+    if (self._currentPage == 0) {
         return 1;
     }
     
     // Establishments + loading cell at bottom
-    if (_currentPage < _totalPages) {
+    if (self._currentPage < self._totalPages) {
         return self.establishments.count + 1;
     }
     
@@ -90,7 +101,7 @@
 // Use this if need different heights for different cells
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Keep this in sync with changes in storyboard. Apparently there's bug that won't pick up row height changes in storyboard...
-    return 125;
+    return 122;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -103,25 +114,62 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (cell.tag == kLoadingCellTag) {
-        _currentPage++;
-        [self fetchEstablishments];
+        self._currentPage++;
+        [self fetchEstablishments]; 
     }
 }
 
+#pragma mark - location update
 
-#pragma mark = fetching data
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation {
+
+    if (self._currentLocation == nil) {
+        self._currentLocation = newLocation;
+        [self fetchEstablishments];
+    }
+    
+    // TODO: Implement update when location changed? Or not (alternate: pull to refresh will refresh location too)
+//    } else if (self._alertView == nil && [newLocation distanceFromLocation:oldLocation] > kDistanceInMetersToTriggerRefresh) {
+//        NSLog(@"Distance triggered");
+        // Ask user in dialog or somewhere if they want to reload
+        // Then on that callback (if yes), update location and call fetch establishments
+//        self._alertView = [[UIAlertView alloc] initWithTitle:@"It appears you've move to a new location."
+//                                   message:@"Would you like to refresh the results?"
+//                                  delegate:nil
+//                         cancelButtonTitle:@"Cancel"
+//                          otherButtonTitles:@"Yes", nil];
+//        [self._alertView show];
+        // Can use this to check if alert view visible: [self._alertView isVisible];
+//    }
+//    NSLog(@"newLocation: %@", newLocation);
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error {
+    NSLog(@"didFailWithError %@", error);
+}
+
+#pragma mark - fetching data
 
 - (void)fetchEstablishments {
     
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @"43.65100,-79.47702", @"near",
-                                [NSString stringWithFormat:@"%d", _currentPage], @"page",
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                @"new generation", @"search",
+                                [NSString stringWithFormat:@"%d", self._currentPage], @"page",
                                 nil];
+    if (self._currentLocation != nil) {
+        parameters[@"near"] = [NSString stringWithFormat:@"%f,%f",
+                               self._currentLocation.coordinate.latitude,
+                               self._currentLocation.coordinate.longitude];
+    }
+    NSLog(@"parameters: %@", parameters);
     [[DinesafeApiClient sharedInstance] getPath:@"establishments.json" parameters:parameters success:
      ^(AFHTTPRequestOperation *operation, id response) {
          
          //NSLog(@"Response: %@", response);
-         _totalPages = [response[@"paging"][@"total_pages"] intValue];
+         self._totalPages = [response[@"paging"][@"total_pages"] intValue];
          
          for (id establishmentDictionary in response[@"data"]) {
              DinesafeEstablishment *establishment = [[DinesafeEstablishment alloc] initWithDictionary:establishmentDictionary];

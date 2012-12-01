@@ -34,6 +34,7 @@
 		AD97D51C165B157900A57ECB /* DinesafeInspection.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51A165B157900A57ECB /* DinesafeInspection.m */; };
 		AD97D520165B16C400A57ECB /* DinesafeInfraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51F165B16C400A57ECB /* DinesafeInfraction.m */; };
 		AD97D521165B16C400A57ECB /* DinesafeInfraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51F165B16C400A57ECB /* DinesafeInfraction.m */; };
+		ADB498F116699EAB003F55B8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB498F016699EAB003F55B8 /* CoreLocation.framework */; };
 		ADC48AA8165C78F3001AEA3B /* DinesafeRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AA7165C78F3001AEA3B /* DinesafeRootTableViewController.m */; };
 		ADC48AAB165C801B001AEA3B /* DinesafeEstablishmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AAA165C801B001AEA3B /* DinesafeEstablishmentCell.m */; };
 		ADC81A771665D01600BD7793 /* DinesafeInspectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC81A761665D01600BD7793 /* DinesafeInspectionCell.m */; };
@@ -87,6 +88,7 @@
 		AD97D51A165B157900A57ECB /* DinesafeInspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeInspection.m; sourceTree = "<group>"; };
 		AD97D51E165B16C400A57ECB /* DinesafeInfraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeInfraction.h; sourceTree = "<group>"; };
 		AD97D51F165B16C400A57ECB /* DinesafeInfraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeInfraction.m; sourceTree = "<group>"; };
+		ADB498F016699EAB003F55B8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		ADC48AA6165C78F3001AEA3B /* DinesafeRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeRootTableViewController.h; sourceTree = "<group>"; };
 		ADC48AA7165C78F3001AEA3B /* DinesafeRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinesafeRootTableViewController.m; sourceTree = "<group>"; };
 		ADC48AA9165C801B001AEA3B /* DinesafeEstablishmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinesafeEstablishmentCell.h; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADB498F116699EAB003F55B8 /* CoreLocation.framework in Frameworks */,
 				AD52BF601651ED350090723E /* MapKit.framework in Frameworks */,
 				AD52BF1E1651E4EF0090723E /* UIKit.framework in Frameworks */,
 				AD52BF201651E4EF0090723E /* Foundation.framework in Frameworks */,
@@ -127,6 +130,7 @@
 		AD52BF0E1651E4EF0090723E = {
 			isa = PBXGroup;
 			children = (
+				ADB498F016699EAB003F55B8 /* CoreLocation.framework */,
 				AD52BF5F1651ED350090723E /* MapKit.framework */,
 				AD52BF231651E4EF0090723E /* Dinesafe */,
 				AD52BF4A1651E4EF0090723E /* DinesafeTests */,

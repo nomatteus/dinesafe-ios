@@ -60,7 +60,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         // Establishment Info
-        return 322;
+        return 317;
     } else {
         // Inspections List & Infractions
         DinesafeInspection *inspection = self.establishment.inspections[indexPath.row - 1];

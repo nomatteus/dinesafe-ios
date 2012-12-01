@@ -7,15 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "DinesafeApiClient.h"
 #import "DinesafeEstablishment.h"
 #import "DinesafeEstablishmentCell.h"
 #import "DinesafeLoadingCell.h"
 #import "DinesafeInspectionDetailTableViewController.h"
 
-@interface DinesafeRootTableViewController : UITableViewController {
-    NSInteger _currentPage;
-    NSInteger _totalPages;
-}
+// #define kDistanceInMetersToTriggerRefresh 100
+
+@interface DinesafeRootTableViewController : UITableViewController <CLLocationManagerDelegate>
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @end
