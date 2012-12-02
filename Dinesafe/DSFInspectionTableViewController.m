@@ -45,25 +45,28 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return self.establishment.inspections.count + 1; // +1 for the main establishment cell. this may change.
+    return self.establishment.inspections.count + 2; // +2 for the establishment info cells
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         // Establishment Info
-        return 317;
+        return 110;
+    } else if (indexPath.row == 1) {
+        // Map / Inspections summary
+        return 203;
     } else {
         // Inspections List & Infractions
-        DSFInspection *inspection = self.establishment.inspections[indexPath.row - 1];
+        // Reversing inspection order for this list
+        int inspectionIndex = self.establishment.inspections.count - indexPath.row + 2 - 1 ;  // reverse order
+        DSFInspection *inspection = self.establishment.inspections[inspectionIndex];
         if (inspection.infractions.count > 0) {
             // 120 is base height, then 50 for each infraction
             return 120 + inspection.infractions.count * 50;
@@ -81,10 +84,18 @@
     return cell;
 }
 
+- (UITableViewCell *)establishmentExtendedInfoCell {
+    DSFEstablishmentExtendedInfoCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EstablishmentExtendedInfo"];
+    cell.establishment = self.establishment;
+    [cell updateCellContent];
+    return cell;
+}
+
 - (UITableViewCell *)inspectionCellForIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"InspectionCell";
     DSFInspectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    int inspectionIndex = indexPath.row - 1;
+    // TODO: Move inspectionIndex and cell order/etc to a consolidated place, i.e. figure out cell heights and orders once, and then return that instead of doing the calculations on every cell load, Also we're calculating inspectionIndex in 2 different places and that's confusing to update. Also, I'm very tired right now and can't articulate myself very well.
+    int inspectionIndex = self.establishment.inspections.count - indexPath.row + 2 - 1;  // reverse order
     cell.inspection = self.establishment.inspections[inspectionIndex];
     [cell updateCellContent];
     return cell;
@@ -94,6 +105,8 @@
 {
     if (indexPath.row == 0) {
         return [self establishmentInfoCell];
+    } else if (indexPath.row == 1) {
+        return [self establishmentExtendedInfoCell];
     } else {
         return [self inspectionCellForIndexPath:indexPath];
     }

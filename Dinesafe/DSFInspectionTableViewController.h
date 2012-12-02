@@ -11,6 +11,7 @@
 #import "DSFApiClient.h"
 #import "DSFEstablishment.h"
 #import "DSFEstablishmentCell.h"
+#import "DSFEstablishmentExtendedInfoCell.h"
 #import "DSFInspectionCell.h"
 
 @interface DSFInspectionTableViewController : UITableViewController

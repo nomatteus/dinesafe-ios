@@ -100,7 +100,7 @@
 // Use this if need different heights for different cells
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Keep this in sync with changes in storyboard. Apparently there's bug that won't pick up row height changes in storyboard...
-    return 122;
+    return 110;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
