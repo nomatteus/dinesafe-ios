@@ -33,10 +33,10 @@
             </objects>
             <point key="canvasLocation" x="155" y="-478"/>
         </scene>
-        <!--Dinesafe Root Table View Controller - Dinesafe-->
+        <!--Root Table View Controller - Dinesafe-->
         <scene sceneID="3HK-of-oYe">
             <objects>
-                <tableViewController id="8RN-zg-ogv" customClass="DinesafeRootTableViewController" sceneMemberID="viewController">
+                <tableViewController id="8RN-zg-ogv" customClass="DSFRootTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="99" sectionHeaderHeight="22" sectionFooterHeight="22" id="CIb-xS-YBo">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,7 +50,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="EstablishmentCell" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EstablishmentCell" rowHeight="122" id="1Dt-0i-tVI" customClass="DinesafeEstablishmentCell">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="EstablishmentCell" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EstablishmentCell" rowHeight="122" id="1Dt-0i-tVI" customClass="DSFEstablishmentCell">
                                 <rect key="frame" x="0.0" y="66" width="320" height="122"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -93,7 +93,7 @@
                                     <segue destination="mXH-Ey-eCF" kind="push" identifier="EstablishmentListToDetailView" id="cwK-uJ-WMi"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingCell" rowHeight="125" id="oaa-jc-Gtk" customClass="DinesafeLoadingCell">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingCell" rowHeight="125" id="oaa-jc-Gtk" customClass="DSFLoadingCell">
                                 <rect key="frame" x="0.0" y="188" width="320" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -167,16 +167,16 @@
             </objects>
             <point key="canvasLocation" x="155" y="-1275"/>
         </scene>
-        <!--Dinesafe Inspection Detail Table View Controller-->
+        <!--Inspection Table View Controller-->
         <scene sceneID="zzf-SP-5hl">
             <objects>
-                <tableViewController id="mXH-Ey-eCF" customClass="DinesafeInspectionDetailTableViewController" sceneMemberID="viewController">
+                <tableViewController id="mXH-Ey-eCF" customClass="DSFInspectionTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lxx-hT-HfY">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="EstablishmentInfo" selectionStyle="blue" indentationWidth="10" reuseIdentifier="EstablishmentInfo" rowHeight="317" id="zJW-L2-HGJ" customClass="DinesafeEstablishmentCell">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="EstablishmentInfo" selectionStyle="blue" indentationWidth="10" reuseIdentifier="EstablishmentInfo" rowHeight="317" id="zJW-L2-HGJ" customClass="DSFEstablishmentCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="317"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -238,7 +238,7 @@
                                     <outlet property="type" destination="km3-GH-67x" id="uJT-65-jK6"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InspectionCell" rowHeight="264" id="TeW-zw-P9b" customClass="DinesafeInspectionCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InspectionCell" rowHeight="264" id="TeW-zw-P9b" customClass="DSFInspectionCell">
                                 <rect key="frame" x="0.0" y="339" width="320" height="264"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -339,35 +339,6 @@
             <point key="canvasLocation" x="-989" y="-845"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="DinesafeEstablishmentCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DinesafeEstablishmentCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="distance" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="type" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DinesafeInspectionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DinesafeInspectionCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infractionsView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="status" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="statusBox" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="DinesafeInspectionDetailTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DinesafeInspectionDetailTableViewController.h"/>
-        </class>
-        <class className="DinesafeLoadingCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DinesafeLoadingCell.h"/>
-        </class>
-        <class className="DinesafeRootTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DinesafeRootTableViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Matt Ruten. All rights reserved.
 //
 
-#import "DinesafeInspection.h"
+#import "DSFInspection.h"
 
 const double kScoreBoxPassTopColorRGB[] = {19, 148, 24};
 const double kScoreBoxPassBottomColorRGB[] = {0, 128, 22};
@@ -17,7 +17,7 @@ const double kScoreBoxClosedBottomColorRGB[] = {218, 9, 0};
 const double kScoreBoxOtherTopColorRGB[] = {130, 130, 130};
 const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
 
-@implementation DinesafeInspection
+@implementation DSFInspection
 
 #pragma mark - Create and Update
 
@@ -44,7 +44,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     
     for (id infraction in dictionary[@"infractions"]) {
         NSUInteger index = [self.infractions indexOfObjectPassingTest:
-                            ^(DinesafeInfraction *obj, NSUInteger idx, BOOL *stop) {
+                            ^(DSFInfraction *obj, NSUInteger idx, BOOL *stop) {
                                 if (obj.infractionId == [infraction[@"id"] intValue]) {
                                     return YES;
                                 } else {
@@ -52,7 +52,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
                                 }
                             }];
         if (index == NSNotFound) {
-            [self.infractions addObject:[[DinesafeInfraction alloc] initWithDictionary:infraction]];
+            [self.infractions addObject:[[DSFInfraction alloc] initWithDictionary:infraction]];
         } else {
             [self.infractions[index] updateWithDictionary:infraction];
         }

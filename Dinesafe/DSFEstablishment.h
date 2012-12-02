@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import "DinesafeInspection.h"
+#import "DSFInspection.h"
 
-@interface DinesafeEstablishment : NSObject
+@interface DSFEstablishment : NSObject
 
 @property (nonatomic) NSUInteger establishmentId;
 @property (nonatomic, strong) NSString *latestName;

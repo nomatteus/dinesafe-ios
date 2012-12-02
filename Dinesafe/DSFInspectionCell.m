@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Matt Ruten. All rights reserved.
 //
 
-#import "DinesafeInspectionCell.h"
+#import "DSFInspectionCell.h"
 
-@implementation DinesafeInspectionCell
+@implementation DSFInspectionCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -31,7 +31,7 @@
 
     float offsetY = 76;
     float infractionHeight = 50;
-    for (DinesafeInfraction *infraction in self.inspection.infractions) {
+    for (DSFInfraction *infraction in self.inspection.infractions) {
         CGRect severityFrame = CGRectMake(16, offsetY, 87, infractionHeight);
         UITextView *severity = [[UITextView alloc] initWithFrame:severityFrame];
         severity.text = infraction.severity;

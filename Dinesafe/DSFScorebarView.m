@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Matt Ruten. All rights reserved.
 //
 
-#import "DinesafeScorebarView.h"
+#import "DSFScorebarView.h"
 
 const float kScoreBoxWidth = 16;
 const float kScoreBoxHeight = 12;
 const float kScoreBoxGap = 0;  // Gap between boxes
 
-@implementation DinesafeScorebarView
+@implementation DSFScorebarView
 
 
 #pragma mark - Init

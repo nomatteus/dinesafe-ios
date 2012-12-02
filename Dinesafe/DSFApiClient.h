@@ -8,7 +8,9 @@
 
 #import "AFNetworking.h"
 
-@interface DinesafeApiClient : AFHTTPClient
+#define DINESAFE_API_BASE_URL @"http://dinesafe.192.168.1.2.xip.io/api/1.0/"
+
+@interface DSFApiClient : AFHTTPClient
 
 + (id)sharedInstance;
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Matt Ruten. All rights reserved.
 //
 
-#import "DinesafeInfraction.h"
+#import "DSFInfraction.h"
 
-@implementation DinesafeInfraction
+@implementation DSFInfraction
 
 - (id) initWithDictionary:(NSDictionary *) dictionary {
     self = [super init];

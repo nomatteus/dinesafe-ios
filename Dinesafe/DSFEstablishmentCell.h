@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DinesafeEstablishment.h"
-#import "DinesafeScorebarView.h"
+#import "DSFEstablishment.h"
+#import "DSFScorebarView.h"
 
-@interface DinesafeEstablishmentCell : UITableViewCell
+@interface DSFEstablishmentCell : UITableViewCell
 
-@property (nonatomic, strong) DinesafeEstablishment *establishment;
+@property (nonatomic, strong) DSFEstablishment *establishment;
 
 @property (nonatomic, strong) IBOutlet UILabel *name;
 @property (nonatomic, strong) IBOutlet UILabel *address;

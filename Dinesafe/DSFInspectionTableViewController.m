@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Matt Ruten. All rights reserved.
 //
 
-#import "DinesafeInspectionDetailTableViewController.h"
+#import "DSFInspectionTableViewController.h"
 
-@interface DinesafeInspectionDetailTableViewController ()
+@interface DSFInspectionTableViewController ()
 
 @end
 
-@implementation DinesafeInspectionDetailTableViewController
+@implementation DSFInspectionTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -63,7 +63,7 @@
         return 317;
     } else {
         // Inspections List & Infractions
-        DinesafeInspection *inspection = self.establishment.inspections[indexPath.row - 1];
+        DSFInspection *inspection = self.establishment.inspections[indexPath.row - 1];
         if (inspection.infractions.count > 0) {
             // 120 is base height, then 50 for each infraction
             return 120 + inspection.infractions.count * 50;
@@ -75,7 +75,7 @@
 
 
 - (UITableViewCell *)establishmentInfoCell {
-    DinesafeEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EstablishmentInfo"];
+    DSFEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EstablishmentInfo"];
     cell.establishment = self.establishment;
     [cell updateCellContent];
     return cell;
@@ -83,7 +83,7 @@
 
 - (UITableViewCell *)inspectionCellForIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"InspectionCell";
-    DinesafeInspectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    DSFInspectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     int inspectionIndex = indexPath.row - 1;
     cell.inspection = self.establishment.inspections[inspectionIndex];
     [cell updateCellContent];
@@ -147,7 +147,7 @@
                                 @"43.65100,-79.47702", @"near",
                                 nil];
     NSString *establishmentPath = [NSString stringWithFormat:@"establishments/%d.json", self.establishment.establishmentId];
-    [[DinesafeApiClient sharedInstance] getPath:establishmentPath parameters:parameters success:
+    [[DSFApiClient sharedInstance] getPath:establishmentPath parameters:parameters success:
      ^(AFHTTPRequestOperation *operation, id response) {
          
          [self.establishment updateWithDictionary:response[@"data"]];

@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "DinesafeApiClient.h"
-#import "DinesafeEstablishment.h"
-#import "DinesafeEstablishmentCell.h"
-#import "DinesafeLoadingCell.h"
-#import "DinesafeInspectionDetailTableViewController.h"
+#import "DSFApiClient.h"
+#import "DSFEstablishment.h"
+#import "DSFEstablishmentCell.h"
+#import "DSFLoadingCell.h"
+#import "DSFInspectionTableViewController.h"
 
 // #define kDistanceInMetersToTriggerRefresh 100
 
-@interface DinesafeRootTableViewController : UITableViewController <CLLocationManagerDelegate>
+@interface DSFRootTableViewController : UITableViewController <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DinesafeInfraction : NSObject
+@interface DSFInfraction : NSObject
 
 @property (nonatomic) NSUInteger infractionId;
 @property (nonatomic, strong) NSString *details;

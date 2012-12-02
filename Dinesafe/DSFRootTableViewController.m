@@ -6,12 +6,11 @@
 //  Copyright (c) 2012 Matt Ruten. All rights reserved.
 //
 
-#import "DinesafeRootTableViewController.h"
+#import "DSFRootTableViewController.h"
 
-@interface DinesafeRootTableViewController ()
+@interface DSFRootTableViewController ()
 @property (nonatomic, strong) NSMutableArray *establishments;
-// TODO: Is this a proper private var?
-@property (nonatomic, strong) DinesafeEstablishment *_currentEstablishment;
+@property (nonatomic, strong) DSFEstablishment *_currentEstablishment;
 @property (nonatomic) NSInteger _currentPage;
 @property (nonatomic) NSInteger _totalPages;
 @property (nonatomic, strong) CLLocation *_currentLocation;
@@ -19,7 +18,7 @@
 - (void)fetchEstablishments;
 @end
 
-@implementation DinesafeRootTableViewController
+@implementation DSFRootTableViewController
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -83,9 +82,9 @@
 
 - (UITableViewCell *)establishmentCellForIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"EstablishmentCell";
-    DinesafeEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    DSFEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-    DinesafeEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
+    DSFEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
     [cell setEstablishment: establishment];
     
     [cell updateCellContent];
@@ -94,7 +93,7 @@
 }
 
 - (UITableViewCell *)loadingCell {
-    DinesafeLoadingCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"LoadingCell"];
+    DSFLoadingCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"LoadingCell"];
     return cell;
 }
 
@@ -115,7 +114,10 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (cell.tag == kLoadingCellTag) {
         self._currentPage++;
-        [self fetchEstablishments]; 
+        // Update establishments if we're not on the first row (i.e. first load, since first load will be done by location callback)
+        if (indexPath.row > 0) {
+            [self fetchEstablishments];
+        }
     }
 }
 
@@ -165,14 +167,14 @@
                                self._currentLocation.coordinate.longitude];
     }
     NSLog(@"parameters: %@", parameters);
-    [[DinesafeApiClient sharedInstance] getPath:@"establishments.json" parameters:parameters success:
+    [[DSFApiClient sharedInstance] getPath:@"establishments.json" parameters:parameters success:
      ^(AFHTTPRequestOperation *operation, id response) {
          
          //NSLog(@"Response: %@", response);
          self._totalPages = [response[@"paging"][@"total_pages"] intValue];
          
          for (id establishmentDictionary in response[@"data"]) {
-             DinesafeEstablishment *establishment = [[DinesafeEstablishment alloc] initWithDictionary:establishmentDictionary];
+             DSFEstablishment *establishment = [[DSFEstablishment alloc] initWithDictionary:establishmentDictionary];
              [self.establishments addObject:establishment];
          }
          
@@ -250,7 +252,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if (([[segue identifier] isEqualToString:@"EstablishmentListToDetailView"])) {
-        DinesafeInspectionDetailTableViewController *detailView = [segue destinationViewController];
+        DSFInspectionTableViewController *detailView = [segue destinationViewController];
         detailView.establishment = [sender establishment];
     }
 }

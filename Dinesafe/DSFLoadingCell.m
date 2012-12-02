@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Matt Ruten. All rights reserved.
 //
 
-#import "DinesafeLoadingCell.h"
+#import "DSFLoadingCell.h"
 
-@implementation DinesafeLoadingCell
+@implementation DSFLoadingCell
 
 // This is how to execute code on "init", instead of in:
 //   - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

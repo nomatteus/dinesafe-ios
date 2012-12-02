@@ -6,17 +6,15 @@
 //  Copyright (c) 2012 Matt Ruten. All rights reserved.
 //
 
-#import "DinesafeApiClient.h"
+#import "DSFApiClient.h"
 
-#define DINESAFE_API_BASE_URL @"http://dinesafe.dev/api/1.0/"
-
-@implementation DinesafeApiClient
+@implementation DSFApiClient
 
 + (id)sharedInstance {
-    static DinesafeApiClient *__sharedInstance;
+    static DSFApiClient *__sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __sharedInstance = [[DinesafeApiClient alloc] initWithBaseURL:
+        __sharedInstance = [[DSFApiClient alloc] initWithBaseURL:
                             [NSURL URLWithString:DINESAFE_API_BASE_URL]];
     });
     

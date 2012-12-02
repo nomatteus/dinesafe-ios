@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DinesafeInspection.h"
+#import "DSFInspection.h"
 
-@interface DinesafeScorebarView : UIView
+@interface DSFScorebarView : UIView
 
 @property (nonatomic, strong) NSArray *inspections;
 

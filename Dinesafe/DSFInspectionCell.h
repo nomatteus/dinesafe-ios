@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DinesafeInspection.h"
-#import "DinesafeInfraction.h"
+#import "DSFInspection.h"
+#import "DSFInfraction.h"
 
-@interface DinesafeInspectionCell : UITableViewCell
+@interface DSFInspectionCell : UITableViewCell
 
-@property (nonatomic, strong) DinesafeInspection *inspection;
+@property (nonatomic, strong) DSFInspection *inspection;
 
 @property (nonatomic, strong) IBOutlet UILabel *status;
 @property (nonatomic, strong) IBOutlet UILabel *date;

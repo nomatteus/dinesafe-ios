@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Matt Ruten. All rights reserved.
 //
 
-#import "DinesafeEstablishment.h"
+#import "DSFEstablishment.h"
 
-@implementation DinesafeEstablishment
+@implementation DSFEstablishment
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
@@ -28,7 +28,7 @@
     
     for (id inspection in dictionary[@"inspections"]) {
         NSUInteger index = [self.inspections indexOfObjectPassingTest:
-                            ^(DinesafeInspection *obj, NSUInteger idx, BOOL *stop) {
+                            ^(DSFInspection *obj, NSUInteger idx, BOOL *stop) {
                                 if (obj.inspectionId == [inspection[@"id"] intValue]) {
                                     return YES;
                                 } else {
@@ -36,7 +36,7 @@
                                 }
                             }];
         if (index == NSNotFound) {
-            [self.inspections addObject:[[DinesafeInspection alloc] initWithDictionary:inspection]];
+            [self.inspections addObject:[[DSFInspection alloc] initWithDictionary:inspection]];
         } else {
             [self.inspections[index] updateWithDictionary:inspection];
         }

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Matt Ruten. All rights reserved.
 //
 
-#import "DinesafeEstablishmentCell.h"
+#import "DSFEstablishmentCell.h"
 
-@implementation DinesafeEstablishmentCell
+@implementation DSFEstablishmentCell
 
 
 - (void)awakeFromNib {
@@ -26,12 +26,12 @@
     
     // Clear out old scorebarView if exists -- TODO: is there a better way to do this?
     for (UIView *view in self.subviews) {
-        if ([view isKindOfClass:[DinesafeScorebarView class]]) {
+        if ([view isKindOfClass:[DSFScorebarView class]]) {
             [view removeFromSuperview];
         }
     }
     
-    DinesafeScorebarView *scorebarView = [[DinesafeScorebarView alloc] initWithInspections:self.establishment.inspections];
+    DSFScorebarView *scorebarView = [[DSFScorebarView alloc] initWithInspections:self.establishment.inspections];
     [self addSubview:scorebarView];
 }
 

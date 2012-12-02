@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DinesafeInfraction.h"
+#import "DSFInfraction.h"
 
-@interface DinesafeInspection : NSObject
+@interface DSFInspection : NSObject
 
 @property (nonatomic) NSUInteger inspectionId;
 @property (nonatomic, strong) NSString *status;
