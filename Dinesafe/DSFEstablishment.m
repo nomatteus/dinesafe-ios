@@ -8,6 +8,11 @@
 
 #import "DSFEstablishment.h"
 
+
+@interface DSFEstablishment ()
+
+@end
+
 @implementation DSFEstablishment
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
@@ -43,6 +48,13 @@
     }
     
     // self.location = TODO;
+}
+
+- (int)minimumInspectionsPerYear {
+    if (!_minimumInspectionsPerYear) {
+        _minimumInspectionsPerYear = [self.inspections.lastObject minimumInspectionsPerYear];
+    }
+    return _minimumInspectionsPerYear;
 }
 
 @end

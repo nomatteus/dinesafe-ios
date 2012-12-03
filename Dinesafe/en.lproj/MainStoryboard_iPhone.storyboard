@@ -218,11 +218,11 @@
                                     <outlet property="type" destination="km3-GH-67x" id="uJT-65-jK6"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EstablishmentExtendedInfo" rowHeight="203" id="0zU-QK-sxP" customClass="DSFEstablishmentExtendedInfoCell">
-                                <rect key="frame" x="0.0" y="132" width="320" height="203"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EstablishmentExtendedInfo" rowHeight="183" id="0zU-QK-sxP" customClass="DSFEstablishmentExtendedInfoCell">
+                                <rect key="frame" x="0.0" y="132" width="320" height="183"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="202"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="182"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" id="PGt-K4-Xo6">
@@ -245,7 +245,7 @@
                                             <rect key="frame" x="27" y="141" width="273" height="41"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <string key="text">Total: 9 inspections
-(6 Pass, 2 Conditional Pass, 1 Closed)</string>
+Minimum Inspections Per Year: 3</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -253,9 +253,13 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <outlet property="inspectionsSummary" destination="3Wp-lx-14q" id="BsS-27-a4f"/>
+                                    <outlet property="mapView" destination="mOw-yP-Y1M" id="c2L-du-vpJ"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InspectionCell" rowHeight="127" id="TeW-zw-P9b" customClass="DSFInspectionCell">
-                                <rect key="frame" x="0.0" y="335" width="320" height="127"/>
+                                <rect key="frame" x="0.0" y="315" width="320" height="127"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="126"/>
@@ -355,42 +359,6 @@
             <point key="canvasLocation" x="-989" y="-845"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="DSFEstablishmentCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFEstablishmentCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="distance" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="type" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DSFEstablishmentExtendedInfoCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFEstablishmentExtendedInfoCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="inspectionsSummary" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="DSFInspectionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFInspectionCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infractionsView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="status" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="statusBox" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="DSFInspectionTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFInspectionTableViewController.h"/>
-        </class>
-        <class className="DSFLoadingCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFLoadingCell.h"/>
-        </class>
-        <class className="DSFRootTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFRootTableViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -17,7 +17,11 @@
 
 - (void)updateCellContent
 {
-    self.inspectionsSummary.text = @"blah";
+    self.inspectionsSummary.text = [NSString
+                                    stringWithFormat:@"Total: %d inspections\nMinimum Inspections Per Year: %d",
+                                    self.establishment.inspections.count,
+                                    self.establishment.minimumInspectionsPerYear];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

@@ -61,11 +61,11 @@
         return 110;
     } else if (indexPath.row == 1) {
         // Map / Inspections summary
-        return 203;
+        return 183;
     } else {
         // Inspections List & Infractions
         // Reversing inspection order for this list
-        int inspectionIndex = self.establishment.inspections.count - indexPath.row + 2 - 1 ;  // reverse order
+        int inspectionIndex = self.establishment.inspections.count - 1 - indexPath.row + 2;  // reverse order + 2 because there are 2 non-inspection cells, and - 1
         DSFInspection *inspection = self.establishment.inspections[inspectionIndex];
         if (inspection.infractions.count > 0) {
             // 120 is base height, then 50 for each infraction
@@ -95,7 +95,7 @@
     static NSString *CellIdentifier = @"InspectionCell";
     DSFInspectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     // TODO: Move inspectionIndex and cell order/etc to a consolidated place, i.e. figure out cell heights and orders once, and then return that instead of doing the calculations on every cell load, Also we're calculating inspectionIndex in 2 different places and that's confusing to update. Also, I'm very tired right now and can't articulate myself very well.
-    int inspectionIndex = self.establishment.inspections.count - indexPath.row + 2 - 1;  // reverse order
+    int inspectionIndex = self.establishment.inspections.count - 1 - indexPath.row + 2;  // reverse order
     cell.inspection = self.establishment.inspections[inspectionIndex];
     [cell updateCellContent];
     return cell;

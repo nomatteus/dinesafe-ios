@@ -15,7 +15,7 @@
 @property (nonatomic, strong) DSFEstablishment *establishment;
 
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
-@property (nonatomic, strong) IBOutlet UITextView *inspectionsSummary;
+@property (nonatomic, strong) IBOutlet UILabel *inspectionsSummary;
 
 - (void)updateCellContent;
 

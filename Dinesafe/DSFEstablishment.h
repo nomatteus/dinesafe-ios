@@ -20,6 +20,8 @@
 @property (nonatomic, readwrite) CLLocationCoordinate2D location;
 @property (nonatomic, strong) NSMutableArray *inspections;
 
+@property (nonatomic) int minimumInspectionsPerYear;
+
 - (id)initWithDictionary:(NSDictionary *) dictionary;
 - (void)updateWithDictionary:(NSDictionary *)dictionary;
 
