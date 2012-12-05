@@ -156,9 +156,13 @@
 
 - (void)fetchEstablishment {
     
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @"43.65100,-79.47702", @"near",
-                                nil];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:nil];
+    
+    if (self.currentLocation != nil) {
+        parameters[@"near"] = [NSString stringWithFormat:@"%f,%f",
+                               self.currentLocation.coordinate.latitude,
+                               self.currentLocation.coordinate.longitude];
+    }
     NSString *establishmentPath = [NSString stringWithFormat:@"establishments/%d.json", self.establishment.establishmentId];
     [[DSFApiClient sharedInstance] getPath:establishmentPath parameters:parameters success:
      ^(AFHTTPRequestOperation *operation, id response) {

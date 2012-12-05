@@ -8,13 +8,12 @@
 
 #import "DSFRootTableViewController.h"
 
-@interface DSFRootTableViewController ()
+@interface DSFRootTableViewController () <CLLocationManagerDelegate>
 @property (nonatomic, strong) NSMutableArray *establishments;
 @property (nonatomic, strong) DSFEstablishment *_currentEstablishment;
 @property (nonatomic) NSInteger _currentPage;
 @property (nonatomic) NSInteger _totalPages;
-@property (nonatomic, strong) CLLocation *_currentLocation;
-// @property (nonatomic, strong) UIAlertView *_alertView;
+@property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
 - (void)fetchEstablishments;
 @end
 
@@ -33,10 +32,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setupSearchBar];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    self._currentLocation = nil;
+    self.currentLocation = nil;
     
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager setDelegate:self];
@@ -47,6 +46,11 @@
     self._currentPage = 0; // no pages means we'll show single cell activity indicator
 }
 
+- (void)setupSearchBar {
+    // Scroll table view so search bar is just out of sight
+    CGPoint offset = CGPointMake(0, self.searchBar.frame.size.height);
+    self.tableView.contentOffset = offset;
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -127,25 +131,10 @@
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
 
-    if (self._currentLocation == nil) {
-        self._currentLocation = newLocation;
+    if (self.currentLocation == nil) {
+        self.currentLocation = newLocation;
         [self fetchEstablishments];
     }
-    
-    // TODO: Implement update when location changed? Or not (alternate: pull to refresh will refresh location too)
-//    } else if (self._alertView == nil && [newLocation distanceFromLocation:oldLocation] > kDistanceInMetersToTriggerRefresh) {
-//        NSLog(@"Distance triggered");
-        // Ask user in dialog or somewhere if they want to reload
-        // Then on that callback (if yes), update location and call fetch establishments
-//        self._alertView = [[UIAlertView alloc] initWithTitle:@"It appears you've move to a new location."
-//                                   message:@"Would you like to refresh the results?"
-//                                  delegate:nil
-//                         cancelButtonTitle:@"Cancel"
-//                          otherButtonTitles:@"Yes", nil];
-//        [self._alertView show];
-        // Can use this to check if alert view visible: [self._alertView isVisible];
-//    }
-//    NSLog(@"newLocation: %@", newLocation);
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -161,10 +150,10 @@
 //                                @"new generation", @"search",
                                 [NSString stringWithFormat:@"%d", self._currentPage], @"page",
                                 nil];
-    if (self._currentLocation != nil) {
+    if (self.currentLocation != nil) {
         parameters[@"near"] = [NSString stringWithFormat:@"%f,%f",
-                               self._currentLocation.coordinate.latitude,
-                               self._currentLocation.coordinate.longitude];
+                               self.currentLocation.coordinate.latitude,
+                               self.currentLocation.coordinate.longitude];
     }
     NSLog(@"parameters: %@", parameters);
     [[DSFApiClient sharedInstance] getPath:@"establishments.json" parameters:parameters success:
@@ -193,58 +182,11 @@
      }];
     
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
      
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
     self._currentEstablishment = self.establishments[indexPath.row];
 }
 
@@ -254,6 +196,7 @@
     if (([[segue identifier] isEqualToString:@"EstablishmentListToDetailView"])) {
         DSFInspectionTableViewController *detailView = [segue destinationViewController];
         detailView.establishment = [sender establishment];
+        detailView.currentLocation = self.currentLocation;
     }
 }
 

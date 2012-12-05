@@ -16,8 +16,9 @@
 
 // #define kDistanceInMetersToTriggerRefresh 100
 
-@interface DSFRootTableViewController : UITableViewController <CLLocationManagerDelegate>
+@interface DSFRootTableViewController : UITableViewController
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *currentLocation;
 
 @end

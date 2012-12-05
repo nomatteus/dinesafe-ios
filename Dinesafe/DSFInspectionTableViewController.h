@@ -18,5 +18,6 @@
 
 @property (nonatomic, strong) DSFEstablishment *establishment;
 
+@property (nonatomic, strong) CLLocation *currentLocation;
 
 @end
