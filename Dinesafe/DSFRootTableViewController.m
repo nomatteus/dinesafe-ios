@@ -8,13 +8,16 @@
 
 #import "DSFRootTableViewController.h"
 
-@interface DSFRootTableViewController () <CLLocationManagerDelegate>
+@interface DSFRootTableViewController () <CLLocationManagerDelegate, UISearchBarDelegate>
 @property (nonatomic, strong) NSMutableArray *establishments;
 @property (nonatomic, strong) DSFEstablishment *_currentEstablishment;
 @property (nonatomic) NSInteger _currentPage;
 @property (nonatomic) NSInteger _totalPages;
+@property (nonatomic, strong) NSString *searchText;
 @property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, strong) UIView *disableViewOverlay;
 - (void)fetchEstablishments;
+- (void)resetEstablishments;
 @end
 
 @implementation DSFRootTableViewController
@@ -42,9 +45,16 @@
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [self.locationManager startUpdatingLocation];
     
-    self.establishments = [NSMutableArray array];
-    self._currentPage = 0; // no pages means we'll show single cell activity indicator
+    [self resetEstablishments];
 }
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Search
 
 - (void)setupSearchBar {
     // Scroll table view so search bar is just out of sight
@@ -52,11 +62,45 @@
     self.tableView.contentOffset = offset;
 }
 
+// Search begins, keyboard appears
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.tableView.allowsSelection = NO;
+    self.tableView.scrollEnabled = NO;
+    
+    // Add Disabled View Overlay
+    self.disableViewOverlay.alpha = 0;
+    [self.view addSubview:self.disableViewOverlay];
+    
+    [UIView beginAnimations:@"FadeIn" context:nil];
+    [UIView setAnimationDuration:0.3];
+    self.disableViewOverlay.alpha = 0.7;
+    [UIView commitAnimations];
+}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+// Search finished (clicked "Search" button)
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.tableView.allowsSelection = YES;
+    self.tableView.scrollEnabled = YES;
+    
+    [self.disableViewOverlay removeFromSuperview];
+    
+    self.searchText = [searchBar text];
+    [self.searchBar resignFirstResponder]; // hides keyboard
+    [self resetEstablishments];
+    [self fetchEstablishments];
+}
+
+- (UIView *)disableViewOverlay {
+    if (_disableViewOverlay == nil) {
+//        CGRect frame = CGRectMake(0.0f,44.0f,320.0f,416.0f);
+        CGRect frame = [[UIScreen mainScreen] bounds];
+        frame.origin.y = self.searchBar.frame.size.height;
+        _disableViewOverlay = [[UIView alloc] initWithFrame:frame];
+        _disableViewOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        _disableViewOverlay.backgroundColor = [UIColor blackColor];
+        _disableViewOverlay.alpha = 0;
+    }
+    return _disableViewOverlay;
 }
 
 
@@ -144,16 +188,29 @@
 
 #pragma mark - fetching data
 
+// reset establishments called on view load, before executing a search, and will be called on pull to refresh
+- (void)resetEstablishments {
+    if (self.establishments == nil) {
+        self.establishments = [NSMutableArray array];
+    } else {
+        [self.establishments removeAllObjects];
+    }
+    self._currentPage = 0; // no pages means we'll show single cell activity indicator
+    [self.tableView reloadData];
+}
+
 - (void)fetchEstablishments {
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-//                                @"new generation", @"search",
                                 [NSString stringWithFormat:@"%d", self._currentPage], @"page",
-                                nil];
+                                       nil];
     if (self.currentLocation != nil) {
         parameters[@"near"] = [NSString stringWithFormat:@"%f,%f",
                                self.currentLocation.coordinate.latitude,
                                self.currentLocation.coordinate.longitude];
+    }
+    if (self.searchText != nil) {
+        parameters[@"search"] = self.searchText;
     }
     NSLog(@"parameters: %@", parameters);
     [[DSFApiClient sharedInstance] getPath:@"establishments.json" parameters:parameters success:
