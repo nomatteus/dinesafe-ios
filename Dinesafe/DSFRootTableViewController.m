@@ -62,8 +62,7 @@
     self.tableView.contentOffset = offset;
 }
 
-// Search begins, keyboard appears
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+- (void)showSearch:(UISearchBar *)searchBar {
     self.tableView.allowsSelection = NO;
     self.tableView.scrollEnabled = NO;
     
@@ -77,17 +76,34 @@
     [UIView commitAnimations];
 }
 
-// Search finished (clicked "Search" button)
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+- (void)hideSearch:(UISearchBar *)searchBar andPerformSearch:(BOOL)performSearch {
     self.tableView.allowsSelection = YES;
     self.tableView.scrollEnabled = YES;
     
     [self.disableViewOverlay removeFromSuperview];
     
-    self.searchText = [searchBar text];
     [self.searchBar resignFirstResponder]; // hides keyboard
-    [self resetEstablishments];
-    [self fetchEstablishments];
+    
+    if (performSearch) {
+        self.searchText = [searchBar text];
+        [self resetEstablishments];
+        [self fetchEstablishments];
+    }
+}
+
+// Search begins, keyboard appears
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [self showSearch:searchBar];
+}
+
+// called when cancel button pressed
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self hideSearch:searchBar andPerformSearch:NO];
+}
+
+// Search finished (clicked "Search" button)
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self hideSearch:searchBar andPerformSearch:YES];
 }
 
 - (UIView *)disableViewOverlay {
@@ -99,8 +115,17 @@
         _disableViewOverlay.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _disableViewOverlay.backgroundColor = [UIColor blackColor];
         _disableViewOverlay.alpha = 0;
+        // Recognize a tap on overlay view to dismiss search view
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTaps:)];
+        tapGestureRecognizer.numberOfTouchesRequired = 1;
+        tapGestureRecognizer.numberOfTapsRequired = 1;
+        [_disableViewOverlay addGestureRecognizer:tapGestureRecognizer];
     }
     return _disableViewOverlay;
+}
+
+- (void)handleTaps:(UIGestureRecognizer*)paramSender {
+    [self hideSearch:self.searchBar andPerformSearch:NO];
 }
 
 
