@@ -9,7 +9,7 @@
 #import "DSFInspectionTableViewController.h"
 
 @interface DSFInspectionTableViewController ()
-
+@property (nonatomic, strong) NSMutableArray *tableCellHeights;
 @end
 
 @implementation DSFInspectionTableViewController
@@ -26,8 +26,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableCellHeights = [[NSMutableArray alloc] init];
 
     [self fetchEstablishment];
+    [self calculateTableCellHeights];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -55,25 +58,38 @@
     return self.establishment.inspections.count + 2; // +2 for the establishment info cells
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        // Establishment Info
-        return 110;
-    } else if (indexPath.row == 1) {
-        // Map / Inspections summary
-        return 183;
-    } else {
-        // Inspections List & Infractions
-        // Reversing inspection order for this list
-        int inspectionIndex = self.establishment.inspections.count - 1 - indexPath.row + 2;  // reverse order + 2 because there are 2 non-inspection cells, and - 1
+// Calculates and stores table heights, so we don't have to do the logic/calulations
+//      constantly. i.e. a caching mechanism to avoid laggy scrolling
+- (void)calculateTableCellHeights {
+    NSLog(@"calculateTableCellHeights called");
+    // Establishment Info
+    self.tableCellHeights[0] = [NSNumber numberWithInt:110];
+    
+    // Map/Inspections Summary
+    self.tableCellHeights[1] = [NSNumber numberWithInt:184];
+
+    // Offset to take into account the two cells above
+    int inspectionsOffset = 2;
+    int numEstablishments = self.establishment.inspections.count;
+    for (int i=inspectionsOffset; i < (numEstablishments + inspectionsOffset); i++) {
+        // Reversing inspection order for this
+        //     numEstablishments - 1   takes us to the end of the list (counting from 0)
+        //     i + inspectionsOffset   subtracts the current inspection's index
+        int inspectionIndex = numEstablishments - 1 - i + inspectionsOffset;
         DSFInspection *inspection = self.establishment.inspections[inspectionIndex];
+        int cellHeight;
         if (inspection.infractions.count > 0) {
             // 120 is base height, then 50 for each infraction
-            return 120 + inspection.infractions.count * 50;
+            cellHeight = 120 + inspection.infractions.count * 50;
         } else {
-            return 40;
+            cellHeight = 40;
         }
+        self.tableCellHeights[i] = [NSNumber numberWithInt:cellHeight];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [self.tableCellHeights[indexPath.row] floatValue];
 }
 
 
@@ -168,6 +184,7 @@
      ^(AFHTTPRequestOperation *operation, id response) {
          
          [self.establishment updateWithDictionary:response[@"data"]];
+         [self calculateTableCellHeights];
          [self.tableView reloadData];
          
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
