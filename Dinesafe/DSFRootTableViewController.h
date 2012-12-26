@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "SSPullToRefresh.h"
 #import "DSFApiClient.h"
 #import "DSFEstablishment.h"
 #import "DSFEstablishmentCell.h"
@@ -16,7 +17,7 @@
 
 // #define kDistanceInMetersToTriggerRefresh 100
 
-@interface DSFRootTableViewController : UITableViewController
+@interface DSFRootTableViewController : UITableViewController <SSPullToRefreshViewDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *currentLocation;

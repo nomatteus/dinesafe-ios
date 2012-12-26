@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AD02055C166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD02055B166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m */; };
+		AD16DFEA16783B520058CDCE /* DSFPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD16DFE916783B520058CDCE /* DSFPullToRefreshView.m */; };
 		AD2D3FC7166175E30050699C /* DSFApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D3FC6166175E30050699C /* DSFApiClient.m */; };
 		AD2D3FC8166175E30050699C /* DSFApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D3FC6166175E30050699C /* DSFApiClient.m */; };
 		AD2D3FCB166194810050699C /* DSFLoadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D3FCA166194810050699C /* DSFLoadingCell.m */; };
@@ -57,6 +58,8 @@
 		AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		AD02055A166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFEstablishmentExtendedInfoCell.h; sourceTree = "<group>"; };
 		AD02055B166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFEstablishmentExtendedInfoCell.m; sourceTree = "<group>"; };
+		AD16DFE816783B520058CDCE /* DSFPullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFPullToRefreshView.h; sourceTree = "<group>"; };
+		AD16DFE916783B520058CDCE /* DSFPullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFPullToRefreshView.m; sourceTree = "<group>"; };
 		AD2D3FC5166175E30050699C /* DSFApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFApiClient.h; sourceTree = "<group>"; };
 		AD2D3FC6166175E30050699C /* DSFApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFApiClient.m; sourceTree = "<group>"; };
 		AD2D3FC9166194810050699C /* DSFLoadingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFLoadingCell.h; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 				AD2D3FCA166194810050699C /* DSFLoadingCell.m */,
 				AD7D76991661C5E7001BFB20 /* DSFScorebarView.h */,
 				AD7D769A1661C5E7001BFB20 /* DSFScorebarView.m */,
+				AD16DFE816783B520058CDCE /* DSFPullToRefreshView.h */,
+				AD16DFE916783B520058CDCE /* DSFPullToRefreshView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 				ADD0C2381662443D00A68A1B /* DSFInspectionTableViewController.m in Sources */,
 				ADC81A771665D01600BD7793 /* DSFInspectionCell.m in Sources */,
 				AD02055C166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m in Sources */,
+				AD16DFEA16783B520058CDCE /* DSFPullToRefreshView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

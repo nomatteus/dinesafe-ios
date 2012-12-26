@@ -7,6 +7,7 @@
 //
 
 #import "DSFRootTableViewController.h"
+#import "DSFPullToRefreshView.h"
 
 @interface DSFRootTableViewController () <CLLocationManagerDelegate, UISearchBarDelegate>
 @property (nonatomic, strong) NSMutableArray *establishments;
@@ -16,6 +17,7 @@
 @property (nonatomic, strong) NSString *searchText;
 @property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) UIView *disableViewOverlay;
+@property (nonatomic, strong) SSPullToRefreshView *pullToRefreshView;
 - (void)fetchEstablishments;
 - (void)resetEstablishments;
 @end
@@ -44,6 +46,10 @@
     [self.locationManager setDelegate:self];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [self.locationManager startUpdatingLocation];
+    
+    self.pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:self.tableView
+                                                                    delegate:self];
+    self.pullToRefreshView.contentView = [[DSFPullToRefreshView alloc] init];
     
     [self resetEstablishments];
 }
@@ -127,6 +133,28 @@
 - (void)handleTaps:(UIGestureRecognizer*)paramSender {
     [self hideSearch:self.searchBar andPerformSearch:NO];
 }
+
+#pragma mark - Pull to Refresh Delegate
+
+- (BOOL)pullToRefreshViewShouldStartLoading:(SSPullToRefreshView *)view {
+    return YES;
+}
+
+/**
+ The pull to refresh view started loading. You should kick off whatever you need to load when this is called.
+ */
+- (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view {
+    [self fetchEstablishments];
+}
+
+/**
+ The pull to refresh view finished loading. This will get called when it receives `finishLoading`.
+ */
+- (void)pullToRefreshViewDidFinishLoading:(SSPullToRefreshView *)view {
+    
+}
+
+
 
 
 #pragma mark - Table view data source
@@ -249,6 +277,7 @@
              [self.establishments addObject:establishment];
          }
          
+         [self.pullToRefreshView finishLoading];
          [self.tableView reloadData];
          
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
