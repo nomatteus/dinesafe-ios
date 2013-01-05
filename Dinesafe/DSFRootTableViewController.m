@@ -19,7 +19,9 @@
 @property (nonatomic, strong) UIView *disableViewOverlay;
 @property (nonatomic, strong) SSPullToRefreshView *pullToRefreshView;
 - (void)fetchEstablishments;
+- (void)fetchEstablishmentsWithReset:(BOOL)reset;
 - (void)resetEstablishments;
+- (void)resetEstablishmentsAndShowLoadingCell:(BOOL)showLoadingCell;
 @end
 
 @implementation DSFRootTableViewController
@@ -51,7 +53,7 @@
                                                                     delegate:self];
     self.pullToRefreshView.contentView = [[DSFPullToRefreshView alloc] init];
     
-    [self resetEstablishments];
+    [self resetEstablishmentsAndShowLoadingCell:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,9 +92,20 @@
     
     [self.searchBar resignFirstResponder]; // hides keyboard
     
-    if (performSearch) {
-        self.searchText = [searchBar text];
-        [self resetEstablishments];
+    // See if new search text is different from previous search text
+    BOOL searchTextChanged;
+    NSString *searchBarText = [searchBar text];
+    if ((self.searchText == nil && [searchBarText isEqualToString:@""]) || [self.searchText isEqualToString:searchBarText]) {
+        searchTextChanged = NO;
+    } else {
+        searchTextChanged = YES;
+        self.searchText = searchBarText;
+    }
+    
+    // Perform search if performSearch set to YES, or if search text is changed and equal to empty string
+    // This allows for "clearing" of search, while avoiding refreshing when not necessary
+    if (performSearch || (searchTextChanged && [self.searchText isEqualToString:@""])) {
+        [self resetEstablishmentsAndShowLoadingCell:YES];
         [self fetchEstablishments];
     }
 }
@@ -144,7 +157,8 @@
  The pull to refresh view started loading. You should kick off whatever you need to load when this is called.
  */
 - (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view {
-    [self fetchEstablishments];
+    [self.locationManager startUpdatingLocation];
+    [self fetchEstablishmentsWithReset:YES];
 }
 
 /**
@@ -153,9 +167,6 @@
 - (void)pullToRefreshViewDidFinishLoading:(SSPullToRefreshView *)view {
     
 }
-
-
-
 
 #pragma mark - Table view data source
 
@@ -228,31 +239,47 @@
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
 
-    if (self.currentLocation == nil) {
+    CLLocationDistance distance = [newLocation distanceFromLocation:oldLocation];
+    NSLog(@"Distance: %f", distance);
+    if (self.currentLocation == nil || distance > 1) {
         self.currentLocation = newLocation;
         [self fetchEstablishments];
     }
+    [self.locationManager stopUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError %@", error);
+    NSLog(@"locationManager didFailWithError %@", error);
 }
 
 #pragma mark - fetching data
 
 // reset establishments called on view load, before executing a search, and will be called on pull to refresh
 - (void)resetEstablishments {
+    // By default, don't show loading cell (this will keep the old data in view until update, which is a desired behavior at times)
+    [self resetEstablishmentsAndShowLoadingCell:NO];
+}
+
+- (void)resetEstablishmentsAndShowLoadingCell:(BOOL)showLoadingCell {
     if (self.establishments == nil) {
         self.establishments = [NSMutableArray array];
     } else {
         [self.establishments removeAllObjects];
     }
-    self._currentPage = 0; // no pages means we'll show single cell activity indicator
+    if (showLoadingCell) {
+        self._currentPage = 0; // no pages means we'll show single cell activity indicator
+    } else {
+        self._currentPage = 1;
+    }
     [self.tableView reloadData];
 }
 
 - (void)fetchEstablishments {
+    [self fetchEstablishmentsWithReset:NO];
+}
+
+- (void)fetchEstablishmentsWithReset:(BOOL)reset {
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                 [NSString stringWithFormat:@"%d", self._currentPage], @"page",
@@ -268,6 +295,11 @@
     NSLog(@"parameters: %@", parameters);
     [[DSFApiClient sharedInstance] getPath:@"establishments.json" parameters:parameters success:
      ^(AFHTTPRequestOperation *operation, id response) {
+         
+         if (reset) {
+             NSLog(@"Resetting establishments");
+             [self resetEstablishments];
+         }
          
          //NSLog(@"Response: %@", response);
          self._totalPages = [response[@"paging"][@"total_pages"] intValue];
