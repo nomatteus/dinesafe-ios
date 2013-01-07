@@ -46,8 +46,9 @@
             [self.inspections[index] updateWithDictionary:inspection];
         }
     }
-    
-    // self.location = TODO;
+    double lat = [dictionary[@"latlng"][@"lat"] doubleValue];
+    double lng = [dictionary[@"latlng"][@"lng"] doubleValue];
+    self.location = CLLocationCoordinate2DMake(lat, lng);
 }
 
 - (int)minimumInspectionsPerYear {

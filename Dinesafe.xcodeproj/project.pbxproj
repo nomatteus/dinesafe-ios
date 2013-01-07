@@ -41,6 +41,7 @@
 		ADC48AAB165C801B001AEA3B /* DSFEstablishmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AAA165C801B001AEA3B /* DSFEstablishmentCell.m */; };
 		ADC81A771665D01600BD7793 /* DSFInspectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC81A761665D01600BD7793 /* DSFInspectionCell.m */; };
 		ADD0C2381662443D00A68A1B /* DSFInspectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD0C2371662443D00A68A1B /* DSFInspectionTableViewController.m */; };
+		ADD5D715169AF5470008A6F9 /* DSFEstablishmentAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5D714169AF5470008A6F9 /* DSFEstablishmentAnnotation.m */; };
 		B5768E3F5F1642BAA9C412B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD264E67C5A14A179CC93943 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,8 @@
 		ADC81A761665D01600BD7793 /* DSFInspectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInspectionCell.m; sourceTree = "<group>"; };
 		ADD0C2361662443D00A68A1B /* DSFInspectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInspectionTableViewController.h; sourceTree = "<group>"; };
 		ADD0C2371662443D00A68A1B /* DSFInspectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInspectionTableViewController.m; sourceTree = "<group>"; };
+		ADD5D713169AF5460008A6F9 /* DSFEstablishmentAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFEstablishmentAnnotation.h; sourceTree = "<group>"; };
+		ADD5D714169AF5470008A6F9 /* DSFEstablishmentAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFEstablishmentAnnotation.m; sourceTree = "<group>"; };
 		FD264E67C5A14A179CC93943 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -248,6 +251,8 @@
 				AD7D769A1661C5E7001BFB20 /* DSFScorebarView.m */,
 				AD16DFE816783B520058CDCE /* DSFPullToRefreshView.h */,
 				AD16DFE916783B520058CDCE /* DSFPullToRefreshView.m */,
+				ADD5D713169AF5460008A6F9 /* DSFEstablishmentAnnotation.h */,
+				ADD5D714169AF5470008A6F9 /* DSFEstablishmentAnnotation.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 				ADC81A771665D01600BD7793 /* DSFInspectionCell.m in Sources */,
 				AD02055C166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m in Sources */,
 				AD16DFEA16783B520058CDCE /* DSFPullToRefreshView.m in Sources */,
+				ADD5D715169AF5470008A6F9 /* DSFEstablishmentAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

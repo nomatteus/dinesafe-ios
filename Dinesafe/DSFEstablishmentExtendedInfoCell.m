@@ -21,7 +21,18 @@
                                     stringWithFormat:@"Total: %d inspections\nMinimum Inspections Per Year: %d",
                                     self.establishment.inspections.count,
                                     self.establishment.minimumInspectionsPerYear];
-    
+    if (!self.annotation) {
+        self.annotation = [[DSFEstablishmentAnnotation alloc] initWithCoordinates:self.establishment.location
+                                                                            title:self.establishment.latestName
+                                                                         subtitle:[NSString stringWithFormat:@"%.2f km", self.establishment.distance]];
+    }
+
+    // Set region distance to distance from establishment plus some "padding" (this is in metres)
+    CLLocationDistance reg_distance = self.establishment.distance * 1000 + 150;
+    MKCoordinateRegion reg = MKCoordinateRegionMakeWithDistance(self.establishment.location, reg_distance, reg_distance);
+    self.mapView.region = reg;
+
+    [self.mapView addAnnotation:self.annotation];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
