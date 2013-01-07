@@ -22,6 +22,7 @@
 - (void)fetchEstablishmentsWithReset:(BOOL)reset;
 - (void)resetEstablishments;
 - (void)resetEstablishmentsAndShowLoadingCell:(BOOL)showLoadingCell;
+- (BOOL)startUpdatingLocation;
 @end
 
 @implementation DSFRootTableViewController
@@ -47,7 +48,7 @@
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager setDelegate:self];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-    [self.locationManager startUpdatingLocation];
+    [self startUpdatingLocation];
     
     self.pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:self.tableView
                                                                     delegate:self];
@@ -235,6 +236,21 @@
 
 #pragma mark - location update
 
+- (BOOL)startUpdatingLocation {
+    // Proxy to CLLocationManager startUpdatingLocation method
+    // allows us to respond to changes to location services enabled/disabled
+    if ([CLLocationManager locationServicesEnabled]) {
+        NSLog(@"locationServicesEnabled true");
+        [self.locationManager startUpdatingLocation];
+        return YES;
+    } else {
+        NSLog(@"locationServicesEnabled false");
+        self.currentLocation = nil;
+        [self fetchEstablishments];
+        return NO;
+    }
+}
+
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
@@ -250,7 +266,12 @@
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error {
-    NSLog(@"locationManager didFailWithError %@", error);
+    if (error.code == kCLErrorDenied) {
+        // User Denied access to current location
+        NSLog(@"locationManager didFailWithError (kCLErrorDenied) %@", error);
+        [self.locationManager stopUpdatingLocation];
+        [self fetchEstablishments];
+    }
 }
 
 #pragma mark - fetching data
@@ -280,6 +301,11 @@
 }
 
 - (void)fetchEstablishmentsWithReset:(BOOL)reset {
+    
+    if (reset) {
+        // Need to set current page to 1 before the API request if resetting.
+        self._currentPage = 1;
+    }
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                 [NSString stringWithFormat:@"%d", self._currentPage], @"page",
