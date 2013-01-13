@@ -246,7 +246,7 @@
     } else {
         NSLog(@"locationServicesEnabled false");
         self.currentLocation = nil;
-        [self fetchEstablishments];
+        [self fetchEstablishmentsWithReset:YES];
         return NO;
     }
 }

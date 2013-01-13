@@ -7,12 +7,14 @@
 //
 
 #import "DinesafeAppDelegate.h"
+#import "Flurry.h"
 
 @implementation DinesafeAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [Flurry startSession:@"ZT2N4GTP63M2TT85T36B"];
     return YES;
 }
 							
