@@ -95,15 +95,15 @@
     CGRect statusTextRect = CGRectMake(0.0, (statusRect.size.height-statusTextFontSize-2)/2-2, statusRect.size.width, statusRect.size.height);
     CGRect statusTextShadowRect = CGRectMake(0.0, (statusRect.size.height-statusTextFontSize-2)/2+1-2, statusRect.size.width, statusRect.size.height);
     [[UIColor grayColor] setFill];
-    [statusText drawInRect:statusTextShadowRect withFont:[UIFont fontWithName:@"Helvetica-Bold" size:statusTextFontSize] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
+    [statusText drawInRect:statusTextShadowRect withFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:statusTextFontSize] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
     [[UIColor whiteColor] setFill];
-    [statusText drawInRect:statusTextRect withFont:[UIFont fontWithName:@"Helvetica-Bold" size:statusTextFontSize] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
+    [statusText drawInRect:statusTextRect withFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:statusTextFontSize] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
     
     // --- Draw date ---
     // Rect is width of view bounds minus width of status box
     [[UIColor blackColor] setFill];
-    CGRect inspectionDateRect = CGRectMake(statusRect.size.width, 10.0, self.bounds.size.width-statusRect.size.width, statusRect.size.height);
-    [self.inspection.formattedDate drawInRect:inspectionDateRect withFont:[UIFont fontWithName:@"Helvetica-Bold" size:16] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentLeft];
+    CGRect inspectionDateRect = CGRectMake(statusRect.size.width+16, 10.0, self.bounds.size.width-statusRect.size.width, statusRect.size.height);
+    [self.inspection.formattedDate drawInRect:inspectionDateRect withFont:[UIFont fontWithName:@"HelveticaNeue" size:16] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentLeft];
     
     
     // --- draw infractions/severity/details headings ---
@@ -124,14 +124,14 @@
     for (DSFInfraction *infraction in self.inspection.infractions) {
         CGRect severityFrame = CGRectMake(16, offsetY, 87, infractionHeight);
         [infraction.severity drawInRect:severityFrame
-                               withFont:[UIFont fontWithName:@"Helvetica-Bold" size:infractionsFontSize]
+                               withFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:infractionsFontSize]
                           lineBreakMode:NSLineBreakByCharWrapping
                               alignment:NSTextAlignmentLeft];
 
         CGRect detailsFrame = CGRectMake(104, offsetY, 208, infractionHeight);
         // TODO: Dynamically set smaller font size for details longer than X (and figure out X)
         [infraction.details drawInRect:detailsFrame
-                               withFont:[UIFont fontWithName:@"Helvetica" size:infractionsFontSize]
+                               withFont:[UIFont fontWithName:@"HelveticaNeue" size:infractionsFontSize]
                           lineBreakMode:NSLineBreakByWordWrapping
                               alignment:NSTextAlignmentLeft];
 
