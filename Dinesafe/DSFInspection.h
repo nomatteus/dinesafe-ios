@@ -25,5 +25,6 @@
 
 - (CGFloat[4])colorForStatusAtPositionRGBA:(int)position;
 - (UIColor *)colorForStatusAtPositionUIColor:(int)position;
+- (NSString *)formattedDate;
 
 @end

@@ -59,8 +59,15 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     }
 }
 
-#pragma mark - 
+#pragma mark -
 
+- (NSString *)formattedDate {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    return [dateFormatter stringFromDate:self.date];
+}
+
+#pragma mark -
 
 // Return a color for an inspection status (RGBA)
 // status is "Pass", "Conditional Pass", or "Close". Position is 0=top, 1=bottom

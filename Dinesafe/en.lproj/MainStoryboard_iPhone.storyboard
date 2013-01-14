@@ -266,64 +266,13 @@ Minimum Inspections Per Year: 3</string>
                                     <outlet property="mapView" destination="mOw-yP-Y1M" id="c2L-du-vpJ"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InspectionCell" rowHeight="127" id="TeW-zw-P9b" customClass="DSFInspectionCell">
-                                <rect key="frame" x="0.0" y="315" width="320" height="127"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InspectionCell" rowHeight="40" id="TeW-zw-P9b" customClass="DSFInspectionCell">
+                                <rect key="frame" x="0.0" y="315" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="126"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="November 25, 2012" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Z7-DC-AuO">
-                                            <rect key="frame" x="128" y="9" width="172" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" id="Agu-ri-zap">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pass" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="9pw-0l-l4X">
-                                                    <rect key="frame" x="7" y="9" width="87" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="calibratedRGB"/>
-                                                    <size key="shadowOffset" width="0.0" height="1"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.89835258152173914" green="0.89443140126068688" blue="0.88266786047753021" alpha="1" colorSpace="calibratedRGB"/>
-                                        </view>
-                                        <view contentMode="scaleToFill" id="TZG-VB-d3e">
-                                            <rect key="frame" x="0.0" y="40" width="320" height="99"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Infractions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dv9-g9-4dk">
-                                                    <rect key="frame" x="23" y="13" width="114" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Severity" id="4mJ-8E-daN">
-                                                    <rect key="frame" x="16" y="42" width="73" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-BoldOblique" family="Helvetica" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Details" id="VWM-0d-ggU">
-                                                    <rect key="frame" x="104" y="42" width="73" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-BoldOblique" family="Helvetica" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        </view>
                                         <view alpha="0.5" contentMode="scaleToFill" id="7qb-xE-JjC">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -332,12 +281,6 @@ Minimum Inspections Per Year: 3</string>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <outlet property="date" destination="3Z7-DC-AuO" id="H4U-on-unQ"/>
-                                    <outlet property="infractionsView" destination="TZG-VB-d3e" id="KTH-yj-TZ7"/>
-                                    <outlet property="status" destination="9pw-0l-l4X" id="y5D-ue-XDd"/>
-                                    <outlet property="statusBox" destination="Agu-ri-zap" id="eOh-sh-JI9"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -378,45 +321,6 @@ Minimum Inspections Per Year: 3</string>
             <point key="canvasLocation" x="-989" y="-845"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="DSFEstablishmentCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFEstablishmentCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="distance" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="type" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="DSFEstablishmentExtendedInfoCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFEstablishmentExtendedInfoCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="inspectionsSummary" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="DSFInspectionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFInspectionCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infractionsView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="status" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="statusBox" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="DSFInspectionTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFInspectionTableViewController.h"/>
-        </class>
-        <class className="DSFLoadingCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFLoadingCell.h"/>
-        </class>
-        <class className="DSFRootTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFRootTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
