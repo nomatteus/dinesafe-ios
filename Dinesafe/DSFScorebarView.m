@@ -41,7 +41,9 @@ const float kScoreBoxGap = 0;  // Gap between boxes
     
     float xOffset = 0; // Keep track of position of next box -- start at 1
     float yOffset = 0; // Fixed Y offset. Adjust to match shadows
-    
+    NSString *previousYear = nil;
+    UIFont *yearFont = [UIFont fontWithName:@"PFTempestaFiveCompressed" size:8.0];
+
     
     // Shadows and/or layering rects seems to mess things up.
     // Random lines appear between boxes when doing this.. possibly antialiasing issues?
@@ -80,6 +82,17 @@ const float kScoreBoxGap = 0;  // Gap between boxes
         CGRect divider_line = CGRectMake(xOffset + kScoreBoxWidth - 1, yOffset, 1, kScoreBoxHeight);
         CGContextAddRect(ctx, divider_line);
         CGContextFillPath(ctx);
+        
+        // Year Text
+        NSString *theYear = [inspection dateYear];
+        if (![theYear isEqualToString:previousYear]) {
+            CGFloat *yearColor = (CGFloat[]){0.5, 0.5, 0.5, 1.0};
+            CGContextSetFillColor(ctx, yearColor);
+            // +/- 1/2 adjustments are positioning tweaks
+            CGRect yearRect = CGRectMake(xOffset+1, yOffset+kScoreBoxHeight-2, kScoreBoxWidth+50, kScoreBoxHeight);
+            [theYear drawInRect:yearRect withFont:yearFont];
+            previousYear = theYear;
+        }
         
         xOffset += kScoreBoxWidth + kScoreBoxGap;
     }

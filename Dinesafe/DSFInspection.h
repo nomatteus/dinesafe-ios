@@ -15,6 +15,8 @@
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic) int minimumInspectionsPerYear;
 @property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSString *dateYear;
+@property (nonatomic, strong) NSString *formattedDate;
 @property (nonatomic, strong) NSString *establishment_name;
 @property (nonatomic, strong) NSString *establishment_type;
 
@@ -25,6 +27,5 @@
 
 - (CGFloat[4])colorForStatusAtPositionRGBA:(int)position;
 - (UIColor *)colorForStatusAtPositionUIColor:(int)position;
-- (NSString *)formattedDate;
 
 @end

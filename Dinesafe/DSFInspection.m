@@ -38,9 +38,16 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     self.establishment_type = dictionary[@"establishment_type"];
     self.minimumInspectionsPerYear = [dictionary[@"minimum_inspections_per_year"] intValue];
     
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd"];
-    self.date = [dateFormat dateFromString:dictionary[@"date"]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    self.date = [dateFormatter dateFromString:dictionary[@"date"]];
+
+    // Set some formatted date variables
+    [dateFormatter setDateFormat:@"yyyy"];
+    self.dateYear = [dateFormatter stringFromDate:self.date];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    self.formattedDate = [dateFormatter stringFromDate:self.date];
+    
     
     for (id infraction in dictionary[@"infractions"]) {
         NSUInteger index = [self.infractions indexOfObjectPassingTest:
@@ -57,14 +64,6 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
             [self.infractions[index] updateWithDictionary:infraction];
         }
     }
-}
-
-#pragma mark -
-
-- (NSString *)formattedDate {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
-    return [dateFormatter stringFromDate:self.date];
 }
 
 #pragma mark -
