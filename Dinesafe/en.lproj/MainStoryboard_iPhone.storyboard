@@ -111,12 +111,14 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Dinesafe" id="05b-vr-jcf">
-                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="Info" id="MyO-xZ-otY">
+                        <barButtonItem key="leftBarButtonItem" title="Info" style="plain" id="MyO-xZ-otY">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="fSv-mP-wEM" kind="push" id="l8r-4v-kHM"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Map" id="KdZ-yh-fmu">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="SGq-DK-1LD" kind="push" id="kOi-cY-KPS"/>
                             </connections>
@@ -309,7 +311,7 @@ Minimum Inspections Per Year: 3</string>
         <scene sceneID="0wz-AM-rTG">
             <objects>
                 <navigationController definesPresentationContext="YES" id="pn9-Cw-8s6" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8SW-Th-8aJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8SW-Th-8aJ" customClass="DSFNavigationBar">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -352,6 +354,9 @@ Minimum Inspections Per Year: 3</string>
         </class>
         <class className="DSFLoadingCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFLoadingCell.h"/>
+        </class>
+        <class className="DSFNavigationBar" superclassName="UINavigationBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFNavigationBar.h"/>
         </class>
         <class className="DSFRootTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFRootTableViewController.h"/>

@@ -85,25 +85,25 @@
     switch (state) {
         case SSPullToRefreshViewStateNormal:
             self.refreshText = @"Pull to Refresh";
-            self.barColor = [UIColor colorWithRed:115.0/255.0
-                                            green:115.0/255.0
-                                             blue:115.0/255.0
+            self.barColor = [UIColor colorWithRed:115.0/255
+                                            green:115.0/255
+                                             blue:115.0/255
                                             alpha:1.0];
             break;
             
         case SSPullToRefreshViewStateLoading:
             [_indicator startAnimating];
-            self.barColor = [UIColor colorWithRed:0
-                                            green:128.0/255.0
-                                             blue:22.0/255.0
-                                            alpha:0.2];
+            self.barColor = [UIColor colorWithRed:40.0/255
+                                            green:195.0/255
+                                             blue:38.0/255
+                                            alpha:0.5];
             break;
             
         case SSPullToRefreshViewStateReady:
             self.refreshText = @"Release to Refresh";
-            self.barColor = [UIColor colorWithRed:0
-                                            green:128.0/255.0
-                                             blue:22.0/255.0
+            self.barColor = [UIColor colorWithRed:40.0/255
+                                            green:195.0/255
+                                             blue:38.0/255
                                             alpha:1.0];
             break;
             

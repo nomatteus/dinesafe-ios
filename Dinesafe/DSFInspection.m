@@ -8,12 +8,12 @@
 
 #import "DSFInspection.h"
 
-const double kScoreBoxPassTopColorRGB[] = {19, 148, 24};
-const double kScoreBoxPassBottomColorRGB[] = {0, 128, 22};
-const double kScoreBoxConditionalPassTopColorRGB[] = {250, 242, 7};
-const double kScoreBoxConditionalPassBottomColorRGB[] = {236, 230, 15};
-const double kScoreBoxClosedTopColorRGB[] = {242, 10, 0};
-const double kScoreBoxClosedBottomColorRGB[] = {218, 9, 0};
+const double kScoreBoxPassTopColorRGB[] = {40, 195, 38};
+const double kScoreBoxPassBottomColorRGB[] = {35, 174, 33};
+const double kScoreBoxConditionalPassTopColorRGB[] = {249, 255, 72};
+const double kScoreBoxConditionalPassBottomColorRGB[] = {222, 228, 64};
+const double kScoreBoxClosedTopColorRGB[] = {222, 45, 77};
+const double kScoreBoxClosedBottomColorRGB[] = {196, 39, 68};
 const double kScoreBoxOtherTopColorRGB[] = {130, 130, 130};
 const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
 

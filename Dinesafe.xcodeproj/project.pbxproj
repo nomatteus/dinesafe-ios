@@ -43,6 +43,7 @@
 		ADCCD9D916A6838700887821 /* pf_tempesta_five_compressed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADCCD9D116A6838700887821 /* pf_tempesta_five_compressed.ttf */; };
 		ADCCD9E516A6D35D00887821 /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = ADCCD9E416A6D35D00887821 /* Bariol_Regular.otf */; };
 		ADCCD9E716A6D38800887821 /* Bariol_Regular_Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = ADCCD9E616A6D38800887821 /* Bariol_Regular_Italic.otf */; };
+		ADCCD9ED16A6E3B800887821 /* DSFNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCCD9EC16A6E3B800887821 /* DSFNavigationBar.m */; };
 		ADD0C2381662443D00A68A1B /* DSFInspectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD0C2371662443D00A68A1B /* DSFInspectionTableViewController.m */; };
 		ADD5D715169AF5470008A6F9 /* DSFEstablishmentAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5D714169AF5470008A6F9 /* DSFEstablishmentAnnotation.m */; };
 		B5768E3F5F1642BAA9C412B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD264E67C5A14A179CC93943 /* libPods.a */; };
@@ -108,6 +109,8 @@
 		ADCCD9D116A6838700887821 /* pf_tempesta_five_compressed.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pf_tempesta_five_compressed.ttf; sourceTree = "<group>"; };
 		ADCCD9E416A6D35D00887821 /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bariol_Regular.otf; sourceTree = "<group>"; };
 		ADCCD9E616A6D38800887821 /* Bariol_Regular_Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bariol_Regular_Italic.otf; sourceTree = "<group>"; };
+		ADCCD9EB16A6E3B800887821 /* DSFNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFNavigationBar.h; sourceTree = "<group>"; };
+		ADCCD9EC16A6E3B800887821 /* DSFNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFNavigationBar.m; sourceTree = "<group>"; };
 		ADD0C2361662443D00A68A1B /* DSFInspectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInspectionTableViewController.h; sourceTree = "<group>"; };
 		ADD0C2371662443D00A68A1B /* DSFInspectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInspectionTableViewController.m; sourceTree = "<group>"; };
 		ADD5D713169AF5460008A6F9 /* DSFEstablishmentAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFEstablishmentAnnotation.h; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 				AD7D76981661C356001BFB20 /* Views */,
 				AD52BF2C1651E4EF0090723E /* DinesafeAppDelegate.h */,
 				AD52BF2D1651E4EF0090723E /* DinesafeAppDelegate.m */,
+				ADCCD9EB16A6E3B800887821 /* DSFNavigationBar.h */,
+				ADCCD9EC16A6E3B800887821 /* DSFNavigationBar.m */,
 				AD52BF351651E4EF0090723E /* MainStoryboard_iPhone.storyboard */,
 				AD52BF381651E4EF0090723E /* MainStoryboard_iPad.storyboard */,
 				AD52BF241651E4EF0090723E /* Supporting Files */,
@@ -419,6 +424,7 @@
 				AD02055C166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m in Sources */,
 				AD16DFEA16783B520058CDCE /* DSFPullToRefreshView.m in Sources */,
 				ADD5D715169AF5470008A6F9 /* DSFEstablishmentAnnotation.m in Sources */,
+				ADCCD9ED16A6E3B800887821 /* DSFNavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
