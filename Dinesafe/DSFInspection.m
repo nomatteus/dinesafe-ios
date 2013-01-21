@@ -70,7 +70,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
 
 // Height for all infractions
 - (float)heightForInfractionsWithSize:(CGSize)size andFont:(UIFont *)font {
-    float height;
+    float height = 0;
     for (id infraction in self.infractions) {
         // Padding is 10, change this in DSFInspectionCell as well
         height += [infraction heightForSize:size andFont:font].height + 10;

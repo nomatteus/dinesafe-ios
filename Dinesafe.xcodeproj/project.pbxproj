@@ -46,6 +46,8 @@
 		ADCCD9ED16A6E3B800887821 /* DSFNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCCD9EC16A6E3B800887821 /* DSFNavigationBar.m */; };
 		ADD0C2381662443D00A68A1B /* DSFInspectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD0C2371662443D00A68A1B /* DSFInspectionTableViewController.m */; };
 		ADD5D715169AF5470008A6F9 /* DSFEstablishmentAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5D714169AF5470008A6F9 /* DSFEstablishmentAnnotation.m */; };
+		ADE4B4B416AD7B1300181CE2 /* DSFMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE4B4B316AD7B1300181CE2 /* DSFMapViewController.m */; };
+		ADE4B4B716AD7B3B00181CE2 /* DSFInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE4B4B616AD7B3B00181CE2 /* DSFInfoViewController.m */; };
 		B5768E3F5F1642BAA9C412B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD264E67C5A14A179CC93943 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +117,10 @@
 		ADD0C2371662443D00A68A1B /* DSFInspectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInspectionTableViewController.m; sourceTree = "<group>"; };
 		ADD5D713169AF5460008A6F9 /* DSFEstablishmentAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFEstablishmentAnnotation.h; sourceTree = "<group>"; };
 		ADD5D714169AF5470008A6F9 /* DSFEstablishmentAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFEstablishmentAnnotation.m; sourceTree = "<group>"; };
+		ADE4B4B216AD7B1200181CE2 /* DSFMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFMapViewController.h; sourceTree = "<group>"; };
+		ADE4B4B316AD7B1300181CE2 /* DSFMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFMapViewController.m; sourceTree = "<group>"; };
+		ADE4B4B516AD7B3B00181CE2 /* DSFInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInfoViewController.h; sourceTree = "<group>"; };
+		ADE4B4B616AD7B3B00181CE2 /* DSFInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInfoViewController.m; sourceTree = "<group>"; };
 		FD264E67C5A14A179CC93943 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -265,6 +271,10 @@
 				AD16DFE916783B520058CDCE /* DSFPullToRefreshView.m */,
 				ADD5D713169AF5460008A6F9 /* DSFEstablishmentAnnotation.h */,
 				ADD5D714169AF5470008A6F9 /* DSFEstablishmentAnnotation.m */,
+				ADE4B4B216AD7B1200181CE2 /* DSFMapViewController.h */,
+				ADE4B4B316AD7B1300181CE2 /* DSFMapViewController.m */,
+				ADE4B4B516AD7B3B00181CE2 /* DSFInfoViewController.h */,
+				ADE4B4B616AD7B3B00181CE2 /* DSFInfoViewController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -425,6 +435,8 @@
 				AD16DFEA16783B520058CDCE /* DSFPullToRefreshView.m in Sources */,
 				ADD5D715169AF5470008A6F9 /* DSFEstablishmentAnnotation.m in Sources */,
 				ADCCD9ED16A6E3B800887821 /* DSFNavigationBar.m in Sources */,
+				ADE4B4B416AD7B1300181CE2 /* DSFMapViewController.m in Sources */,
+				ADE4B4B716AD7B3B00181CE2 /* DSFInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

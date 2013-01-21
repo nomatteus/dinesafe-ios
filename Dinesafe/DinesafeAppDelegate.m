@@ -14,7 +14,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [Flurry setDebugLogEnabled:YES]; // Show pageviews/events in logs -- comment out unless needed
     [Flurry startSession:@"ZT2N4GTP63M2TT85T36B"];
+
     return YES;
 }
 							

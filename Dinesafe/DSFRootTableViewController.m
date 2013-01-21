@@ -8,6 +8,7 @@
 
 #import "DSFRootTableViewController.h"
 #import "DSFPullToRefreshView.h"
+#import "Flurry.h"
 
 @interface DSFRootTableViewController () <CLLocationManagerDelegate, UISearchBarDelegate>
 @property (nonatomic, strong) NSMutableArray *establishments;
@@ -55,6 +56,8 @@
     self.pullToRefreshView.contentView = [[DSFPullToRefreshView alloc] init];
     
     [self resetEstablishmentsAndShowLoadingCell:YES];
+    
+    [Flurry logAllPageViews:self.navigationController];
 }
 
 - (void)didReceiveMemoryWarning
@@ -108,6 +111,10 @@
     if (performSearch || (searchTextChanged && [self.searchText isEqualToString:@""])) {
         [self resetEstablishmentsAndShowLoadingCell:YES];
         [self fetchEstablishments];
+        [Flurry logEvent:@"Perform Search"
+          withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                          self.searchText, @"Search Text",
+                          nil]];
     }
 }
 
@@ -160,13 +167,14 @@
 - (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view {
     [self.locationManager startUpdatingLocation];
     [self fetchEstablishmentsWithReset:YES];
+    [Flurry logEvent:@"Pull to Refresh" timed:YES];
 }
 
 /**
  The pull to refresh view finished loading. This will get called when it receives `finishLoading`.
  */
 - (void)pullToRefreshViewDidFinishLoading:(SSPullToRefreshView *)view {
-    
+    [Flurry endTimedEvent:@"Pull to Refresh" withParameters:nil];
 }
 
 #pragma mark - Table view data source
@@ -230,6 +238,7 @@
         // Update establishments if we're not on the first row (i.e. first load, since first load will be done by location callback)
         if (indexPath.row > 0) {
             [self fetchEstablishments];
+            [Flurry logEvent:@"Loading Cell Viewed (Load Next Page)"];
         }
     }
 }

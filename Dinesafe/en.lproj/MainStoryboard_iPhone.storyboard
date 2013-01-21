@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Info View Controller-->
         <scene sceneID="CyG-yB-zzF">
             <objects>
-                <viewController id="fSv-mP-wEM" sceneMemberID="viewController">
+                <viewController id="fSv-mP-wEM" customClass="DSFInfoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sCg-4w-KPt">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -122,7 +122,7 @@
                                 <segue destination="fSv-mP-wEM" kind="push" id="l8r-4v-kHM"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Map" id="KdZ-yh-fmu">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="KdZ-yh-fmu">
                             <color key="tintColor" red="0.50980395079999996" green="0.50980395079999996" blue="0.50980395079999996" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
                                 <segue destination="SGq-DK-1LD" kind="push" id="kOi-cY-KPS"/>
@@ -162,10 +162,10 @@
             </objects>
             <point key="canvasLocation" x="-500" y="-845"/>
         </scene>
-        <!--Dinesafe Map View Controller-->
+        <!--Map View Controller - Map-->
         <scene sceneID="ATf-pM-pBr">
             <objects>
-                <viewController id="SGq-DK-1LD" customClass="DinesafeMapViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="" storyboardIdentifier="" title="Map" id="SGq-DK-1LD" customClass="DSFMapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jcH-tv-xyQ">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -345,6 +345,9 @@ Minimum Inspections Per Year: 3</string>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>
+        <class className="DSFInfoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFInfoViewController.h"/>
+        </class>
         <class className="DSFInspectionCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFInspectionCell.h"/>
             <relationships>
@@ -359,6 +362,9 @@ Minimum Inspections Per Year: 3</string>
         </class>
         <class className="DSFLoadingCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFLoadingCell.h"/>
+        </class>
+        <class className="DSFMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFMapViewController.h"/>
         </class>
         <class className="DSFNavigationBar" superclassName="UINavigationBar">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFNavigationBar.h"/>
