@@ -27,4 +27,10 @@
     self.amountFined = [dictionary[@"amount_fined"] doubleValue];
 }
 
+- (CGSize)heightForSize:(CGSize)size andFont:(UIFont *)font {
+    return [self.details sizeWithFont:font
+                    constrainedToSize:size
+                        lineBreakMode:NSLineBreakByWordWrapping];
+}
+
 @end

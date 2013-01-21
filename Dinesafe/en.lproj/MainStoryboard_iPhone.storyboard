@@ -41,7 +41,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="TxT-EB-HLP" customClass="DSFSearchBar">
+                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="TxT-EB-HLP">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="tintColor" white="0.68000000000000005" alpha="1" colorSpace="calibratedWhite"/>
@@ -368,9 +368,6 @@ Minimum Inspections Per Year: 3</string>
             <relationships>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
             </relationships>
-        </class>
-        <class className="DSFSearchBar" superclassName="UISearchBar">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFSearchBar.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

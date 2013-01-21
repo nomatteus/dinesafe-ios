@@ -127,29 +127,17 @@
                                withFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:infractionsFontSize]
                           lineBreakMode:NSLineBreakByCharWrapping
                               alignment:NSTextAlignmentLeft];
+        // Consider "height" to be a "max height", as we'll dynamically size it depending on length of text
+        CGRect detailsFrame = CGRectMake(104, offsetY, 208, infractionHeight*5);
+        UIFont *detailsFont = [UIFont fontWithName:@"HelveticaNeue" size:infractionsFontSize];
+        CGSize detailsSize = [infraction heightForSize:detailsFrame.size andFont:detailsFont];
 
-        CGRect detailsFrame = CGRectMake(104, offsetY, 208, infractionHeight);
-        // Dynamically set smaller font size for long details
-        // Example Establishments for testing: "Green Thumb"
-        // TODO: ALTERNATIVE IDEA: Instead of using constant height for all infractions, set height dynamically
-        //       depending on length of details. i.e. print details at constant font size, then figure out
-        //       the height of that text. This would look better and more consistent.
-        float infractionDetailsFontSize;
-        int detailsLength = [infraction.details length];
-        NSLog(@"detailsLength: %i", detailsLength);
-        if (detailsLength > 140) {
-            infractionDetailsFontSize = infractionsFontSize - 4;
-        } else if (detailsLength > 110) {
-            infractionDetailsFontSize = infractionsFontSize - 2;
-        } else {
-            infractionDetailsFontSize = infractionsFontSize;
-        }
+        float infractionDetailsHeight = detailsSize.height + 10; // Padding is 10, change this in DSFInspection as well
         [infraction.details drawInRect:detailsFrame
-                               withFont:[UIFont fontWithName:@"HelveticaNeue" size:infractionDetailsFontSize]
+                               withFont:detailsFont
                           lineBreakMode:NSLineBreakByWordWrapping
                               alignment:NSTextAlignmentLeft];
-
-        offsetY += infractionHeight;
+        offsetY += infractionDetailsHeight;
     }
     
 }

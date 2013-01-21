@@ -21,5 +21,6 @@
 
 - (id) initWithDictionary:(NSDictionary *) dictionary;
 - (void)updateWithDictionary:(NSDictionary *) dictionary;
+- (CGSize)heightForSize:(CGSize)size andFont:(UIFont *)font;
 
 @end

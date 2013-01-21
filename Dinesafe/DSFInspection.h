@@ -27,5 +27,6 @@
 
 - (CGFloat[4])colorForStatusAtPositionRGBA:(int)position;
 - (UIColor *)colorForStatusAtPositionUIColor:(int)position;
+- (float)heightForInfractionsWithSize:(CGSize)size andFont:(UIFont *)font;
 
 @end

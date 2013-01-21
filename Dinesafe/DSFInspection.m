@@ -68,6 +68,18 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
 
 #pragma mark -
 
+// Height for all infractions
+- (float)heightForInfractionsWithSize:(CGSize)size andFont:(UIFont *)font {
+    float height;
+    for (id infraction in self.infractions) {
+        // Padding is 10, change this in DSFInspectionCell as well
+        height += [infraction heightForSize:size andFont:font].height + 10;
+    }
+    return height;
+}
+
+#pragma mark -
+
 // Return a color for an inspection status (RGBA)
 // status is "Pass", "Conditional Pass", or "Close". Position is 0=top, 1=bottom
 // TODO: This needs some major refactoring!!

@@ -79,8 +79,8 @@
         DSFInspection *inspection = self.establishment.inspections[inspectionIndex];
         int cellHeight;
         if (inspection.infractions.count > 0) {
-            // 120 is base height, then 50 for each infraction
-            cellHeight = 120 + inspection.infractions.count * 50;
+            // 120 is base height
+            cellHeight = 120 + [inspection heightForInfractionsWithSize:CGSizeMake(208, 1000) andFont:[UIFont fontWithName:@"HelveticaNeue" size:12.0]];
         } else {
             cellHeight = 40;
         }
