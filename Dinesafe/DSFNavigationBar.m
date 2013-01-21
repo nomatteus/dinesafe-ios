@@ -22,6 +22,18 @@ const double kNavBottomRGB[] = {36, 120, 228};
     return self;
 }
 
+- (void)awakeFromNib {
+    // Initialization code
+    // [self setBackgroundColor:[UIColor grayColor]];
+
+    // Set title text attributes -- this affects all view controllers, which may not be desirable
+    self.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIFont fontWithName:@"BariolRegular-Italic" size:25.0], UITextAttributeFont,
+//                                [UIColor redColor], UITextAttributeTextColor,
+//                                [UIColor blueColor], UITextAttributeTextShadowColor,
+//                                [NSValue valueWithUIOffset:UIOffsetMake(1, 1)], UITextAttributeTextShadowOffset,
+                                nil];
+}
 
 
 // Only override drawRect: if you perform custom drawing.
@@ -47,6 +59,17 @@ const double kNavBottomRGB[] = {36, 120, 228};
     [bottomColor setFill];
     CGContextAddRect(ctx, bottomRect);
     CGContextFillPath(ctx);
+    
+    
+    // --- "Dinesafe" Title (Done as UINavigationBar title for now.) ---
+    //    "Bariol-Regular",
+    //    "BariolRegular-Italic"
+//    CGRect titleRect = CGRectMake(0, 10.0, self.bounds.size.width, 44);
+//    CGRect titleShadowRect = CGRectMake(1, 11.0, self.bounds.size.width, 44);
+//    [[UIColor darkGrayColor] setFill];
+//    [@"Dinesafe" drawInRect:titleShadowRect withFont:[UIFont fontWithName:@"BariolRegular-Italic" size:22.0] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
+//    [[UIColor whiteColor] setFill];
+//    [@"Dinesafe" drawInRect:titleRect withFont:[UIFont fontWithName:@"BariolRegular-Italic" size:22.0] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
 }
 
 

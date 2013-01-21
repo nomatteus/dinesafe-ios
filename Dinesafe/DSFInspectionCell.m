@@ -129,9 +129,23 @@
                               alignment:NSTextAlignmentLeft];
 
         CGRect detailsFrame = CGRectMake(104, offsetY, 208, infractionHeight);
-        // TODO: Dynamically set smaller font size for details longer than X (and figure out X)
+        // Dynamically set smaller font size for long details
+        // Example Establishments for testing: "Green Thumb"
+        // TODO: ALTERNATIVE IDEA: Instead of using constant height for all infractions, set height dynamically
+        //       depending on length of details. i.e. print details at constant font size, then figure out
+        //       the height of that text. This would look better and more consistent.
+        float infractionDetailsFontSize;
+        int detailsLength = [infraction.details length];
+        NSLog(@"detailsLength: %i", detailsLength);
+        if (detailsLength > 140) {
+            infractionDetailsFontSize = infractionsFontSize - 4;
+        } else if (detailsLength > 110) {
+            infractionDetailsFontSize = infractionsFontSize - 2;
+        } else {
+            infractionDetailsFontSize = infractionsFontSize;
+        }
         [infraction.details drawInRect:detailsFrame
-                               withFont:[UIFont fontWithName:@"HelveticaNeue" size:infractionsFontSize]
+                               withFont:[UIFont fontWithName:@"HelveticaNeue" size:infractionDetailsFontSize]
                           lineBreakMode:NSLineBreakByWordWrapping
                               alignment:NSTextAlignmentLeft];
 
