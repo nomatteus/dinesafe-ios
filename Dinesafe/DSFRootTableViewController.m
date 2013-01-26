@@ -268,7 +268,7 @@
     NSLog(@"Distance: %f", distance);
     if (self.currentLocation == nil || distance > 1) {
         self.currentLocation = newLocation;
-        [self fetchEstablishments];
+        [self fetchEstablishmentsWithReset:YES];
     }
     [self.locationManager stopUpdatingLocation];
 }
