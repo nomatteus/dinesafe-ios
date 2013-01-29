@@ -15,6 +15,7 @@
 @property (nonatomic, strong) DSFEstablishment *_currentEstablishment;
 @property (nonatomic) NSInteger _currentPage;
 @property (nonatomic) NSInteger _totalPages;
+@property (nonatomic) BOOL _noResultsFound;
 @property (nonatomic, strong) NSString *searchText;
 @property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) UIView *disableViewOverlay;
@@ -192,6 +193,11 @@
         return 1;
     }
     
+    // "No Results Found" Cell Only
+    if (self._noResultsFound) {
+        return 1;
+    }
+    
     // Establishments + loading cell at bottom
     if (self._currentPage < self._totalPages) {
         return self.establishments.count + 1;
@@ -218,6 +224,11 @@
     return cell;
 }
 
+- (UITableViewCell *)noResultsCell {
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"NoResultsCell"];
+    return cell;
+}
+
 // Use this if need different heights for different cells
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Keep this in sync with changes in storyboard. Apparently there's bug that won't pick up row height changes in storyboard...
@@ -227,6 +238,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.establishments.count) {
         return [self establishmentCellForIndexPath:indexPath];
+    } else if (self._noResultsFound) {
+        return [self noResultsCell];
     } else {
         return [self loadingCell];
     }
@@ -302,6 +315,8 @@
     } else {
         self._currentPage = 1;
     }
+    // Reset no results found flag
+    self._noResultsFound = NO;
     [self.tableView reloadData];
 }
 
@@ -338,6 +353,12 @@
          
          //NSLog(@"Response: %@", response);
          self._totalPages = [response[@"paging"][@"total_pages"] intValue];
+         
+         if (self._totalPages == 0) {
+             self._noResultsFound = YES;
+         } else {
+             self._noResultsFound = NO;
+         }
          
          for (id establishmentDictionary in response[@"data"]) {
              DSFEstablishment *establishment = [[DSFEstablishment alloc] initWithDictionary:establishmentDictionary];
