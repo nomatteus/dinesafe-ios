@@ -28,7 +28,7 @@ const double kNavBottomRGB[] = {36, 120, 228};
 
     // Set title text attributes -- this affects all view controllers, which may not be desirable
     self.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIFont fontWithName:@"BariolRegular-Italic" size:25.0], UITextAttributeFont,
+                                [UIFont fontWithName:@"BariolBold-Italic" size:25.0], UITextAttributeFont,
 //                                [UIColor redColor], UITextAttributeTextColor,
 //                                [UIColor blueColor], UITextAttributeTextShadowColor,
 //                                [NSValue valueWithUIOffset:UIOffsetMake(1, 1)], UITextAttributeTextShadowOffset,

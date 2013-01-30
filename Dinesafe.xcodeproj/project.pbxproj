@@ -50,6 +50,7 @@
 		ADC48AA8165C78F3001AEA3B /* DSFRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AA7165C78F3001AEA3B /* DSFRootTableViewController.m */; };
 		ADC48AAB165C801B001AEA3B /* DSFEstablishmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AAA165C801B001AEA3B /* DSFEstablishmentCell.m */; };
 		ADC81A771665D01600BD7793 /* DSFInspectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC81A761665D01600BD7793 /* DSFInspectionCell.m */; };
+		ADCAAB9816B9435B00E46495 /* Bariol_Bold_Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = ADCAAB9716B9435B00E46495 /* Bariol_Bold_Italic.otf */; };
 		ADCCD9D916A6838700887821 /* pf_tempesta_five_compressed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADCCD9D116A6838700887821 /* pf_tempesta_five_compressed.ttf */; };
 		ADCCD9E516A6D35D00887821 /* Bariol_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = ADCCD9E416A6D35D00887821 /* Bariol_Regular.otf */; };
 		ADCCD9E716A6D38800887821 /* Bariol_Regular_Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = ADCCD9E616A6D38800887821 /* Bariol_Regular_Italic.otf */; };
@@ -128,6 +129,7 @@
 		ADC48AAA165C801B001AEA3B /* DSFEstablishmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFEstablishmentCell.m; sourceTree = "<group>"; };
 		ADC81A751665D01500BD7793 /* DSFInspectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInspectionCell.h; sourceTree = "<group>"; };
 		ADC81A761665D01600BD7793 /* DSFInspectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInspectionCell.m; sourceTree = "<group>"; };
+		ADCAAB9716B9435B00E46495 /* Bariol_Bold_Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bariol_Bold_Italic.otf; sourceTree = "<group>"; };
 		ADCCD9D116A6838700887821 /* pf_tempesta_five_compressed.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pf_tempesta_five_compressed.ttf; sourceTree = "<group>"; };
 		ADCCD9E416A6D35D00887821 /* Bariol_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bariol_Regular.otf; sourceTree = "<group>"; };
 		ADCCD9E616A6D38800887821 /* Bariol_Regular_Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bariol_Regular_Italic.otf; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 		ADCCD9BB16A6835B00887821 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ADCAAB9716B9435B00E46495 /* Bariol_Bold_Italic.otf */,
 				ADCCD9E416A6D35D00887821 /* Bariol_Regular.otf */,
 				ADCCD9E616A6D38800887821 /* Bariol_Regular_Italic.otf */,
 				ADCCD9D116A6838700887821 /* pf_tempesta_five_compressed.ttf */,
@@ -411,6 +414,7 @@
 				AD15C3EA16B6B81F003C8DF7 /* Icon@2x.png in Resources */,
 				AD15C3EB16B6B81F003C8DF7 /* iTunesArtwork.png in Resources */,
 				AD15C3EC16B6B81F003C8DF7 /* iTunesArtwork@2x.png in Resources */,
+				ADCAAB9816B9435B00E46495 /* Bariol_Bold_Italic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

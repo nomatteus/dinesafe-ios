@@ -28,7 +28,7 @@
 	<array>
 		<string>pf_tempesta_five_compressed.ttf</string>
 		<string>Bariol_Regular.otf</string>
-		<string>Bariol_Regular_Italic.otf</string>
+		<string>Bariol_Bold_Italic.otf</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard_iPhone</string>
