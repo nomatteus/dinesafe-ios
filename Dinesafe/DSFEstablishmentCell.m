@@ -22,7 +22,11 @@
     self.name.text = self.establishment.latestName;
     self.address.text = self.establishment.address;
     self.type.text = self.establishment.latestType;
-    self.distance.text = [NSString stringWithFormat:@"%.2f km", self.establishment.distance];
+    if (self.establishment.distance) {
+        self.distance.text = [NSString stringWithFormat:@"%.2f km", self.establishment.distance];
+    } else {
+        self.distance.text = @"";
+    }
     
     // Clear out old scorebarView if exists -- TODO: is there a better way to do this?
     for (UIView *view in self.subviews) {

@@ -24,8 +24,10 @@ const double kNavBottomRGB[] = {36, 120, 228};
 
 - (void)awakeFromNib {
     // Initialization code
-    // [self setBackgroundColor:[UIColor grayColor]];
-
+    
+    // Set default button/backbutton tint color
+    [[UIBarButtonItem appearance] setTintColor:[UIColor grayColor]];
+    
     // Set title text attributes -- this affects all view controllers, which may not be desirable
     self.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [UIFont fontWithName:@"BariolBold-Italic" size:25.0], UITextAttributeFont,
