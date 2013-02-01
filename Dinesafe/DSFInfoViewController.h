@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DSFInfoViewController : UIViewController
+#define DINESAFE_ABOUT_PAGE_URL @"http://dinesafe.to/app/about"
+//#define DINESAFE_ABOUT_PAGE_URL @"http://make-lemonade.co/landy/"
+
+@interface DSFInfoViewController : UIViewController <UIWebViewDelegate>
+
+@property (nonatomic, strong) IBOutlet UIWebView *webView;
 
 @end

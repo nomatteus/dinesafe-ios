@@ -14,7 +14,7 @@
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" id="Vma-Xc-BK9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </webView>
@@ -336,6 +336,57 @@ Minimum Inspections Per Year: 3</string>
             <point key="canvasLocation" x="-989" y="-845"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="DSFEstablishmentCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFEstablishmentCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="distance" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="type" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="DSFEstablishmentExtendedInfoCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFEstablishmentExtendedInfoCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="inspectionsSummary" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="DSFInfoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFInfoViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="DSFInspectionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFInspectionCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="date" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infractionsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="status" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statusBox" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="DSFInspectionTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFInspectionTableViewController.h"/>
+        </class>
+        <class className="DSFLoadingCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFLoadingCell.h"/>
+        </class>
+        <class className="DSFMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFMapViewController.h"/>
+        </class>
+        <class className="DSFNavigationBar" superclassName="UINavigationBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFNavigationBar.h"/>
+        </class>
+        <class className="DSFRootTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFRootTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
