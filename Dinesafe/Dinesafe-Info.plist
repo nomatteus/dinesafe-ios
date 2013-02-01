@@ -17,17 +17,16 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.3</string>
+	<string>0.4</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.3</string>
+	<string>0.4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>pf_tempesta_five_compressed.ttf</string>
-		<string>Bariol_Regular.otf</string>
 		<string>Bariol_Bold_Italic.otf</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
