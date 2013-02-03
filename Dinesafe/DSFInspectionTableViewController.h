@@ -14,10 +14,14 @@
 #import "DSFEstablishmentExtendedInfoCell.h"
 #import "DSFInspectionCell.h"
 
-@interface DSFInspectionTableViewController : UITableViewController
+@interface DSFInspectionTableViewController : UITableViewController <UIActionSheetDelegate>
 
 @property (nonatomic, strong) DSFEstablishment *establishment;
 
 @property (nonatomic, strong) CLLocation *currentLocation;
+
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *actionButton;
+
+- (IBAction)actionTap:(id)sender;
 
 @end

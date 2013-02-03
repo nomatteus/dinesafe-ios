@@ -7,6 +7,9 @@
 //
 
 #import "DSFInspectionTableViewController.h"
+#import "AddressBook/AddressBook.h"
+#import "NSString+URLEncoding.h"
+#import "Flurry.h"
 
 @interface DSFInspectionTableViewController ()
 @property (nonatomic, strong) NSMutableArray *tableCellHeights;
@@ -32,6 +35,7 @@
 
     [self fetchEstablishment];
     [self calculateTableCellHeights];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -44,6 +48,69 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Action button tap & actions
+
+- (IBAction)actionTap:(id) sender {
+    // Show menu, with
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Open in Maps", //@"Post to Twitter", @"Post to Facebook",
+                                  nil];
+    [actionSheet showFromBarButtonItem:self.actionButton animated:YES];
+    [Flurry logEvent:@"Establishment Action Button Tapped"];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // ... TODO: post to FB and twitter ...
+    switch (buttonIndex) {
+        case 0:
+            [Flurry logEvent:@"Establishment Action: Open in Maps"];
+            [self openInMaps];
+            break;
+//        case 1:
+//            [self postToTwitter];
+//            break;
+//        case 2:
+//            [self postToFacebook];
+//            break;
+        default:
+            break;
+    }
+}
+
+- (void)openInMaps {
+    Class mapItemClass = [MKMapItem class];
+    if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)]) {
+        // iOS 6+
+        NSDictionary *addressDict = @{
+            (NSString *)kABPersonAddressStreetKey: self.establishment.address,
+            (NSString *)kABPersonAddressCityKey: @"Toronto",
+            (NSString *)kABPersonAddressStateKey: @"Ontario"
+        };
+        MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:self.establishment.location
+                                                       addressDictionary:addressDict];
+        MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+        [mapItem setName:self.establishment.latestName];
+        [mapItem openInMapsWithLaunchOptions:nil];
+    } else {
+        // iOS 5
+        UIApplication *app = [UIApplication sharedApplication];
+        NSString *mapQuery = [[NSString stringWithFormat:@"%@, Toronto, ON", self.establishment.address] urlEncode];
+        NSString *mapURL = [@"http://maps.google.com/?q=" stringByAppendingString:mapQuery];
+        [app openURL:[NSURL URLWithString:mapURL]];
+    }
+}
+
+//- (void)postToFacebook {
+//    
+//}
+//
+//- (void)postToTwitter {
+//    
+//}
 
 #pragma mark - Table view data source
 

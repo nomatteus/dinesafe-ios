@@ -79,6 +79,8 @@
     self.tableView.allowsSelection = NO;
     self.tableView.scrollEnabled = NO;
     
+    [self.searchBar setShowsCancelButton:YES animated:YES];
+    
     // Add Disabled View Overlay
     self.disableViewOverlay.alpha = 0;
     [self.view addSubview:self.disableViewOverlay];
@@ -92,6 +94,8 @@
 - (void)hideSearch:(UISearchBar *)searchBar andPerformSearch:(BOOL)performSearch {
     self.tableView.allowsSelection = YES;
     self.tableView.scrollEnabled = YES;
+    
+    [self.searchBar setShowsCancelButton:NO animated:YES];
     
     [self.disableViewOverlay removeFromSuperview];
     

@@ -46,6 +46,7 @@
 		AD97D51C165B157900A57ECB /* DSFInspection.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51A165B157900A57ECB /* DSFInspection.m */; };
 		AD97D520165B16C400A57ECB /* DSFInfraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51F165B16C400A57ECB /* DSFInfraction.m */; };
 		AD97D521165B16C400A57ECB /* DSFInfraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51F165B16C400A57ECB /* DSFInfraction.m */; };
+		ADA5086116BDF86900F9038D /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA5086016BDF86900F9038D /* NSString+URLEncoding.m */; };
 		ADB498F116699EAB003F55B8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB498F016699EAB003F55B8 /* CoreLocation.framework */; };
 		ADC48AA8165C78F3001AEA3B /* DSFRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AA7165C78F3001AEA3B /* DSFRootTableViewController.m */; };
 		ADC48AAB165C801B001AEA3B /* DSFEstablishmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AAA165C801B001AEA3B /* DSFEstablishmentCell.m */; };
@@ -57,6 +58,7 @@
 		ADD5D715169AF5470008A6F9 /* DSFEstablishmentAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD5D714169AF5470008A6F9 /* DSFEstablishmentAnnotation.m */; };
 		ADE4B4B416AD7B1300181CE2 /* DSFMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE4B4B316AD7B1300181CE2 /* DSFMapViewController.m */; };
 		ADE4B4B716AD7B3B00181CE2 /* DSFInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE4B4B616AD7B3B00181CE2 /* DSFInfoViewController.m */; };
+		ADED2E0316BE054F00DAD58C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADED2E0216BE054F00DAD58C /* AddressBook.framework */; };
 		B5768E3F5F1642BAA9C412B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD264E67C5A14A179CC93943 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +122,8 @@
 		AD97D51A165B157900A57ECB /* DSFInspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInspection.m; sourceTree = "<group>"; };
 		AD97D51E165B16C400A57ECB /* DSFInfraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInfraction.h; sourceTree = "<group>"; };
 		AD97D51F165B16C400A57ECB /* DSFInfraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInfraction.m; sourceTree = "<group>"; };
+		ADA5085F16BDF86900F9038D /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncoding.h"; path = "Dinesafe/NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		ADA5086016BDF86900F9038D /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "Dinesafe/NSString+URLEncoding.m"; sourceTree = "<group>"; };
 		ADB498F016699EAB003F55B8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		ADC48AA6165C78F3001AEA3B /* DSFRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFRootTableViewController.h; sourceTree = "<group>"; };
 		ADC48AA7165C78F3001AEA3B /* DSFRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFRootTableViewController.m; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 		ADE4B4B316AD7B1300181CE2 /* DSFMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFMapViewController.m; sourceTree = "<group>"; };
 		ADE4B4B516AD7B3B00181CE2 /* DSFInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInfoViewController.h; sourceTree = "<group>"; };
 		ADE4B4B616AD7B3B00181CE2 /* DSFInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInfoViewController.m; sourceTree = "<group>"; };
+		ADED2E0216BE054F00DAD58C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		FD264E67C5A14A179CC93943 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -147,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADED2E0316BE054F00DAD58C /* AddressBook.framework in Frameworks */,
 				ADB498F116699EAB003F55B8 /* CoreLocation.framework in Frameworks */,
 				AD52BF601651ED350090723E /* MapKit.framework in Frameworks */,
 				AD52BF1E1651E4EF0090723E /* UIKit.framework in Frameworks */,
@@ -172,6 +178,8 @@
 		AD52BF0E1651E4EF0090723E = {
 			isa = PBXGroup;
 			children = (
+				ADED2E0216BE054F00DAD58C /* AddressBook.framework */,
+				ADA5085A16BDF7D600F9038D /* Class Categories */,
 				ADCCD9BB16A6835B00887821 /* Resources */,
 				ADB498F016699EAB003F55B8 /* CoreLocation.framework */,
 				AD52BF5F1651ED350090723E /* MapKit.framework */,
@@ -305,6 +313,15 @@
 				ADE4B4B616AD7B3B00181CE2 /* DSFInfoViewController.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		ADA5085A16BDF7D600F9038D /* Class Categories */ = {
+			isa = PBXGroup;
+			children = (
+				ADA5085F16BDF86900F9038D /* NSString+URLEncoding.h */,
+				ADA5086016BDF86900F9038D /* NSString+URLEncoding.m */,
+			);
+			name = "Class Categories";
 			sourceTree = "<group>";
 		};
 		ADCCD9BB16A6835B00887821 /* Resources */ = {
@@ -473,6 +490,7 @@
 				ADCCD9ED16A6E3B800887821 /* DSFNavigationBar.m in Sources */,
 				ADE4B4B416AD7B1300181CE2 /* DSFMapViewController.m in Sources */,
 				ADE4B4B716AD7B3B00181CE2 /* DSFInfoViewController.m in Sources */,
+				ADA5086116BDF86900F9038D /* NSString+URLEncoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -303,8 +303,15 @@ Minimum Inspections Per Year: 3</string>
                             <outlet property="delegate" destination="mXH-Ey-eCF" id="rza-l7-nxG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="X4A-wt-4zR"/>
+                    <navigationItem key="navigationItem" id="X4A-wt-4zR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="hIw-v5-lSh">
+                            <connections>
+                                <action selector="actionTap:" destination="mXH-Ey-eCF" id="5tk-FJ-j4G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="actionButton" destination="hIw-v5-lSh" id="wXb-D5-iAV"/>
                         <outlet property="searchDisplayController" destination="uqt-pi-ihe" id="h6Q-P6-Nzf"/>
                     </connections>
                 </tableViewController>
@@ -370,6 +377,10 @@ Minimum Inspections Per Year: 3</string>
         </class>
         <class className="DSFInspectionTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFInspectionTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="actionTap:"/>
+                <relationship kind="outlet" name="actionButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
         </class>
         <class className="DSFLoadingCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DSFLoadingCell.h"/>
