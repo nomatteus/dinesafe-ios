@@ -32,7 +32,7 @@
     }
     
     // Set region distance to distance from establishment plus some "padding" (this is in metres)
-    CLLocationDistance reg_distance = self.establishment.distance * 1000 * 1.2;
+    CLLocationDistance reg_distance = self.establishment.distance * 1000 * 2;
     MKCoordinateRegion reg = MKCoordinateRegionMakeWithDistance(self.establishment.location, reg_distance, reg_distance);
     self.mapView.region = reg;
     

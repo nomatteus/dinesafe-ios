@@ -33,7 +33,7 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
     // --- Draw colored "pass/conditional/etc" cell. ---
-    CGRect statusRect = CGRectMake(0, 0, 100, 40); // temp.. used in status text
+    CGRect statusRect = CGRectMake(0, 0, 100, 40);
 
     CGContextSetFillColor(ctx, [self.inspection colorForStatusAtPositionRGBA:0]);
     ;
@@ -48,18 +48,40 @@
     
     // --- Draw pass/conditional text ---
     NSString *statusText;
+    CGFloat *textColor;
+    CGFloat *shadowColor;
     if ([self.inspection.status isEqualToString:@"Conditional Pass"]) {
         statusText = @"Conditional";
+        // Custom shadow color for conditional pass -- darker
+        textColor = (CGFloat[]){
+            148.0/255,
+            152.0/255,
+            43.0/255,
+            1.0
+        };
+        shadowColor = (CGFloat[]){
+            252.0/255,
+            255.0/255,
+            169.0/255,
+            1.0
+        };
     } else {
         statusText = self.inspection.status;
+        textColor = (CGFloat[]){
+            255.0/255,
+            255.0/255,
+            255.0/255,
+            1.0
+        };
+        shadowColor = [self.inspection colorForStatusAtPositionRGBA:1];
     }
 
     CGFloat statusTextFontSize = 14.0;
     CGRect statusTextRect = CGRectMake(0.0, (statusRect.size.height-statusTextFontSize-2)/2-2, statusRect.size.width, statusRect.size.height);
     CGRect statusTextShadowRect = CGRectMake(0.0+1, (statusRect.size.height-statusTextFontSize-2)/2+1-2, statusRect.size.width, statusRect.size.height);
-    CGContextSetFillColor(ctx, [self.inspection colorForStatusAtPositionRGBA:1]);
+    CGContextSetFillColor(ctx, shadowColor);
     [statusText drawInRect:statusTextShadowRect withFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:statusTextFontSize] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
-    [[UIColor whiteColor] setFill];
+    CGContextSetFillColor(ctx, textColor);
     [statusText drawInRect:statusTextRect withFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:statusTextFontSize] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
     
     // --- Draw date ---
