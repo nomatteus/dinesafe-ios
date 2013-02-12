@@ -42,6 +42,11 @@
 		AD52BF601651ED350090723E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD52BF5F1651ED350090723E /* MapKit.framework */; };
 		AD52BFB51651FDF90090723E /* DSFEstablishment.m in Sources */ = {isa = PBXBuildFile; fileRef = AD52BFB41651FDF90090723E /* DSFEstablishment.m */; };
 		AD7D769B1661C5E7001BFB20 /* DSFScorebarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD7D769A1661C5E7001BFB20 /* DSFScorebarView.m */; };
+		AD94E99116CA67DB00C6EF8B /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD94E99016CA67DB00C6EF8B /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		AD94E99416CA681A00C6EF8B /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD94E99316CA681A00C6EF8B /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		AD94E99716CA6D9F00C6EF8B /* FrameworkCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = AD94E99616CA6D9F00C6EF8B /* FrameworkCheck.m */; };
+		AD94E99916CA726C00C6EF8B /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD94E99816CA726C00C6EF8B /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		AD94E99B16CA78B900C6EF8B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD94E99A16CA78B900C6EF8B /* MessageUI.framework */; };
 		AD97D51B165B157900A57ECB /* DSFInspection.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51A165B157900A57ECB /* DSFInspection.m */; };
 		AD97D51C165B157900A57ECB /* DSFInspection.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51A165B157900A57ECB /* DSFInspection.m */; };
 		AD97D520165B16C400A57ECB /* DSFInfraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51F165B16C400A57ECB /* DSFInfraction.m */; };
@@ -118,6 +123,12 @@
 		AD52BFB41651FDF90090723E /* DSFEstablishment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFEstablishment.m; sourceTree = "<group>"; };
 		AD7D76991661C5E7001BFB20 /* DSFScorebarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFScorebarView.h; sourceTree = "<group>"; };
 		AD7D769A1661C5E7001BFB20 /* DSFScorebarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFScorebarView.m; sourceTree = "<group>"; };
+		AD94E99016CA67DB00C6EF8B /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		AD94E99316CA681A00C6EF8B /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		AD94E99516CA6D9F00C6EF8B /* FrameworkCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrameworkCheck.h; path = ../FrameworkCheck.h; sourceTree = "<group>"; };
+		AD94E99616CA6D9F00C6EF8B /* FrameworkCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrameworkCheck.m; path = ../FrameworkCheck.m; sourceTree = "<group>"; };
+		AD94E99816CA726C00C6EF8B /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		AD94E99A16CA78B900C6EF8B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		AD97D519165B157900A57ECB /* DSFInspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInspection.h; sourceTree = "<group>"; };
 		AD97D51A165B157900A57ECB /* DSFInspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInspection.m; sourceTree = "<group>"; };
 		AD97D51E165B16C400A57ECB /* DSFInfraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInfraction.h; sourceTree = "<group>"; };
@@ -152,6 +163,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD94E99B16CA78B900C6EF8B /* MessageUI.framework in Frameworks */,
+				AD94E99916CA726C00C6EF8B /* Twitter.framework in Frameworks */,
+				AD94E99416CA681A00C6EF8B /* Accounts.framework in Frameworks */,
+				AD94E99116CA67DB00C6EF8B /* Social.framework in Frameworks */,
 				ADED2E0316BE054F00DAD58C /* AddressBook.framework in Frameworks */,
 				ADB498F116699EAB003F55B8 /* CoreLocation.framework in Frameworks */,
 				AD52BF601651ED350090723E /* MapKit.framework in Frameworks */,
@@ -178,6 +193,10 @@
 		AD52BF0E1651E4EF0090723E = {
 			isa = PBXGroup;
 			children = (
+				AD94E99A16CA78B900C6EF8B /* MessageUI.framework */,
+				AD94E99816CA726C00C6EF8B /* Twitter.framework */,
+				AD94E99316CA681A00C6EF8B /* Accounts.framework */,
+				AD94E99016CA67DB00C6EF8B /* Social.framework */,
 				ADED2E0216BE054F00DAD58C /* AddressBook.framework */,
 				ADA5085A16BDF7D600F9038D /* Class Categories */,
 				ADCCD9BB16A6835B00887821 /* Resources */,
@@ -221,6 +240,8 @@
 				AD52BF2D1651E4EF0090723E /* DinesafeAppDelegate.m */,
 				ADCCD9EB16A6E3B800887821 /* DSFNavigationBar.h */,
 				ADCCD9EC16A6E3B800887821 /* DSFNavigationBar.m */,
+				AD94E99516CA6D9F00C6EF8B /* FrameworkCheck.h */,
+				AD94E99616CA6D9F00C6EF8B /* FrameworkCheck.m */,
 				AD52BF351651E4EF0090723E /* MainStoryboard_iPhone.storyboard */,
 				AD52BF381651E4EF0090723E /* MainStoryboard_iPad.storyboard */,
 				AD52BF241651E4EF0090723E /* Supporting Files */,
@@ -491,6 +512,7 @@
 				ADE4B4B416AD7B1300181CE2 /* DSFMapViewController.m in Sources */,
 				ADE4B4B716AD7B3B00181CE2 /* DSFInfoViewController.m in Sources */,
 				ADA5086116BDF86900F9038D /* NSString+URLEncoding.m in Sources */,
+				AD94E99716CA6D9F00C6EF8B /* FrameworkCheck.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,7 +614,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Ruten";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Ruten";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -600,6 +623,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -624,11 +649,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Ruten";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Ruten";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -677,8 +706,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Ruten";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Ruten";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -687,8 +716,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "C12A37AD-EAE1-4AE4-AB1B-EDBC84877F46";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C12A37AD-EAE1-4AE4-AB1B-EDBC84877F46";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -699,11 +728,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Ruten";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Ruten";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C12A37AD-EAE1-4AE4-AB1B-EDBC84877F46";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C12A37AD-EAE1-4AE4-AB1B-EDBC84877F46";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

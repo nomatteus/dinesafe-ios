@@ -7,8 +7,8 @@
 //
 
 #import "DSFInspectionTableViewController.h"
-#import "AddressBook/AddressBook.h"
 #import "NSString+URLEncoding.h"
+#import "FrameworkCheck.h"
 #import "Flurry.h"
 
 @interface DSFInspectionTableViewController ()
@@ -49,33 +49,41 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Action button tap & actions
+#pragma mark - Action button tap & sharing actions
+
 
 - (IBAction)actionTap:(id) sender {
-    // Show menu, with
+    // TODO: Store buttons & actions in array, so we can use it to print button titles, and also
+    //       in actionSheet deletate switch statement
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Open in Maps", //@"Post to Twitter", @"Post to Facebook",
+                                                    otherButtonTitles:@"Post to Twitter", @"Post to Facebook", @"Email Result", @"Open in Maps",
                                   nil];
     [actionSheet showFromBarButtonItem:self.actionButton animated:YES];
     [Flurry logEvent:@"Establishment Action Button Tapped"];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    // ... TODO: post to FB and twitter ...
+
     switch (buttonIndex) {
         case 0:
-            [Flurry logEvent:@"Establishment Action: Open in Maps"];
+            [Flurry logEvent:@"Establishment Action Button Press: Post to Twitter"];
+            [self postToTwitter];
+            break;
+        case 1:
+            [Flurry logEvent:@"Establishment Action Button Press: Post to Facebook"];
+            [self postToFacebook];
+            break;
+        case 2:
+            [Flurry logEvent:@"Establishment Action Button Press: Email Result"];
+            [self emailResult];
+            break;
+        case 3:
+            [Flurry logEvent:@"Establishment Action Button Press: Open in Maps"];
             [self openInMaps];
             break;
-//        case 1:
-//            [self postToTwitter];
-//            break;
-//        case 2:
-//            [self postToFacebook];
-//            break;
         default:
             break;
     }
@@ -104,13 +112,129 @@
     }
 }
 
-//- (void)postToFacebook {
-//    
-//}
-//
-//- (void)postToTwitter {
-//    
-//}
+- (void)postToFacebook {
+    NSLog(@"post to facebook");
+    if ([FrameworkCheck isSocialAvailable]) {
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+            SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+            [composeViewController setInitialText:@"blah"];
+            //        [composeViewController addImage:[UIImage imageNamed:@"something.png"]];
+            [composeViewController addURL:[NSURL URLWithString:@"http://dinesafe.to/app"]];
+            [composeViewController setCompletionHandler:^(SLComposeViewControllerResult result) {
+                switch (result) {
+                    case SLComposeViewControllerResultCancelled:
+                        NSLog(@"Post canceled");
+                        break;
+                    case SLComposeViewControllerResultDone:
+                        NSLog(@"Post successful");
+                        break;
+                    default:
+                        break;
+                }
+            }];
+            [self presentViewController:composeViewController animated:YES completion:nil];
+        }
+    } else {
+        // Fall back to FB web, link to app, or display msg?
+        // ...TODO...
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot post to Facebook."
+                                                        message:@"Your device is not configured for posting to FB."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void)postToTwitter {
+    NSLog(@"post to twitter");
+    if ([FrameworkCheck isSocialAvailable]) {
+        // iOS 6, 7?, ...
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+            SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            [composeViewController setInitialText:@"blah"];
+            //        [composeViewController addImage:[UIImage imageNamed:@"something.png"]];
+            [composeViewController addURL:[NSURL URLWithString:@"http://dinesafe.to/app"]];
+            [composeViewController setCompletionHandler:^(SLComposeViewControllerResult result) {
+                switch (result) {
+                    case SLComposeViewControllerResultCancelled:
+                        NSLog(@"Post canceled");
+                        break;
+                    case SLComposeViewControllerResultDone:
+                        NSLog(@"Post successful");
+                        break;
+                    default:
+                        break;
+                }
+            }];
+            [self presentViewController:composeViewController animated:YES completion:nil];
+        }
+    } else if ([FrameworkCheck isTwitterAvailable]) {
+        // iOS 5 twitter
+        if ([TWTweetComposeViewController canSendTweet]) {
+            TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
+            [tweetViewController setInitialText:@"hi, this is my tweet"];
+//            [tweetViewController addImage:[UIImage imageNamed:@"something.png"]];
+            [tweetViewController addURL:[NSURL URLWithString:@"http://dinesafe.to/app"]];
+            [tweetViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result){
+                [self dismissModalViewControllerAnimated:YES];
+            }];
+            [self presentViewController:tweetViewController animated:YES completion:nil];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot post to Twitter."
+                                                            message:@"There was a problem accessing Twitter, or you don't have an account setup on this device.\n\nYou can setup a Twitter account in the Settings app."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    } else {
+        // Twitter not available msg, or open a url like https://twitter.com/intent/tweet?text=tweet%20text
+        // ...TODO...
+    }
+
+}
+
+- (void)emailResult {
+    NSLog(@"email result");
+    // This is a good tutorial (though a tad outdated): http://mobile.tutsplus.com/tutorials/iphone/mfmailcomposeviewcontroller/
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+        mailViewController.mailComposeDelegate = self;
+        [mailViewController setSubject:[NSString stringWithFormat:@"Dinesafe Results for %@", self.establishment.latestName]];
+        NSString *emailBodyHtml = @"<b>Hey!</b><br>How's it going?<p>From,<br>Me</p>";
+        [mailViewController setMessageBody:emailBodyHtml isHTML:YES];
+        [self presentViewController:mailViewController animated:YES completion:nil];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot create mail."
+                                                        message:@"Your device is not configured for sending email."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    NSLog(@"mail delegate");
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled, and no draft saved.");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail not sent, but draft saved.");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent!");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail failed to send.");
+            break;
+        default:
+            break;
+    }
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 #pragma mark - Table view data source
 

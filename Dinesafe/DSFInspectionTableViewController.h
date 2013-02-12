@@ -8,13 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <AddressBook/AddressBook.h>
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
+#import <Twitter/Twitter.h>
+#import <MessageUI/MessageUI.h>
 #import "DSFApiClient.h"
 #import "DSFEstablishment.h"
 #import "DSFEstablishmentCell.h"
 #import "DSFEstablishmentExtendedInfoCell.h"
 #import "DSFInspectionCell.h"
 
-@interface DSFInspectionTableViewController : UITableViewController <UIActionSheetDelegate>
+@interface DSFInspectionTableViewController : UITableViewController <UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) DSFEstablishment *establishment;
 

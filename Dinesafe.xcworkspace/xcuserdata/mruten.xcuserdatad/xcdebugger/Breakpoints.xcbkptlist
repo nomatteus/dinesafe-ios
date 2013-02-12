@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Dinesafe/DSFInspectionTableViewController.h"
-         timestampString = "376120815.281111"
+         timestampString = "382368235.711802"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "16"
-         endingLineNumber = "16">
+         startingLineNumber = "21"
+         endingLineNumber = "21">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
