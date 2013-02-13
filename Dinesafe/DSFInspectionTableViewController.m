@@ -117,9 +117,9 @@
     if ([FrameworkCheck isSocialAvailable]) {
         if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
             SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-            [composeViewController setInitialText:@"blah"];
+            [composeViewController setInitialText:self.establishment.shareTextShort];
             //        [composeViewController addImage:[UIImage imageNamed:@"something.png"]];
-            [composeViewController addURL:[NSURL URLWithString:@"http://dinesafe.to/app"]];
+            [composeViewController addURL:[NSURL URLWithString:self.establishment.shareURL]];
             [composeViewController setCompletionHandler:^(SLComposeViewControllerResult result) {
                 switch (result) {
                     case SLComposeViewControllerResultCancelled:
@@ -135,15 +135,20 @@
             [self presentViewController:composeViewController animated:YES completion:nil];
         }
     } else {
-        // Fall back to FB web, link to app, or display msg?
-        // ...TODO...
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot post to Facebook."
-                                                        message:@"Your device is not configured for posting to FB."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        [self openWebFacebookURL];
     }
+}
+
+- (void)openWebFacebookURL {
+    // Fall back to FB web link
+    // Docs: http://stackoverflow.com/a/12800739/76710 or http://goo.gl/PXqmR
+    // Link Sample: https://www.facebook.com/dialog/feed?app_id=136579186509696&link=https://dinesafe.to/app&picture=http://fbrell.com/f8.jpg&%20name=Dinesafe%20Toronto&caption=Restaurant%20Health%20Inspections%20iOS%20App&description=Using%20Dialogs%20to%20interact%20with%20users.&redirect_uri=http://dinesafe.to/app
+    UIApplication *app = [UIApplication sharedApplication];
+    NSString *fbText = [self.establishment.shareTextShort urlEncode];
+    NSString *dsfURLforFb = [self.establishment.shareURL urlEncode];
+    NSString *fbURL = [NSString stringWithFormat:@"https://www.facebook.com/dialog/feed?app_id=136579186509696&link=%@&picture=http://dinesafe.to/assets/logos/dinesafe-128-square.png&%%20name=Dinesafe%%20Toronto&caption=Restaurant%%20Health%%20Inspections%%20iOS%%20App&description=%@&redirect_uri=%@",
+                       dsfURLforFb, fbText, dsfURLforFb];
+    [app openURL:[NSURL URLWithString:fbURL]];
 }
 
 - (void)postToTwitter {
@@ -152,9 +157,9 @@
         // iOS 6, 7?, ...
         if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
             SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-            [composeViewController setInitialText:@"blah"];
+            [composeViewController setInitialText:self.establishment.shareTextShort];
             //        [composeViewController addImage:[UIImage imageNamed:@"something.png"]];
-            [composeViewController addURL:[NSURL URLWithString:@"http://dinesafe.to/app"]];
+            [composeViewController addURL:[NSURL URLWithString:self.establishment.shareURL]];
             [composeViewController setCompletionHandler:^(SLComposeViewControllerResult result) {
                 switch (result) {
                     case SLComposeViewControllerResultCancelled:
@@ -173,26 +178,30 @@
         // iOS 5 twitter
         if ([TWTweetComposeViewController canSendTweet]) {
             TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
-            [tweetViewController setInitialText:@"hi, this is my tweet"];
+            [tweetViewController setInitialText:self.establishment.shareTextShort];
 //            [tweetViewController addImage:[UIImage imageNamed:@"something.png"]];
-            [tweetViewController addURL:[NSURL URLWithString:@"http://dinesafe.to/app"]];
+            [tweetViewController addURL:[NSURL URLWithString:self.establishment.shareURL]];
             [tweetViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result){
                 [self dismissModalViewControllerAnimated:YES];
             }];
             [self presentViewController:tweetViewController animated:YES completion:nil];
         } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot post to Twitter."
-                                                            message:@"There was a problem accessing Twitter, or you don't have an account setup on this device.\n\nYou can setup a Twitter account in the Settings app."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
+            [self openWebTweetURL];
         }
     } else {
-        // Twitter not available msg, or open a url like https://twitter.com/intent/tweet?text=tweet%20text
-        // ...TODO...
+        [self openWebTweetURL];
     }
 
+}
+
+- (void)openWebTweetURL {
+    // Twitter fallback to web link:
+    // https://twitter.com/intent/tweet?text=An+Awesome+Link&url=http%3A%2F%2Fwww.google.com%2F
+    UIApplication *app = [UIApplication sharedApplication];
+    NSString *tweetText = [self.establishment.shareTextShort urlEncode];
+    NSString *tweetURL = [self.establishment.shareURL urlEncode];
+    NSString *twitterURL = [NSString stringWithFormat:@"https://twitter.com/intent/tweet?text=%@&url=%@", tweetText, tweetURL];
+    [app openURL:[NSURL URLWithString:twitterURL]];
 }
 
 - (void)emailResult {
@@ -202,7 +211,7 @@
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate = self;
         [mailViewController setSubject:[NSString stringWithFormat:@"Dinesafe Results for %@", self.establishment.latestName]];
-        NSString *emailBodyHtml = @"<b>Hey!</b><br>How's it going?<p>From,<br>Me</p>";
+        NSString *emailBodyHtml = self.establishment.shareTextLongHtml;
         [mailViewController setMessageBody:emailBodyHtml isHTML:YES];
         [self presentViewController:mailViewController animated:YES completion:nil];
     } else {
@@ -216,7 +225,6 @@
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-    NSLog(@"mail delegate");
     switch (result) {
         case MFMailComposeResultCancelled:
             NSLog(@"Mail cancelled, and no draft saved.");

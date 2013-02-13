@@ -30,6 +30,12 @@
     self.latestType = dictionary[@"latest_type"];
     self.address = dictionary[@"address"];
     self.distance = [dictionary[@"distance"] doubleValue];
+    if ([dictionary objectForKey:@"share"]) {
+        self.shareTextShort = dictionary[@"share"][@"text_short"];
+        self.shareTextLong = dictionary[@"share"][@"text_long"];
+        self.shareTextLongHtml = dictionary[@"share"][@"text_long_html"];
+        self.shareURL = dictionary[@"share"][@"url"];
+    }
     
     for (id inspection in dictionary[@"inspections"]) {
         NSUInteger index = [self.inspections indexOfObjectPassingTest:
@@ -49,6 +55,22 @@
     double lat = [dictionary[@"latlng"][@"lat"] doubleValue];
     double lng = [dictionary[@"latlng"][@"lng"] doubleValue];
     self.location = CLLocationCoordinate2DMake(lat, lng);
+    [self setDefaultSharingValuesIfNil];
+}
+
+- (void)setDefaultSharingValuesIfNil {
+    if (!self.shareTextShort) {
+        self.shareTextShort = [NSString stringWithFormat:@"I'm looking at %@ results on Dinesafe TO app.", self.latestName];
+    }
+    if (!self.shareTextLong) {
+        self.shareTextLong = self.shareTextShort;
+    }
+    if (!self.shareTextLongHtml) {
+        self.shareTextLongHtml = self.shareTextLong;
+    }
+    if (!self.shareURL) {
+        self.shareURL = @"http://dinesafe.to/app";
+    }
 }
 
 - (int)minimumInspectionsPerYear {

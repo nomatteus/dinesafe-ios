@@ -22,6 +22,12 @@
 
 @property (nonatomic) int minimumInspectionsPerYear;
 
+// Share Text/URL
+@property (nonatomic, strong) NSString *shareTextShort;
+@property (nonatomic, strong) NSString *shareTextLong;
+@property (nonatomic, strong) NSString *shareTextLongHtml;
+@property (nonatomic, strong) NSString *shareURL;
+
 - (id)initWithDictionary:(NSDictionary *) dictionary;
 - (void)updateWithDictionary:(NSDictionary *)dictionary;
 
