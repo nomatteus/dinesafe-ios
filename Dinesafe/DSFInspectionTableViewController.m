@@ -367,8 +367,20 @@
          
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
          
-         [[[UIAlertView alloc] initWithTitle:@"Error Fetching Data"
-                                     message:@"Please try again later."
+         // TODO: Handle this stuff in a generic/shared class, somehow.
+         NSString *errorTitle;
+         NSString *errorMsg;
+         if (error.code == -1011) {
+             // -1011 is application error: 404 or 500, or similar
+             errorTitle = @"Error Fetching Data";
+             errorMsg = @"Please try again.";
+         } else {
+             // -1003 is hostname not accessible. For that and others, display "network?" message
+             errorTitle = @"Could Not Connect";
+             errorMsg = @"Please check that you have an active internet connection, and try again.";
+         }
+         [[[UIAlertView alloc] initWithTitle:errorTitle
+                                     message:errorMsg
                                     delegate:nil
                            cancelButtonTitle:@"Close"
                            otherButtonTitles: nil] show];

@@ -63,6 +63,19 @@
         [[UIApplication sharedApplication] openURL:[request URL]];
         return NO;
     }
+    // Open Link in twitter if available
+    if ([[[request URL] scheme] isEqual:@"twitter"]) {
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"twitter://"]]) {
+            [[UIApplication sharedApplication] openURL:[request URL]];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:@"Twitter App Not Found"
+                                        message:@"Please use the web link, or install Twitter from the app store."
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles: nil] show];
+        }
+        return NO;
+    }
     // Open links in Safari
     if (navigationType == UIWebViewNavigationTypeLinkClicked ) {
         [[UIApplication sharedApplication] openURL:[request URL]];
