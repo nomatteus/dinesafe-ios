@@ -55,11 +55,12 @@
 - (IBAction)actionTap:(id) sender {
     // TODO: Store buttons & actions in array, so we can use it to print button titles, and also
     //       in actionSheet deletate switch statement
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+    NSString *actionSheetTitle = [NSString stringWithFormat:@"%@", self.establishment.latestName];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:actionSheetTitle
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
                                                destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Post to Twitter", @"Post to Facebook", @"Email Result", @"Open in Maps",
+                                                    otherButtonTitles:@"Post to Twitter", @"Post to Facebook", @"Email Link", @"Copy Link", @"Open in Maps",
                                   nil];
     [actionSheet showFromBarButtonItem:self.actionButton animated:YES];
     [Flurry logEvent:@"Establishment Action Button Tapped"];
@@ -69,24 +70,38 @@
 
     switch (buttonIndex) {
         case 0:
-            [Flurry logEvent:@"Establishment Action Button Press: Post to Twitter"];
+            [Flurry logEvent:@"Establishment Action Button Press"
+              withParameters:@{ @"Action": @"Post to Twitter" }];
             [self postToTwitter];
             break;
         case 1:
-            [Flurry logEvent:@"Establishment Action Button Press: Post to Facebook"];
+            [Flurry logEvent:@"Establishment Action Button Press"
+              withParameters:@{ @"Action": @"Post to Facebook" }];
             [self postToFacebook];
             break;
         case 2:
-            [Flurry logEvent:@"Establishment Action Button Press: Email Result"];
+            [Flurry logEvent:@"Establishment Action Button Press"
+              withParameters:@{ @"Action": @"Email Link" }];
             [self emailResult];
             break;
         case 3:
-            [Flurry logEvent:@"Establishment Action Button Press: Open in Maps"];
+            [Flurry logEvent:@"Establishment Action Button Press"
+              withParameters:@{ @"Action": @"Copy Link" }];
+            [self copyLink];
+            break;
+        case 4:
+            [Flurry logEvent:@"Establishment Action Button Press"
+              withParameters:@{ @"Action": @"Open in Maps" }];
             [self openInMaps];
             break;
         default:
             break;
     }
+}
+
+- (void)copyLink {
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = self.establishment.shareURL;
 }
 
 - (void)openInMaps {
@@ -211,10 +226,7 @@
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate = self;
         [mailViewController setSubject:[NSString stringWithFormat:@"Dinesafe Results for %@", self.establishment.latestName]];
-        NSString *emailBodyHtml = [NSString stringWithFormat:@"%@<br><br>View on Web: <a href=\"%@\">%@</a>",
-                                   self.establishment.shareTextLongHtml,
-                                   self.establishment.shareURL,
-                                   self.establishment.shareURL];
+        NSString *emailBodyHtml = self.establishment.shareTextLongHtml;
         [mailViewController setMessageBody:emailBodyHtml isHTML:YES];
         [self presentViewController:mailViewController animated:YES completion:nil];
     } else {

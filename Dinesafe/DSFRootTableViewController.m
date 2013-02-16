@@ -114,6 +114,7 @@
     // Perform search if performSearch set to YES, or if search text is changed and equal to empty string
     // This allows for "clearing" of search, while avoiding refreshing when not necessary
     if (performSearch || (searchTextChanged && [self.searchText isEqualToString:@""])) {
+        [self.locationManager startUpdatingLocation]; // Check for updated location
         [self resetEstablishmentsAndShowLoadingCell:YES];
         [self fetchEstablishments];
         [Flurry logEvent:@"Perform Search"
