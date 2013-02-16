@@ -211,7 +211,10 @@
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate = self;
         [mailViewController setSubject:[NSString stringWithFormat:@"Dinesafe Results for %@", self.establishment.latestName]];
-        NSString *emailBodyHtml = self.establishment.shareTextLongHtml;
+        NSString *emailBodyHtml = [NSString stringWithFormat:@"%@<br><br>View on Web: <a href=\"%@\">%@</a>",
+                                   self.establishment.shareTextLongHtml,
+                                   self.establishment.shareURL,
+                                   self.establishment.shareURL];
         [mailViewController setMessageBody:emailBodyHtml isHTML:YES];
         [self presentViewController:mailViewController animated:YES completion:nil];
     } else {

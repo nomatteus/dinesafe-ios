@@ -27,11 +27,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    NSURL *url = [NSURL URLWithString:DINESAFE_ABOUT_PAGE_URL];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    self.navigationItem.title = @"About";
+    
     [self.webView setBackgroundColor:[UIColor clearColor]];
     [self hideGradientBackground:self.webView];
-    [self.webView loadRequest:requestObj];
+    
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"About" ofType:@"html"]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     self.webView.delegate = self;
 }
 
@@ -55,6 +57,13 @@
 #pragma mark UIWebView Delegates
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    // Open mail links
+    if ([[[request URL] scheme] isEqual:@"mailto"]) {
+        NSLog(@"mail link");
+        [[UIApplication sharedApplication] openURL:[request URL]];
+        return NO;
+    }
+    // Open links in Safari
     if (navigationType == UIWebViewNavigationTypeLinkClicked ) {
         [[UIApplication sharedApplication] openURL:[request URL]];
         return NO;

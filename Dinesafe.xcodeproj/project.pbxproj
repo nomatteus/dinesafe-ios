@@ -53,6 +53,8 @@
 		AD97D521165B16C400A57ECB /* DSFInfraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51F165B16C400A57ECB /* DSFInfraction.m */; };
 		ADA5086116BDF86900F9038D /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA5086016BDF86900F9038D /* NSString+URLEncoding.m */; };
 		ADB498F116699EAB003F55B8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB498F016699EAB003F55B8 /* CoreLocation.framework */; };
+		ADC13C6616D0129B0000CE52 /* Annotated_Establishment_Record.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC13C6516D0129B0000CE52 /* Annotated_Establishment_Record.png */; };
+		ADC13C6816D022760000CE52 /* About.html in Resources */ = {isa = PBXBuildFile; fileRef = ADC13C6716D022760000CE52 /* About.html */; };
 		ADC48AA8165C78F3001AEA3B /* DSFRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AA7165C78F3001AEA3B /* DSFRootTableViewController.m */; };
 		ADC48AAB165C801B001AEA3B /* DSFEstablishmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AAA165C801B001AEA3B /* DSFEstablishmentCell.m */; };
 		ADC81A771665D01600BD7793 /* DSFInspectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC81A761665D01600BD7793 /* DSFInspectionCell.m */; };
@@ -136,6 +138,8 @@
 		ADA5085F16BDF86900F9038D /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncoding.h"; path = "Dinesafe/NSString+URLEncoding.h"; sourceTree = "<group>"; };
 		ADA5086016BDF86900F9038D /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "Dinesafe/NSString+URLEncoding.m"; sourceTree = "<group>"; };
 		ADB498F016699EAB003F55B8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		ADC13C6516D0129B0000CE52 /* Annotated_Establishment_Record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Annotated_Establishment_Record.png; sourceTree = "<group>"; };
+		ADC13C6716D022760000CE52 /* About.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = About.html; sourceTree = "<group>"; };
 		ADC48AA6165C78F3001AEA3B /* DSFRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFRootTableViewController.h; sourceTree = "<group>"; };
 		ADC48AA7165C78F3001AEA3B /* DSFRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFRootTableViewController.m; sourceTree = "<group>"; };
 		ADC48AA9165C801B001AEA3B /* DSFEstablishmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFEstablishmentCell.h; sourceTree = "<group>"; };
@@ -269,6 +273,8 @@
 				AD52BF2F1651E4EF0090723E /* Default.png */,
 				AD52BF311651E4EF0090723E /* Default@2x.png */,
 				AD52BF331651E4EF0090723E /* Default-568h@2x.png */,
+				ADC13C6516D0129B0000CE52 /* Annotated_Establishment_Record.png */,
+				ADC13C6716D022760000CE52 /* About.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -445,6 +451,8 @@
 				AD15C3EB16B6B81F003C8DF7 /* iTunesArtwork.png in Resources */,
 				AD15C3EC16B6B81F003C8DF7 /* iTunesArtwork@2x.png in Resources */,
 				ADCAAB9816B9435B00E46495 /* Bariol_Bold_Italic.otf in Resources */,
+				ADC13C6616D0129B0000CE52 /* Annotated_Establishment_Record.png in Resources */,
+				ADC13C6816D022760000CE52 /* About.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
