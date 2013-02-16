@@ -380,6 +380,9 @@
                                     delegate:nil
                            cancelButtonTitle:@"Close"
                            otherButtonTitles: nil] show];
+
+         // Reset pull to refresh view so it's available for user to "pull and try again".
+         [self.pullToRefreshView finishLoading];
          
          NSLog(@"%@", error);
          
