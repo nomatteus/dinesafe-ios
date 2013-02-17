@@ -134,7 +134,8 @@
             SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
             [composeViewController setInitialText:self.establishment.shareTextShort];
             //        [composeViewController addImage:[UIImage imageNamed:@"something.png"]];
-            [composeViewController addURL:[NSURL URLWithString:self.establishment.shareURL]];
+            NSString *shareURL = [NSString stringWithFormat:@"%@?utm_source=app_share&utm_medium=facebook&utm_campaign=dinesafe", self.establishment.shareURL];
+            [composeViewController addURL:[NSURL URLWithString:shareURL]];
             [composeViewController setCompletionHandler:^(SLComposeViewControllerResult result) {
                 switch (result) {
                     case SLComposeViewControllerResultCancelled:
@@ -160,7 +161,8 @@
     // Link Sample: https://www.facebook.com/dialog/feed?app_id=136579186509696&link=https://dinesafe.to/app&picture=http://fbrell.com/f8.jpg&%20name=Dinesafe%20Toronto&caption=Restaurant%20Health%20Inspections%20iOS%20App&description=Using%20Dialogs%20to%20interact%20with%20users.&redirect_uri=http://dinesafe.to/app
     UIApplication *app = [UIApplication sharedApplication];
     NSString *fbText = [self.establishment.shareTextShort urlEncode];
-    NSString *dsfURLforFb = [self.establishment.shareURL urlEncode];
+    NSString *shareURL = [NSString stringWithFormat:@"%@?utm_source=app_share&utm_medium=facebook&utm_campaign=dinesafe", self.establishment.shareURL];
+    NSString *dsfURLforFb = [shareURL urlEncode];
     NSString *fbURL = [NSString stringWithFormat:@"https://www.facebook.com/dialog/feed?app_id=136579186509696&link=%@&picture=http://dinesafe.to/assets/logos/dinesafe-128-square.png&%%20name=Dinesafe%%20Toronto&caption=Restaurant%%20Health%%20Inspections%%20iOS%%20App&description=%@&redirect_uri=%@",
                        dsfURLforFb, fbText, dsfURLforFb];
     [app openURL:[NSURL URLWithString:fbURL]];
@@ -174,7 +176,8 @@
             SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
             [composeViewController setInitialText:self.establishment.shareTextShort];
             //        [composeViewController addImage:[UIImage imageNamed:@"something.png"]];
-            [composeViewController addURL:[NSURL URLWithString:self.establishment.shareURL]];
+            NSString *shareURL = [NSString stringWithFormat:@"%@?utm_source=app_share&utm_medium=twitter&utm_campaign=dinesafe", self.establishment.shareURL];
+            [composeViewController addURL:[NSURL URLWithString:shareURL]];
             [composeViewController setCompletionHandler:^(SLComposeViewControllerResult result) {
                 switch (result) {
                     case SLComposeViewControllerResultCancelled:
@@ -195,7 +198,8 @@
             TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
             [tweetViewController setInitialText:self.establishment.shareTextShort];
 //            [tweetViewController addImage:[UIImage imageNamed:@"something.png"]];
-            [tweetViewController addURL:[NSURL URLWithString:self.establishment.shareURL]];
+            NSString *shareURL = [NSString stringWithFormat:@"%@?utm_source=app_share&utm_medium=facebook&utm_campaign=dinesafe", self.establishment.shareURL];
+            [tweetViewController addURL:[NSURL URLWithString:shareURL]];
             [tweetViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result){
                 [self dismissModalViewControllerAnimated:YES];
             }];
@@ -214,7 +218,8 @@
     // https://twitter.com/intent/tweet?text=An+Awesome+Link&url=http%3A%2F%2Fwww.google.com%2F
     UIApplication *app = [UIApplication sharedApplication];
     NSString *tweetText = [self.establishment.shareTextShort urlEncode];
-    NSString *tweetURL = [self.establishment.shareURL urlEncode];
+    NSString *shareURL = [NSString stringWithFormat:@"%@?utm_source=app_share&utm_medium=twitter&utm_campaign=dinesafe", self.establishment.shareURL];
+    NSString *tweetURL = [shareURL urlEncode];
     NSString *twitterURL = [NSString stringWithFormat:@"https://twitter.com/intent/tweet?text=%@&url=%@", tweetText, tweetURL];
     [app openURL:[NSURL URLWithString:twitterURL]];
 }
@@ -226,7 +231,12 @@
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate = self;
         [mailViewController setSubject:[NSString stringWithFormat:@"Dinesafe Results for %@", self.establishment.latestName]];
-        NSString *emailBodyHtml = self.establishment.shareTextLongHtml;
+        
+        NSString *shareURLHref = [NSString stringWithFormat:@"%@?utm_source=app_share&utm_medium=email&utm_campaign=dinesafe", self.establishment.shareURL];
+        NSString *emailBodyHtml = [NSString stringWithFormat:@"%@<br><br>View on Web: <a href=\"%@\">%@</a>",
+                                   self.establishment.shareTextLongHtml,
+                                   shareURLHref,
+                                   self.establishment.shareURL];
         [mailViewController setMessageBody:emailBodyHtml isHTML:YES];
         [self presentViewController:mailViewController animated:YES completion:nil];
     } else {
