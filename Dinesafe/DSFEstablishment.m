@@ -52,9 +52,14 @@
             [self.inspections[index] updateWithDictionary:inspection];
         }
     }
-    double lat = [dictionary[@"latlng"][@"lat"] doubleValue];
-    double lng = [dictionary[@"latlng"][@"lng"] doubleValue];
-    self.location = CLLocationCoordinate2DMake(lat, lng);
+    if ([dictionary objectForKey:@"latlng"]
+        && [dictionary[@"latlng"] isKindOfClass:[NSDictionary class]]
+        && [dictionary[@"latlng"] objectForKey:@"lat"]
+        && [dictionary[@"latlng"] objectForKey:@"lng"]) { // Checking for non-null latlng
+        double lat = [dictionary[@"latlng"][@"lat"] doubleValue];
+        double lng = [dictionary[@"latlng"][@"lng"] doubleValue];
+        self.location = CLLocationCoordinate2DMake(lat, lng);
+    }
     [self setDefaultSharingValuesIfNil];
 }
 

@@ -47,9 +47,17 @@
     CGContextFillPath(ctx);
     
     // --- Draw pass/conditional text ---
-    NSString *statusText;
-    CGFloat *textColor;
-    CGFloat *shadowColor;
+    // Set deafult values
+    NSString *statusText = self.inspection.status;
+    CGFloat *textColor = (CGFloat[]){
+        255.0/255,
+        255.0/255,
+        255.0/255,
+        1.0
+    };
+    CGFloat *shadowColor = [self.inspection colorForStatusAtPositionRGBA:1];
+    CGFloat statusTextFontSize = 14.0;
+    // Change values for certain status's
     if ([self.inspection.status isEqualToString:@"Conditional Pass"]) {
         statusText = @"Conditional";
         // Custom shadow color for conditional pass -- darker
@@ -65,18 +73,10 @@
             169.0/255,
             1.0
         };
-    } else {
-        statusText = self.inspection.status;
-        textColor = (CGFloat[]){
-            255.0/255,
-            255.0/255,
-            255.0/255,
-            1.0
-        };
-        shadowColor = [self.inspection colorForStatusAtPositionRGBA:1];
+    } else if ([self.inspection.status isEqualToString:@"Out of Business"]) {
+        statusTextFontSize = 11.0;
     }
 
-    CGFloat statusTextFontSize = 14.0;
     CGRect statusTextRect = CGRectMake(0.0, (statusRect.size.height-statusTextFontSize-2)/2-2, statusRect.size.width, statusRect.size.height);
     CGRect statusTextShadowRect = CGRectMake(0.0+1, (statusRect.size.height-statusTextFontSize-2)/2+1-2, statusRect.size.width, statusRect.size.height);
     CGContextSetFillColor(ctx, shadowColor);
