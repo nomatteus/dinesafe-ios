@@ -149,6 +149,8 @@
                 }
             }];
             [self presentViewController:composeViewController animated:YES completion:nil];
+        } else {
+            [self openWebFacebookURL];
         }
     } else {
         [self openWebFacebookURL];
@@ -191,6 +193,8 @@
                 }
             }];
             [self presentViewController:composeViewController animated:YES completion:nil];
+        } else {
+            [self openWebTweetURL];
         }
     } else if ([FrameworkCheck isTwitterAvailable]) {
         // iOS 5 twitter
@@ -233,7 +237,7 @@
         [mailViewController setSubject:[NSString stringWithFormat:@"Dinesafe Results for %@", self.establishment.latestName]];
         
         NSString *shareURLHref = [NSString stringWithFormat:@"%@?utm_source=app_share&utm_medium=email&utm_campaign=dinesafe", self.establishment.shareURL];
-        NSString *emailBodyHtml = [NSString stringWithFormat:@"%@<br><br>View on Web: <a href=\"%@\">%@</a>",
+        NSString *emailBodyHtml = [NSString stringWithFormat:@"%@<br><br>Check it out here: <a href=\"%@\">%@</a>",
                                    self.establishment.shareTextLongHtml,
                                    shareURLHref,
                                    self.establishment.shareURL];
