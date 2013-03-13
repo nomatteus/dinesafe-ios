@@ -1,6 +1,10 @@
 Dinesafe iOS App
 ================
 
+App Website: http://dinesafe.to/app
+
+View on App Store: http://bit.ly/Dinesafe
+
 This is an app I'm working on that displays Dinesafe inspections. Also, my first "real" iOS app.
 
 Using data from http://toronto.ca/open
