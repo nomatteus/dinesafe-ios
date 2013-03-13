@@ -42,8 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self setupSearchBar];
 
     self.currentLocation = nil;
     
@@ -69,11 +67,6 @@
 
 #pragma mark - Search
 
-- (void)setupSearchBar {
-    // Scroll table view so search bar is just out of sight
-    CGPoint offset = CGPointMake(0, self.searchBar.frame.size.height);
-    self.tableView.contentOffset = offset;
-}
 
 - (void)showSearch:(UISearchBar *)searchBar {
     self.tableView.allowsSelection = NO;
