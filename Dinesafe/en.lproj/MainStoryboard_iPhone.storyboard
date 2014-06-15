@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vzd-ut-75Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="pn9-Cw-8s6">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -9,18 +9,17 @@
             <objects>
                 <viewController id="fSv-mP-wEM" customClass="DSFInfoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sCg-4w-KPt">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" id="aDz-dp-11b">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="jHL-BH-XYo"/>
                     <connections>
                         <outlet property="webView" destination="aDz-dp-11b" id="qOL-zn-eNv"/>
                     </connections>
@@ -34,18 +33,17 @@
             <objects>
                 <tableViewController id="8RN-zg-ogv" customClass="DSFRootTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="99" sectionHeaderHeight="22" sectionFooterHeight="22" id="CIb-xS-YBo">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" prompt="Search, and/or Filter by Inspection Result" showsScopeBar="YES" id="TxT-EB-HLP">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="TxT-EB-HLP">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="tintColor" white="0.68000000000000005" alpha="1" colorSpace="calibratedWhite"/>
                             <textInputTraits key="textInputTraits"/>
                             <scopeButtonTitles>
-                                <string>All</string>
-                                <string>Red/Yellow</string>
-                                <string>Green</string>
+                                <string>Title</string>
+                                <string>Title</string>
                             </scopeButtonTitles>
                             <connections>
                                 <outlet property="delegate" destination="8RN-zg-ogv" id="2c8-NM-7ZR"/>
@@ -53,7 +51,7 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="EstablishmentCell" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EstablishmentCell" rowHeight="110" id="1Dt-0i-tVI" customClass="DSFEstablishmentCell">
-                                <rect key="frame" x="0.0" y="141" width="320" height="110"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="109"/>
@@ -96,7 +94,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" restorationIdentifier="" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LoadingCell" rowHeight="110" id="oaa-jc-Gtk" customClass="DSFLoadingCell">
-                                <rect key="frame" x="0.0" y="251" width="320" height="110"/>
+                                <rect key="frame" x="0.0" y="176" width="320" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
@@ -111,7 +109,7 @@
                                 </view>
                             </tableViewCell>
                             <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" restorationIdentifier="" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoResultsCell" rowHeight="110" id="4k3-eD-O3h">
-                                <rect key="frame" x="0.0" y="361" width="320" height="110"/>
+                                <rect key="frame" x="0.0" y="286" width="320" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
@@ -196,7 +194,7 @@
             <objects>
                 <tableViewController id="mXH-Ey-eCF" customClass="DSFInspectionTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lxx-hT-HfY">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -328,32 +326,10 @@ Minimum Inspections Per Year: 3</string>
             </objects>
             <point key="canvasLocation" x="582" y="-860"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="oBr-ZG-d8D">
-            <objects>
-                <tabBarController definesPresentationContext="YES" id="vzd-ut-75Y" sceneMemberID="viewController">
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="vzH-4o-f7N">
-                        <rect key="frame" x="129" y="330" width="163" height="49"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="pn9-Cw-8s6" kind="relationship" relationship="viewControllers" id="r1v-2c-6HP"/>
-                        <segue destination="pn9-Cw-8s6" kind="relationship" relationship="viewControllers" id="7X1-Pp-6uO"/>
-                        <segue destination="pn9-Cw-8s6" kind="relationship" relationship="viewControllers" id="WvI-5p-ZiT"/>
-                        <segue destination="pn9-Cw-8s6" kind="relationship" relationship="viewControllers" id="E1E-w7-Urd"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YmJ-ln-UsO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2044" y="-1216"/>
-        </scene>
-        <!--Navigation Controller - Nearby-->
+        <!--Navigation Controller-->
         <scene sceneID="0wz-AM-rTG">
             <objects>
                 <navigationController definesPresentationContext="YES" id="pn9-Cw-8s6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Nearby" id="gjW-0l-pGN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8SW-Th-8aJ" customClass="DSFNavigationBar">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -363,7 +339,7 @@ Minimum Inspections Per Year: 3</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUK-bZ-fg8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1281" y="-1047"/>
+            <point key="canvasLocation" x="-989" y="-845"/>
         </scene>
     </scenes>
     <classes>
@@ -426,7 +402,4 @@ Minimum Inspections Per Year: 3</string>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="WvI-5p-ZiT"/>
-    </inferredMetricsTieBreakers>
 </document>
