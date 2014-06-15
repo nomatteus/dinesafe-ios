@@ -398,7 +398,7 @@
 			name = DinesafeTests;
 			productName = DinesafeTests;
 			productReference = AD52BF431651E4EF0090723E /* DinesafeTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -407,6 +407,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Dinesafe;
+				LastTestingUpgradeCheck = 0600;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Matt Ruten";
 			};
@@ -605,7 +606,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -629,7 +630,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
@@ -721,7 +722,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "C12A37AD-EAE1-4AE4-AB1B-EDBC84877F46";

@@ -25,7 +25,7 @@
 - (id)initWithDictionary:(NSDictionary *) dictionary;
 - (void)updateWithDictionary:(NSDictionary *) dictionary;
 
-- (CGFloat[4])colorForStatusAtPositionRGBA:(int)position;
+- (NSMutableArray *)colorForStatusAtPositionRGBA:(int)position;
 - (UIColor *)colorForStatusAtPositionUIColor:(int)position;
 - (float)heightForInfractionsWithSize:(CGSize)size andFont:(UIFont *)font;
 

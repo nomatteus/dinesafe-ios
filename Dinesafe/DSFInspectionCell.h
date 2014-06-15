@@ -19,6 +19,6 @@
 @property (nonatomic, strong) IBOutlet UIView *statusBox;
 @property (nonatomic, strong) IBOutlet UIView *infractionsView;
 
-- (void)updateCellContent;
+//- (void)updateCellContent;
 
 @end

@@ -70,14 +70,28 @@ const float kScoreBoxGap = 0;  // Gap between boxes
     for (id inspection in inspectionsSlice) {
         
         // Top of box
-        CGFloat *topColor = [inspection colorForStatusAtPositionRGBA:0];
+        
+        NSMutableArray *pos0RGBA = [inspection colorForStatusAtPositionRGBA:0];
+        CGFloat topColor[] = {
+            [[pos0RGBA objectAtIndex:0] floatValue],
+            [[pos0RGBA objectAtIndex:1] floatValue],
+            [[pos0RGBA objectAtIndex:2] floatValue],
+            [[pos0RGBA objectAtIndex:3] floatValue]
+        };
         CGContextSetFillColor(ctx, topColor);
         CGRect box_top = CGRectMake(xOffset, yOffset, kScoreBoxWidth, kScoreBoxHeight / 2);
         CGContextAddRect(ctx, box_top);
         CGContextFillPath(ctx);
         
         // Bottom of box
-        CGContextSetFillColor(ctx, [inspection colorForStatusAtPositionRGBA:1]);
+        NSMutableArray *pos1RGBA = [inspection colorForStatusAtPositionRGBA:1];
+        CGFloat bottomColor[] = {
+            [[pos1RGBA objectAtIndex:0] floatValue],
+            [[pos1RGBA objectAtIndex:1] floatValue],
+            [[pos1RGBA objectAtIndex:2] floatValue],
+            [[pos1RGBA objectAtIndex:3] floatValue]
+        };
+        CGContextSetFillColor(ctx, bottomColor);
         CGRect box_bottom = CGRectMake(xOffset, kScoreBoxHeight / 2 + yOffset, kScoreBoxWidth, kScoreBoxHeight / 2);
         CGContextAddRect(ctx, box_bottom);
         CGContextFillPath(ctx);

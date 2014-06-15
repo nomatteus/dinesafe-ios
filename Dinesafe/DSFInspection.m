@@ -83,78 +83,83 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
 // Return a color for an inspection status (RGBA)
 // status is "Pass", "Conditional Pass", or "Close". Position is 0=top, 1=bottom
 // TODO: This needs some major refactoring!!
-- (CGFloat[4])colorForStatusAtPositionRGBA:(int)position {
+- (NSMutableArray *)colorForStatusAtPositionRGBA:(int)position {
     if ([self.status isEqualToString:@"Pass"]) {
         if (position == 0) {
-            return (CGFloat[]){
-                kScoreBoxPassTopColorRGB[0]/255,
-                kScoreBoxPassTopColorRGB[1]/255,
-                kScoreBoxPassTopColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxPassTopColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxPassTopColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxPassTopColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         } else {
-            return (CGFloat[]){
-                kScoreBoxPassBottomColorRGB[0]/255,
-                kScoreBoxPassBottomColorRGB[1]/255,
-                kScoreBoxPassBottomColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxPassBottomColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxPassBottomColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxPassBottomColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         }
     } else if ([self.status isEqualToString:@"Conditional Pass"]) {
         if (position == 0) {
-            return (CGFloat[]){
-                kScoreBoxConditionalPassTopColorRGB[0]/255,
-                kScoreBoxConditionalPassTopColorRGB[1]/255,
-                kScoreBoxConditionalPassTopColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxConditionalPassTopColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxConditionalPassTopColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxConditionalPassTopColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         } else {
-            return (CGFloat[]){
-                kScoreBoxConditionalPassBottomColorRGB[0]/255,
-                kScoreBoxConditionalPassBottomColorRGB[1]/255,
-                kScoreBoxConditionalPassBottomColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxConditionalPassBottomColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxConditionalPassBottomColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxConditionalPassBottomColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         }
     } else if ([self.status isEqualToString:@"Closed"]) {
         if (position == 0) {
-            return (CGFloat[]){
-                kScoreBoxClosedTopColorRGB[0]/255,
-                kScoreBoxClosedTopColorRGB[1]/255,
-                kScoreBoxClosedTopColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxClosedTopColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxClosedTopColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxClosedTopColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         } else {
-            return (CGFloat[]){
-                kScoreBoxClosedBottomColorRGB[0]/255,
-                kScoreBoxClosedBottomColorRGB[1]/255,
-                kScoreBoxClosedBottomColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxClosedBottomColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxClosedBottomColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxClosedBottomColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         }
     } else {
         // "Out of Business" or anything else: Use gray
         if (position == 0) {
-            return (CGFloat[]){
-                kScoreBoxOtherTopColorRGB[0]/255,
-                kScoreBoxOtherTopColorRGB[1]/255,
-                kScoreBoxOtherTopColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxOtherTopColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxOtherTopColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxOtherTopColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         } else {
-            return (CGFloat[]){
-                kScoreBoxOtherBottomColorRGB[0]/255,
-                kScoreBoxOtherBottomColorRGB[1]/255,
-                kScoreBoxOtherBottomColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxOtherBottomColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxOtherBottomColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxOtherBottomColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         }
     }
 }
 
 - (UIColor *)colorForStatusAtPositionUIColor:(int)position {
-    CGFloat *rgba = [self colorForStatusAtPositionRGBA:position];
-    return [UIColor colorWithRed:rgba[0] green:rgba[1] blue:rgba[2] alpha:rgba[3]];
+    NSMutableArray *rgba = [self colorForStatusAtPositionRGBA:position];
+    return [UIColor
+            colorWithRed:[[rgba objectAtIndex:0] floatValue]
+            green:[[rgba objectAtIndex:1] floatValue]
+            blue:[[rgba objectAtIndex:2] floatValue]
+            alpha:[[rgba objectAtIndex:3] floatValue]
+            ];
 }
 
 
