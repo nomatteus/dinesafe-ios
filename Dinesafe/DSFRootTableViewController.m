@@ -9,6 +9,7 @@
 #import "DSFRootTableViewController.h"
 #import "DSFPullToRefreshView.h"
 #import "Flurry.h"
+#import "DSFApiClient.h"
 
 @interface DSFRootTableViewController () <CLLocationManagerDelegate, UISearchBarDelegate>
 @property (nonatomic, strong) NSMutableArray *establishments;
@@ -344,19 +345,47 @@
         self._currentPage = 1;
     }
     
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                [NSString stringWithFormat:@"%d", self._currentPage], @"page",
-                                       nil];
-    if (self.currentLocation != nil) {
-        parameters[@"near"] = [NSString stringWithFormat:@"%f,%f",
-                               self.currentLocation.coordinate.latitude,
-                               self.currentLocation.coordinate.longitude];
+    
+    NSMutableDictionary *parameters;
+    NSString *path;
+    
+    NSString *queryStr  = @"text=Curry&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=pjson";
+
+    if (DINE_SURREY) {
+        path = @"query";    // ArcGIS - Surrey DineSafe
+        NSMutableDictionary *queryStringDictionary = [[NSMutableDictionary alloc] init];
+
+        NSArray *urlComponents = [queryStr componentsSeparatedByString:@"&"];
+        
+        for (NSString *keyValuePair in urlComponents)
+        {
+            NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
+            NSString *key = [pairComponents objectAtIndex:0];
+            NSString *value = [pairComponents objectAtIndex:1];
+            
+            [queryStringDictionary setObject:value forKey:key];
+        }
+        parameters = queryStringDictionary;
+        
+    } else {
+        path = @"establishments.json";
+        parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                      [NSString stringWithFormat:@"%ld", (long)self._currentPage], @"page", nil];
+        
+        if (self.currentLocation != nil) {
+            parameters[@"near"] = [NSString stringWithFormat:@"%f,%f",
+                                   self.currentLocation.coordinate.latitude,
+                                   self.currentLocation.coordinate.longitude];
+        }
+        
+        if (self.searchText != nil) {
+            parameters[@"search"] = self.searchText;
+        }
+
     }
-    if (self.searchText != nil) {
-        parameters[@"search"] = self.searchText;
-    }
+    
     NSLog(@"parameters: %@", parameters);
-    [[DSFApiClient sharedInstance] getPath:@"establishments.json" parameters:parameters success:
+    [[DSFApiClient sharedInstance] getPath:path parameters:parameters success:
      ^(AFHTTPRequestOperation *operation, id response) {
          
          if (reset) {
@@ -364,7 +393,7 @@
              [self resetEstablishments];
          }
          
-         //NSLog(@"Response: %@", response);
+         NSLog(@"Response: %@", response);
          self._totalPages = [response[@"paging"][@"total_pages"] intValue];
          
          if (self._totalPages == 0) {
@@ -373,7 +402,13 @@
              self._noResultsFound = NO;
          }
          
-         for (id establishmentDictionary in response[@"data"]) {
+         
+         NSString *selector = @"data";
+         if (DINE_SURREY) {
+             selector = @"features";
+         }
+         
+         for (id establishmentDictionary in response[selector]) {
              DSFEstablishment *establishment = [[DSFEstablishment alloc] initWithDictionary:establishmentDictionary];
              [self.establishments addObject:establishment];
          }
