@@ -10,6 +10,7 @@
 #import "DSFPullToRefreshView.h"
 #import "Flurry.h"
 #import "DSFApiClient.h"
+#import "DSFSurreyEstablishment.h"
 
 @interface DSFRootTableViewController () <CLLocationManagerDelegate, UISearchBarDelegate>
 @property (nonatomic, strong) NSMutableArray *establishments;
@@ -44,9 +45,6 @@
 {
     [super viewDidLoad];
 
-    
-    
-    
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -54,10 +52,6 @@
 //    self.extendedLayoutIncludesOpaqueBars = YES;
     
 //    self.navigationController.navigationBar.translucent = NO;
-    
-    
-    
-    
     
     self.currentLocation = nil;
     
@@ -202,6 +196,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    // DINE SURREY - temporary until handling paging
+    if (DINE_SURREY) {
+        return [self.establishments count];
+    }
+    
     // Loading cell only
     if (self._currentPage == 0) {
         return 1;
@@ -223,14 +222,33 @@
 
 - (UITableViewCell *)establishmentCellForIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"EstablishmentCell";
-    DSFEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-    DSFEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
-    [cell setEstablishment: establishment];
+    if (DINE_SURREY) {
+
+        // We need to calculate distance, since it's not provided by Surrey.
+        DSFSurreyEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
+        
+        CLLocation *estLocation =  [[CLLocation alloc] initWithLatitude:establishment.location.latitude longitude:establishment.location.longitude];
+        establishment.distance = [self.currentLocation distanceFromLocation:estLocation] / 1000;
+        
+        DSFSurreyEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        [cell setEstablishment:establishment];
+        [cell updateCellContent];
+        
+        return cell;
+        
+    } else {
+        DSFEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+        DSFEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
+        [cell setEstablishment: establishment];
+        [cell updateCellContent];
+        
+        return cell;
+
+    }
     
-    [cell updateCellContent];
-    
-    return cell;
 }
 
 - (UITableViewCell *)loadingCell {
@@ -348,13 +366,18 @@
     
     NSMutableDictionary *parameters;
     NSString *path;
-    
-    NSString *queryStr  = @"text=Curry&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=pjson";
 
+    // TODO - need to refactor this
+    NSString *queryStr  = @"text=%&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json";
+
+    // TODO: sort not working
+    queryStr = @"where=NAME like '%%'&f=json&outfields=*&returnGeometry=false&orderByFields=NAME ASC";
+    
     if (DINE_SURREY) {
         path = @"query";    // ArcGIS - Surrey DineSafe
+        
+        // TODO - need to refactor here
         NSMutableDictionary *queryStringDictionary = [[NSMutableDictionary alloc] init];
-
         NSArray *urlComponents = [queryStr componentsSeparatedByString:@"&"];
         
         for (NSString *keyValuePair in urlComponents)
@@ -383,6 +406,7 @@
         }
 
     }
+
     
     NSLog(@"parameters: %@", parameters);
     [[DSFApiClient sharedInstance] getPath:path parameters:parameters success:
@@ -403,14 +427,17 @@
          }
          
          
-         NSString *selector = @"data";
          if (DINE_SURREY) {
-             selector = @"features";
-         }
-         
-         for (id establishmentDictionary in response[selector]) {
-             DSFEstablishment *establishment = [[DSFEstablishment alloc] initWithDictionary:establishmentDictionary];
-             [self.establishments addObject:establishment];
+             for (id establishmentDictionary in response[@"features"]) {
+                 DSFSurreyEstablishment *establishment = [[DSFSurreyEstablishment alloc] initWithDictionary:establishmentDictionary[@"attributes"]];
+                 [self.establishments addObject:establishment];
+             }
+         } else {
+             for (id establishmentDictionary in response[@"data"]) {
+                 DSFEstablishment *establishment = [[DSFEstablishment alloc] initWithDictionary:establishmentDictionary];
+                 [self.establishments addObject:establishment];
+             }
+             
          }
          
          [self.pullToRefreshView finishLoading];
