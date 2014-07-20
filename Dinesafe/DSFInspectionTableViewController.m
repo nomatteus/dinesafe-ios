@@ -343,20 +343,7 @@
     NSLog(@"inspectionCellForIndexPath %@", indexPath);
     
     static NSString *CellIdentifier = @"InspectionCell";
-    
-/*
-    UITableViewCell * cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    // START NEW
-    if (![cell.backgroundView isKindOfClass:[DSFInspectionCell class]]) {
-        cell.backgroundView = [[DSFInspectionCell alloc] init];
-    }
-    
-    if (![cell.selectedBackgroundView isKindOfClass:[DSFInspectionCell class]]) {
-        cell.selectedBackgroundView = [[DSFInspectionCell alloc] init];
-    }
-    // END NEW
-*/
-    
+        
     DSFInspectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     // TODO: Move inspectionIndex and cell order/etc to a consolidated place, i.e. figure out cell heights and orders once, and then return that instead of doing the calculations on every cell load, Also we're calculating inspectionIndex in 2 different places and that's confusing to update. Also, I'm very tired right now and can't articulate myself very well.
     
