@@ -15,7 +15,7 @@
 
 #define SURREY_API_BASE_URL @"http://cosmos.surrey.ca/COSREST/rest/services/FH_Restaurants/MapServer/0/"
 // 0 == TORONTO | 1 == SURREY
-#define DINE_SURREY 1
+#define DINE_SURREY 0
 
 @interface DSFApiClient : AFHTTPClient
 

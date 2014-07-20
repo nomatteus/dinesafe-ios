@@ -340,11 +340,18 @@
 }
 
 - (UITableViewCell *)inspectionCellForIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"inspectionCellForIndexPath %@", indexPath);
+    
     static NSString *CellIdentifier = @"InspectionCell";
     DSFInspectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     // TODO: Move inspectionIndex and cell order/etc to a consolidated place, i.e. figure out cell heights and orders once, and then return that instead of doing the calculations on every cell load, Also we're calculating inspectionIndex in 2 different places and that's confusing to update. Also, I'm very tired right now and can't articulate myself very well.
     int inspectionIndex = self.establishment.inspections.count - 1 - indexPath.row + 2;  // reverse order
     cell.inspection = self.establishment.inspections[inspectionIndex];
+    NSLog(@"cell.inspection.status = %@", cell.inspection.status);
+    cell.status.text = cell.inspection.status;
+    cell.date.text   = cell.inspection.formattedDate;
+    [cell.statusBox setBackgroundColor:[UIColor yellowColor]];
+    cell.infractionsView
     [cell setNeedsDisplay];
     return cell;
 }

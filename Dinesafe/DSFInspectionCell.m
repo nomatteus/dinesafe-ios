@@ -29,6 +29,7 @@
 #pragma mark - Drawing
 
 - (void)drawRect:(CGRect)rect {
+    NSLog(@">>> drawRect for %@", self.inspection.status);
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
