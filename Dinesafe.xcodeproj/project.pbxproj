@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11754E65197C39ED00C34A88 /* DSFInspectionCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11754E64197C39ED00C34A88 /* DSFInspectionCellView.m */; };
 		11BE58AD197B0381008A3E26 /* DSFSurreyEstablishment.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BE58AC197B0381008A3E26 /* DSFSurreyEstablishment.m */; };
 		11BE58B0197B03A4008A3E26 /* DSFSurreyEstablishmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BE58AF197B03A4008A3E26 /* DSFSurreyEstablishmentCell.m */; };
 		AD02055C166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD02055B166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m */; };
@@ -82,6 +83,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11754E63197C39ED00C34A88 /* DSFInspectionCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInspectionCellView.h; sourceTree = "<group>"; };
+		11754E64197C39ED00C34A88 /* DSFInspectionCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInspectionCellView.m; sourceTree = "<group>"; };
 		11BE58AB197B0381008A3E26 /* DSFSurreyEstablishment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFSurreyEstablishment.h; sourceTree = "<group>"; };
 		11BE58AC197B0381008A3E26 /* DSFSurreyEstablishment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFSurreyEstablishment.m; sourceTree = "<group>"; };
 		11BE58AE197B03A4008A3E26 /* DSFSurreyEstablishmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFSurreyEstablishmentCell.h; sourceTree = "<group>"; };
@@ -324,30 +327,32 @@
 		AD7D76981661C356001BFB20 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				11BE58AE197B03A4008A3E26 /* DSFSurreyEstablishmentCell.h */,
-				11BE58AF197B03A4008A3E26 /* DSFSurreyEstablishmentCell.m */,
-				ADC48AA6165C78F3001AEA3B /* DSFRootTableViewController.h */,
-				ADC48AA7165C78F3001AEA3B /* DSFRootTableViewController.m */,
-				ADD0C2361662443D00A68A1B /* DSFInspectionTableViewController.h */,
-				ADD0C2371662443D00A68A1B /* DSFInspectionTableViewController.m */,
+				ADD5D713169AF5460008A6F9 /* DSFEstablishmentAnnotation.h */,
+				ADD5D714169AF5470008A6F9 /* DSFEstablishmentAnnotation.m */,
 				ADC48AA9165C801B001AEA3B /* DSFEstablishmentCell.h */,
 				ADC48AAA165C801B001AEA3B /* DSFEstablishmentCell.m */,
 				AD02055A166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.h */,
 				AD02055B166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m */,
-				ADC81A751665D01500BD7793 /* DSFInspectionCell.h */,
-				ADC81A761665D01600BD7793 /* DSFInspectionCell.m */,
-				AD2D3FC9166194810050699C /* DSFLoadingCell.h */,
-				AD2D3FCA166194810050699C /* DSFLoadingCell.m */,
-				AD7D76991661C5E7001BFB20 /* DSFScorebarView.h */,
-				AD7D769A1661C5E7001BFB20 /* DSFScorebarView.m */,
-				AD16DFE816783B520058CDCE /* DSFPullToRefreshView.h */,
-				AD16DFE916783B520058CDCE /* DSFPullToRefreshView.m */,
-				ADD5D713169AF5460008A6F9 /* DSFEstablishmentAnnotation.h */,
-				ADD5D714169AF5470008A6F9 /* DSFEstablishmentAnnotation.m */,
-				ADE4B4B216AD7B1200181CE2 /* DSFMapViewController.h */,
-				ADE4B4B316AD7B1300181CE2 /* DSFMapViewController.m */,
 				ADE4B4B516AD7B3B00181CE2 /* DSFInfoViewController.h */,
 				ADE4B4B616AD7B3B00181CE2 /* DSFInfoViewController.m */,
+				ADC81A751665D01500BD7793 /* DSFInspectionCell.h */,
+				ADC81A761665D01600BD7793 /* DSFInspectionCell.m */,
+				11754E63197C39ED00C34A88 /* DSFInspectionCellView.h */,
+				11754E64197C39ED00C34A88 /* DSFInspectionCellView.m */,
+				ADD0C2361662443D00A68A1B /* DSFInspectionTableViewController.h */,
+				ADD0C2371662443D00A68A1B /* DSFInspectionTableViewController.m */,
+				AD2D3FC9166194810050699C /* DSFLoadingCell.h */,
+				AD2D3FCA166194810050699C /* DSFLoadingCell.m */,
+				ADE4B4B216AD7B1200181CE2 /* DSFMapViewController.h */,
+				ADE4B4B316AD7B1300181CE2 /* DSFMapViewController.m */,
+				AD16DFE816783B520058CDCE /* DSFPullToRefreshView.h */,
+				AD16DFE916783B520058CDCE /* DSFPullToRefreshView.m */,
+				ADC48AA6165C78F3001AEA3B /* DSFRootTableViewController.h */,
+				ADC48AA7165C78F3001AEA3B /* DSFRootTableViewController.m */,
+				AD7D76991661C5E7001BFB20 /* DSFScorebarView.h */,
+				AD7D769A1661C5E7001BFB20 /* DSFScorebarView.m */,
+				11BE58AE197B03A4008A3E26 /* DSFSurreyEstablishmentCell.h */,
+				11BE58AF197B03A4008A3E26 /* DSFSurreyEstablishmentCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -417,7 +422,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Dinesafe;
-				LastTestingUpgradeCheck = 0600;
+				LastTestingUpgradeCheck = 0510;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Matt Ruten";
 			};
@@ -521,6 +526,7 @@
 				ADC48AAB165C801B001AEA3B /* DSFEstablishmentCell.m in Sources */,
 				AD2D3FC7166175E30050699C /* DSFApiClient.m in Sources */,
 				AD2D3FCB166194810050699C /* DSFLoadingCell.m in Sources */,
+				11754E65197C39ED00C34A88 /* DSFInspectionCellView.m in Sources */,
 				AD7D769B1661C5E7001BFB20 /* DSFScorebarView.m in Sources */,
 				ADD0C2381662443D00A68A1B /* DSFInspectionTableViewController.m in Sources */,
 				ADC81A771665D01600BD7793 /* DSFInspectionCell.m in Sources */,

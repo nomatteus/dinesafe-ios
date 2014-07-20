@@ -175,30 +175,6 @@
             </objects>
             <point key="canvasLocation" x="-500" y="-845"/>
         </scene>
-        <!--Map View Controller - Map-->
-        <scene sceneID="ATf-pM-pBr">
-            <objects>
-                <viewController restorationIdentifier="" title="Map" id="SGq-DK-1LD" customClass="DSFMapViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TLe-m3-Hhi"/>
-                        <viewControllerLayoutGuide type="bottom" id="T71-Y3-ypT"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jcH-tv-xyQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="0PA-OX-J7v">
-                                <rect key="frame" x="0.0" y="32" width="320" height="504"/>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="UXY-UP-kX5"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Ou-3y-crj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="155" y="-1275"/>
-        </scene>
         <!--Inspection Table View Controller-->
         <scene sceneID="zzf-SP-5hl">
             <objects>
@@ -207,11 +183,6 @@
                         <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="QUO-D0-RxD">
-                            <rect key="frame" x="0.0" y="355" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="EstablishmentInfo" selectionStyle="default" indentationWidth="10" reuseIdentifier="EstablishmentInfo" rowHeight="110" id="zJW-L2-HGJ" customClass="DSFEstablishmentCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="110"/>
@@ -294,11 +265,11 @@ Minimum Inspections Per Year: 3</string>
                                     <outlet property="mapView" destination="mOw-yP-Y1M" id="c2L-du-vpJ"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InspectionCell" rowHeight="40" id="TeW-zw-P9b" customClass="DSFInspectionCell">
-                                <rect key="frame" x="0.0" y="315" width="320" height="40"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InspectionCell" rowHeight="52" id="TeW-zw-P9b" customClass="DSFInspectionCell">
+                                <rect key="frame" x="0.0" y="315" width="320" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TeW-zw-P9b" id="C0Y-TA-kc1">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7qb-xE-JjC">
@@ -306,34 +277,8 @@ Minimum Inspections Per Year: 3</string>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2m3-vi-bMt">
-                                            <rect key="frame" x="6" y="2" width="96" height="36"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvH-QR-fsc">
-                                                    <rect key="frame" x="8" y="4" width="80" height="27"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        </view>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBF-eC-0ye">
-                                            <rect key="frame" x="110" y="9" width="190" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="date" destination="TBF-eC-0ye" id="23O-QI-DPc"/>
-                                    <outlet property="infractionsView" destination="QUO-D0-RxD" id="fkb-fX-Sii"/>
-                                    <outlet property="status" destination="hvH-QR-fsc" id="R0s-3v-zIH"/>
-                                    <outlet property="statusBox" destination="2m3-vi-bMt" id="xj9-td-WE8"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DSFInspection.h"
 #import "DSFInfraction.h"
+#import "DSFInspectionCellView.h"
 
 @interface DSFInspectionCell : UITableViewCell
 
@@ -19,6 +20,6 @@
 @property (nonatomic, strong) IBOutlet UIView *statusBox;
 @property (nonatomic, strong) IBOutlet UIView *infractionsView;
 
-//- (void)updateCellContent;
+- (void)updateCellContent;
 
 @end
