@@ -1,5 +1,5 @@
-platform :ios, '5.0'
+platform :ios, '7.0'
 
-pod 'AFNetworking',     '~> 1.0.1'
-pod 'SSPullToRefresh',  '~> 1.0.1'
-pod 'FlurrySDK',        '~> 4.1.0'
+pod 'AFNetworking',     '~> 1.3.3'
+pod 'SSPullToRefresh',  '~> 1.2.0'
+pod 'FlurrySDK',        '~> 4.3.0'

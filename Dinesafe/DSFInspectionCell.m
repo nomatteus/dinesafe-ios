@@ -34,14 +34,27 @@
     
     // --- Draw colored "pass/conditional/etc" cell. ---
     CGRect statusRect = CGRectMake(0, 0, 100, 40);
-
-    CGContextSetFillColor(ctx, [self.inspection colorForStatusAtPositionRGBA:0]);
-    ;
+    NSMutableArray *pos0RGBA = [self.inspection colorForStatusAtPositionRGBA:0];
+    CGFloat pos0RGBAFloats[] = {
+        [[pos0RGBA objectAtIndex:0] floatValue],
+        [[pos0RGBA objectAtIndex:1] floatValue],
+        [[pos0RGBA objectAtIndex:2] floatValue],
+        [[pos0RGBA objectAtIndex:3] floatValue]
+    };
+    CGContextSetFillColor(ctx, pos0RGBAFloats);
     CGRect statusTopRect = CGRectMake(0, 0, 100, 35);
     CGContextAddRect(ctx, statusTopRect);
     CGContextFillPath(ctx);
-    CGContextSetFillColor(ctx, [self.inspection colorForStatusAtPositionRGBA:1]);
-    ;
+    
+    NSMutableArray *pos1RGBA = [self.inspection colorForStatusAtPositionRGBA:1];
+    CGFloat pos1RGBAFloats[] = {
+        [[pos1RGBA objectAtIndex:0] floatValue],
+        [[pos1RGBA objectAtIndex:1] floatValue],
+        [[pos1RGBA objectAtIndex:2] floatValue],
+        [[pos1RGBA objectAtIndex:3] floatValue]
+    };
+    CGContextSetFillColor(ctx, pos1RGBAFloats);
+
     CGRect statusBottomRect = CGRectMake(0, 35, 100, 5);
     CGContextAddRect(ctx, statusBottomRect);
     CGContextFillPath(ctx);
@@ -55,7 +68,8 @@
         255.0/255,
         1.0
     };
-    CGFloat *shadowColor = [self.inspection colorForStatusAtPositionRGBA:1];
+    
+    CGFloat *shadowColor = pos1RGBAFloats;
     CGFloat statusTextFontSize = 14.0;
     // Change values for certain status's
     if ([self.inspection.status isEqualToString:@"Conditional Pass"]) {

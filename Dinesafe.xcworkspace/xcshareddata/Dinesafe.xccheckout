@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A8E4CE49-F79B-4C69-B5AE-2CB15DDF320C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Dinesafe</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4E61661C-5346-49DE-B674-8FD8AD0214C5</key>
+		<string>ssh://github.com/nomatteus/dinesafe-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Dinesafe.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4E61661C-5346-49DE-B674-8FD8AD0214C5</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/nomatteus/dinesafe-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4E61661C-5346-49DE-B674-8FD8AD0214C5</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4E61661C-5346-49DE-B674-8FD8AD0214C5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>dinesafe-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>

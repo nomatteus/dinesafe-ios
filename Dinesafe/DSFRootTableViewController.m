@@ -43,6 +43,21 @@
 {
     [super viewDidLoad];
 
+    
+    
+    
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
+//    self.extendedLayoutIncludesOpaqueBars = YES;
+    
+//    self.navigationController.navigationBar.translucent = NO;
+    
+    
+    
+    
+    
     self.currentLocation = nil;
     
     self.locationManager = [[CLLocationManager alloc] init];
