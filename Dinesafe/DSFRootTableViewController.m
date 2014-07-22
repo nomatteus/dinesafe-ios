@@ -22,6 +22,7 @@
 @property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) UIView *disableViewOverlay;
 @property (nonatomic, strong) SSPullToRefreshView *pullToRefreshView;
+@property (nonatomic, strong) NSMutableDictionary *surreyParameters;
 - (void)fetchEstablishments;
 - (void)fetchEstablishmentsWithReset:(BOOL)reset;
 - (void)resetEstablishments;
@@ -53,8 +54,9 @@
     
 //    self.navigationController.navigationBar.translucent = NO;
     
+    [self fetchSurreyObjectIds];
+/*
     self.currentLocation = nil;
-    
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager setDelegate:self];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
@@ -67,6 +69,7 @@
     [self resetEstablishmentsAndShowLoadingCell:YES];
     
     [Flurry logAllPageViews:self.navigationController];
+ */
 }
 
 - (void)didReceiveMemoryWarning
@@ -356,6 +359,73 @@
     [self fetchEstablishmentsWithReset:NO];
 }
 
+- (void)fetchSurreyObjectIds {
+    // TODO: sort not working
+//    queryStr = @"where=NAME like '%%'&f=json&outfields=*&returnGeometry=false&orderByFields=NAME ASC";
+//    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
+//                          @"value1", @"key1", @"value2", @"key2", nil];
+    
+     self.surreyParameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                // Object, Key
+                                @"NAME like '%%'", @"where",
+                                @"json", @"f",
+                                @"*", @"outfields",
+                                @"false", @"returnGeometry",
+                                nil];
+    NSLog(@"surreyParameters: %@", self.surreyParameters);
+    
+    [[DSFApiClient sharedInstance] getPath:@"query" parameters:self.surreyParameters
+    success:
+     ^(AFHTTPRequestOperation *operation, id response) {
+         
+//         NSLog(@"Response: %@", response);
+         
+         // get objectIds
+         NSString *objectId, *objectIds;
+         for (id establishmentDictionary in response[@"features"]) {
+             objectId = establishmentDictionary[@"attributes"][@"OBJECTID"];
+             
+//             DSFSurreyEstablishment *establishment = [[DSFSurreyEstablishment alloc] initWithDictionary:establishmentDictionary[@"attributes"]];
+//             [self.establishments addObject:establishment];
+             
+             if (objectIds == nil) {
+                 objectIds = objectId;
+             } else {
+                 objectIds = [NSString stringWithFormat:@"%@, %@", objectIds, objectId];
+             }
+         }
+         [self.surreyParameters setValue:objectIds forKey:@"objectIds"];
+         
+         NSLog(@"parameters = %@", self.surreyParameters);
+     }
+     
+    failure:
+     ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSString *errorTitle;
+        NSString *errorMsg;
+        if (error.code == -1011) {
+            // -1011 is application error: 404 or 500, or similar
+            errorTitle = @"Error Fetching Data";
+            errorMsg = @"Please try again.";
+        } else {
+            // -1003 is hostname not accessible. For that and others, display "network?" message
+            errorTitle = @"Could Not Connect";
+            errorMsg = @"Please check that you have an active internet connection, and try again.";
+        }
+        [[[UIAlertView alloc] initWithTitle:errorTitle
+                                    message:errorMsg
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles: nil] show];
+        
+        // Reset pull to refresh view so it's available for user to "pull and try again".
+        [self.pullToRefreshView finishLoading];
+        
+        NSLog(@"%@", error);
+        
+    }];
+}
+
 - (void)fetchEstablishmentsWithReset:(BOOL)reset {
     
     if (reset) {
@@ -363,32 +433,26 @@
         self._currentPage = 1;
     }
     
-    
     NSMutableDictionary *parameters;
     NSString *path;
 
-    // TODO - need to refactor this
-    NSString *queryStr  = @"text=%&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=json";
-
     // TODO: sort not working
-    queryStr = @"where=NAME like '%%'&f=json&outfields=*&returnGeometry=false&orderByFields=NAME ASC";
+    // @"where=NAME like '%%'&f=json&outfields=*&returnGeometry=false&orderByFields=NAME ASC";
     
     if (DINE_SURREY) {
-        path = @"query";    // ArcGIS - Surrey DineSafe
+//        path = @"query";    // ArcGIS - Surrey straight query
+        path = @"queryRelatedRecords";    // ArcGIS - Surrey related query
         
-        // TODO - need to refactor here
-        NSMutableDictionary *queryStringDictionary = [[NSMutableDictionary alloc] init];
-        NSArray *urlComponents = [queryStr componentsSeparatedByString:@"&"];
-        
-        for (NSString *keyValuePair in urlComponents)
-        {
-            NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
-            NSString *key = [pairComponents objectAtIndex:0];
-            NSString *value = [pairComponents objectAtIndex:1];
-            
-            [queryStringDictionary setObject:value forKey:key];
-        }
-        parameters = queryStringDictionary;
+        /*
+        parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                    // Object,          Key
+                                    @"NAME like '%%'",  @"where",
+                                    @"json",            @"f",
+                                    @"*",               @"outfields",
+                                    @"false",           @"returnGeometry",
+                                    nil];
+         */
+        parameters = self.surreyParameters;
         
     } else {
         path = @"establishments.json";
@@ -406,9 +470,9 @@
         }
 
     }
-
     
     NSLog(@"parameters: %@", parameters);
+    
     [[DSFApiClient sharedInstance] getPath:path parameters:parameters success:
      ^(AFHTTPRequestOperation *operation, id response) {
          
@@ -443,7 +507,8 @@
          [self.pullToRefreshView finishLoading];
          [self.tableView reloadData];
          
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+     }
+    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
          
          NSString *errorTitle;
          NSString *errorMsg;

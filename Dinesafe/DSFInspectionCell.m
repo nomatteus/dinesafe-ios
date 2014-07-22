@@ -18,7 +18,8 @@
 - (void)updateCellContent
 {
     
-    // Clear out old *** if exists -- TODO: is there a better way to do this?
+    // Clear out old (InspectionView) if exists -- TODO: is there a better way to do this?
+    // Do we need to do this? -- TODO: Fix extra inspection rows.
     for (UIView *view in self.subviews) {
         if ([view isKindOfClass:[DSFInspectionCellView class]]) {
             [view removeFromSuperview];

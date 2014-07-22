@@ -14,8 +14,13 @@
 // http://cosmos.surrey.ca/COSREST/rest/services/FH_Restaurants/MapServer/0/query?text=%25&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=&f=pjson
 
 #define SURREY_API_BASE_URL @"http://cosmos.surrey.ca/COSREST/rest/services/FH_Restaurants/MapServer/0/"
+
+// queryRelatedRecords example
+
+// http://cosmos.surrey.ca/COSREST/rest/services/FH_Restaurants/MapServer/0/queryRelatedRecords?objectIds=225%2C+226%2C+227%2C+228%2C+229%2C+230%2C+231&relationshipId=0&definitionExpression=&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=pjson"
+
 // 0 == TORONTO | 1 == SURREY
-#define DINE_SURREY 0
+#define DINE_SURREY 1
 
 @interface DSFApiClient : AFHTTPClient
 
