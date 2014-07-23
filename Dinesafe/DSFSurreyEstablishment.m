@@ -34,7 +34,7 @@
 - (void)updateWithDictionary:(NSDictionary *)dictionary {
 //    NSLog(@"updateWithDictionary = %@", dictionary);
     
-    self.establishmentId = [dictionary[@"id"] intValue];
+    self.establishmentId = [dictionary[@"OBJECTID"] intValue];
     self.latestName      = dictionary[@"NAME"];
     self.latestType      = dictionary[@"FACTYPE"];
     self.address         = dictionary[@"PHYSICALADDRESS"];

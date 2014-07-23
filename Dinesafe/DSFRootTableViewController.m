@@ -23,6 +23,7 @@
 @property (nonatomic, strong) UIView *disableViewOverlay;
 @property (nonatomic, strong) SSPullToRefreshView *pullToRefreshView;
 @property (nonatomic, strong) NSMutableDictionary *surreyParameters;
+@property (nonatomic, strong) NSMutableArray *objectIds;
 - (void)fetchEstablishments;
 - (void)fetchEstablishmentsWithReset:(BOOL)reset;
 - (void)resetEstablishments;
@@ -54,8 +55,6 @@
     
 //    self.navigationController.navigationBar.translucent = NO;
     
-    [self fetchSurreyObjectIds];
-/*
     self.currentLocation = nil;
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager setDelegate:self];
@@ -65,11 +64,11 @@
     self.pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:self.tableView
                                                                     delegate:self];
     self.pullToRefreshView.contentView = [[DSFPullToRefreshView alloc] init];
-    
-    [self resetEstablishmentsAndShowLoadingCell:YES];
-    
+
+//    [self resetEstablishmentsAndShowLoadingCell:YES];     called from location manager
+
     [Flurry logAllPageViews:self.navigationController];
- */
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -360,45 +359,39 @@
 }
 
 - (void)fetchSurreyObjectIds {
-    // TODO: sort not working
-//    queryStr = @"where=NAME like '%%'&f=json&outfields=*&returnGeometry=false&orderByFields=NAME ASC";
-//    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-//                          @"value1", @"key1", @"value2", @"key2", nil];
-    
-     self.surreyParameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                // Object, Key
-                                @"NAME like '%%'", @"where",
-                                @"json", @"f",
-                                @"*", @"outfields",
-                                @"false", @"returnGeometry",
-                                nil];
+    if (self.objectIds == nil) {
+        self.objectIds = [NSMutableArray array];
+    } else {
+        [self.objectIds removeAllObjects];
+    }
+
+    self.surreyParameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                             // Object, Key
+                             @"NAME like '%%'", @"where",
+                             @"json", @"f",
+                             @"*", @"outfields",
+                             @"false", @"returnGeometry",
+                             nil];
     NSLog(@"surreyParameters: %@", self.surreyParameters);
-    
+
     [[DSFApiClient sharedInstance] getPath:@"query" parameters:self.surreyParameters
     success:
      ^(AFHTTPRequestOperation *operation, id response) {
          
-//         NSLog(@"Response: %@", response);
-         
-         // get objectIds
-         NSString *objectId, *objectIds;
-         for (id establishmentDictionary in response[@"features"]) {
-             objectId = establishmentDictionary[@"attributes"][@"OBJECTID"];
-             
-//             DSFSurreyEstablishment *establishment = [[DSFSurreyEstablishment alloc] initWithDictionary:establishmentDictionary[@"attributes"]];
-//             [self.establishments addObject:establishment];
-             
-             if (objectIds == nil) {
-                 objectIds = objectId;
-             } else {
-                 objectIds = [NSString stringWithFormat:@"%@, %@", objectIds, objectId];
-             }
+         // Reset objectIds and load array
+         if (self.objectIds == nil) {
+             self.objectIds = [NSMutableArray array];
+         } else {
+             [self.objectIds removeAllObjects];
          }
-         [self.surreyParameters setValue:objectIds forKey:@"objectIds"];
          
-         NSLog(@"parameters = %@", self.surreyParameters);
+         for (id establishmentDictionary in response[@"features"]) {
+             NSString *objectId = establishmentDictionary[@"attributes"][@"OBJECTID"];
+             
+             [self.objectIds addObject:objectId];
+         }
+         NSLog(@"Retrieved %d objectIds", [self.objectIds count]);
      }
-     
     failure:
      ^(AFHTTPRequestOperation *operation, NSError *error) {
         NSString *errorTitle;
@@ -440,19 +433,54 @@
     // @"where=NAME like '%%'&f=json&outfields=*&returnGeometry=false&orderByFields=NAME ASC";
     
     if (DINE_SURREY) {
-//        path = @"query";    // ArcGIS - Surrey straight query
-        path = @"queryRelatedRecords";    // ArcGIS - Surrey related query
         
-        /*
-        parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                    // Object,          Key
-                                    @"NAME like '%%'",  @"where",
-                                    @"json",            @"f",
-                                    @"*",               @"outfields",
-                                    @"false",           @"returnGeometry",
-                                    nil];
-         */
-        parameters = self.surreyParameters;
+        if ([self.objectIds count] == 0) {
+            // ArcGIS - Surrey straight query
+
+            parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                        // Object,          Key
+                                        @"NAME like '%%'",  @"where",
+                                        @"json",            @"f",
+                                        @"*",               @"outfields",
+                                        @"false",           @"returnGeometry",
+                                        nil];
+            // Prepare for establishment record query
+            path = @"query";
+        } else {
+
+            // ArcGIS - Surrey related query - TODO: refactor
+            self.surreyParameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                                     // Object,         Key
+                                     @"NAME like '%%'", @"where",
+                                     @"json",           @"f",
+                                     @"*",              @"outfields",
+                                     @"false",          @"returnGeometry",
+                                     @"0",              @"relationshipId",
+                                     @"",               @"objectIds",
+                                     nil];
+            
+            // Get 10 objectIds to test and add to surreyParameters - TODO: provide paging function.
+            int start=0, end=9;
+            NSString *ids;
+            for (int i=start; i<end; i++) {
+                NSString *objectId = [[self.objectIds objectAtIndex:i] stringValue];
+                if (ids == nil) {
+                    ids = objectId;
+                } else {
+                    ids = [NSString stringWithFormat:@"%@, %@", ids, objectId];
+                }
+
+            }
+            
+            [self.surreyParameters setObject:ids forKey:@"objectIds"];
+            NSLog(@"surreyParameters: %@", self.surreyParameters);
+            
+            // Prepare for related record query
+            path = @"queryRelatedRecords";
+            
+            parameters = self.surreyParameters;
+        }
+        
         
     } else {
         path = @"establishments.json";
