@@ -21,8 +21,13 @@
 // 0 == TORONTO | 1 == SURREY
 #define DINE_SURREY 1
 
+// http://cosmos.surrey.ca/COSREST/rest/services/Geometry/GeometryServer/buffer?geometries=-122.80816%2C49.11268&inSR=4326&outSR=4326&bufferSR=26910&distances=1000&unit=&unionResults=false&f=json
+#define SURREY_GEOMETRY_SERVICE_URL @"http://cosmos.surrey.ca/COSREST/rest/services/Geometry/GeometryServer/"
+
 @interface DSFApiClient : AFHTTPClient
 
 + (id)sharedInstance;
+
++ (id)sharedInstanceWithGeometries;
 
 @end

@@ -28,6 +28,18 @@
     return __sharedInstance;
 }
 
+// Assumed to be ArcGIS - Surrey server
++ (id)sharedInstanceWithGeometries {
+    static DSFApiClient *__sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __sharedInstance = [[DSFApiClient alloc] initWithBaseURL:[NSURL URLWithString:SURREY_GEOMETRY_SERVICE_URL]];
+        NSLog(@"SURREY_GEOMETRY_SERVICE_URL = %@", SURREY_GEOMETRY_SERVICE_URL);
+    });
+    
+    return __sharedInstance;
+}
+
 - (id)initWithBaseURL:(NSURL *)url {
     self = [super initWithBaseURL:url];
     if (self) {
@@ -39,10 +51,10 @@
         // Accept HTTP Header; see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1
         [self setDefaultHeader:@"Accept" value:@"application/json"];
         
-        
+        // Required by ArcGIS server at City of Surrey --dfd
         [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/plain"]];
-
         NSLog(@"AFJSONRequestOperation acceptableContentTypes = %@", [AFJSONRequestOperation acceptableContentTypes]);
+        
     }
     
     return self;
