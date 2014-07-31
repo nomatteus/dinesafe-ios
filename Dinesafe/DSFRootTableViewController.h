@@ -18,6 +18,9 @@
 
 // #define kDistanceInMetersToTriggerRefresh 100
 
+// TODO: Find appropriate out max (10k ~= 1100 establishments, 5k ~= 196, 2.5k ~= 30)
+#define kDistanceInMetersOuterRing @"2500"
+
 @interface DSFRootTableViewController : UITableViewController <SSPullToRefreshViewDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;

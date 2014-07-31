@@ -24,10 +24,15 @@
 // http://cosmos.surrey.ca/COSREST/rest/services/Geometry/GeometryServer/buffer?geometries=-122.80816%2C49.11268&inSR=4326&outSR=4326&bufferSR=26910&distances=1000&unit=&unionResults=false&f=json
 #define SURREY_GEOMETRY_SERVICE_URL @"http://cosmos.surrey.ca/COSREST/rest/services/Geometry/GeometryServer/"
 
+// http://cosmos.surrey.ca/COSREST/rest/services/FH_Restaurants/MapServer/0/queryRelatedRecords
+#define SURREY_RELATED_RECORDS_URL @"http://cosmos.surrey.ca/COSREST/rest/services/FH_Restaurants/MapServer/0/"
+
 @interface DSFApiClient : AFHTTPClient
 
 + (id)sharedInstance;
 
 + (id)sharedInstanceWithGeometries;
+
++ (id)sharedInstanceRelatedRecords;
 
 @end

@@ -13,10 +13,68 @@
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {
+//        if (dictionary[@"relatedRecords"]) {
+//            NSLog(@"relatedRecordGroups");
+//        }
         self.inspections = [NSMutableArray array];
         [self updateWithDictionary:dictionary];
     }
     return self;
+}
+
+/*
+ {
+ attributes =         {
+ HAZARDRATING = Low;
+ INSPECTIONDATE = 20120917;
+ INSPTYPE = "Follow-Up";
+ NUMCRITICAL = 0;
+ NUMNONCRITICAL = 1;
+ OBJECTID = 2587;
+ TRACKINGNUMBER = "PNEL-8QKM26";
+ VIOLLUMP = "307,Not Critical,Equipment/utensils/food contact surfaces are not of suitable design/material [s. 16; s. 19],Not Repeat";
+ };
+ },
+ {
+ attributes =         {
+ HAZARDRATING = Low;
+ INSPECTIONDATE = 20120921;
+ INSPTYPE = "Follow-Up";
+ NUMCRITICAL = 0;
+ NUMNONCRITICAL = 0;
+ OBJECTID = 2586;
+ TRACKINGNUMBER = "PNEL-8QKM26";
+ VIOLLUMP = "<null>";
+ };
+*/
+- (void)updateWithInspections:(NSArray *)relatedRecords {
+//    NSLog(@"updateWithInspections = %@", relatedRecords);
+    
+    for (id attributes in relatedRecords) {
+        NSLog(@"attributes = %@", attributes);
+        DSFInspection *inspection = [[DSFInspection alloc] initWithDictionary:attributes[@"attributes"]];
+        NSLog(@"inspection = %@", inspection.inspectionId);
+        
+//        NSLog(@"attributes = %@", [attributes objectForKey:@"attributes"]);
+//        for (id inspection in attributes) {
+//            NSLog(@"HAZARDRATING = %@", [inspection objectForKey:@"HAZARDRATING"]);
+//        }
+        
+//        NSUInteger index = [self.inspections indexOfObjectPassingTest:
+//                            ^(DSFInspection *obj, NSUInteger idx, BOOL *stop) {
+//                                if (obj.inspectionId == [inspection[@"id"] intValue]) {
+//                                    return YES;
+//                                } else {
+//                                    return NO;
+//                                }
+//                            }];
+//        if (index == NSNotFound) {
+//            [self.inspections addObject:[[DSFInspection alloc] initWithDictionary:inspection]];
+//        } else {
+//            [self.inspections[index] updateWithDictionary:inspection];
+//        }
+
+    }
 }
 
 /*
@@ -53,7 +111,7 @@
         self.shareTextLongHtml = dictionary[@"share"][@"text_long_html"];
         self.shareURL = dictionary[@"share"][@"url"];
     }
-    
+/*
     // TODO
     for (id inspection in dictionary[@"inspections"]) {
         NSUInteger index = [self.inspections indexOfObjectPassingTest:
@@ -70,7 +128,7 @@
             [self.inspections[index] updateWithDictionary:inspection];
         }
     }
-/*
+
     if ([dictionary objectForKey:@"latlng"]
         && [dictionary[@"latlng"] isKindOfClass:[NSDictionary class]]
         && [dictionary[@"latlng"] objectForKey:@"lat"]

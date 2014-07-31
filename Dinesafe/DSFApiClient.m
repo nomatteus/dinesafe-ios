@@ -40,6 +40,17 @@
     return __sharedInstance;
 }
 
++ (id)sharedInstanceRelatedRecords {
+    static DSFApiClient *__sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __sharedInstance = [[DSFApiClient alloc] initWithBaseURL:[NSURL URLWithString:SURREY_RELATED_RECORDS_URL]];
+        NSLog(@"SURREY_RELATED_RECORDS_URL = %@", SURREY_RELATED_RECORDS_URL);
+    });
+    
+    return __sharedInstance;
+}
+
 - (id)initWithBaseURL:(NSURL *)url {
     self = [super initWithBaseURL:url];
     if (self) {

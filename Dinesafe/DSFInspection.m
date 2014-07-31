@@ -32,22 +32,23 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
 
 - (void)updateWithDictionary:(NSDictionary *) dictionary {
     
-    self.inspectionId = [dictionary[@"id"] intValue];
-    self.status = dictionary[@"status"];
-    self.establishment_name = dictionary[@"establishment_name"];
-    self.establishment_type = dictionary[@"establishment_type"];
-    self.minimumInspectionsPerYear = [dictionary[@"minimum_inspections_per_year"] intValue];
+    self.inspectionId       = dictionary[@"TRACKINGNUMBER"];
+    self.status             = dictionary[@"HAZARDRATING"];
+    // TODO
+    self.establishment_name = kNotAvailable;
+    self.establishment_type = kNotAvailable;
+    self.minimumInspectionsPerYear = 0;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    self.date = [dateFormatter dateFromString:dictionary[@"date"]];
+    self.date = [dateFormatter dateFromString:dictionary[@"INSPECTIONDATE"]];
 
     // Set some formatted date variables
     [dateFormatter setDateFormat:@"yyyy"];
     self.dateYear = [dateFormatter stringFromDate:self.date];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     self.formattedDate = [dateFormatter stringFromDate:self.date];
-    
+    NSLog(@"formattedDate = %@", self.formattedDate);
     
     for (id infraction in dictionary[@"infractions"]) {
         NSUInteger index = [self.infractions indexOfObjectPassingTest:

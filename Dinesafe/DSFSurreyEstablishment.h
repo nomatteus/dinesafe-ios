@@ -31,5 +31,6 @@
 - (id)initWithDictionary:(NSDictionary *) dictionary;
 - (void)updateWithDictionary:(NSDictionary *)dictionary;
 
+- (void)updateWithInspections:(NSArray *)relatedRecords;
 
 @end

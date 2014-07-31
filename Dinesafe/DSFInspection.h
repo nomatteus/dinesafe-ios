@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "DSFInfraction.h"
 
+#define kNotAvailable @"N/A";
+
 @interface DSFInspection : NSObject
 
-@property (nonatomic) NSUInteger inspectionId;
+@property (nonatomic, strong) NSString *inspectionId;
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic) int minimumInspectionsPerYear;
 @property (nonatomic, strong) NSDate *date;

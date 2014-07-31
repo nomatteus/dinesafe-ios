@@ -22,7 +22,7 @@
 @property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) UIView *disableViewOverlay;
 @property (nonatomic, strong) SSPullToRefreshView *pullToRefreshView;
-@property (nonatomic, strong) NSMutableDictionary *surreyParameters;
+@property (nonatomic, strong) NSMutableDictionary *surreyParameters;    // TODO - remove
 @property (nonatomic, strong) NSMutableArray *objectIds;
 - (void)fetchEstablishments;
 - (void)fetchEstablishmentsWithReset:(BOOL)reset;
@@ -369,6 +369,8 @@
 }
 
 - (void)reportError:(NSError *)error {
+    NSLog(@"reportError");
+    
     NSString *errorTitle;
     NSString *errorMsg;
     if (error.code == -1011) {
@@ -392,7 +394,7 @@
     NSLog(@"%@", error);
 }
 
-- (void)fetchSurroundingGeometries:(NSString *)inMeters {
+- (void)fetchSurroundingRing:(NSString *)inMeters {
     /**
      TODO:
      - handle when no points are returned
@@ -421,14 +423,15 @@
     [[DSFApiClient sharedInstanceWithGeometries] getPath:@"buffer" parameters:parameters
     success:
      ^(AFHTTPRequestOperation *operation, id response) {
+         
+         // Convert ring geometry from JSON to string
          NSDictionary *jsonDict = response[@"geometries"][0];
          NSError *error;
          NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONReadingAllowFragments error:&error];
          NSString *rings = [[NSString alloc] initWithData:jsonData encoding:NSASCIIStringEncoding];
-//         NSLog(@"rings = %@", rings);
          
          if (rings != nil) {
-             [self fetchSurreyObjectIds:rings];
+             [self fetchEstablishmentsWithin:rings];
          } else {
              // TODO - Handle with some alternative to user
              NSLog(@"Geometries not found");
@@ -441,19 +444,86 @@
     
 }
 
-- (void)fetchSurreyObjectIds:(NSString *)surroundingRings {
+- (void)fetchRelatedInspections {
+    /**
+     - get object ids from establishments to query (guaranteed to have some)
+     - page through a maximum number (TODO)
+     - return here for the next set
+     */
+    NSString *objectIds = nil;
+    for (DSFSurreyEstablishment *establishmentDictionary in self.establishments) {
+        
+        if (objectIds == nil) {
+            objectIds = [NSString stringWithFormat:@"%lu", (unsigned long)establishmentDictionary.establishmentId];
+        } else {
+            objectIds = [NSString stringWithFormat:@"%@, %lu", objectIds, (long unsigned)establishmentDictionary.establishmentId];
+        }
+    }
+    
     NSMutableDictionary *parameters;
-    
-    /* find establishments surrounding current location */
-    // fetch surrounding geometries at a distance n
-    // get objectIds contained by rings
-
-//    surroundingRings = @"{\"rings\":[[[-122.808125305845,49.1216753824737],[-122.807264813252,49.1216561987713],[-122.80640785549,49.1216015837696],[-122.805557816386,49.1215117531265],[-122.804718052402,49.1213870615528],[-122.803891879363,49.121228001409],[-122.803082559343,49.1210352007583],[-122.802293287769,49.1208094208828],[-122.801527180785,49.1205515532727],[-122.800787262936,49.1202626161014],[-122.800076455214,49.1199437501994],[-122.799397563519,49.1195962145436],[-122.798753267569,49.1192213812796],[-122.798146110325,49.1188207302981],[-122.797578487944,49.1183958433841],[-122.797052640328,49.1179483979655],[-122.796570642286,49.1174801604834],[-122.796134395356,49.116992979412],[-122.795745620304,49.1164887779543],[-122.795405850357,49.115969546444],[-122.795116425161,49.1154373344832],[-122.794878485518,49.1148942428466],[-122.794692968908,49.1143424151848],[-122.794560605808,49.1137840295591],[-122.794481916842,49.113221289842],[-122.79445721075,49.1126564170167],[-122.794486583198,49.11209164041],[-122.794569916432,49.1115291888938],[-122.794706879769,49.1109712820896],[-122.794896930934,49.1104201216104],[-122.795139318223,49.1098778823747],[-122.795433083499,49.1093467040277],[-122.795777065996,49.1088286825018],[-122.796169906924,49.1083258617513],[-122.79661005485,49.1078402256926],[-122.797095771837,49.1073736903822],[-122.797625140318,49.1069280964636],[-122.798196070674,49.1065052019114],[-122.798806309487,49.1061066751032],[-122.799453448436,49.1057340882438],[-122.800134933804,49.1053889111705],[-122.800848076549,49.1050725055616],[-122.801590062913,49.1047861195712],[-122.802357965511,49.1045308829126],[-122.803148754874,49.1043078024075],[-122.803959311386,49.1041177580204],[-122.804786437575,49.1039614993926],[-122.805626870711,49.1038396428897],[-122.806477295658,49.1037526691738],[-122.807334357928,49.1037009213107],[-122.808194676898,49.1036846034187],[-122.809054859115,49.103703779865],[-122.809911511668,49.1037583750116],[-122.810761255544,49.1038481735139],[-122.811600738935,49.1039728211678],[-122.812426650443,49.1041318263056],[-122.813235732118,49.1043245617315],[-122.814024792292,49.1045502671921],[-122.814790718154,49.1048080523706],[-122.815530488017,49.1050969003938],[-122.81624118322,49.1054156718369],[-122.816919999641,49.105763109213],[-122.817564258746,49.106137841926],[-122.818171418158,49.1065383916714],[-122.818739081684,49.1069631782604],[-122.819265008772,49.1074105258475],[-122.819747123362,49.1078786695342],[-122.820183522078,49.1083657623259],[-122.820572481757,49.1088698824115],[-122.820912466265,49.1093890407407],[-122.821202132569,49.1099211888655],[-122.821440336065,49.1104642270179],[-122.821626135113,49.1110160123909],[-122.82175879478,49.11157436759],[-122.821837789767,49.1121370892226],[-122.821862806508,49.1127019565907],[-122.821833744436,49.1132667404536],[-122.82175071641,49.1138292118248],[-122.821614048301,49.1143871507698],[-122.821424277729,49.1149383551687],[-122.821182151971,49.1154806494104],[-122.82088862504,49.1160118929822],[-122.820544853943,49.116529988923],[-122.820152194137,49.1170328921051],[-122.819712194198,49.117518617312],[-122.819226589729,49.1179852470812],[-122.818697296522,49.1184309392796],[-122.818126403011,49.1188539343826],[-122.817516162031,49.1192525624271],[-122.816868981937,49.1196252496115],[-122.816187417096,49.1199705245163],[-122.815474157803,49.1202870239205],[-122.814732019654,49.1205734981907],[-122.813963932428,49.1208288162214],[-122.813172928504,49.1210519699076],[-122.812362130885,49.1212420781307],[-122.811534740842,49.1213983902426],[-122.810694025268,49.1215202890343],[-122.809843303753,49.1216072931769],[-122.808985935462,49.1216590591245],[-122.808125305845,49.1216753824737]]]}";
-    
     parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
 //                Object,                    Key
                   @"json",                   @"f",
-                  surroundingRings,          @"geometry",
+                  @"",                       @"maxAllowableOffset",
+                  objectIds,                 @"objectIds",
+                  @"*",                      @"outFields",
+                  @"",                       @"outSR",
+                  @"0",                      @"relationshipId",
+                  @"false",                  @"returnGeometry",
+                  nil];
+    
+    [[DSFApiClient sharedInstanceRelatedRecords] postPath:@"queryRelatedRecords" parameters:parameters
+    success:^(AFHTTPRequestOperation *operation, id response) {
+//        NSLog(@"response = %@", response);
+        
+        for (id establishmentDictionary in response[@"relatedRecordGroups"]) {
+            
+            NSString *objectId = [NSString stringWithFormat:@"%@", establishmentDictionary[@"objectId"]];
+            NSArray *relatedRecords = establishmentDictionary[@"relatedRecords"];
+            NSLog(@"%@ : relatedRecords = %d", objectId, [relatedRecords count]);
+            
+            int index = [self findEstablishment:objectId];
+            
+            [self.establishments[index] updateWithInspections:relatedRecords];
+            
+            [self.establishments replaceObjectAtIndex:index withObject:self.establishments[index]];
+        }
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self reportError:error];
+    }];
+    [self.pullToRefreshView finishLoading];
+    [self.tableView reloadData];
+}
+
+- (int)findEstablishment:(NSString *)searchID{
+    //TODO - refactor
+    int i=0;
+    for (DSFSurreyEstablishment *establishment in self.establishments) {
+        NSString *idStr = [NSString stringWithFormat:@"%zd", establishment.establishmentId];
+        if([idStr isEqualToString: searchID]) {
+            break;
+        } else {
+            i++;
+        }
+    }
+    return i;
+}
+
+- (void)fetchEstablishmentsWithin:(NSString *)ring {
+    /**
+     Find establishments surrounding current location.
+     1. fetch surrounding geometries at a distance n
+     2. get establishments contained by rings
+     3. get relationship with inspection for each establishment
+     4.
+     */
+    NSMutableDictionary *parameters;
+
+    parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+//                Object,                    Key
+                  @"json",                   @"f",
+                  ring,                      @"geometry",
                   @"esriGeometryPolygon",    @"geometryType",
                   @"4326",                   @"inSR",
                   @"",                       @"maxAllowableOffset",
@@ -471,13 +541,10 @@
                   
                              nil];
     
-//    NSLog(@"parameters: %@", parameters);
-
     [[DSFApiClient sharedInstance] postPath:@"query" parameters:parameters
-    success:
-     ^(AFHTTPRequestOperation *operation, id response) {
+    success: ^(AFHTTPRequestOperation *operation, id response) {
 //         NSLog(@"request = %@", [operation request]);
-         NSLog(@"response = %@", response);
+//         NSLog(@"response = %@", response);
 
          // Reset objectIds and load array
          if (self.objectIds == nil) {
@@ -501,41 +568,32 @@
              DSFSurreyEstablishment *establishment = [[DSFSurreyEstablishment alloc] initWithDictionary:establishmentDictionary[@"attributes"]];
              [self.establishments addObject:establishment];
          }
-         NSLog(@"Retrieved %d objectIds", [self.objectIds count]);
+         NSLog(@"Retrieved %d establishments", [self.establishments count]);
          
-         [self.pullToRefreshView finishLoading];
-         [self.tableView reloadData];
+         // Get inspections and load table
+         if ([self.establishments count] != 0) {
+            [self fetchRelatedInspections];
+         } else {
+             // TODO display alert
+             NSLog(@"Establishments Not Found");
+         }
+
+         
 
      }
-    failure:
-     ^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSString *errorTitle;
-        NSString *errorMsg;
-        if (error.code == -1011) {
-            // -1011 is application error: 404 or 500, or similar
-            errorTitle = @"Error Fetching Data";
-            errorMsg = @"Please try again.";
-        } else {
-            // -1003 is hostname not accessible. For that and others, display "network?" message
-            errorTitle = @"Could Not Connect";
-            errorMsg = @"Please check that you have an active internet connection, and try again.";
-        }
-        [[[UIAlertView alloc] initWithTitle:errorTitle
-                                    message:errorMsg
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles: nil] show];
-        
-        // Reset pull to refresh view so it's available for user to "pull and try again".
-        [self.pullToRefreshView finishLoading];
-        
-        NSLog(@"%@", error);
-        
+    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         [self reportError:error];
     }];
 }
 
 - (void)fetchEstablishmentsWithReset:(BOOL)reset {
-    [self fetchSurroundingGeometries:@"10000"];
+    if (reset) {
+        // Need to set current page to 1 before the API request if resetting.
+        self._currentPage = 1;
+    }
+    
+    // TODO - Handle paging
+    [self fetchSurroundingRing:kDistanceInMetersOuterRing];
     
 }
 
@@ -554,8 +612,8 @@
     
     if (DINE_SURREY) {
         
-        [self fetchSurroundingGeometries:@"1000"];
-        
+        [self fetchSurroundingRing:kDistanceInMetersOuterRing];
+/*
         // If user is out of range, return everything
         if ([self.objectIds count] == 0) {
             // ArcGIS - Surrey straight query
@@ -603,7 +661,7 @@
             
             parameters = self.surreyParameters;
         }
-        
+*/
         
     } else {
         path = @"establishments.json";

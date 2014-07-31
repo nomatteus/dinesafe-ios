@@ -33,7 +33,9 @@
     
     self.tableCellHeights = [[NSMutableArray alloc] init];
 
-    [self fetchEstablishment];
+// TODO - display inspections
+//    [self fetchEstablishment];
+    
     [self calculateTableCellHeights];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -104,6 +106,8 @@
     pasteboard.string = self.establishment.shareURL;
 }
 
+
+// TODO - update addresses
 - (void)openInMaps {
     Class mapItemClass = [MKMapItem class];
     if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)]) {
@@ -396,7 +400,7 @@
              errorMsg = @"Please try again.";
          } else {
              // -1003 is hostname not accessible. For that and others, display "network?" message
-             errorTitle = @"Could Not Connect";
+             errorTitle = @"*Could Not Connect";
              errorMsg = @"Please check that you have an active internet connection, and try again.";
          }
          [[[UIAlertView alloc] initWithTitle:errorTitle
