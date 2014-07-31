@@ -51,29 +51,12 @@
 //    NSLog(@"updateWithInspections = %@", relatedRecords);
     
     for (id attributes in relatedRecords) {
-        NSLog(@"attributes = %@", attributes);
+//        NSLog(@"attributes = %@", attributes);
+        
         DSFInspection *inspection = [[DSFInspection alloc] initWithDictionary:attributes[@"attributes"]];
-        NSLog(@"inspection = %@", inspection.inspectionId);
+        NSLog(@"inspectionId = %@", inspection.inspectionId);
         
-//        NSLog(@"attributes = %@", [attributes objectForKey:@"attributes"]);
-//        for (id inspection in attributes) {
-//            NSLog(@"HAZARDRATING = %@", [inspection objectForKey:@"HAZARDRATING"]);
-//        }
-        
-//        NSUInteger index = [self.inspections indexOfObjectPassingTest:
-//                            ^(DSFInspection *obj, NSUInteger idx, BOOL *stop) {
-//                                if (obj.inspectionId == [inspection[@"id"] intValue]) {
-//                                    return YES;
-//                                } else {
-//                                    return NO;
-//                                }
-//                            }];
-//        if (index == NSNotFound) {
-//            [self.inspections addObject:[[DSFInspection alloc] initWithDictionary:inspection]];
-//        } else {
-//            [self.inspections[index] updateWithDictionary:inspection];
-//        }
-
+        [self.inspections addObject:inspection];
     }
 }
 

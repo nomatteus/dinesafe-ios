@@ -71,9 +71,9 @@
     
     CGFloat *shadowColor = pos1RGBAFloats;
     CGFloat statusTextFontSize = 14.0;
-    // Change values for certain status's
-    if ([self.inspection.status isEqualToString:@"Conditional Pass"]) {
-        statusText = @"Conditional";
+    // Change values for certain status's    
+    if ([self.inspection.status isEqualToString:@"Low"]) {
+        statusText = @"Low";
         // Custom shadow color for conditional pass -- darker
         textColor = (CGFloat[]){
             148.0/255,

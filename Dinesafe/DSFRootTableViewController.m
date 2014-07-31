@@ -459,7 +459,6 @@
             objectIds = [NSString stringWithFormat:@"%@, %lu", objectIds, (long unsigned)establishmentDictionary.establishmentId];
         }
     }
-    
     NSMutableDictionary *parameters;
     parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
 //                Object,                    Key
@@ -487,6 +486,10 @@
             [self.establishments[index] updateWithInspections:relatedRecords];
             
             [self.establishments replaceObjectAtIndex:index withObject:self.establishments[index]];
+            
+            DSFSurreyEstablishment *est = [self.establishments objectAtIndex:index];
+            NSLog(@"Est #%lu total inspections: %d", (unsigned long)est.establishmentId, [est.inspections count]);
+
         }
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

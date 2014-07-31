@@ -40,7 +40,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     self.minimumInspectionsPerYear = 0;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dateFormatter setDateFormat:@"yyyyMMdd"];
     self.date = [dateFormatter dateFromString:dictionary[@"INSPECTIONDATE"]];
 
     // Set some formatted date variables
@@ -49,6 +49,22 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     self.formattedDate = [dateFormatter stringFromDate:self.date];
     NSLog(@"formattedDate = %@", self.formattedDate);
+
+    // TODO: infractions
+/*
+    NSUInteger index = [self.inspections indexOfObjectPassingTest:
+                        ^(DSFInspection *obj, NSUInteger idx, BOOL *stop) {
+                            if ([obj.inspectionId isEqualToString:[inspection[@"TRACKINGNUMBER"]]]) {
+                                return YES;
+                            } else {
+                                return NO;
+                            }
+                        }];
+    if (index == NSNotFound) {
+        [self.inspections addObject:[[DSFInspection alloc] initWithDictionary:inspection]];
+    } else {
+        [self.inspections[index] updateWithDictionary:inspection];
+    }
     
     for (id infraction in dictionary[@"infractions"]) {
         NSUInteger index = [self.infractions indexOfObjectPassingTest:
@@ -65,6 +81,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
             [self.infractions[index] updateWithDictionary:infraction];
         }
     }
+*/
 }
 
 #pragma mark -
