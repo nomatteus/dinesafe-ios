@@ -40,7 +40,7 @@
     for (id inspection in dictionary[@"inspections"]) {
         NSUInteger index = [self.inspections indexOfObjectPassingTest:
                             ^(DSFInspection *obj, NSUInteger idx, BOOL *stop) {
-                                if (obj.inspectionId == [inspection[@"id"] intValue]) {
+                                if (obj.inspectionId == inspection[@"id"]) {
                                     return YES;
                                 } else {
                                     return NO;

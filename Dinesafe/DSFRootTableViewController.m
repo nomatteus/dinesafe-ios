@@ -51,7 +51,7 @@
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
-//    self.extendedLayoutIncludesOpaqueBars = YES;
+//    self.extendedLayoutIncludesOpaqueBars = YES;cellForRowAtIndexPath
     
 //    self.navigationController.navigationBar.translucent = NO;
     
@@ -231,31 +231,18 @@
     
     static NSString *CellIdentifier = @"EstablishmentCell";
 
-    if (DINE_SURREY) {
-
-        // We need to calculate distance, since it's not provided by Surrey.
-        DSFSurreyEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
-        
-        CLLocation *estLocation =  [[CLLocation alloc] initWithLatitude:establishment.location.latitude longitude:establishment.location.longitude];
-        establishment.distance = [self.currentLocation distanceFromLocation:estLocation] / 1000;
-        
-        DSFSurreyEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        [cell setEstablishment:establishment];
-        [cell updateCellContent];
-        
-        return cell;
-        
-    } else {
-        DSFEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-        DSFEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
-        [cell setEstablishment: establishment];
-        [cell updateCellContent];
-        
-        return cell;
-
-    }
+    // We need to calculate distance, since it's not provided by Surrey.
+    DSFSurreyEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
+    
+//    CLLocation *estLocation =  [[CLLocation alloc] initWithLatitude:establishment.location.latitude longitude:establishment.location.longitude];
+//    establishment.distance = [self.currentLocation distanceFromLocation:estLocation] / 1000;
+    
+    DSFSurreyEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    [cell setEstablishment:establishment];
+    [cell updateCellContent];
+    
+    return cell;
     
 }
 
@@ -364,10 +351,6 @@
     [self.tableView reloadData];
 }
 
-- (void)fetchEstablishments {
-    [self fetchEstablishmentsWithReset:NO];
-}
-
 - (void)reportError:(NSError *)error {
     NSLog(@"reportError");
     
@@ -392,6 +375,11 @@
     [self.pullToRefreshView finishLoading];
     
     NSLog(@"%@", error);
+}
+
+/* Kick off */
+- (void)fetchEstablishments {
+    [self fetchEstablishmentsWithReset:NO];
 }
 
 - (void)fetchSurroundingRing:(NSString *)inMeters {
@@ -445,6 +433,8 @@
 }
 
 - (void)fetchRelatedInspections {
+    NSLog(@"2) fetchRelatedInspections");
+    
     /**
      - get object ids from establishments to query (guaranteed to have some)
      - page through a maximum number (TODO)
@@ -479,7 +469,7 @@
             
             NSString *objectId = [NSString stringWithFormat:@"%@", establishmentDictionary[@"objectId"]];
             NSArray *relatedRecords = establishmentDictionary[@"relatedRecords"];
-            NSLog(@"%@ : relatedRecords = %d", objectId, [relatedRecords count]);
+//            NSLog(@"%@ : relatedRecords = %d", objectId, [relatedRecords count]);
             
             int index = [self findEstablishment:objectId];
             
@@ -487,16 +477,39 @@
             
             [self.establishments replaceObjectAtIndex:index withObject:self.establishments[index]];
             
-            DSFSurreyEstablishment *est = [self.establishments objectAtIndex:index];
-            NSLog(@"Est #%lu total inspections: %d", (unsigned long)est.establishmentId, [est.inspections count]);
+            DSFSurreyEstablishment *establishment = [self.establishments objectAtIndex:index];
+  
+            // Calculate distance from current location
+            CLLocation *estLocation =  [[CLLocation alloc] initWithLatitude:establishment.location.latitude longitude:establishment.location.longitude];
+            establishment.distance = [self.currentLocation distanceFromLocation:estLocation] / 1000;
 
+//            NSLog(@"Establishment #%lu total inspections: %d", (unsigned long)establishment.establishmentId, [establishment.inspections count]);
         }
+        
+        // Sort by distance
+        [self.establishments sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            DSFSurreyEstablishment *est1 = obj1;
+            DSFSurreyEstablishment *est2 = obj2;
+
+            if (est1.distance > est2.distance) {
+                return (NSComparisonResult)NSOrderedDescending;
+            }
+            
+            if (est1.distance < est2.distance) {
+                return (NSComparisonResult)NSOrderedAscending;
+            }
+            
+            return (NSComparisonResult)NSOrderedSame;
+        }];
+        
+        /* Begin loading table view */
+        [self.pullToRefreshView finishLoading];
+        [self.tableView reloadData];
+
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self reportError:error];
     }];
-    [self.pullToRefreshView finishLoading];
-    [self.tableView reloadData];
 }
 
 - (int)findEstablishment:(NSString *)searchID{
@@ -521,8 +534,8 @@
      3. get relationship with inspection for each establishment
      4.
      */
-    NSMutableDictionary *parameters;
 
+    NSMutableDictionary *parameters;
     parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
 //                Object,                    Key
                   @"json",                   @"f",
@@ -543,6 +556,10 @@
                   @"",                       @"where",
                   
                              nil];
+
+    if (self.searchText != nil) {
+        parameters[@"text"] = self.searchText;
+    }
     
     [[DSFApiClient sharedInstance] postPath:@"query" parameters:parameters
     success: ^(AFHTTPRequestOperation *operation, id response) {
@@ -571,7 +588,7 @@
              DSFSurreyEstablishment *establishment = [[DSFSurreyEstablishment alloc] initWithDictionary:establishmentDictionary[@"attributes"]];
              [self.establishments addObject:establishment];
          }
-         NSLog(@"Retrieved %d establishments", [self.establishments count]);
+         NSLog(@"1) Retrieved %d establishments", [self.establishments count]);
          
          // Get inspections and load table
          if ([self.establishments count] != 0) {

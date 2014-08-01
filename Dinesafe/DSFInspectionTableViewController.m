@@ -344,7 +344,7 @@
 }
 
 - (UITableViewCell *)inspectionCellForIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"inspectionCellForIndexPath %@", indexPath);
+//    NSLog(@"inspectionCellForIndexPath %@", indexPath);
     
     static NSString *CellIdentifier = @"InspectionCell";
         

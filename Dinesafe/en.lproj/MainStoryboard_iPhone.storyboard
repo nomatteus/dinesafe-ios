@@ -33,7 +33,7 @@
             </objects>
             <point key="canvasLocation" x="155" y="-478"/>
         </scene>
-        <!--Root Table View Controller - Dinesafe-->
+        <!--Root Table View Controller - Dinesafe Surrey-->
         <scene sceneID="3HK-of-oYe">
             <objects>
                 <tableViewController id="8RN-zg-ogv" customClass="DSFRootTableViewController" sceneMemberID="viewController">
@@ -132,7 +132,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Dinesafe" id="05b-vr-jcf">
+                    <navigationItem key="navigationItem" title="Dinesafe Surrey" id="05b-vr-jcf">
                         <barButtonItem key="leftBarButtonItem" title="About" id="MyO-xZ-otY">
                             <color key="tintColor" red="0.50980395078659058" green="0.50980395078659058" blue="0.50980395078659058" alpha="1" colorSpace="deviceRGB"/>
                             <connections>

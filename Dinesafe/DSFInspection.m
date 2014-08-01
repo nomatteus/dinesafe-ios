@@ -48,7 +48,6 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     self.dateYear = [dateFormatter stringFromDate:self.date];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     self.formattedDate = [dateFormatter stringFromDate:self.date];
-    NSLog(@"formattedDate = %@", self.formattedDate);
 
     // TODO: infractions
 /*
@@ -99,10 +98,10 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
 #pragma mark -
 
 // Return a color for an inspection status (RGBA)
-// status is "Pass", "Conditional Pass", or "Close". Position is 0=top, 1=bottom
+// status is "Low", "Moderate", or "High". Position is 0=top, 1=bottom
 // TODO: This needs some major refactoring!!
 - (NSMutableArray *)colorForStatusAtPositionRGBA:(int)position {
-    if ([self.status isEqualToString:@"Pass"]) {
+    if ([self.status isEqualToString:@"Low"]) {
         if (position == 0) {
             return [@[
                       [NSNumber numberWithDouble: kScoreBoxPassTopColorRGB[0]/255],
@@ -118,7 +117,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
                       [NSNumber numberWithDouble: 1.0]
                       ] mutableCopy];
         }
-    } else if ([self.status isEqualToString:@"Conditional Pass"]) {
+    } else if ([self.status isEqualToString:@"Moderate"]) {
         if (position == 0) {
             return [@[
                       [NSNumber numberWithDouble: kScoreBoxConditionalPassTopColorRGB[0]/255],
@@ -134,7 +133,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
                       [NSNumber numberWithDouble: 1.0]
                       ] mutableCopy];
         }
-    } else if ([self.status isEqualToString:@"Closed"]) {
+    } else if ([self.status isEqualToString:@"High"]) {
         if (position == 0) {
             return [@[
                       [NSNumber numberWithDouble: kScoreBoxClosedTopColorRGB[0]/255],

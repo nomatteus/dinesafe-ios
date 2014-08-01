@@ -54,7 +54,7 @@
 //        NSLog(@"attributes = %@", attributes);
         
         DSFInspection *inspection = [[DSFInspection alloc] initWithDictionary:attributes[@"attributes"]];
-        NSLog(@"inspectionId = %@", inspection.inspectionId);
+//        NSLog(@"inspectionId = %@", inspection.inspectionId);
         
         [self.inspections addObject:inspection];
     }

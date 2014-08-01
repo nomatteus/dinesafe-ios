@@ -425,6 +425,11 @@
 				LastTestingUpgradeCheck = 0510;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Matt Ruten";
+				TargetAttributes = {
+					AD52BF181651E4EF0090723E = {
+						DevelopmentTeam = W5KJF2JF8Z;
+					};
+				};
 			};
 			buildConfigurationList = AD52BF131651E4EF0090723E /* Build configuration list for PBXProject "Dinesafe" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -626,7 +631,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0D713A50-A5F2-4B77-BEAF-B1F2F1A4F70D";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -650,8 +655,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
+				PROVISIONING_PROFILE = "0D713A50-A5F2-4B77-BEAF-B1F2F1A4F70D";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -662,11 +666,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -676,15 +683,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Ruten";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Ruten";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -743,8 +749,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "C12A37AD-EAE1-4AE4-AB1B-EDBC84877F46";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C12A37AD-EAE1-4AE4-AB1B-EDBC84877F46";
+				PROVISIONING_PROFILE = "0D713A50-A5F2-4B77-BEAF-B1F2F1A4F70D";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -755,15 +760,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Ruten";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Ruten";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EC53E3E4-1A27-49A7-8FDB-96D7A0E78546";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC53E3E4-1A27-49A7-8FDB-96D7A0E78546";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
