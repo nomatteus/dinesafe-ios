@@ -18,9 +18,18 @@
 
 // #define kDistanceInMetersToTriggerRefresh 100
 
-// TODO: Find appropriate out max (10k ~= 1100 establishments, 5k ~= 196, 2.5k ~= 30)
-#define kDistanceInMetersOuterRing @"2500"
+// Use Surrey City Hall as center point when location services enabled
+#define kDefaultCenterCoord @"-122.80816, 49.11268"
 
+// Vancouver City Hall
+// 49.260872, -123.113953
+
+// TODO: Find appropriate out max (10k ~= 1100 establishments, 5k ~= 196, 2.5k ~= 30)
+#define kDistanceInMetersOuterRing @"10000"
+#define kDistanceInMetersMediumRing @"5000"
+#define kDistanceInMetersInnerRing @"2500"
+
+#define kPageSize 5;
 
 @interface DSFRootTableViewController : UITableViewController <SSPullToRefreshViewDelegate>
 

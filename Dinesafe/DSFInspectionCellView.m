@@ -28,7 +28,7 @@
  // An empty implementation adversely affects performance during animation.
  */
 - (void)drawRect:(CGRect)rect {
-//    NSLog(@">>> drawRect for %@", self.inspection.status);
+    NSLog(@">>> drawRect for %@", self.inspection.status);
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
