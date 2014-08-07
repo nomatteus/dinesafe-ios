@@ -58,7 +58,7 @@
         
         [self.inspections addObject:inspection];
     }
-    NSLog(@"added %li inspections", (unsigned long)[self.inspections count]);
+//    NSLog(@"added %li inspections", (unsigned long)[self.inspections count]);
 }
 
 /*

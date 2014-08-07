@@ -16,10 +16,10 @@
     dispatch_once(&onceToken, ^{
         if (DINE_SURREY) {
             __sharedInstance = [[DSFApiClient alloc] initWithBaseURL:[NSURL URLWithString:SURREY_API_BASE_URL]];
-            NSLog(@"SURREY_API_BASE_URL = %@", SURREY_API_BASE_URL);
+//            NSLog(@"SURREY_API_BASE_URL = %@", SURREY_API_BASE_URL);
         } else {
             __sharedInstance = [[DSFApiClient alloc] initWithBaseURL:[NSURL URLWithString:DINESAFE_API_BASE_URL]];
-            NSLog(@"DINESAFE_API_BASE_URL = %@", DINESAFE_API_BASE_URL);
+//            NSLog(@"DINESAFE_API_BASE_URL = %@", DINESAFE_API_BASE_URL);
         }
         
         
@@ -34,7 +34,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         __sharedInstance = [[DSFApiClient alloc] initWithBaseURL:[NSURL URLWithString:SURREY_GEOMETRY_SERVICE_URL]];
-        NSLog(@"SURREY_GEOMETRY_SERVICE_URL = %@", SURREY_GEOMETRY_SERVICE_URL);
+//        NSLog(@"SURREY_GEOMETRY_SERVICE_URL = %@", SURREY_GEOMETRY_SERVICE_URL);
     });
     
     return __sharedInstance;
@@ -45,7 +45,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         __sharedInstance = [[DSFApiClient alloc] initWithBaseURL:[NSURL URLWithString:SURREY_RELATED_RECORDS_URL]];
-        NSLog(@"SURREY_RELATED_RECORDS_URL = %@", SURREY_RELATED_RECORDS_URL);
+//        NSLog(@"SURREY_RELATED_RECORDS_URL = %@", SURREY_RELATED_RECORDS_URL);
     });
     
     return __sharedInstance;
@@ -64,7 +64,7 @@
         
         // Required by ArcGIS server at City of Surrey --dfd
         [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/plain"]];
-        NSLog(@"AFJSONRequestOperation acceptableContentTypes = %@", [AFJSONRequestOperation acceptableContentTypes]);
+//        NSLog(@"AFJSONRequestOperation acceptableContentTypes = %@", [AFJSONRequestOperation acceptableContentTypes]);
         
     }
     

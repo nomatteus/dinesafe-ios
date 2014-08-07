@@ -29,7 +29,7 @@
 #define kDistanceInMetersMediumRing @"5000"
 #define kDistanceInMetersInnerRing @"2500"
 
-#define kPageSize 5;
+#define kPageSize 10; //TODO find optimum number to request. More?
 
 @interface DSFRootTableViewController : UITableViewController <SSPullToRefreshViewDelegate>
 
