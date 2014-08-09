@@ -49,7 +49,6 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     self.formattedDate = [dateFormatter stringFromDate:self.date];
 
-    // TODO: infractions
 /*
     NSUInteger index = [self.inspections indexOfObjectPassingTest:
                         ^(DSFInspection *obj, NSUInteger idx, BOOL *stop) {
@@ -64,8 +63,11 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     } else {
         [self.inspections[index] updateWithDictionary:inspection];
     }
-    
-    for (id infraction in dictionary[@"infractions"]) {
+*/
+
+    // TODO: infractions
+/*
+    for (id infraction in dictionary[@"VIOLLUMP"]) {
         NSUInteger index = [self.infractions indexOfObjectPassingTest:
                             ^(DSFInfraction *obj, NSUInteger idx, BOOL *stop) {
                                 if (obj.infractionId == [infraction[@"id"] intValue]) {

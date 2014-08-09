@@ -13,7 +13,8 @@
 #import "DSFSurreyEstablishment.h"
 
 @interface DSFRootTableViewController () <CLLocationManagerDelegate, UISearchBarDelegate>
-@property (nonatomic, strong) NSMutableArray *establishments;
+@property (nonatomic, strong) NSMutableArray *establishments;       // page
+@property (nonatomic, strong) NSMutableArray *allEstablishments;    // loaded for paging
 @property (nonatomic, strong) DSFEstablishment *_currentEstablishment;
 @property (nonatomic) NSInteger _currentPage;
 @property (nonatomic) NSInteger _totalPages;
@@ -66,7 +67,7 @@
                                                                     delegate:self];
     self.pullToRefreshView.contentView = [[DSFPullToRefreshView alloc] init];
 
-//    [self resetEstablishmentsAndShowLoadingCell:YES];     // called from location manager
+    [self resetEstablishmentsAndShowLoadingCell:YES];     // called from location manager
 
     [Flurry logAllPageViews:self.navigationController];
 
@@ -270,17 +271,13 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"willDisplayCell %li (currentPage = %li) (totalPages = %li)", (long)indexPath.row, (long)self._currentPage, (long)self._totalPages);
     
-    int pageSize = kPageSize;
-    int r = (indexPath.row % pageSize);
-
-    if (r == 0 && self._currentPage <= self._totalPages + 1) {
-        NSLog(@">>>mod remainder = %i, currentPage (%i) <= totalPages (%i)", r, self._currentPage, self._totalPages);
-        
-        if (indexPath.row > 0 && indexPath.row < [self.establishments count]) {
+    if (cell.tag == kLoadingCellTag) {
+        self._currentPage++;
+        // Update establishments if we're not on the first row (i.e. first load, since first load will be done by location callback)
+        if (indexPath.row > 0) {
             [self fetchRelatedInspections];
             [Flurry logEvent:@"Loading Cell Viewed (Load Next Page)"];
         }
-        self._currentPage++;
     }
 }
 
@@ -328,25 +325,20 @@
 
 // reset establishments called on view load, before executing a search, and will be called on pull to refresh
 // TODO - resolve. Search broken
-- (void)x_resetEstablishments {
+- (void)resetEstablishments {
     // By default, don't show loading cell (this will keep the old data in view until update, which is a desired behavior at times)
     [self resetEstablishmentsAndShowLoadingCell:NO];
 }
 
-- (void)x_resetEstablishmentsAndShowLoadingCell:(BOOL)showLoadingCell {
+- (void)resetEstablishmentsAndShowLoadingCell:(BOOL)showLoadingCell {
     NSLog(@"resetEstablishmentsAndShowLoadingCell:%hhd", showLoadingCell);
     
-    if (self.objectIds == nil) {
-        self.objectIds = [NSMutableArray array];
-    } else {
-        [self.objectIds removeAllObjects];
-    }
-
     if (self.establishments == nil) {
         self.establishments = [NSMutableArray array];
     } else {
         [self.establishments removeAllObjects];
     }
+    
     if (showLoadingCell) {
         self._currentPage = 0; // no pages means we'll show single cell activity indicator
     } else {
@@ -357,6 +349,231 @@
     
     NSLog(@">>> reloadData");
     [self.tableView reloadData];
+}
+
+- (void)fetchEstablishments {
+    NSLog(@"fetchEstablishments");
+
+    [self fetchEstablishmentsWithReset:NO];
+}
+
+- (void)fetchRelatedInspections {
+    NSLog(@"2) fetchRelatedInspections (currentPage = %i)", self._currentPage);
+    
+    /**
+     Send a page of object ids (10) to fetch related inspections
+     
+     - get a page (10) of object ids from self.establishments
+     - fetch related inspections
+     - move page counter ahead
+     - reload table with results
+     
+     - return here for the next set when table is at last cell
+     
+     */
+    
+    
+    NSString *objectIds = nil;
+    
+    //TODO - refactor as get page from all establishments
+    int idx = (self._currentPage - 1) * kPageSize;
+    int limit = idx + kPageSize;
+
+    if (limit > [self.allEstablishments count]) {
+        limit = [self.allEstablishments count];
+    }
+    
+//    NSLog(@"get objectIds in range %i to %i", idx, limit - 1);
+    
+    for (; idx < limit; idx++) {
+        NSLog(@"idx = %i", idx);
+        DSFSurreyEstablishment *establishmentDictionary = [self.allEstablishments objectAtIndex:idx];
+        
+        if (objectIds == nil) {
+            objectIds = [NSString stringWithFormat:@"%lu", (unsigned long)establishmentDictionary.establishmentId];
+        } else {
+            objectIds = [NSString stringWithFormat:@"%@, %lu", objectIds, (long unsigned)establishmentDictionary.establishmentId];
+        }
+    }
+
+    NSMutableDictionary *parameters;
+    parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                  //Object,                  Key
+                  @"json",                   @"f",
+                  @"",                       @"maxAllowableOffset",
+                  objectIds,                 @"objectIds",
+                  @"*",                      @"outFields",
+                  @"",                       @"outSR",
+                  @"0",                      @"relationshipId",
+                  @"false",                  @"returnGeometry",
+                  nil];
+    
+    NSLog(@"parameters = %@", parameters);
+    
+    [[DSFApiClient sharedInstanceRelatedRecords] postPath:@"queryRelatedRecords" parameters:parameters
+    success:^(AFHTTPRequestOperation *operation, id response) {
+//        NSLog(@"response = %@", response);
+        
+        for (id establishmentDictionary in response[@"relatedRecordGroups"]) {
+            
+            NSString *objectId = [NSString stringWithFormat:@"%@", establishmentDictionary[@"objectId"]];
+            NSArray *relatedRecords = establishmentDictionary[@"relatedRecords"];
+            
+            int index = [self findEstablishment:objectId];
+
+            DSFSurreyEstablishment *establishment = [self.allEstablishments objectAtIndex:index];
+
+            [establishment updateWithInspections:relatedRecords];
+            
+            [self.establishments addObject:establishment];
+  
+            NSLog(@"Establishment #%lu total inspections: %d", (unsigned long)establishment.establishmentId, [establishment.inspections count]);
+        }
+        
+        /* Begin loading table view */
+        [self.pullToRefreshView finishLoading];
+        [self.tableView reloadData];
+
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self reportError:error];
+    }];
+}
+
+- (void)setTotalPages {
+    self._totalPages = [self.allEstablishments count] / kPageSize;
+    if (self._totalPages == 0) {
+        self._noResultsFound = YES;
+    } else {
+        self._noResultsFound = NO;
+    }
+}
+
+/**
+ * fetch all establishments into paging array allEstablishments
+ */
+- (void)fetchAllEstablishments {
+    NSLog(@"fetchAllEstablishments");
+    
+    NSMutableDictionary *parameters;
+    parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                  //                Object,                    Key
+                  @"json",                   @"f",
+                  @"*",                      @"outFields",
+                  @"false",                  @"returnCountOnly",
+                  @"false",                  @"returnGeometry",
+                  @"false",                  @"returnIdsOnly",
+                  @"%",                      @"text",
+                  @"",                       @"time",
+                  @"",                       @"where",
+                  
+                  nil];
+    
+    if (self.searchText != nil) {
+        parameters[@"text"] = self.searchText;
+    }
+    
+    NSLog(@"parameters: %@", parameters);
+    
+    [[DSFApiClient sharedInstance] postPath:@"query" parameters:parameters
+    success: ^(AFHTTPRequestOperation *operation, id response) {
+
+        NSLog(@"Resetting all establishments");
+        
+        if (self.objectIds == nil) {
+            self.objectIds = [NSMutableArray array];
+        } else {
+            [self.objectIds removeAllObjects];
+        }
+        if (self.allEstablishments == nil) {
+            self.allEstablishments = [NSMutableArray array];
+        } else {
+            [self.allEstablishments removeAllObjects];
+        }
+
+        for (id establishmentDictionary in response[@"features"]) {
+            
+            NSString *objectId = establishmentDictionary[@"attributes"][@"OBJECTID"];
+            [self.objectIds addObject:objectId];
+            
+            DSFSurreyEstablishment *establishment = [[DSFSurreyEstablishment alloc] initWithDictionary:establishmentDictionary[@"attributes"]];
+            
+            // Calculate distance from current location
+            CLLocation *estLocation =  [[CLLocation alloc] initWithLatitude:establishment.location.latitude longitude:establishment.location.longitude];
+            establishment.distance = [self.currentLocation distanceFromLocation:estLocation] / 1000;
+
+            [self.allEstablishments addObject:establishment];
+        }
+        NSLog(@"1) Retrieved all %lu establishments", (unsigned long)[self.allEstablishments count]);
+
+        [self setTotalPages];   // also sets resultsFound = YES|NO
+
+        // Sort by distance
+        [self.allEstablishments sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            DSFSurreyEstablishment *est1 = obj1;
+            DSFSurreyEstablishment *est2 = obj2;
+            
+            if (est1.distance > est2.distance) {
+                return (NSComparisonResult)NSOrderedDescending;
+            }
+            
+            if (est1.distance < est2.distance) {
+                return (NSComparisonResult)NSOrderedAscending;
+            }
+            
+            return (NSComparisonResult)NSOrderedSame;
+        }];
+
+        // Get inspections and load table
+        [self fetchRelatedInspections];
+    }
+    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self reportError:error];
+    }];
+}
+
+- (void)fetchEstablishmentsWithReset:(BOOL)reset {
+    NSLog(@"fetchEstablishmentsWithReset reset = %hhd", reset);
+    
+    if (reset) {
+        // Need to set current page to 1 before the API request if resetting.
+        self._currentPage = 1;
+    }
+    
+    [self fetchAllEstablishments];
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self._currentEstablishment = self.establishments[indexPath.row];
+}
+
+#pragma mark - Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if (([[segue identifier] isEqualToString:@"EstablishmentListToDetailView"])) {
+        DSFInspectionTableViewController *detailView = [segue destinationViewController];
+        detailView.establishment = [sender establishment];
+        detailView.currentLocation = self.currentLocation;
+    }
+}
+
+#pragma mark - Utils
+
+- (int)findEstablishment:(NSString *)searchID{
+    //TODO - refactor
+    int i=0;
+    for (DSFSurreyEstablishment *establishment in self.establishments) {
+        NSString *idStr = [NSString stringWithFormat:@"%zd", establishment.establishmentId];
+        if([idStr isEqualToString: searchID]) {
+            break;
+        } else {
+            i++;
+        }
+    }
+    return i;
 }
 
 - (void)reportError:(NSError *)error {
@@ -381,404 +598,6 @@
     [self.pullToRefreshView finishLoading];
     
     NSLog(@"%@", error);
-}
-
-/* Kick off */
-- (void)fetchEstablishments {
-    NSLog(@"fetchEstablishments");
-
-    [self fetchEstablishmentsWithReset:NO];
-}
-
-- (void)fetchSurroundingRing:(NSString *)inMeters {
-    NSLog(@"fetchSurroundingRing in meters %@", inMeters);
-    
-    NSMutableDictionary *parameters;
-    NSString *location;
-    
-    // User not allowing location services
-    if (self.currentLocation == nil) {
-        NSLog(@"currentLocation == nil. Use default centre location %@", kDefaultCenterCoord);
-        
-        location = kDefaultCenterCoord;
-    } else {
-    
-        location = [NSString stringWithFormat:@"%f, %f", self.currentLocation.coordinate.longitude, self.currentLocation.coordinate.latitude];
-    }
-
-    // City of Surrey
-    location = @"-122.80816,49.11268";
-    
-    parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                  //Object,           Key
-                  @"26910",         @"bufferSR",
-                  inMeters,           @"distances",
-                  location,         @"geometries",
-                  @"4326",          @"inSR",
-                  @"4326",          @"outSR",
-                  @"unionResults",	@"false",
-                  @"json",          @"f",
-                  nil];
-    
-    NSLog(@"parameters: %@", parameters);
-    [[DSFApiClient sharedInstanceWithGeometries] getPath:@"buffer" parameters:parameters
-    success:
-     ^(AFHTTPRequestOperation *operation, id response) {
-         
-         // Convert ring geometry from JSON to string
-         NSDictionary *jsonDict = response[@"geometries"][0];
-         NSError *error;
-         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONReadingAllowFragments error:&error];
-         NSString *rings = [[NSString alloc] initWithData:jsonData encoding:NSASCIIStringEncoding];
-         
-         if (rings != nil) {
-             [self fetchEstablishmentsWithin:rings];
-         } else {
-             // TODO - Handle with some alternative to user
-             NSLog(@"Geometries not found");
-         }
-
-     }
-    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [self reportError:error];
-     }];
-    
-}
-
-- (void)fetchRelatedInspections {
-    NSLog(@"2) fetchRelatedInspections (currentPage = %i)", self._currentPage);
-    
-    /**
-     Send a page of object ids (10) to fetch related inspections
-     
-     - get a page (10) of object ids from self.establishments
-     - fetch related inspections
-     - move page counter ahead
-     - reload table with results
-     
-     - return here for the next set when table is at last cell
-     
-     */
-    
-    
-    NSString *objectIds = nil;
-    int idx = (self._currentPage - 1) * kPageSize;
-    int limit = idx + kPageSize;
-
-    if (limit > [self.establishments count]) {
-        limit = [self.establishments count];
-    }
-    
-    // TODO - should idx go to boundary?
-    NSLog(@"get objectIds in range %i to %i", idx, limit - 1);
-    
-    for (; idx < limit && idx < [self.establishments count]; idx++) {
-        NSLog(@"idx = %i", idx);
-        DSFSurreyEstablishment *establishmentDictionary = [self.establishments objectAtIndex:idx];
-        
-        if (objectIds == nil) {
-            objectIds = [NSString stringWithFormat:@"%lu", (unsigned long)establishmentDictionary.establishmentId];
-        } else {
-            objectIds = [NSString stringWithFormat:@"%@, %lu", objectIds, (long unsigned)establishmentDictionary.establishmentId];
-        }
-    }
-
-    NSMutableDictionary *parameters;
-    parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-//                Object,                    Key
-                  @"json",                   @"f",
-                  @"",                       @"maxAllowableOffset",
-                  objectIds,                 @"objectIds",
-                  @"*",                      @"outFields",
-                  @"",                       @"outSR",
-                  @"0",                      @"relationshipId",
-                  @"false",                  @"returnGeometry",
-                  nil];
-    
-    NSLog(@"parameters = %@", parameters);
-    
-    [[DSFApiClient sharedInstanceRelatedRecords] postPath:@"queryRelatedRecords" parameters:parameters
-    success:^(AFHTTPRequestOperation *operation, id response) {
-//        NSLog(@"response = %@", response);
-        
-        for (id establishmentDictionary in response[@"relatedRecordGroups"]) {
-            
-            NSString *objectId = [NSString stringWithFormat:@"%@", establishmentDictionary[@"objectId"]];
-            NSArray *relatedRecords = establishmentDictionary[@"relatedRecords"];
-//            NSLog(@"%@ : relatedRecords = %d", objectId, [relatedRecords count]);
-            
-            int index = [self findEstablishment:objectId];
-
-            DSFSurreyEstablishment *establishment = [self.establishments objectAtIndex:index];
-
-            [establishment updateWithInspections:relatedRecords];
-            
-            [self.establishments replaceObjectAtIndex:index withObject:establishment];
-  
-//            // Calculate distance from current location
-//            CLLocation *estLocation =  [[CLLocation alloc] initWithLatitude:establishment.location.latitude longitude:establishment.location.longitude];
-//            establishment.distance = [self.currentLocation distanceFromLocation:estLocation] / 1000;
-
-            NSLog(@"Establishment #%lu total inspections: %d", (unsigned long)establishment.establishmentId, [establishment.inspections count]);
-        }
-        
-      // Sort by distance - FIX: sorting causes inpsection to either be missing (on first page) or incorrect on details page.
-/*
-        [self.establishments sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            DSFSurreyEstablishment *est1 = obj1;
-            DSFSurreyEstablishment *est2 = obj2;
-            
-            if (est1.distance > est2.distance) {
-                return (NSComparisonResult)NSOrderedDescending;
-            }
-            
-            if (est1.distance < est2.distance) {
-                return (NSComparisonResult)NSOrderedAscending;
-            }
-            
-            return (NSComparisonResult)NSOrderedSame;
-        }];
-*/
-        /* Begin loading table view */
-        [self.pullToRefreshView finishLoading];
-        [self.tableView reloadData];
-
-
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self reportError:error];
-    }];
-}
-
-- (void)setTotalPages {
-    self._totalPages = [self.establishments count] / kPageSize;
-    if (self._totalPages == 0) {
-        self._noResultsFound = YES;
-    } else {
-        self._noResultsFound = NO;
-    }
-}
-
-- (void)fetchEstablishmentsWithin:(NSString *)ring {
-    NSLog(@"fetchEstablishmentsWithin %@", ring);
-    
-    /**
-     Find establishments surrounding current location.
-     1. fetch surrounding geometries at a distance n
-     2. get establishments contained by rings
-     3. get relationship with inspection for each establishment
-     4.
-     */
-    
-    NSMutableDictionary *parameters;
-    parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-//                Object,                    Key
-                  @"json",                   @"f",
-                  ring,                      @"geometry",
-                  @"esriGeometryPolygon",    @"geometryType",
-                  @"4326",                   @"inSR",
-                  @"",                       @"maxAllowableOffset",
-                  @"",                       @"objectIds",
-                  @"*",                      @"outFields",
-                  @"",                       @"outSR",
-                  @"",                       @"relationParam",
-                  @"false",                  @"returnCountOnly",
-                  @"false",                  @"returnGeometry",
-                  @"false",                  @"returnIdsOnly",
-                  @"esriSpatialRelContains", @"spatialRel",
-                  @"",                       @"text",
-                  @"",                       @"time",
-                  @"",                       @"where",
-                  
-                             nil];
-
-    if (self.searchText != nil) {
-        parameters[@"text"] = self.searchText;
-    }
-        
-    [[DSFApiClient sharedInstance] postPath:@"query" parameters:parameters
-    success: ^(AFHTTPRequestOperation *operation, id response) {
-        
-        // Reset objectIds and load array
-        if (self.objectIds == nil) {
-            self.objectIds = [NSMutableArray array];
-        } else {
-            [self.objectIds removeAllObjects];
-        }
-        
-        // TODO: add resetEstablishments
-        if (self.establishments == nil) {
-            self.establishments = [NSMutableArray array];
-        } else {
-            [self.establishments removeAllObjects];
-        }
-        
-        for (id establishmentDictionary in response[@"features"]) {
-            
-            NSString *objectId = establishmentDictionary[@"attributes"][@"OBJECTID"];
-            [self.objectIds addObject:objectId];
-            
-            DSFSurreyEstablishment *establishment = [[DSFSurreyEstablishment alloc] initWithDictionary:establishmentDictionary[@"attributes"]];
-            
-            // Calculate distance from current location
-            CLLocation *estLocation =  [[CLLocation alloc] initWithLatitude:establishment.location.latitude longitude:establishment.location.longitude];
-            establishment.distance = [self.currentLocation distanceFromLocation:estLocation] / 1000;
-
-            [self.establishments addObject:establishment];
-        }
-        
-        [self setTotalPages];   // also sets resultsFound = YES|NO
-        
-        // Get inspections and load table
-        if ([self.establishments count] != 0) {
-            NSLog(@"1) Retrieved %lu establishments - Now fetch inspections", (unsigned long)[self.establishments count]);
-            
-//            // Sort by distance - TODO:  FIX in fetchInspections
-//            [self.establishments sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-//                DSFSurreyEstablishment *est1 = obj1;
-//                DSFSurreyEstablishment *est2 = obj2;
-//                
-//                if (est1.distance > est2.distance) {
-//                    return (NSComparisonResult)NSOrderedDescending;
-//                }
-//                
-//                if (est1.distance < est2.distance) {
-//                    return (NSComparisonResult)NSOrderedAscending;
-//                }
-//                
-//                return (NSComparisonResult)NSOrderedSame;
-//            }];
-
-            [self fetchRelatedInspections];
-            
-        } else {
-            // TODO - handle when outside ring
-            /* get distance that location is outside of ring */
-            if ([self.ringDistance isEqualToString:kDistanceInMetersInnerRing]) {
-                
-                self.ringDistance = kDistanceInMetersMediumRing;
-                [self fetchSurroundingRing:self.ringDistance];
-                
-            } else if ([self.ringDistance isEqualToString:kDistanceInMetersMediumRing])  {
-                
-                self.ringDistance = kDistanceInMetersOuterRing;
-                [self fetchSurroundingRing:self.ringDistance];
-                
-            } else {
-                NSLog(@">>> Establishments Not Found");
-                [self fetchAllEstablishments];
-            }
-        }
-     }
-    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         [self reportError:error];
-    }];
-}
-
-- (void)fetchAllEstablishments {
-    NSLog(@"fetchAllEstablishments");
-    
-    NSMutableDictionary *parameters;
-    parameters = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                  //                Object,                    Key
-                  @"json",                   @"f",
-                  @"*",                      @"outFields",
-                  @"false",                  @"returnCountOnly",
-                  @"false",                  @"returnGeometry",
-                  @"false",                  @"returnIdsOnly",
-                  @"%",                      @"text",
-                  @"",                       @"time",
-                  @"",                       @"where",
-                  
-                  nil];
-    
-    if (self.searchText != nil) {
-        parameters[@"text"] = self.searchText;
-    }
-    
-    //    NSLog(@"parameters: %@", parameters);
-    
-    [[DSFApiClient sharedInstance] postPath:@"query" parameters:parameters
-    success: ^(AFHTTPRequestOperation *operation, id response) {
-
-        // TODO: refactor 
-//        [self resetEstablishments];
-
-        if (self.objectIds == nil) {
-            self.objectIds = [NSMutableArray array];
-        }
-        
-        if (self.establishments == nil) {
-            self.establishments = [NSMutableArray array];
-        }
-
-        for (id establishmentDictionary in response[@"features"]) {
-            
-            NSString *objectId = establishmentDictionary[@"attributes"][@"OBJECTID"];
-            [self.objectIds addObject:objectId];
-            
-            DSFSurreyEstablishment *establishment = [[DSFSurreyEstablishment alloc] initWithDictionary:establishmentDictionary[@"attributes"]];
-            [self.establishments addObject:establishment];
-        }
-        NSLog(@"1) Retrieved %lu establishments", (unsigned long)[self.establishments count]);
-
-        [self setTotalPages];   // also sets resultsFound = YES|NO
-
-        // Get inspections and load table
-        if ([self.establishments count] != 0) {
-            [self fetchRelatedInspections];
-        }
-    }
-    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self reportError:error];
-    }];
-}
-
-- (void)fetchEstablishmentsWithReset:(BOOL)reset {
-    NSLog(@"fetchEstablishmentsWithReset reset = %hhd", reset);
-    
-    if (reset) {
-        // Need to set current page to 1 before the API request if resetting.
-        self._currentPage = 1;
-    }
-    
-    NSLog(@"self._currentPage = %i", self._currentPage);
-    
-    // TODO - remove
-    self.ringDistance = kDistanceInMetersInnerRing;
-    [self fetchSurroundingRing:self.ringDistance];
-//    [self fetchAllEstablishments];
-    
-}
-
-- (int)findEstablishment:(NSString *)searchID{
-    //TODO - refactor
-    int i=0;
-    for (DSFSurreyEstablishment *establishment in self.establishments) {
-        NSString *idStr = [NSString stringWithFormat:@"%zd", establishment.establishmentId];
-        if([idStr isEqualToString: searchID]) {
-            break;
-        } else {
-            i++;
-        }
-    }
-    return i;
-}
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    self._currentEstablishment = self.establishments[indexPath.row];
-}
-
-#pragma mark - Segues
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if (([[segue identifier] isEqualToString:@"EstablishmentListToDetailView"])) {
-        DSFInspectionTableViewController *detailView = [segue destinationViewController];
-        detailView.establishment = [sender establishment];
-        detailView.currentLocation = self.currentLocation;
-    }
 }
 
 @end
