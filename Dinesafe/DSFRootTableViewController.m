@@ -268,13 +268,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"willDisplayCell %li (currentPage = %li)", (long)indexPath.row, (long)self._currentPage);
+    NSLog(@"willDisplayCell %li (currentPage = %li) (totalPages = %li)", (long)indexPath.row, (long)self._currentPage, (long)self._totalPages);
     
     int pageSize = kPageSize;
     int r = (indexPath.row % pageSize);
 
     if (r == 0 && self._currentPage <= self._totalPages + 1) {
-        NSLog(@">>>mod pageSize = %i, currentPage (%i) <= totalPages (%i)", r, self._currentPage, self._totalPages);
+        NSLog(@">>>mod remainder = %i, currentPage (%i) <= totalPages (%i)", r, self._currentPage, self._totalPages);
         
         if (indexPath.row > 0 && indexPath.row < [self.establishments count]) {
             [self fetchRelatedInspections];
@@ -515,13 +515,30 @@
             
             [self.establishments replaceObjectAtIndex:index withObject:establishment];
   
-            // Calculate distance from current location
-            CLLocation *estLocation =  [[CLLocation alloc] initWithLatitude:establishment.location.latitude longitude:establishment.location.longitude];
-            establishment.distance = [self.currentLocation distanceFromLocation:estLocation] / 1000;
+//            // Calculate distance from current location
+//            CLLocation *estLocation =  [[CLLocation alloc] initWithLatitude:establishment.location.latitude longitude:establishment.location.longitude];
+//            establishment.distance = [self.currentLocation distanceFromLocation:estLocation] / 1000;
 
             NSLog(@"Establishment #%lu total inspections: %d", (unsigned long)establishment.establishmentId, [establishment.inspections count]);
         }
-
+        
+      // Sort by distance - FIX: sorting causes inpsection to either be missing (on first page) or incorrect on details page.
+/*
+        [self.establishments sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            DSFSurreyEstablishment *est1 = obj1;
+            DSFSurreyEstablishment *est2 = obj2;
+            
+            if (est1.distance > est2.distance) {
+                return (NSComparisonResult)NSOrderedDescending;
+            }
+            
+            if (est1.distance < est2.distance) {
+                return (NSComparisonResult)NSOrderedAscending;
+            }
+            
+            return (NSComparisonResult)NSOrderedSame;
+        }];
+*/
         /* Begin loading table view */
         [self.pullToRefreshView finishLoading];
         [self.tableView reloadData];
@@ -532,7 +549,18 @@
     }];
 }
 
+- (void)setTotalPages {
+    self._totalPages = [self.establishments count] / kPageSize;
+    if (self._totalPages == 0) {
+        self._noResultsFound = YES;
+    } else {
+        self._noResultsFound = NO;
+    }
+}
+
 - (void)fetchEstablishmentsWithin:(NSString *)ring {
+    NSLog(@"fetchEstablishmentsWithin %@", ring);
+    
     /**
      Find establishments surrounding current location.
      1. fetch surrounding geometries at a distance n
@@ -590,36 +618,35 @@
             [self.objectIds addObject:objectId];
             
             DSFSurreyEstablishment *establishment = [[DSFSurreyEstablishment alloc] initWithDictionary:establishmentDictionary[@"attributes"]];
+            
+            // Calculate distance from current location
+            CLLocation *estLocation =  [[CLLocation alloc] initWithLatitude:establishment.location.latitude longitude:establishment.location.longitude];
+            establishment.distance = [self.currentLocation distanceFromLocation:estLocation] / 1000;
+
             [self.establishments addObject:establishment];
         }
         
-        self._totalPages = [self.establishments count] / kPageSize;
-        //TODO what happens when search returns less than 20?
-        if (self._totalPages == 0) {
-            self._noResultsFound = YES;
-        } else {
-            self._noResultsFound = NO;
-        }
+        [self setTotalPages];   // also sets resultsFound = YES|NO
         
         // Get inspections and load table
         if ([self.establishments count] != 0) {
             NSLog(@"1) Retrieved %lu establishments - Now fetch inspections", (unsigned long)[self.establishments count]);
             
-            // Sort by distance - TODO refactor
-            [self.establishments sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                DSFSurreyEstablishment *est1 = obj1;
-                DSFSurreyEstablishment *est2 = obj2;
-                
-                if (est1.distance > est2.distance) {
-                    return (NSComparisonResult)NSOrderedDescending;
-                }
-                
-                if (est1.distance < est2.distance) {
-                    return (NSComparisonResult)NSOrderedAscending;
-                }
-                
-                return (NSComparisonResult)NSOrderedSame;
-            }];
+//            // Sort by distance - TODO:  FIX in fetchInspections
+//            [self.establishments sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+//                DSFSurreyEstablishment *est1 = obj1;
+//                DSFSurreyEstablishment *est2 = obj2;
+//                
+//                if (est1.distance > est2.distance) {
+//                    return (NSComparisonResult)NSOrderedDescending;
+//                }
+//                
+//                if (est1.distance < est2.distance) {
+//                    return (NSComparisonResult)NSOrderedAscending;
+//                }
+//                
+//                return (NSComparisonResult)NSOrderedSame;
+//            }];
 
             [self fetchRelatedInspections];
             
@@ -672,7 +699,8 @@
     
     [[DSFApiClient sharedInstance] postPath:@"query" parameters:parameters
     success: ^(AFHTTPRequestOperation *operation, id response) {
-        
+
+        // TODO: refactor 
 //        [self resetEstablishments];
 
         if (self.objectIds == nil) {
@@ -683,8 +711,6 @@
             self.establishments = [NSMutableArray array];
         }
 
-        self._noResultsFound = NO;
-
         for (id establishmentDictionary in response[@"features"]) {
             
             NSString *objectId = establishmentDictionary[@"attributes"][@"OBJECTID"];
@@ -694,7 +720,9 @@
             [self.establishments addObject:establishment];
         }
         NSLog(@"1) Retrieved %lu establishments", (unsigned long)[self.establishments count]);
-        
+
+        [self setTotalPages];   // also sets resultsFound = YES|NO
+
         // Get inspections and load table
         if ([self.establishments count] != 0) {
             [self fetchRelatedInspections];
@@ -715,9 +743,10 @@
     
     NSLog(@"self._currentPage = %i", self._currentPage);
     
-    // TODO - Handle paging
+    // TODO - remove
     self.ringDistance = kDistanceInMetersInnerRing;
     [self fetchSurroundingRing:self.ringDistance];
+//    [self fetchAllEstablishments];
     
 }
 
