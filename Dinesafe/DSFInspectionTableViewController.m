@@ -303,7 +303,7 @@
 
     // Offset to take into account the two cells above
     int inspectionsOffset = 2;
-    int numEstablishments = self.establishment.inspections.count;
+    int numEstablishments = (int)self.establishment.inspections.count;
     for (int i=inspectionsOffset; i < (numEstablishments + inspectionsOffset); i++) {
         // Reversing inspection order for this
         //     numEstablishments - 1   takes us to the end of the list (counting from 0)
@@ -359,7 +359,7 @@
     
     // TODO: Move inspectionIndex and cell order/etc to a consolidated place, i.e. figure out cell heights and orders once, and then return that instead of doing the calculations on every cell load, Also we're calculating inspectionIndex in 2 different places and that's confusing to update. Also, I'm very tired right now and can't articulate myself very well.
     
-    int inspectionIndex = self.establishment.inspections.count - 1 - indexPath.row + 2;  // reverse order
+    int inspectionIndex = (int)self.establishment.inspections.count - 1 - (int)indexPath.row + 2;  // reverse order
     cell.inspection = self.establishment.inspections[inspectionIndex];
 
 //    [cell setNeedsDisplay];

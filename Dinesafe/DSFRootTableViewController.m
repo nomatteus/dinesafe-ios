@@ -358,7 +358,7 @@
 }
 
 - (void)fetchRelatedInspections {
-    NSLog(@"2) fetchRelatedInspections (currentPage = %i)", self._currentPage);
+    NSLog(@"2) fetchRelatedInspections (currentPage = %li)", (long)self._currentPage);
     
     /**
      Send a page of object ids (10) to fetch related inspections
@@ -376,11 +376,11 @@
     NSString *objectIds = nil;
     
     //TODO - refactor as get page from all establishments
-    int idx = (self._currentPage - 1) * kPageSize;
+    int idx = (int)(self._currentPage - 1) * kPageSize;
     int limit = idx + kPageSize;
 
     if (limit > [self.allEstablishments count]) {
-        limit = [self.allEstablishments count];
+        limit =  (int)[self.allEstablishments count];
     }
     
 //    NSLog(@"get objectIds in range %i to %i", idx, limit - 1);
@@ -427,7 +427,7 @@
             
             [self.establishments addObject:establishment];
   
-            NSLog(@"Establishment #%lu total inspections: %d", (unsigned long)establishment.establishmentId, [establishment.inspections count]);
+            NSLog(@"Establishment #%lu total inspections: %lu", (unsigned long)establishment.establishmentId, (unsigned long)[establishment.inspections count]);
         }
         
         /* Begin loading table view */
