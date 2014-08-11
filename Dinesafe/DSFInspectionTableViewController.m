@@ -325,15 +325,20 @@
     return [self.tableCellHeights[indexPath.row] floatValue];
 }
 
-
+/* Name, distance, etc */
 - (UITableViewCell *)establishmentInfoCell {
+    NSLog(@"establishmentInfoCell");
+    
     DSFEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EstablishmentInfo"];
     cell.establishment = self.establishment;
     [cell updateCellContent];
     return cell;
 }
 
+/* total number of inspections */
 - (UITableViewCell *)establishmentExtendedInfoCell {
+    NSLog(@"establishmentExtendedInfoCell");
+    
     if (self.extendedInfoCell == nil) {
         // Only create cell once, to avoid map resetting each time.
         self.extendedInfoCell = [self.tableView dequeueReusableCellWithIdentifier:@"EstablishmentExtendedInfo"];
@@ -344,16 +349,19 @@
 }
 
 - (UITableViewCell *)inspectionCellForIndexPath:(NSIndexPath *)indexPath {
-//    NSLog(@"inspectionCellForIndexPath %@", indexPath);
+    NSLog(@"inspectionCellForIndexPath %@", indexPath);
     
     static NSString *CellIdentifier = @"InspectionCell";
-        
-    DSFInspectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+//    DSFInspectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];    Causes text to overlap on scroll.
+//  This fixes the overlapping, but causes infraction titles to overlap until we scroll past. Better than above, but FIX required. -dfd
+    DSFInspectionCell *cell = [[DSFInspectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    
     // TODO: Move inspectionIndex and cell order/etc to a consolidated place, i.e. figure out cell heights and orders once, and then return that instead of doing the calculations on every cell load, Also we're calculating inspectionIndex in 2 different places and that's confusing to update. Also, I'm very tired right now and can't articulate myself very well.
     
     int inspectionIndex = self.establishment.inspections.count - 1 - indexPath.row + 2;  // reverse order
     cell.inspection = self.establishment.inspections[inspectionIndex];
-    
+
 //    [cell setNeedsDisplay];
     [cell updateCellContent];
     return cell;

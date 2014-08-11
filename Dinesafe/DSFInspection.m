@@ -65,24 +65,32 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     }
 */
 
-    // TODO: infractions
-/*
-    for (id infraction in dictionary[@"VIOLLUMP"]) {
-        NSUInteger index = [self.infractions indexOfObjectPassingTest:
-                            ^(DSFInfraction *obj, NSUInteger idx, BOOL *stop) {
-                                if (obj.infractionId == [infraction[@"id"] intValue]) {
-                                    return YES;
-                                } else {
-                                    return NO;
-                                }
-                            }];
-        if (index == NSNotFound) {
+    // Infractions
+    id lump = dictionary[@"VIOLLUMP"];
+    if (lump == [NSNull null]) {
+        NSLog(@"VIOLLUMP null");
+        return;
+    }
+    else {
+        NSArray *array = [lump componentsSeparatedByString:@"|"];
+
+        for (NSMutableString *v in array) {
+            NSArray *violation = [v componentsSeparatedByString:@","];
+            
+            // FIX: sometimes the violation detail contains commas that throw off the conversion to keys/values. Skipping for now.
+            if ([violation count] != 4) {
+                NSLog(@"skipping %@", v);
+                continue;
+            }
+            NSArray *keys = [NSArray arrayWithObjects: @"id", @"severity", @"details", @"action", nil];
+            
+            NSDictionary *infraction = [NSDictionary dictionaryWithObjects:violation forKeys:keys];
+            
             [self.infractions addObject:[[DSFInfraction alloc] initWithDictionary:infraction]];
-        } else {
-            [self.infractions[index] updateWithDictionary:infraction];
+
         }
     }
-*/
+    
 }
 
 #pragma mark -

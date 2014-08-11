@@ -20,14 +20,17 @@
     
     // Clear out old (InspectionView) if exists -- TODO: is there a better way to do this?
     // Do we need to do this? -- TODO: Fix extra inspection rows.
+    // TODO remove
     for (UIView *view in self.subviews) {
         if ([view isKindOfClass:[DSFInspectionCellView class]]) {
             [view removeFromSuperview];
         }
     }
-
+    
     DSFInspectionCellView *inspectionCellView = [[DSFInspectionCellView alloc] initWithInspection:self.inspection];
     [self addSubview:inspectionCellView];
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
