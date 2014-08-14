@@ -68,7 +68,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     // Infractions
     id lump = dictionary[@"VIOLLUMP"];
     if (lump == [NSNull null]) {
-        NSLog(@"VIOLLUMP null");
+//        NSLog(@"VIOLLUMP null");
         return;
     }
     else {
@@ -79,7 +79,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
             
             // FIX: sometimes the violation detail contains commas that throw off the conversion to keys/values. Skipping for now.
             if ([violation count] != 4) {
-                NSLog(@"skipping %@", v);
+                NSLog(@"FIX: skipping violation ");
                 continue;
             }
             NSArray *keys = [NSArray arrayWithObjects: @"id", @"severity", @"details", @"action", nil];

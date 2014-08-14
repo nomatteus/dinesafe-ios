@@ -111,6 +111,8 @@
     // See if new search text is different from previous search text
     BOOL searchTextChanged;
     NSString *searchBarText = [searchBar text];
+    NSLog(@"searchBarText = %@", [searchBar text]);
+    
     if ((self.searchText == nil && [searchBarText isEqualToString:@""]) || [self.searchText isEqualToString:searchBarText]) {
         searchTextChanged = NO;
     } else {
@@ -123,7 +125,7 @@
     if (performSearch || (searchTextChanged && [self.searchText isEqualToString:@""])) {
         [self.locationManager startUpdatingLocation]; // Check for updated location
         [self resetEstablishmentsAndShowLoadingCell:YES];
-        [self fetchEstablishments];
+        [self fetchEstablishmentsWithReset:NO];
         [Flurry logEvent:@"Perform Search"
           withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
                           self.searchText, @"Search Text",
@@ -227,7 +229,7 @@
 }
 
 - (UITableViewCell *)establishmentCellForIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"establishmentCellForIndexPath %ld", (long)[indexPath row]);
+//    NSLog(@"establishmentCellForIndexPath %ld", (long)[indexPath row]);
     
     static NSString *CellIdentifier = @"EstablishmentCell";
 
@@ -269,7 +271,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"willDisplayCell %li (currentPage = %li) (totalPages = %li)", (long)indexPath.row, (long)self._currentPage, (long)self._totalPages);
+//    NSLog(@"willDisplayCell %li (currentPage = %li) (totalPages = %li)", (long)indexPath.row, (long)self._currentPage, (long)self._totalPages);
     
     if (cell.tag == kLoadingCellTag) {
         self._currentPage++;
@@ -414,21 +416,38 @@
     success:^(AFHTTPRequestOperation *operation, id response) {
 //        NSLog(@"response = %@", response);
         
+        
         for (id establishmentDictionary in response[@"relatedRecordGroups"]) {
             
             NSString *objectId = [NSString stringWithFormat:@"%@", establishmentDictionary[@"objectId"]];
+            
             NSArray *relatedRecords = establishmentDictionary[@"relatedRecords"];
             
             int index = [self findEstablishment:objectId];
-
+            
             DSFSurreyEstablishment *establishment = [self.allEstablishments objectAtIndex:index];
 
             [establishment updateWithInspections:relatedRecords];
             
             [self.establishments addObject:establishment];
   
-            NSLog(@"Establishment #%lu total inspections: %lu", (unsigned long)establishment.establishmentId, (unsigned long)[establishment.inspections count]);
         }
+        
+        // Sort by distance
+        [self.establishments sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            DSFSurreyEstablishment *est1 = obj1;
+            DSFSurreyEstablishment *est2 = obj2;
+            
+            if (est1.distance > est2.distance) {
+                return (NSComparisonResult)NSOrderedDescending;
+            }
+            
+            if (est1.distance < est2.distance) {
+                return (NSComparisonResult)NSOrderedAscending;
+            }
+            
+            return (NSComparisonResult)NSOrderedSame;
+        }];
         
         /* Begin loading table view */
         [self.pullToRefreshView finishLoading];
@@ -442,7 +461,7 @@
 
 - (void)setTotalPages {
     self._totalPages = [self.allEstablishments count] / kPageSize;
-    if (self._totalPages == 0) {
+    if ([self.allEstablishments count] == 0) {
         self._noResultsFound = YES;
     } else {
         self._noResultsFound = NO;
@@ -469,7 +488,7 @@
                   
                   nil];
     
-    if (self.searchText != nil) {
+    if (self.searchText != nil && ![self.searchText isEqualToString:@""]) {
         parameters[@"text"] = self.searchText;
     }
     
@@ -485,6 +504,7 @@
         } else {
             [self.objectIds removeAllObjects];
         }
+        
         if (self.allEstablishments == nil) {
             self.allEstablishments = [NSMutableArray array];
         } else {
@@ -523,7 +543,7 @@
             
             return (NSComparisonResult)NSOrderedSame;
         }];
-
+        
         // Get inspections and load table
         [self fetchRelatedInspections];
     }
@@ -557,6 +577,9 @@
         DSFInspectionTableViewController *detailView = [segue destinationViewController];
         detailView.establishment = [sender establishment];
         detailView.currentLocation = self.currentLocation;
+        
+        NSLog(@"establishment (%lu) - %@", (unsigned long)detailView.establishment.establishmentId, detailView.establishment.latestName);
+
     }
 }
 
@@ -565,7 +588,7 @@
 - (int)findEstablishment:(NSString *)searchID{
     //TODO - refactor
     int i=0;
-    for (DSFSurreyEstablishment *establishment in self.establishments) {
+    for (DSFSurreyEstablishment *establishment in self.allEstablishments) {
         NSString *idStr = [NSString stringWithFormat:@"%zd", establishment.establishmentId];
         if([idStr isEqualToString: searchID]) {
             break;
