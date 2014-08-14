@@ -49,22 +49,6 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     self.formattedDate = [dateFormatter stringFromDate:self.date];
 
-/*
-    NSUInteger index = [self.inspections indexOfObjectPassingTest:
-                        ^(DSFInspection *obj, NSUInteger idx, BOOL *stop) {
-                            if ([obj.inspectionId isEqualToString:[inspection[@"TRACKINGNUMBER"]]]) {
-                                return YES;
-                            } else {
-                                return NO;
-                            }
-                        }];
-    if (index == NSNotFound) {
-        [self.inspections addObject:[[DSFInspection alloc] initWithDictionary:inspection]];
-    } else {
-        [self.inspections[index] updateWithDictionary:inspection];
-    }
-*/
-
     // Infractions
     id lump = dictionary[@"VIOLLUMP"];
     if (lump == [NSNull null]) {
@@ -79,7 +63,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
             
             // FIX: sometimes the violation detail contains commas that throw off the conversion to keys/values. Skipping for now.
             if ([violation count] != 4) {
-                NSLog(@"FIX: skipping violation ");
+                NSLog(@"FIX: (%@) skipping violation %@", self.inspectionId, v);
                 continue;
             }
             NSArray *keys = [NSArray arrayWithObjects: @"id", @"severity", @"details", @"action", nil];
