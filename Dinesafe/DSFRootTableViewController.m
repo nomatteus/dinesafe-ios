@@ -181,6 +181,7 @@
  TODO - used?
  */
 - (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view {
+    NSLog(@"pullToRefreshViewDidStartLoading");
     [self.locationManager startUpdatingLocation];
     [self fetchEstablishmentsWithReset:YES];
     [Flurry logEvent:@"Pull to Refresh" timed:YES];
@@ -470,6 +471,8 @@
 
 /**
  * fetch all establishments into paging array allEstablishments
+ * Called by pullToRefreshViewDidStartLoading and will reload entire set of establishments. Wasteful. 
+ * TODO: Call on load or reset only.
  */
 - (void)fetchAllEstablishments {
     NSLog(@"fetchAllEstablishments");
@@ -509,6 +512,7 @@
             self.allEstablishments = [NSMutableArray array];
         } else {
             [self.allEstablishments removeAllObjects];
+            [self.establishments removeAllObjects];
         }
 
         for (id establishmentDictionary in response[@"features"]) {
