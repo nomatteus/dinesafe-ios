@@ -32,7 +32,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
 
 - (void)updateWithDictionary:(NSDictionary *) dictionary {
     
-    self.inspectionId       = dictionary[@"TRACKINGNUMBER"];
+    self.inspectionId       = [dictionary[@"OBJECTID"] intValue];
     self.status             = dictionary[@"HAZARDRATING"];
     // TODO
     self.establishment_name = kNotAvailable;
@@ -48,7 +48,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     self.dateYear = [dateFormatter stringFromDate:self.date];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     self.formattedDate = [dateFormatter stringFromDate:self.date];
-
+    
     // Infractions
     NSArray *keys = [NSArray arrayWithObjects: @"id", @"severity", @"details", @"action", nil];
     id lump = dictionary[@"VIOLLUMP"];
@@ -66,7 +66,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
             
             // FIX: sometimes the violation detail contains commas that throw off the conversion to keys/values. Skipping for now. - Aug 20, 2014 - FIXED.
             if ([violation count] != 4) {
-                NSLog(@"FIX: (%@) skipping violation %@", self.inspectionId, v);
+                NSLog(@"FIX: (%lu) skipping violation %@", (long unsigned)self.inspectionId, v);
                 continue;
             }
             

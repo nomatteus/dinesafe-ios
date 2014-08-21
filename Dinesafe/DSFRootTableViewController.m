@@ -333,7 +333,7 @@
 }
 
 - (void)resetEstablishmentsAndShowLoadingCell:(BOOL)showLoadingCell {
-    NSLog(@"resetEstablishmentsAndShowLoadingCell:%hhd", showLoadingCell);
+//    NSLog(@"resetEstablishmentsAndShowLoadingCell:%hhd", showLoadingCell);
     
     // initialize or reset establishments in view
     if (self.establishments == nil) {
@@ -417,24 +417,45 @@
     success:^(AFHTTPRequestOperation *operation, id response) {
 //        NSLog(@"response = %@", response);
         
-        
+        DSFSurreyEstablishment *establishment;
         for (id establishmentDictionary in response[@"relatedRecordGroups"]) {
             
             NSString *objectId = [NSString stringWithFormat:@"%@", establishmentDictionary[@"objectId"]];
+            NSLog(@"objectId = %@", objectId);
             
             NSArray *relatedRecords = establishmentDictionary[@"relatedRecords"];
             
             int index = [self findEstablishment:objectId];
             
-            DSFSurreyEstablishment *establishment = [self.allEstablishments objectAtIndex:index];
+            establishment = [self.allEstablishments objectAtIndex:index];
 
             [establishment updateWithInspections:relatedRecords];
             
             [self.establishments addObject:establishment];
   
         }
+        // Sort inspections by date.
+        for (DSFSurreyEstablishment *establishment in self.establishments) {
+
+//            NSLog(@"objectId = %lu", (unsigned long)establishment.establishmentId);
+            
+            [establishment.inspections sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                DSFInspection *inspect1 = obj1;
+                DSFInspection *inspect2 = obj2;
+                
+                if ([inspect1.date compare:inspect2.date] == NSOrderedDescending) {
+                    return (NSComparisonResult)NSOrderedDescending;
+                }
+                
+                if ([inspect1.date compare:inspect2.date] == NSOrderedAscending) {
+                    return (NSComparisonResult)NSOrderedAscending;
+                }
+                
+                return (NSComparisonResult)NSOrderedSame;
+            }];
+        }
         
-        // Sort by distance
+        // Sort by distance -- Re-sort.
         [self.establishments sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             DSFSurreyEstablishment *est1 = obj1;
             DSFSurreyEstablishment *est2 = obj2;
@@ -558,7 +579,7 @@
 }
 
 - (void)fetchEstablishmentsWithReset:(BOOL)reset {
-    NSLog(@"fetchEstablishmentsWithReset reset = %hhd", reset);
+//    NSLog(@"fetchEstablishmentsWithReset reset = %hhd", reset);
     
     if (reset) {
         // Need to set current page to 1 before the API request if resetting.

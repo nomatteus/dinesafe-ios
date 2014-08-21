@@ -13,7 +13,7 @@
 
 @interface DSFInspection : NSObject
 
-@property (nonatomic, strong) NSString *inspectionId;
+@property (nonatomic) NSUInteger inspectionId;
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic) int minimumInspectionsPerYear;
 @property (nonatomic, strong) NSDate *date;

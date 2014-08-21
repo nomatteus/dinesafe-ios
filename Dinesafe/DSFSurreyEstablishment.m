@@ -95,33 +95,7 @@
         self.shareTextLongHtml = dictionary[@"share"][@"text_long_html"];
         self.shareURL = dictionary[@"share"][@"url"];
     }
-/*
-    // TODO
-    for (id inspection in dictionary[@"inspections"]) {
-        NSUInteger index = [self.inspections indexOfObjectPassingTest:
-                            ^(DSFInspection *obj, NSUInteger idx, BOOL *stop) {
-                                if (obj.inspectionId == [inspection[@"id"] intValue]) {
-                                    return YES;
-                                } else {
-                                    return NO;
-                                }
-                            }];
-        if (index == NSNotFound) {
-            [self.inspections addObject:[[DSFInspection alloc] initWithDictionary:inspection]];
-        } else {
-            [self.inspections[index] updateWithDictionary:inspection];
-        }
-    }
-
-    if ([dictionary objectForKey:@"latlng"]
-        && [dictionary[@"latlng"] isKindOfClass:[NSDictionary class]]
-        && [dictionary[@"latlng"] objectForKey:@"lat"]
-        && [dictionary[@"latlng"] objectForKey:@"lng"]) { // Checking for non-null latlng
-        double lat = [dictionary[@"latlng"][@"lat"] doubleValue];
-        double lng = [dictionary[@"latlng"][@"lng"] doubleValue];
-        self.location = CLLocationCoordinate2DMake(lat, lng);
-    }
-*/
+    
     [self setDefaultSharingValuesIfNil];
 }
 

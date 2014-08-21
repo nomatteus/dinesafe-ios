@@ -40,7 +40,10 @@
     for (id inspection in dictionary[@"inspections"]) {
         NSUInteger index = [self.inspections indexOfObjectPassingTest:
                             ^(DSFInspection *obj, NSUInteger idx, BOOL *stop) {
-                                if (obj.inspectionId == inspection[@"id"]) {
+                                // Shouldn't need to change original code, since we're not using this class. -dfdumaresq
+                                // TODO: resolve error
+                                // if (obj.inspectionId == inspection[@"id"]) {
+                                if (obj.inspectionId == [inspection[@"id"] intValue]) {
                                     return YES;
                                 } else {
                                     return NO;
