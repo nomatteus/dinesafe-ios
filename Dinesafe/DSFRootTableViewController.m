@@ -178,7 +178,6 @@
 
 /**
  The pull to refresh view started loading. You should kick off whatever you need to load when this is called.
- TODO - used?
  */
 - (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view {
     NSLog(@"pullToRefreshViewDidStartLoading");
@@ -318,16 +317,16 @@
        didFailWithError:(NSError *)error {
     if (error.code == kCLErrorDenied) {
         // User Denied access to current location
-        NSLog(@"locationManager didFailWithError (kCLErrorDenied) %@", error);
         [self.locationManager stopUpdatingLocation];
-        [self fetchEstablishments];
+//        [self fetchEstablishments];
+        // No need to reset - already done.
+        [self fetchEstablishmentsWithReset:NO];
     }
 }
 
 #pragma mark - fetching data
 
 // reset establishments called on view load, before executing a search, and will be called on pull to refresh
-// TODO - resolve. Search broken
 - (void)resetEstablishments {
     // By default, don't show loading cell (this will keep the old data in view until update, which is a desired behavior at times)
     [self resetEstablishmentsAndShowLoadingCell:NO];
@@ -336,6 +335,7 @@
 - (void)resetEstablishmentsAndShowLoadingCell:(BOOL)showLoadingCell {
     NSLog(@"resetEstablishmentsAndShowLoadingCell:%hhd", showLoadingCell);
     
+    // initialize or reset establishments in view
     if (self.establishments == nil) {
         self.establishments = [NSMutableArray array];
     } else {
@@ -350,10 +350,10 @@
     // Reset no results found flag
     self._noResultsFound = NO;
     
-    NSLog(@">>> reloadData");
     [self.tableView reloadData];
 }
 
+// Not using. TODO: remove
 - (void)fetchEstablishments {
     NSLog(@"fetchEstablishments");
 
@@ -511,6 +511,7 @@
         if (self.allEstablishments == nil) {
             self.allEstablishments = [NSMutableArray array];
         } else {
+            NSLog(@"removeAllObjects");
             [self.allEstablishments removeAllObjects];
             [self.establishments removeAllObjects];
         }

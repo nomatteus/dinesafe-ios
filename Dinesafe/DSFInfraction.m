@@ -38,7 +38,7 @@
  NUMNONCRITICAL = 2;
  OBJECTID = 6662;
  TRACKINGNUMBER = "GEDS-85ZM4Y";
- VIOLLUMP = "209,Not Critical,Food not protected from contamination [s. 12(a)],Not Repeat|302,Critical,Equipment/utensils/food contact surfaces not properly washed and sanitized [s. 17(2)],Not Repeat|308,Not Critical,Equipment/utensils/food contact surfaces are not in good working order [s. 16(b)],Not Repeat";
+ VIOLLUMP = "209,Not Critical,Food not protected from contamination [s. 12(a)],Not Repeat|...";
  }
  */
 - (void)updateWithDictionary:(NSDictionary *) dictionary {

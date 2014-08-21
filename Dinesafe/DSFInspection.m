@@ -50,10 +50,13 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     self.formattedDate = [dateFormatter stringFromDate:self.date];
 
     // Infractions
+    NSArray *keys = [NSArray arrayWithObjects: @"id", @"severity", @"details", @"action", nil];
     id lump = dictionary[@"VIOLLUMP"];
     if (lump == [NSNull null]) {
-//        NSLog(@"VIOLLUMP null");
-        return;
+        NSArray *violation = [NSArray arrayWithObjects:@"N/A", @"N/A", @"N/A", @"N/A", nil];
+        
+        NSDictionary *infraction = [NSDictionary dictionaryWithObjects:violation forKeys:keys];
+        [self.infractions addObject:[[DSFInfraction alloc] initWithDictionary:infraction]];
     }
     else {
         NSArray *array = [lump componentsSeparatedByString:@"|"];
@@ -61,17 +64,14 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
         for (NSMutableString *v in array) {
             NSArray *violation = [v componentsSeparatedByString:@","];
             
-            // FIX: sometimes the violation detail contains commas that throw off the conversion to keys/values. Skipping for now.
+            // FIX: sometimes the violation detail contains commas that throw off the conversion to keys/values. Skipping for now. - Aug 20, 2014 - FIXED.
             if ([violation count] != 4) {
                 NSLog(@"FIX: (%@) skipping violation %@", self.inspectionId, v);
                 continue;
             }
-            NSArray *keys = [NSArray arrayWithObjects: @"id", @"severity", @"details", @"action", nil];
             
             NSDictionary *infraction = [NSDictionary dictionaryWithObjects:violation forKeys:keys];
-            
             [self.infractions addObject:[[DSFInfraction alloc] initWithDictionary:infraction]];
-
         }
     }
     
