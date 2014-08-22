@@ -1,10 +1,11 @@
 //
-//  DinesafeEstablishment.h
+//  DSFEstablishment.h
 //  Dinesafe
 //
 //  Created by Matt Ruten on 2012-11-12.
 //  Copyright (c) 2012 Matt Ruten. All rights reserved.
 //
+//  Modified by David Dumaresq on 2014-07-17.
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
@@ -30,5 +31,6 @@
 
 - (id)initWithDictionary:(NSDictionary *) dictionary;
 - (void)updateWithDictionary:(NSDictionary *)dictionary;
+- (void)updateWithInspections:(NSArray *)relatedRecords;
 
 @end
