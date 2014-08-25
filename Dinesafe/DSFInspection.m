@@ -163,6 +163,7 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     }
 }
 
+// Not used. TODO:remove
 - (UIColor *)colorForStatusAtPositionUIColor:(int)position {
     NSMutableArray *rgba = [self colorForStatusAtPositionRGBA:position];
     return [UIColor

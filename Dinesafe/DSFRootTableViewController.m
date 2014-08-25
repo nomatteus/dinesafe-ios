@@ -240,7 +240,6 @@
     [cell updateCellContent];
     
     return cell;
-    
 }
 
 - (UITableViewCell *)loadingCell {
