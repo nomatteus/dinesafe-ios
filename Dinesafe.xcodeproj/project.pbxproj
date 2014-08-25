@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		11754E65197C39ED00C34A88 /* DSFInspectionCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11754E64197C39ED00C34A88 /* DSFInspectionCellView.m */; };
 		11B40CCB199900D000E6C64D /* Annotated_Establishment_Record.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B40CCA199900D000E6C64D /* Annotated_Establishment_Record.png */; };
-		11BE58AD197B0381008A3E26 /* DSFSurreyEstablishment.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BE58AC197B0381008A3E26 /* DSFSurreyEstablishment.m */; };
-		11BE58B0197B03A4008A3E26 /* DSFSurreyEstablishmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BE58AF197B03A4008A3E26 /* DSFSurreyEstablishmentCell.m */; };
+		11E24EA319ABE25200143715 /* UIView+viewRecursion.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E24EA219ABE25200143715 /* UIView+viewRecursion.m */; };
 		AD02055C166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD02055B166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m */; };
 		AD15C3E316B6B81F003C8DF7 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = AD15C3D916B6B81F003C8DF7 /* Icon-72.png */; };
 		AD15C3E416B6B81F003C8DF7 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD15C3DA16B6B81F003C8DF7 /* Icon-72@2x.png */; };
@@ -86,10 +85,8 @@
 		11754E63197C39ED00C34A88 /* DSFInspectionCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInspectionCellView.h; sourceTree = "<group>"; };
 		11754E64197C39ED00C34A88 /* DSFInspectionCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInspectionCellView.m; sourceTree = "<group>"; };
 		11B40CCA199900D000E6C64D /* Annotated_Establishment_Record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Annotated_Establishment_Record.png; path = Artwork/Annotated_Establishment_Record.png; sourceTree = "<group>"; };
-		11BE58AB197B0381008A3E26 /* DSFSurreyEstablishment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFSurreyEstablishment.h; sourceTree = "<group>"; };
-		11BE58AC197B0381008A3E26 /* DSFSurreyEstablishment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFSurreyEstablishment.m; sourceTree = "<group>"; };
-		11BE58AE197B03A4008A3E26 /* DSFSurreyEstablishmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFSurreyEstablishmentCell.h; sourceTree = "<group>"; };
-		11BE58AF197B03A4008A3E26 /* DSFSurreyEstablishmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFSurreyEstablishmentCell.m; sourceTree = "<group>"; };
+		11E24EA119ABE25200143715 /* UIView+viewRecursion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+viewRecursion.h"; sourceTree = "<group>"; };
+		11E24EA219ABE25200143715 /* UIView+viewRecursion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+viewRecursion.m"; sourceTree = "<group>"; };
 		AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		AD02055A166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFEstablishmentExtendedInfoCell.h; sourceTree = "<group>"; };
 		AD02055B166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFEstablishmentExtendedInfoCell.m; sourceTree = "<group>"; };
@@ -310,8 +307,6 @@
 		AD52BFB21651F85E0090723E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				11BE58AB197B0381008A3E26 /* DSFSurreyEstablishment.h */,
-				11BE58AC197B0381008A3E26 /* DSFSurreyEstablishment.m */,
 				AD52BFB31651FDF90090723E /* DSFEstablishment.h */,
 				AD52BFB41651FDF90090723E /* DSFEstablishment.m */,
 				AD97D519165B157900A57ECB /* DSFInspection.h */,
@@ -351,8 +346,8 @@
 				ADC48AA7165C78F3001AEA3B /* DSFRootTableViewController.m */,
 				AD7D76991661C5E7001BFB20 /* DSFScorebarView.h */,
 				AD7D769A1661C5E7001BFB20 /* DSFScorebarView.m */,
-				11BE58AE197B03A4008A3E26 /* DSFSurreyEstablishmentCell.h */,
-				11BE58AF197B03A4008A3E26 /* DSFSurreyEstablishmentCell.m */,
+				11E24EA119ABE25200143715 /* UIView+viewRecursion.h */,
+				11E24EA219ABE25200143715 /* UIView+viewRecursion.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -522,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11E24EA319ABE25200143715 /* UIView+viewRecursion.m in Sources */,
 				AD52BF2A1651E4EF0090723E /* main.m in Sources */,
 				AD52BF2E1651E4EF0090723E /* DinesafeAppDelegate.m in Sources */,
 				AD52BFB51651FDF90090723E /* DSFEstablishment.m in Sources */,
@@ -538,8 +534,6 @@
 				AD02055C166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m in Sources */,
 				AD16DFEA16783B520058CDCE /* DSFPullToRefreshView.m in Sources */,
 				ADD5D715169AF5470008A6F9 /* DSFEstablishmentAnnotation.m in Sources */,
-				11BE58B0197B03A4008A3E26 /* DSFSurreyEstablishmentCell.m in Sources */,
-				11BE58AD197B0381008A3E26 /* DSFSurreyEstablishment.m in Sources */,
 				ADCCD9ED16A6E3B800887821 /* DSFNavigationBar.m in Sources */,
 				ADE4B4B416AD7B1300181CE2 /* DSFMapViewController.m in Sources */,
 				ADE4B4B716AD7B3B00181CE2 /* DSFInfoViewController.m in Sources */,
