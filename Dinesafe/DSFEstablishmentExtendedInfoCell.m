@@ -18,9 +18,8 @@
 - (void)updateCellContent
 {
     self.inspectionsSummary.text = [NSString
-                                    stringWithFormat:@"Total: %d inspections\nMinimum Inspections Per Year: %d",
-                                    self.establishment.inspections.count,
-                                    self.establishment.minimumInspectionsPerYear];
+                                    stringWithFormat:@"Total: %lu inspections",
+                                    (unsigned long)self.establishment.inspections.count];
     [self updateMap];
 }
 

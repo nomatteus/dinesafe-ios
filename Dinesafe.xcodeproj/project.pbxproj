@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11754E65197C39ED00C34A88 /* DSFInspectionCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11754E64197C39ED00C34A88 /* DSFInspectionCellView.m */; };
+		11B40CCB199900D000E6C64D /* Annotated_Establishment_Record.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B40CCA199900D000E6C64D /* Annotated_Establishment_Record.png */; };
+		11E24EA319ABE25200143715 /* UIView+viewRecursion.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E24EA219ABE25200143715 /* UIView+viewRecursion.m */; };
 		AD02055C166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD02055B166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m */; };
 		AD15C3E316B6B81F003C8DF7 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = AD15C3D916B6B81F003C8DF7 /* Icon-72.png */; };
 		AD15C3E416B6B81F003C8DF7 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD15C3DA16B6B81F003C8DF7 /* Icon-72@2x.png */; };
@@ -53,7 +56,6 @@
 		AD97D521165B16C400A57ECB /* DSFInfraction.m in Sources */ = {isa = PBXBuildFile; fileRef = AD97D51F165B16C400A57ECB /* DSFInfraction.m */; };
 		ADA5086116BDF86900F9038D /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA5086016BDF86900F9038D /* NSString+URLEncoding.m */; };
 		ADB498F116699EAB003F55B8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB498F016699EAB003F55B8 /* CoreLocation.framework */; };
-		ADC13C6616D0129B0000CE52 /* Annotated_Establishment_Record.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC13C6516D0129B0000CE52 /* Annotated_Establishment_Record.png */; };
 		ADC13C6816D022760000CE52 /* About.html in Resources */ = {isa = PBXBuildFile; fileRef = ADC13C6716D022760000CE52 /* About.html */; };
 		ADC48AA8165C78F3001AEA3B /* DSFRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AA7165C78F3001AEA3B /* DSFRootTableViewController.m */; };
 		ADC48AAB165C801B001AEA3B /* DSFEstablishmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC48AAA165C801B001AEA3B /* DSFEstablishmentCell.m */; };
@@ -80,6 +82,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11754E63197C39ED00C34A88 /* DSFInspectionCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInspectionCellView.h; sourceTree = "<group>"; };
+		11754E64197C39ED00C34A88 /* DSFInspectionCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInspectionCellView.m; sourceTree = "<group>"; };
+		11B40CCA199900D000E6C64D /* Annotated_Establishment_Record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Annotated_Establishment_Record.png; path = Artwork/Annotated_Establishment_Record.png; sourceTree = "<group>"; };
+		11E24EA119ABE25200143715 /* UIView+viewRecursion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+viewRecursion.h"; sourceTree = "<group>"; };
+		11E24EA219ABE25200143715 /* UIView+viewRecursion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+viewRecursion.m"; sourceTree = "<group>"; };
 		AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		AD02055A166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFEstablishmentExtendedInfoCell.h; sourceTree = "<group>"; };
 		AD02055B166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFEstablishmentExtendedInfoCell.m; sourceTree = "<group>"; };
@@ -138,7 +145,6 @@
 		ADA5085F16BDF86900F9038D /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncoding.h"; path = "Dinesafe/NSString+URLEncoding.h"; sourceTree = "<group>"; };
 		ADA5086016BDF86900F9038D /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "Dinesafe/NSString+URLEncoding.m"; sourceTree = "<group>"; };
 		ADB498F016699EAB003F55B8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		ADC13C6516D0129B0000CE52 /* Annotated_Establishment_Record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Annotated_Establishment_Record.png; sourceTree = "<group>"; };
 		ADC13C6716D022760000CE52 /* About.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = About.html; sourceTree = "<group>"; };
 		ADC48AA6165C78F3001AEA3B /* DSFRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFRootTableViewController.h; sourceTree = "<group>"; };
 		ADC48AA7165C78F3001AEA3B /* DSFRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFRootTableViewController.m; sourceTree = "<group>"; };
@@ -256,6 +262,7 @@
 		AD52BF241651E4EF0090723E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				11B40CCA199900D000E6C64D /* Annotated_Establishment_Record.png */,
 				AD15C3D916B6B81F003C8DF7 /* Icon-72.png */,
 				AD15C3DA16B6B81F003C8DF7 /* Icon-72@2x.png */,
 				AD15C3DB16B6B81F003C8DF7 /* Icon-Small-50.png */,
@@ -273,7 +280,6 @@
 				AD52BF2F1651E4EF0090723E /* Default.png */,
 				AD52BF311651E4EF0090723E /* Default@2x.png */,
 				AD52BF331651E4EF0090723E /* Default-568h@2x.png */,
-				ADC13C6516D0129B0000CE52 /* Annotated_Establishment_Record.png */,
 				ADC13C6716D022760000CE52 /* About.html */,
 			);
 			name = "Supporting Files";
@@ -316,28 +322,32 @@
 		AD7D76981661C356001BFB20 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				ADC48AA6165C78F3001AEA3B /* DSFRootTableViewController.h */,
-				ADC48AA7165C78F3001AEA3B /* DSFRootTableViewController.m */,
-				ADD0C2361662443D00A68A1B /* DSFInspectionTableViewController.h */,
-				ADD0C2371662443D00A68A1B /* DSFInspectionTableViewController.m */,
+				ADD5D713169AF5460008A6F9 /* DSFEstablishmentAnnotation.h */,
+				ADD5D714169AF5470008A6F9 /* DSFEstablishmentAnnotation.m */,
 				ADC48AA9165C801B001AEA3B /* DSFEstablishmentCell.h */,
 				ADC48AAA165C801B001AEA3B /* DSFEstablishmentCell.m */,
 				AD02055A166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.h */,
 				AD02055B166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m */,
-				ADC81A751665D01500BD7793 /* DSFInspectionCell.h */,
-				ADC81A761665D01600BD7793 /* DSFInspectionCell.m */,
-				AD2D3FC9166194810050699C /* DSFLoadingCell.h */,
-				AD2D3FCA166194810050699C /* DSFLoadingCell.m */,
-				AD7D76991661C5E7001BFB20 /* DSFScorebarView.h */,
-				AD7D769A1661C5E7001BFB20 /* DSFScorebarView.m */,
-				AD16DFE816783B520058CDCE /* DSFPullToRefreshView.h */,
-				AD16DFE916783B520058CDCE /* DSFPullToRefreshView.m */,
-				ADD5D713169AF5460008A6F9 /* DSFEstablishmentAnnotation.h */,
-				ADD5D714169AF5470008A6F9 /* DSFEstablishmentAnnotation.m */,
-				ADE4B4B216AD7B1200181CE2 /* DSFMapViewController.h */,
-				ADE4B4B316AD7B1300181CE2 /* DSFMapViewController.m */,
 				ADE4B4B516AD7B3B00181CE2 /* DSFInfoViewController.h */,
 				ADE4B4B616AD7B3B00181CE2 /* DSFInfoViewController.m */,
+				ADC81A751665D01500BD7793 /* DSFInspectionCell.h */,
+				ADC81A761665D01600BD7793 /* DSFInspectionCell.m */,
+				11754E63197C39ED00C34A88 /* DSFInspectionCellView.h */,
+				11754E64197C39ED00C34A88 /* DSFInspectionCellView.m */,
+				ADD0C2361662443D00A68A1B /* DSFInspectionTableViewController.h */,
+				ADD0C2371662443D00A68A1B /* DSFInspectionTableViewController.m */,
+				AD2D3FC9166194810050699C /* DSFLoadingCell.h */,
+				AD2D3FCA166194810050699C /* DSFLoadingCell.m */,
+				ADE4B4B216AD7B1200181CE2 /* DSFMapViewController.h */,
+				ADE4B4B316AD7B1300181CE2 /* DSFMapViewController.m */,
+				AD16DFE816783B520058CDCE /* DSFPullToRefreshView.h */,
+				AD16DFE916783B520058CDCE /* DSFPullToRefreshView.m */,
+				ADC48AA6165C78F3001AEA3B /* DSFRootTableViewController.h */,
+				ADC48AA7165C78F3001AEA3B /* DSFRootTableViewController.m */,
+				AD7D76991661C5E7001BFB20 /* DSFScorebarView.h */,
+				AD7D769A1661C5E7001BFB20 /* DSFScorebarView.m */,
+				11E24EA119ABE25200143715 /* UIView+viewRecursion.h */,
+				11E24EA219ABE25200143715 /* UIView+viewRecursion.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -398,7 +408,7 @@
 			name = DinesafeTests;
 			productName = DinesafeTests;
 			productReference = AD52BF431651E4EF0090723E /* DinesafeTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -407,8 +417,14 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Dinesafe;
+				LastTestingUpgradeCheck = 0510;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Matt Ruten";
+				TargetAttributes = {
+					AD52BF181651E4EF0090723E = {
+						DevelopmentTeam = W5KJF2JF8Z;
+					};
+				};
 			};
 			buildConfigurationList = AD52BF131651E4EF0090723E /* Build configuration list for PBXProject "Dinesafe" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -448,10 +464,10 @@
 				AD15C3E816B6B81F003C8DF7 /* Icon-Small@2x.png in Resources */,
 				AD15C3E916B6B81F003C8DF7 /* Icon.png in Resources */,
 				AD15C3EA16B6B81F003C8DF7 /* Icon@2x.png in Resources */,
+				11B40CCB199900D000E6C64D /* Annotated_Establishment_Record.png in Resources */,
 				AD15C3EB16B6B81F003C8DF7 /* iTunesArtwork.png in Resources */,
 				AD15C3EC16B6B81F003C8DF7 /* iTunesArtwork@2x.png in Resources */,
 				ADCAAB9816B9435B00E46495 /* Bariol_Bold_Italic.otf in Resources */,
-				ADC13C6616D0129B0000CE52 /* Annotated_Establishment_Record.png in Resources */,
 				ADC13C6816D022760000CE52 /* About.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11E24EA319ABE25200143715 /* UIView+viewRecursion.m in Sources */,
 				AD52BF2A1651E4EF0090723E /* main.m in Sources */,
 				AD52BF2E1651E4EF0090723E /* DinesafeAppDelegate.m in Sources */,
 				AD52BFB51651FDF90090723E /* DSFEstablishment.m in Sources */,
@@ -510,6 +527,7 @@
 				ADC48AAB165C801B001AEA3B /* DSFEstablishmentCell.m in Sources */,
 				AD2D3FC7166175E30050699C /* DSFApiClient.m in Sources */,
 				AD2D3FCB166194810050699C /* DSFLoadingCell.m in Sources */,
+				11754E65197C39ED00C34A88 /* DSFInspectionCellView.m in Sources */,
 				AD7D769B1661C5E7001BFB20 /* DSFScorebarView.m in Sources */,
 				ADD0C2381662443D00A68A1B /* DSFInspectionTableViewController.m in Sources */,
 				ADC81A771665D01600BD7793 /* DSFInspectionCell.m in Sources */,
@@ -605,9 +623,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0D713A50-A5F2-4B77-BEAF-B1F2F1A4F70D";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -629,10 +647,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
+				PROVISIONING_PROFILE = "0D713A50-A5F2-4B77-BEAF-B1F2F1A4F70D";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -643,11 +660,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "377FD6D8-6BBB-4724-9D79-13F5D6C2D146";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -657,15 +677,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Ruten";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Ruten";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
+				PROVISIONING_PROFILE = "377FD6D8-6BBB-4724-9D79-13F5D6C2D146";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -721,11 +740,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "C12A37AD-EAE1-4AE4-AB1B-EDBC84877F46";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C12A37AD-EAE1-4AE4-AB1B-EDBC84877F46";
+				PROVISIONING_PROFILE = "0D713A50-A5F2-4B77-BEAF-B1F2F1A4F70D";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -736,15 +754,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Ruten";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Ruten";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EC53E3E4-1A27-49A7-8FDB-96D7A0E78546";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC53E3E4-1A27-49A7-8FDB-96D7A0E78546";
+				PROVISIONING_PROFILE = "377FD6D8-6BBB-4724-9D79-13F5D6C2D146";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

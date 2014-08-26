@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "DSFInfraction.h"
 
+#define kNotAvailable @"N/A";
+
 @interface DSFInspection : NSObject
 
 @property (nonatomic) NSUInteger inspectionId;
@@ -25,7 +27,7 @@
 - (id)initWithDictionary:(NSDictionary *) dictionary;
 - (void)updateWithDictionary:(NSDictionary *) dictionary;
 
-- (CGFloat[4])colorForStatusAtPositionRGBA:(int)position;
+- (NSMutableArray *)colorForStatusAtPositionRGBA:(int)position;
 - (UIColor *)colorForStatusAtPositionUIColor:(int)position;
 - (float)heightForInfractionsWithSize:(CGSize)size andFont:(UIFont *)font;
 

@@ -33,7 +33,9 @@
     
     self.tableCellHeights = [[NSMutableArray alloc] init];
 
-    [self fetchEstablishment];
+// TODO - display inspections
+//    [self fetchEstablishment];
+    
     [self calculateTableCellHeights];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -104,6 +106,8 @@
     pasteboard.string = self.establishment.shareURL;
 }
 
+
+// TODO - update addresses
 - (void)openInMaps {
     Class mapItemClass = [MKMapItem class];
     if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)]) {
@@ -299,7 +303,7 @@
 
     // Offset to take into account the two cells above
     int inspectionsOffset = 2;
-    int numEstablishments = self.establishment.inspections.count;
+    int numEstablishments = (int)self.establishment.inspections.count;
     for (int i=inspectionsOffset; i < (numEstablishments + inspectionsOffset); i++) {
         // Reversing inspection order for this
         //     numEstablishments - 1   takes us to the end of the list (counting from 0)
@@ -321,15 +325,20 @@
     return [self.tableCellHeights[indexPath.row] floatValue];
 }
 
-
+/* Name, distance, etc */
 - (UITableViewCell *)establishmentInfoCell {
+    NSLog(@"establishmentInfoCell");
+    
     DSFEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"EstablishmentInfo"];
     cell.establishment = self.establishment;
     [cell updateCellContent];
     return cell;
 }
 
+/* total number of inspections */
 - (UITableViewCell *)establishmentExtendedInfoCell {
+    NSLog(@"establishmentExtendedInfoCell");
+    
     if (self.extendedInfoCell == nil) {
         // Only create cell once, to avoid map resetting each time.
         self.extendedInfoCell = [self.tableView dequeueReusableCellWithIdentifier:@"EstablishmentExtendedInfo"];
@@ -340,12 +349,21 @@
 }
 
 - (UITableViewCell *)inspectionCellForIndexPath:(NSIndexPath *)indexPath {
+//    NSLog(@"inspectionCellForIndexPath %@", indexPath);
+    
     static NSString *CellIdentifier = @"InspectionCell";
-    DSFInspectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+//    DSFInspectionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];    Causes text to overlap on scroll.
+//  FIX: This fixes the overlapping, but causes infraction titles to overlap until we scroll past. Better than above, but FIX required. -dfd
+    DSFInspectionCell *cell = [[DSFInspectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    
     // TODO: Move inspectionIndex and cell order/etc to a consolidated place, i.e. figure out cell heights and orders once, and then return that instead of doing the calculations on every cell load, Also we're calculating inspectionIndex in 2 different places and that's confusing to update. Also, I'm very tired right now and can't articulate myself very well.
-    int inspectionIndex = self.establishment.inspections.count - 1 - indexPath.row + 2;  // reverse order
+    
+    int inspectionIndex = (int)self.establishment.inspections.count - 1 - (int)indexPath.row + 2;  // reverse order
     cell.inspection = self.establishment.inspections[inspectionIndex];
-    [cell setNeedsDisplay];
+
+//    [cell setNeedsDisplay];
+    [cell updateCellContent];
     return cell;
 }
 
@@ -371,7 +389,7 @@
                                self.currentLocation.coordinate.latitude,
                                self.currentLocation.coordinate.longitude];
     }
-    NSString *establishmentPath = [NSString stringWithFormat:@"establishments/%d.json", self.establishment.establishmentId];
+    NSString *establishmentPath = [NSString stringWithFormat:@"establishments/%lu.json", (unsigned long)self.establishment.establishmentId];
     [[DSFApiClient sharedInstance] getPath:establishmentPath parameters:parameters success:
      ^(AFHTTPRequestOperation *operation, id response) {
          
@@ -390,7 +408,7 @@
              errorMsg = @"Please try again.";
          } else {
              // -1003 is hostname not accessible. For that and others, display "network?" message
-             errorTitle = @"Could Not Connect";
+             errorTitle = @"*Could Not Connect";
              errorMsg = @"Please check that you have an active internet connection, and try again.";
          }
          [[[UIAlertView alloc] initWithTitle:errorTitle

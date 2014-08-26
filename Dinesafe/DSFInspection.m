@@ -32,15 +32,16 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
 
 - (void)updateWithDictionary:(NSDictionary *) dictionary {
     
-    self.inspectionId = [dictionary[@"id"] intValue];
-    self.status = dictionary[@"status"];
-    self.establishment_name = dictionary[@"establishment_name"];
-    self.establishment_type = dictionary[@"establishment_type"];
-    self.minimumInspectionsPerYear = [dictionary[@"minimum_inspections_per_year"] intValue];
+    self.inspectionId       = [dictionary[@"OBJECTID"] intValue];
+    self.status             = dictionary[@"HAZARDRATING"];
+    // TODO
+    self.establishment_name = kNotAvailable;
+    self.establishment_type = kNotAvailable;
+    self.minimumInspectionsPerYear = 0;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    self.date = [dateFormatter dateFromString:dictionary[@"date"]];
+    [dateFormatter setDateFormat:@"yyyyMMdd"];
+    self.date = [dateFormatter dateFromString:dictionary[@"INSPECTIONDATE"]];
 
     // Set some formatted date variables
     [dateFormatter setDateFormat:@"yyyy"];
@@ -48,22 +49,32 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     self.formattedDate = [dateFormatter stringFromDate:self.date];
     
-    
-    for (id infraction in dictionary[@"infractions"]) {
-        NSUInteger index = [self.infractions indexOfObjectPassingTest:
-                            ^(DSFInfraction *obj, NSUInteger idx, BOOL *stop) {
-                                if (obj.infractionId == [infraction[@"id"] intValue]) {
-                                    return YES;
-                                } else {
-                                    return NO;
-                                }
-                            }];
-        if (index == NSNotFound) {
+    // Infractions
+    NSArray *keys = [NSArray arrayWithObjects: @"id", @"severity", @"details", @"action", nil];
+    id lump = dictionary[@"VIOLLUMP"];
+    if (lump == [NSNull null]) {
+        NSArray *violation = [NSArray arrayWithObjects:@"N/A", @"N/A", @"N/A", @"N/A", nil];
+        
+        NSDictionary *infraction = [NSDictionary dictionaryWithObjects:violation forKeys:keys];
+        [self.infractions addObject:[[DSFInfraction alloc] initWithDictionary:infraction]];
+    }
+    else {
+        NSArray *array = [lump componentsSeparatedByString:@"|"];
+
+        for (NSMutableString *v in array) {
+            NSArray *violation = [v componentsSeparatedByString:@","];
+            
+            // FIX: sometimes the violation detail contains commas that throw off the conversion to keys/values. Skipping for now. - Aug 20, 2014 - FIXED.
+            if ([violation count] != 4) {
+                NSLog(@"FIX: (%lu) skipping violation %@", (long unsigned)self.inspectionId, v);
+                continue;
+            }
+            
+            NSDictionary *infraction = [NSDictionary dictionaryWithObjects:violation forKeys:keys];
             [self.infractions addObject:[[DSFInfraction alloc] initWithDictionary:infraction]];
-        } else {
-            [self.infractions[index] updateWithDictionary:infraction];
         }
     }
+    
 }
 
 #pragma mark -
@@ -81,80 +92,86 @@ const double kScoreBoxOtherBottomColorRGB[] = {115, 115, 115};
 #pragma mark -
 
 // Return a color for an inspection status (RGBA)
-// status is "Pass", "Conditional Pass", or "Close". Position is 0=top, 1=bottom
+// status is "Low", "Moderate", or "High". Position is 0=top, 1=bottom
 // TODO: This needs some major refactoring!!
-- (CGFloat[4])colorForStatusAtPositionRGBA:(int)position {
-    if ([self.status isEqualToString:@"Pass"]) {
+- (NSMutableArray *)colorForStatusAtPositionRGBA:(int)position {
+    if ([self.status isEqualToString:@"Low"]) {
         if (position == 0) {
-            return (CGFloat[]){
-                kScoreBoxPassTopColorRGB[0]/255,
-                kScoreBoxPassTopColorRGB[1]/255,
-                kScoreBoxPassTopColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxPassTopColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxPassTopColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxPassTopColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         } else {
-            return (CGFloat[]){
-                kScoreBoxPassBottomColorRGB[0]/255,
-                kScoreBoxPassBottomColorRGB[1]/255,
-                kScoreBoxPassBottomColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxPassBottomColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxPassBottomColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxPassBottomColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         }
-    } else if ([self.status isEqualToString:@"Conditional Pass"]) {
+    } else if ([self.status isEqualToString:@"Moderate"]) {
         if (position == 0) {
-            return (CGFloat[]){
-                kScoreBoxConditionalPassTopColorRGB[0]/255,
-                kScoreBoxConditionalPassTopColorRGB[1]/255,
-                kScoreBoxConditionalPassTopColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxConditionalPassTopColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxConditionalPassTopColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxConditionalPassTopColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         } else {
-            return (CGFloat[]){
-                kScoreBoxConditionalPassBottomColorRGB[0]/255,
-                kScoreBoxConditionalPassBottomColorRGB[1]/255,
-                kScoreBoxConditionalPassBottomColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxConditionalPassBottomColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxConditionalPassBottomColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxConditionalPassBottomColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         }
-    } else if ([self.status isEqualToString:@"Closed"]) {
+    } else if ([self.status isEqualToString:@"High"]) {
         if (position == 0) {
-            return (CGFloat[]){
-                kScoreBoxClosedTopColorRGB[0]/255,
-                kScoreBoxClosedTopColorRGB[1]/255,
-                kScoreBoxClosedTopColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxClosedTopColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxClosedTopColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxClosedTopColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         } else {
-            return (CGFloat[]){
-                kScoreBoxClosedBottomColorRGB[0]/255,
-                kScoreBoxClosedBottomColorRGB[1]/255,
-                kScoreBoxClosedBottomColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxClosedBottomColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxClosedBottomColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxClosedBottomColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         }
     } else {
         // "Out of Business" or anything else: Use gray
         if (position == 0) {
-            return (CGFloat[]){
-                kScoreBoxOtherTopColorRGB[0]/255,
-                kScoreBoxOtherTopColorRGB[1]/255,
-                kScoreBoxOtherTopColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxOtherTopColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxOtherTopColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxOtherTopColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         } else {
-            return (CGFloat[]){
-                kScoreBoxOtherBottomColorRGB[0]/255,
-                kScoreBoxOtherBottomColorRGB[1]/255,
-                kScoreBoxOtherBottomColorRGB[2]/255,
-                1.0
-            };
+            return [@[
+                      [NSNumber numberWithDouble: kScoreBoxOtherBottomColorRGB[0]/255],
+                      [NSNumber numberWithDouble: kScoreBoxOtherBottomColorRGB[1]/255],
+                      [NSNumber numberWithDouble: kScoreBoxOtherBottomColorRGB[2]/255],
+                      [NSNumber numberWithDouble: 1.0]
+                      ] mutableCopy];
         }
     }
 }
 
+// Not used. TODO:remove
 - (UIColor *)colorForStatusAtPositionUIColor:(int)position {
-    CGFloat *rgba = [self colorForStatusAtPositionRGBA:position];
-    return [UIColor colorWithRed:rgba[0] green:rgba[1] blue:rgba[2] alpha:rgba[3]];
+    NSMutableArray *rgba = [self colorForStatusAtPositionRGBA:position];
+    return [UIColor
+            colorWithRed:[[rgba objectAtIndex:0] floatValue]
+            green:[[rgba objectAtIndex:1] floatValue]
+            blue:[[rgba objectAtIndex:2] floatValue]
+            alpha:[[rgba objectAtIndex:3] floatValue]
+            ];
 }
 
 

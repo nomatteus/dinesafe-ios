@@ -9,15 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "DSFInspection.h"
 #import "DSFInfraction.h"
+#import "DSFInspectionCellView.h"
 
 @interface DSFInspectionCell : UITableViewCell
 
 @property (nonatomic, strong) DSFInspection *inspection;
 
-@property (nonatomic, strong) IBOutlet UILabel *status;
-@property (nonatomic, strong) IBOutlet UILabel *date;
-@property (nonatomic, strong) IBOutlet UIView *statusBox;
-@property (nonatomic, strong) IBOutlet UIView *infractionsView;
+//unused
+//@property (nonatomic, strong) IBOutlet UILabel *status;
+//@property (nonatomic, strong) IBOutlet UILabel *date;
+//@property (nonatomic, strong) IBOutlet UIView *statusBox;
+//@property (nonatomic, strong) IBOutlet UIView *infractionsView;
 
 - (void)updateCellContent;
 
