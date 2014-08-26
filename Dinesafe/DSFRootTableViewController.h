@@ -14,7 +14,6 @@
 #import "DSFEstablishmentCell.h"
 #import "DSFLoadingCell.h"
 #import "DSFInspectionTableViewController.h"
-#import "DSFSurreyEstablishmentCell.h"
 
 // #define kDistanceInMetersToTriggerRefresh 100
 

@@ -10,7 +10,6 @@
 #import "DSFPullToRefreshView.h"
 #import "Flurry.h"
 #import "DSFApiClient.h"
-#import "DSFSurreyEstablishment.h"
 
 @interface DSFRootTableViewController () <CLLocationManagerDelegate, UISearchBarDelegate>
 @property (nonatomic, strong) NSMutableArray *establishments;       // page
@@ -233,15 +232,14 @@
     
     static NSString *CellIdentifier = @"EstablishmentCell";
 
-    DSFSurreyEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
+    DSFEstablishment *establishment = [self.establishments objectAtIndex:[indexPath row]];
     
-    DSFSurreyEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    DSFEstablishmentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     [cell setEstablishment:establishment];
     [cell updateCellContent];
     
     return cell;
-    
 }
 
 - (UITableViewCell *)loadingCell {
@@ -390,7 +388,7 @@
     
     for (; idx < limit; idx++) {
         NSLog(@"idx = %i", idx);
-        DSFSurreyEstablishment *establishmentDictionary = [self.allEstablishments objectAtIndex:idx];
+        DSFEstablishment *establishmentDictionary = [self.allEstablishments objectAtIndex:idx];
         
         if (objectIds == nil) {
             objectIds = [NSString stringWithFormat:@"%lu", (unsigned long)establishmentDictionary.establishmentId];
@@ -417,7 +415,7 @@
     success:^(AFHTTPRequestOperation *operation, id response) {
 //        NSLog(@"response = %@", response);
         
-        DSFSurreyEstablishment *establishment;
+        DSFEstablishment *establishment;
         for (id establishmentDictionary in response[@"relatedRecordGroups"]) {
             
             NSString *objectId = [NSString stringWithFormat:@"%@", establishmentDictionary[@"objectId"]];
@@ -435,7 +433,7 @@
   
         }
         // Sort inspections by date.
-        for (DSFSurreyEstablishment *establishment in self.establishments) {
+        for (DSFEstablishment *establishment in self.establishments) {
 
 //            NSLog(@"objectId = %lu", (unsigned long)establishment.establishmentId);
             
@@ -457,8 +455,8 @@
         
         // Sort by distance -- Re-sort.
         [self.establishments sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            DSFSurreyEstablishment *est1 = obj1;
-            DSFSurreyEstablishment *est2 = obj2;
+            DSFEstablishment *est1 = obj1;
+            DSFEstablishment *est2 = obj2;
             
             if (est1.distance > est2.distance) {
                 return (NSComparisonResult)NSOrderedDescending;
@@ -542,7 +540,7 @@
             NSString *objectId = establishmentDictionary[@"attributes"][@"OBJECTID"];
             [self.objectIds addObject:objectId];
             
-            DSFSurreyEstablishment *establishment = [[DSFSurreyEstablishment alloc] initWithDictionary:establishmentDictionary[@"attributes"]];
+            DSFEstablishment *establishment = [[DSFEstablishment alloc] initWithDictionary:establishmentDictionary[@"attributes"]];
             
             // Calculate distance from current location
             CLLocation *estLocation =  [[CLLocation alloc] initWithLatitude:establishment.location.latitude longitude:establishment.location.longitude];
@@ -556,8 +554,8 @@
 
         // Sort by distance
         [self.allEstablishments sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            DSFSurreyEstablishment *est1 = obj1;
-            DSFSurreyEstablishment *est2 = obj2;
+            DSFEstablishment *est1 = obj1;
+            DSFEstablishment *est2 = obj2;
             
             if (est1.distance > est2.distance) {
                 return (NSComparisonResult)NSOrderedDescending;
@@ -614,7 +612,7 @@
 - (int)findEstablishment:(NSString *)searchID{
     //TODO - refactor
     int i=0;
-    for (DSFSurreyEstablishment *establishment in self.allEstablishments) {
+    for (DSFEstablishment *establishment in self.allEstablishments) {
         NSString *idStr = [NSString stringWithFormat:@"%zd", establishment.establishmentId];
         if([idStr isEqualToString: searchID]) {
             break;

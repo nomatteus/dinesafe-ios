@@ -30,11 +30,11 @@ const float kScoreBoxGap = 0;  // Gap between boxes
 
 #pragma mark - Drawing
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
+    
     // Drawing code
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-
+    
 //    CGRect bounds = [self bounds]; // Uncomment when needed
 //    float totalWidth = self.inspections.count * (kScoreBoxWidth + kScoreBoxGap);
 //    float totalHeight = kScoreBoxHeight;
@@ -63,14 +63,16 @@ const float kScoreBoxGap = 0;  // Gap between boxes
     
     // take subset/slice of inspections. only the last 17, so it will fit on screen.
     int inspections_count = (int)[self.inspections count];
+    NSLog(@"inspections_count = %i", inspections_count);
+    
     int startIndex = inspections_count > 17 ? inspections_count - 17 - 1 : 0;
     int subarrayLength = inspections_count > 17 ? 17 : inspections_count;
     NSArray *inspectionsSlice = [self.inspections subarrayWithRange:NSMakeRange(startIndex, subarrayLength)];
-    
+    NSLog(@"startIndex = %i, subarrayLength = %i", startIndex, subarrayLength);
+        
     for (id inspection in inspectionsSlice) {
         
         // Top of box
-        
         NSMutableArray *pos0RGBA = [inspection colorForStatusAtPositionRGBA:0];
         CGFloat topColor[] = {
             [[pos0RGBA objectAtIndex:0] floatValue],

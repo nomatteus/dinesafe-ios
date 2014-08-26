@@ -7,6 +7,7 @@
 //
 
 #import "DSFEstablishmentCell.h"
+#import "UIView+viewRecursion.h"
 
 @implementation DSFEstablishmentCell
 
@@ -29,8 +30,10 @@
     }
     
     // Clear out old scorebarView if exists -- TODO: is there a better way to do this?
-    for (UIView *view in self.subviews) {
+    // We are now using a UIView category to recursively search subviews. A better way. -dfdumaresq
+    for (UIView *view in self.allSubviews) {
         if ([view isKindOfClass:[DSFScorebarView class]]) {
+            NSLog(@">>>found scorebar");
             [view removeFromSuperview];
         }
     }
