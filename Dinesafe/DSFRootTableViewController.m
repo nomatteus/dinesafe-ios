@@ -10,6 +10,9 @@
 #import "DSFPullToRefreshView.h"
 #import "Flurry.h"
 
+static CLLocationDegrees const DefaultLocationLat = 43.648385;
+static CLLocationDegrees const DefaultLocationLng = -79.397238;
+
 @interface DSFRootTableViewController () <CLLocationManagerDelegate, UISearchBarDelegate>
 @property (nonatomic, strong) NSMutableArray *establishments;
 @property (nonatomic, strong) DSFEstablishment *_currentEstablishment;
@@ -20,6 +23,7 @@
 @property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) UIView *disableViewOverlay;
 @property (nonatomic, strong) SSPullToRefreshView *pullToRefreshView;
+@property (nonatomic, strong) CLLocation *defaultLocation;
 - (void)fetchEstablishments;
 - (void)fetchEstablishmentsWithReset:(BOOL)reset;
 - (void)resetEstablishments;
@@ -251,6 +255,7 @@
 - (BOOL)startUpdatingLocation {
     // Proxy to CLLocationManager startUpdatingLocation method
     // allows us to respond to changes to location services enabled/disabled
+#warning need to update this for iOS 8 -- locationServicesEnabled is for the system-wide setting, there is a separate check to do for app setting, and more cases to take care of...
     if ([CLLocationManager locationServicesEnabled]) {
         NSLog(@"locationServicesEnabled true");
         [self.locationManager startUpdatingLocation];
@@ -262,6 +267,8 @@
         return NO;
     }
 }
+
+#pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
@@ -281,6 +288,7 @@
     if (error.code == kCLErrorDenied) {
         // User Denied access to current location
         NSLog(@"locationManager didFailWithError (kCLErrorDenied) %@", error);
+        self.currentLocation = [[CLLocation alloc] initWithLatitude:DefaultLocationLat longitude:DefaultLocationLng];
         [self.locationManager stopUpdatingLocation];
         [self fetchEstablishments];
     }
