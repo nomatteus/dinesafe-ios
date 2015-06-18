@@ -43,26 +43,12 @@
 {
     [super viewDidLoad];
 
-    
-    
-    
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
-//    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
-//    self.extendedLayoutIncludesOpaqueBars = YES;
-    
-//    self.navigationController.navigationBar.translucent = NO;
-    
-    
-    
-    
-    
     self.currentLocation = nil;
     
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager setDelegate:self];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    [self.locationManager requestWhenInUseAuthorization];
     [self startUpdatingLocation];
     
     self.pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:self.tableView
@@ -173,18 +159,12 @@
     return YES;
 }
 
-/**
- The pull to refresh view started loading. You should kick off whatever you need to load when this is called.
- */
 - (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view {
     [self.locationManager startUpdatingLocation];
     [self fetchEstablishmentsWithReset:YES];
     [Flurry logEvent:@"Pull to Refresh" timed:YES];
 }
 
-/**
- The pull to refresh view finished loading. This will get called when it receives `finishLoading`.
- */
 - (void)pullToRefreshViewDidFinishLoading:(SSPullToRefreshView *)view {
     [Flurry endTimedEvent:@"Pull to Refresh" withParameters:nil];
 }
@@ -193,8 +173,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    return 1; // Everything in one section for now
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -215,7 +194,7 @@
     }
     
     // On last page, so no loading cell
-    return [self.establishments count];
+    return self.establishments.count;
 }
 
 - (UITableViewCell *)establishmentCellForIndexPath:(NSIndexPath *)indexPath {

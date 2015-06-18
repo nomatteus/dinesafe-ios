@@ -26,8 +26,6 @@ const double kNavBottomRGB[] = {36, 120, 228};
 - (void)awakeFromNib {
     // Initialization code
     
-//    self.translucent = NO;
-    
     // Set default button/backbutton tint color
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     

@@ -28,9 +28,7 @@
 }
 
 - (CGSize)heightForSize:(CGSize)size andFont:(UIFont *)font {
-    return [self.details sizeWithFont:font
-                    constrainedToSize:size
-                        lineBreakMode:NSLineBreakByWordWrapping];
+    return [self.details boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font} context:nil].size;
 }
 
 @end
