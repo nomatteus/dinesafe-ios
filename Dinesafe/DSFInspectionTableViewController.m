@@ -105,26 +105,16 @@
 }
 
 - (void)openInMaps {
-    Class mapItemClass = [MKMapItem class];
-    if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)]) {
-        // iOS 6+
-        NSDictionary *addressDict = @{
-            (NSString *)kABPersonAddressStreetKey: self.establishment.address,
-            (NSString *)kABPersonAddressCityKey: @"Toronto",
-            (NSString *)kABPersonAddressStateKey: @"Ontario"
-        };
-        MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:self.establishment.location
-                                                       addressDictionary:addressDict];
-        MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
-        [mapItem setName:self.establishment.latestName];
-        [mapItem openInMapsWithLaunchOptions:nil];
-    } else {
-        // iOS 5
-        UIApplication *app = [UIApplication sharedApplication];
-        NSString *mapQuery = [[NSString stringWithFormat:@"%@, Toronto, ON", self.establishment.address] urlEncode];
-        NSString *mapURL = [@"http://maps.google.com/?q=" stringByAppendingString:mapQuery];
-        [app openURL:[NSURL URLWithString:mapURL]];
-    }
+    NSDictionary *addressDict = @{
+        (NSString *)kABPersonAddressStreetKey: self.establishment.address,
+        (NSString *)kABPersonAddressCityKey: @"Toronto",
+        (NSString *)kABPersonAddressStateKey: @"Ontario"
+    };
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:self.establishment.location
+                                                   addressDictionary:addressDict];
+    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+    [mapItem setName:self.establishment.latestName];
+    [mapItem openInMapsWithLaunchOptions:nil];
 }
 
 - (void)postToFacebook {
@@ -173,7 +163,6 @@
 - (void)postToTwitter {
     NSLog(@"post to twitter");
     if ([FrameworkCheck isSocialAvailable]) {
-        // iOS 6, 7?, ...
         if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
             SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
             [composeViewController setInitialText:self.establishment.shareTextShort];
@@ -193,21 +182,6 @@
                 }
             }];
             [self presentViewController:composeViewController animated:YES completion:nil];
-        } else {
-            [self openWebTweetURL];
-        }
-    } else if ([FrameworkCheck isTwitterAvailable]) {
-        // iOS 5 twitter
-        if ([TWTweetComposeViewController canSendTweet]) {
-            TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
-            [tweetViewController setInitialText:self.establishment.shareTextShort];
-//            [tweetViewController addImage:[UIImage imageNamed:@"something.png"]];
-            NSString *shareURL = [NSString stringWithFormat:@"%@?utm_source=app_share&utm_medium=facebook&utm_campaign=dinesafe", self.establishment.shareURL];
-            [tweetViewController addURL:[NSURL URLWithString:shareURL]];
-            [tweetViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result){
-                [self dismissModalViewControllerAnimated:YES];
-            }];
-            [self presentViewController:tweetViewController animated:YES completion:nil];
         } else {
             [self openWebTweetURL];
         }
@@ -270,7 +244,7 @@
         default:
             break;
     }
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:self completion:nil];
 }
 
 #pragma mark - Table view data source

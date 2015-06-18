@@ -1,4 +1,4 @@
-platform :ios, '7.0'
+platform :ios, '8.0'
 
 pod 'AFNetworking',     '~> 1.3.3'
 pod 'SSPullToRefresh',  '~> 1.2.0'

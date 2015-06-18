@@ -137,7 +137,6 @@
     [self showSearch:searchBar];
 }
 
-// called when cancel button pressed
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [self hideSearch:searchBar andPerformSearch:NO];
 }
@@ -149,7 +148,6 @@
 
 - (UIView *)disableViewOverlay {
     if (_disableViewOverlay == nil) {
-//        CGRect frame = CGRectMake(0.0f,44.0f,320.0f,416.0f);
         CGRect frame = [[UIScreen mainScreen] bounds];
         frame.origin.y = self.searchBar.frame.size.height;
         _disableViewOverlay = [[UIView alloc] initWithFrame:frame];

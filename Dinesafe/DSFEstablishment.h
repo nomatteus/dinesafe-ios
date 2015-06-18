@@ -1,5 +1,5 @@
 //
-//  DinesafeEstablishment.h
+//  DSFEstablishment.h
 //  Dinesafe
 //
 //  Created by Matt Ruten on 2012-11-12.

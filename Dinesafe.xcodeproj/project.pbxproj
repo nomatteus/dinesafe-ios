@@ -34,7 +34,6 @@
 		AD52BF341651E4EF0090723E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD52BF331651E4EF0090723E /* Default-568h@2x.png */; };
 		AD52BF371651E4EF0090723E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD52BF351651E4EF0090723E /* MainStoryboard_iPhone.storyboard */; };
 		AD52BF3A1651E4EF0090723E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD52BF381651E4EF0090723E /* MainStoryboard_iPad.storyboard */; };
-		AD52BF451651E4EF0090723E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD52BF441651E4EF0090723E /* SenTestingKit.framework */; };
 		AD52BF461651E4EF0090723E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD52BF1D1651E4EF0090723E /* UIKit.framework */; };
 		AD52BF471651E4EF0090723E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD52BF1F1651E4EF0090723E /* Foundation.framework */; };
 		AD52BF4F1651E4EF0090723E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD52BF4D1651E4EF0090723E /* InfoPlist.strings */; };
@@ -80,7 +79,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		24F2C1F6266CD45DB2731042 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		308349F3472EC8D26D92C246 /* Pods.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.adhoc.xcconfig; path = "Pods/Target Support Files/Pods/Pods.adhoc.xcconfig"; sourceTree = "<group>"; };
+		70E4573DEB59B6EB084FD5CF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AD02055A166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFEstablishmentExtendedInfoCell.h; sourceTree = "<group>"; };
 		AD02055B166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFEstablishmentExtendedInfoCell.m; sourceTree = "<group>"; };
 		AD15C3D916B6B81F003C8DF7 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		AD52BF361651E4EF0090723E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		AD52BF391651E4EF0090723E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		AD52BF431651E4EF0090723E /* DinesafeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DinesafeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD52BF441651E4EF0090723E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		AD52BF4C1651E4EF0090723E /* DinesafeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DinesafeTests-Info.plist"; sourceTree = "<group>"; };
 		AD52BF4E1651E4EF0090723E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AD52BF501651E4EF0090723E /* DinesafeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DinesafeTests.h; sourceTree = "<group>"; };
@@ -185,7 +185,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD52BF451651E4EF0090723E /* SenTestingKit.framework in Frameworks */,
 				AD52BF461651E4EF0090723E /* UIKit.framework in Frameworks */,
 				AD52BF471651E4EF0090723E /* Foundation.framework in Frameworks */,
 			);
@@ -194,6 +193,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25F519345410B4F99C1949B1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				24F2C1F6266CD45DB2731042 /* Pods.debug.xcconfig */,
+				70E4573DEB59B6EB084FD5CF /* Pods.release.xcconfig */,
+				308349F3472EC8D26D92C246 /* Pods.adhoc.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AD52BF0E1651E4EF0090723E = {
 			isa = PBXGroup;
 			children = (
@@ -210,7 +219,7 @@
 				AD52BF4A1651E4EF0090723E /* DinesafeTests */,
 				AD52BF1C1651E4EF0090723E /* Frameworks */,
 				AD52BF1A1651E4EF0090723E /* Products */,
-				AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */,
+				25F519345410B4F99C1949B1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,7 +238,6 @@
 				AD52BF1D1651E4EF0090723E /* UIKit.framework */,
 				AD52BF1F1651E4EF0090723E /* Foundation.framework */,
 				AD52BF211651E4EF0090723E /* CoreGraphics.framework */,
-				AD52BF441651E4EF0090723E /* SenTestingKit.framework */,
 				FD264E67C5A14A179CC93943 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -398,7 +406,7 @@
 			name = DinesafeTests;
 			productName = DinesafeTests;
 			productReference = AD52BF431651E4EF0090723E /* DinesafeTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -407,7 +415,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Dinesafe;
-				LastTestingUpgradeCheck = 0600;
+				LastTestingUpgradeCheck = 0630;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Matt Ruten";
 			};
@@ -480,7 +488,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 		};
 		AD52BF411651E4EF0090723E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -606,7 +614,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -630,7 +638,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
@@ -642,12 +650,12 @@
 		};
 		AD52BF561651E4EF0090723E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */;
+			baseConfigurationReference = 24F2C1F6266CD45DB2731042 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -656,14 +664,14 @@
 		};
 		AD52BF571651E4EF0090723E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */;
+			baseConfigurationReference = 70E4573DEB59B6EB084FD5CF /* Pods.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Ruten";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Ruten";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
@@ -674,35 +682,37 @@
 		};
 		AD52BF591651E4EF0090723E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24F2C1F6266CD45DB2731042 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Dinesafe.app/Dinesafe";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "DinesafeTests/DinesafeTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
 		AD52BF5A1651E4EF0090723E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70E4573DEB59B6EB084FD5CF /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Dinesafe.app/Dinesafe";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "DinesafeTests/DinesafeTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -722,7 +732,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "C12A37AD-EAE1-4AE4-AB1B-EDBC84877F46";
@@ -735,14 +745,14 @@
 		};
 		ADD0E83B169C3AD60062D454 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB3E834A2B9946DA8E4EEB07 /* Pods.xcconfig */;
+			baseConfigurationReference = 308349F3472EC8D26D92C246 /* Pods.adhoc.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Ruten";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Ruten";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "EC53E3E4-1A27-49A7-8FDB-96D7A0E78546";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC53E3E4-1A27-49A7-8FDB-96D7A0E78546";
@@ -753,18 +763,19 @@
 		};
 		ADD0E83C169C3AD60062D454 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 308349F3472EC8D26D92C246 /* Pods.adhoc.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Dinesafe.app/Dinesafe";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "DinesafeTests/DinesafeTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Adhoc;
 		};

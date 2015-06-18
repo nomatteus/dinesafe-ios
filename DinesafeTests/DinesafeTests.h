@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Matt Ruten. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface DinesafeTests : SenTestCase
+@interface DinesafeTests : XCTestCase
 
 @end

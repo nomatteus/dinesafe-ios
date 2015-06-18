@@ -44,23 +44,6 @@ const float kScoreBoxGap = 0;  // Gap between boxes
     NSString *previousYear = nil;
     UIFont *yearFont = [UIFont fontWithName:@"PFTempestaFiveCompressed" size:8.0];
 
-    
-    // Shadows and/or layering rects seems to mess things up.
-    // Random lines appear between boxes when doing this.. possibly antialiasing issues?
-//    CGSize shadowOffset = CGSizeMake(0, 1);
-//    CGColorRef shadowColor = [[UIColor lightGrayColor] CGColor];
-//    CGContextSetShadowWithColor(ctx, shadowOffset, 4.0, shadowColor);
-//    CGFloat *containerColor = (CGFloat[]){1, 1, 1, 0.8};
-//    CGContextSetFillColor(ctx, containerColor);
-    
-//    CGRect container = CGRectMake(xOffset - 1, yOffset - 1, totalWidth + 2, totalHeight + 2);
-//    CGContextAddRect(ctx, container);
-//    CGContextFillPath(ctx);
-    
-    // Reset Shadow
-//    CGContextSetShadowWithColor(ctx, shadowOffset, 0, NULL);
-    
-    
     // take subset/slice of inspections. only the last 17, so it will fit on screen.
     int inspections_count = [self.inspections count];
     int startIndex = inspections_count > 17 ? inspections_count - 17 - 1 : 0;
@@ -70,7 +53,6 @@ const float kScoreBoxGap = 0;  // Gap between boxes
     for (id inspection in inspectionsSlice) {
         
         // Top of box
-        
         NSMutableArray *pos0RGBA = [inspection colorForStatusAtPositionRGBA:0];
         CGFloat topColor[] = {
             [[pos0RGBA objectAtIndex:0] floatValue],
