@@ -8,6 +8,10 @@
 
 #import "DSFLoadingCell.h"
 
+@interface DSFLoadingCell ()
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
+@end
+
 @implementation DSFLoadingCell
 
 // This is how to execute code on "init", instead of in:
@@ -15,6 +19,11 @@
 - (void)awakeFromNib {
     // Initialization code
     self.tag = kLoadingCellTag;
+}
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    [self.activityIndicator startAnimating];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

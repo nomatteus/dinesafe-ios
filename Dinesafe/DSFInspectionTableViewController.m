@@ -208,6 +208,7 @@
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate = self;
+
         [mailViewController setSubject:[NSString stringWithFormat:@"Dinesafe Results for %@", self.establishment.latestName]];
         
         NSString *shareURLHref = [NSString stringWithFormat:@"%@?utm_source=app_share&utm_medium=email&utm_campaign=dinesafe", self.establishment.shareURL];

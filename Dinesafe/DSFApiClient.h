@@ -10,6 +10,7 @@
 
 #define DINESAFE_API_BASE_URL @"http://dinesafe.to/api/1.0/"
 //#define DINESAFE_API_BASE_URL @"http://dinesafe.dev/api/1.0/"
+//#define DINESAFE_API_BASE_URL @"http://localhost:3000/api/1.0/"
 
 @interface DSFApiClient : AFHTTPClient
 
