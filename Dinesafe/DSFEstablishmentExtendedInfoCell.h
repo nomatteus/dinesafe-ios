@@ -23,4 +23,3 @@
 - (void)updateCellContent;
 
 @end
-

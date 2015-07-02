@@ -10,7 +10,8 @@
 
 @implementation DSFInfraction
 
-- (id) initWithDictionary:(NSDictionary *) dictionary {
+- (id)initWithDictionary:(NSDictionary *)dictionary
+{
     self = [super init];
     if (self) {
         [self updateWithDictionary:dictionary];
@@ -18,7 +19,8 @@
     return self;
 }
 
-- (void)updateWithDictionary:(NSDictionary *) dictionary {
+- (void)updateWithDictionary:(NSDictionary *)dictionary
+{
     self.infractionId = [dictionary[@"id"] intValue];
     self.details = dictionary[@"details"];
     self.severity = dictionary[@"severity"];
@@ -27,8 +29,9 @@
     self.amountFined = [dictionary[@"amount_fined"] doubleValue];
 }
 
-- (CGSize)heightForSize:(CGSize)size andFont:(UIFont *)font {
-    return [self.details boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font} context:nil].size;
+- (CGSize)heightForSize:(CGSize)size andFont:(UIFont *)font
+{
+    return [self.details boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : font } context:nil].size;
 }
 
 @end

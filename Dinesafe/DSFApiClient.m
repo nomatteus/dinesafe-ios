@@ -10,26 +10,28 @@
 
 @implementation DSFApiClient
 
-+ (id)sharedInstance {
++ (id)sharedInstance
+{
     static DSFApiClient *__sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __sharedInstance = [[DSFApiClient alloc] initWithBaseURL:
-                            [NSURL URLWithString:DINESAFE_API_BASE_URL]];
+      __sharedInstance = [[DSFApiClient alloc] initWithBaseURL:
+                                                   [NSURL URLWithString:DINESAFE_API_BASE_URL]];
     });
-    
+
     return __sharedInstance;
 }
 
-- (id)initWithBaseURL:(NSURL *)url {
+- (id)initWithBaseURL:(NSURL *)url
+{
     self = [super initWithBaseURL:url];
     if (self) {
         // custom settings/headers
         // [self setDefaultHeader:@"x-api-token" value:DinesafeApiToken];
-        
+
         [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     }
-    
+
     return self;
 }
 

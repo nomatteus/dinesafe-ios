@@ -16,12 +16,14 @@
 
 // This is how to execute code on "init", instead of in:
 //   - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
     self.tag = kLoadingCellTag;
 }
 
-- (void)prepareForReuse {
+- (void)prepareForReuse
+{
     [super prepareForReuse];
     [self.activityIndicator startAnimating];
 }
@@ -32,6 +34,5 @@
 
     // Configure the view for the selected state
 }
-
 
 @end

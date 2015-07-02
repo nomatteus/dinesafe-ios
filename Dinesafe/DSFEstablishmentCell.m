@@ -10,12 +10,11 @@
 
 @implementation DSFEstablishmentCell
 
-
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
     // [self setBackgroundColor:[UIColor grayColor]];
 }
-
 
 - (void)updateCellContent
 {
@@ -27,14 +26,14 @@
     } else {
         self.distance.text = @"";
     }
-    
+
     // Clear out old scorebarView if exists -- TODO: is there a better way to do this?
     for (UIView *view in self.subviews) {
         if ([view isKindOfClass:[DSFScorebarView class]]) {
             [view removeFromSuperview];
         }
     }
-    
+
     DSFScorebarView *scorebarView = [[DSFScorebarView alloc] initWithInspections:self.establishment.inspections];
     [self addSubview:scorebarView];
 }

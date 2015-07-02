@@ -8,14 +8,14 @@
 
 #import "DSFEstablishment.h"
 
-
 @interface DSFEstablishment ()
 
 @end
 
 @implementation DSFEstablishment
 
-- (id)initWithDictionary:(NSDictionary *)dictionary {
+- (id)initWithDictionary:(NSDictionary *)dictionary
+{
     self = [super init];
     if (self) {
         self.inspections = [NSMutableArray array];
@@ -24,7 +24,8 @@
     return self;
 }
 
-- (void)updateWithDictionary:(NSDictionary *)dictionary {
+- (void)updateWithDictionary:(NSDictionary *)dictionary
+{
     self.establishmentId = [dictionary[@"id"] intValue];
     self.latestName = dictionary[@"latest_name"];
     self.latestType = dictionary[@"latest_type"];
@@ -36,26 +37,23 @@
         self.shareTextLongHtml = dictionary[@"share"][@"text_long_html"];
         self.shareURL = dictionary[@"share"][@"url"];
     }
-    
+
     for (id inspection in dictionary[@"inspections"]) {
         NSUInteger index = [self.inspections indexOfObjectPassingTest:
-                            ^(DSFInspection *obj, NSUInteger idx, BOOL *stop) {
-                                if (obj.inspectionId == [inspection[@"id"] intValue]) {
-                                    return YES;
-                                } else {
-                                    return NO;
-                                }
-                            }];
+                                                 ^(DSFInspection *obj, NSUInteger idx, BOOL *stop) {
+                                                   if (obj.inspectionId == [inspection[@"id"] intValue]) {
+                                                       return YES;
+                                                   } else {
+                                                       return NO;
+                                                   }
+                                                 }];
         if (index == NSNotFound) {
             [self.inspections addObject:[[DSFInspection alloc] initWithDictionary:inspection]];
         } else {
             [self.inspections[index] updateWithDictionary:inspection];
         }
     }
-    if ([dictionary objectForKey:@"latlng"]
-        && [dictionary[@"latlng"] isKindOfClass:[NSDictionary class]]
-        && [dictionary[@"latlng"] objectForKey:@"lat"]
-        && [dictionary[@"latlng"] objectForKey:@"lng"]) { // Checking for non-null latlng
+    if ([dictionary objectForKey:@"latlng"] && [dictionary[@"latlng"] isKindOfClass:[NSDictionary class]] && [dictionary[@"latlng"] objectForKey:@"lat"] && [dictionary[@"latlng"] objectForKey:@"lng"]) { // Checking for non-null latlng
         double lat = [dictionary[@"latlng"][@"lat"] doubleValue];
         double lng = [dictionary[@"latlng"][@"lng"] doubleValue];
         self.location = CLLocationCoordinate2DMake(lat, lng);
@@ -63,7 +61,8 @@
     [self setDefaultSharingValuesIfNil];
 }
 
-- (void)setDefaultSharingValuesIfNil {
+- (void)setDefaultSharingValuesIfNil
+{
     if (!self.shareTextShort) {
         self.shareTextShort = [NSString stringWithFormat:@"I'm looking at %@ results on Dinesafe TO app.", self.latestName];
     }
@@ -78,7 +77,8 @@
     }
 }
 
-- (int)minimumInspectionsPerYear {
+- (int)minimumInspectionsPerYear
+{
     if (!_minimumInspectionsPerYear) {
         _minimumInspectionsPerYear = [self.inspections.lastObject minimumInspectionsPerYear];
     }

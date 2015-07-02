@@ -17,10 +17,8 @@
 @property (nonatomic, strong) NSString *courtOutcome;
 @property (nonatomic) double amountFined;
 
-
-
-- (id) initWithDictionary:(NSDictionary *) dictionary;
-- (void)updateWithDictionary:(NSDictionary *) dictionary;
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+- (void)updateWithDictionary:(NSDictionary *)dictionary;
 - (CGSize)heightForSize:(CGSize)size andFont:(UIFont *)font;
 
 @end

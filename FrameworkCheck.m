@@ -12,11 +12,13 @@
 
 // thnx: http://stackoverflow.com/a/12514036/76710
 
-+(BOOL)isTwitterAvailable {
++ (BOOL)isTwitterAvailable
+{
     return NSClassFromString(@"TWTweetComposeViewController") != nil;
 }
 
-+(BOOL)isSocialAvailable {
++ (BOOL)isSocialAvailable
+{
     return NSClassFromString(@"SLComposeViewController") != nil;
 }
 

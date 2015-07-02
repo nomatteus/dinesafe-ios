@@ -28,7 +28,7 @@
 @property (nonatomic, strong) NSString *shareTextLongHtml;
 @property (nonatomic, strong) NSString *shareURL;
 
-- (id)initWithDictionary:(NSDictionary *) dictionary;
+- (id)initWithDictionary:(NSDictionary *)dictionary;
 - (void)updateWithDictionary:(NSDictionary *)dictionary;
 
 @end

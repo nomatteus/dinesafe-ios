@@ -26,27 +26,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
     self.navigationItem.title = @"About";
-    
+
     [self.webView setBackgroundColor:[UIColor clearColor]];
     [self hideGradientBackground:self.webView];
-    
+
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"About" ofType:@"html"]];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     self.webView.delegate = self;
 }
 
 // Thanks to https://github.com/boctor/idev-recipes/tree/master/TransparentUIWebViews
-- (void) hideGradientBackground:(UIView*)theView {
-    for (UIView* subview in theView.subviews) {
+- (void)hideGradientBackground:(UIView *)theView
+{
+    for (UIView *subview in theView.subviews) {
         if ([subview isKindOfClass:[UIImageView class]])
             subview.hidden = YES;
-        
+
         [self hideGradientBackground:subview];
     }
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -56,7 +56,8 @@
 
 #pragma mark UIWebView Delegates
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
     // Open mail links
     if ([[[request URL] scheme] isEqual:@"mailto"]) {
         NSLog(@"mail link");
@@ -72,12 +73,12 @@
                                         message:@"Please use the web link, or install Twitter from the app store."
                                        delegate:nil
                               cancelButtonTitle:@"OK"
-                              otherButtonTitles: nil] show];
+                              otherButtonTitles:nil] show];
         }
         return NO;
     }
     // Open links in Safari
-    if (navigationType == UIWebViewNavigationTypeLinkClicked ) {
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         [[UIApplication sharedApplication] openURL:[request URL]];
         return NO;
     }
@@ -85,17 +86,18 @@
     return YES;
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView {
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
 }
 
 @end

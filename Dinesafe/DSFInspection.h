@@ -22,8 +22,8 @@
 
 @property (nonatomic, strong) NSMutableArray *infractions;
 
-- (id)initWithDictionary:(NSDictionary *) dictionary;
-- (void)updateWithDictionary:(NSDictionary *) dictionary;
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+- (void)updateWithDictionary:(NSDictionary *)dictionary;
 
 - (NSMutableArray *)colorForStatusAtPositionRGBA:(int)position;
 - (UIColor *)colorForStatusAtPositionUIColor:(int)position;

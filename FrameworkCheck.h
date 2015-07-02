@@ -10,7 +10,7 @@
 
 @interface FrameworkCheck : NSObject
 
-+(BOOL)isTwitterAvailable;
-+(BOOL)isSocialAvailable;
++ (BOOL)isTwitterAvailable;
++ (BOOL)isSocialAvailable;
 
 @end

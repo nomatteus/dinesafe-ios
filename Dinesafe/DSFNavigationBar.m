@@ -18,24 +18,25 @@ const double kNavBottomRGB[] = {36, 120, 228};
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-
     }
     return self;
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
-    
+
     // Set default button/backbutton tint color
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
-    
+
     // Set title text attributes -- this affects all view controllers, which may not be desirable
     self.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIFont fontWithName:@"BariolBold-Italic" size:26.0], UITextAttributeFont,
-                                [UIColor whiteColor], UITextAttributeTextColor,
-                                nil];
+                                                 [UIFont fontWithName:@"BariolBold-Italic"
+                                                                 size:26.0],
+                                                 UITextAttributeFont,
+                                                 [UIColor whiteColor], UITextAttributeTextColor,
+                                                 nil];
 }
-
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -53,7 +54,5 @@ const double kNavBottomRGB[] = {36, 120, 228};
 //    [navBarColor setFill];
 //    CGContextFillPath(ctx);
 //}
-
-
 
 @end
