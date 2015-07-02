@@ -51,7 +51,9 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager setDelegate:self];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-    [self.locationManager requestWhenInUseAuthorization];
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) { //iOS7 will crash otherwise
+        [self.locationManager requestWhenInUseAuthorization];
+    }
     [self startUpdatingLocation];
 
     self.pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:self.tableView
@@ -268,9 +270,8 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
 
 - (BOOL)startUpdatingLocation
 {
-// Proxy to CLLocationManager startUpdatingLocation method
-// allows us to respond to changes to location services enabled/disabled
-#warning need to update this for iOS 8 -- locationServicesEnabled is for the system-wide setting, there is a separate check to do for app setting, and more cases to take care of...
+    // Proxy to CLLocationManager startUpdatingLocation method
+    // allows us to respond to changes to location services enabled/disabled
     if ([CLLocationManager locationServicesEnabled]) {
         NSLog(@"locationServicesEnabled true");
         [self.locationManager startUpdatingLocation];
@@ -294,8 +295,8 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
     if (self.currentLocation == nil || distance > 1) {
         self.currentLocation = newLocation;
         [self fetchEstablishmentsWithReset:YES];
+        [self.locationManager stopUpdatingLocation];
     }
-    [self.locationManager stopUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -307,6 +308,14 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
         self.currentLocation = [[CLLocation alloc] initWithLatitude:DefaultLocationLat longitude:DefaultLocationLng];
         [self.locationManager stopUpdatingLocation];
         [self fetchEstablishments];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status == kCLAuthorizationStatusAuthorized || status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        NSLog(@"Starting to update location...");
+        [manager startUpdatingLocation];
     }
 }
 
