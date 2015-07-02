@@ -13,7 +13,6 @@
 - (void)awakeFromNib
 {
     // Initialization code
-    // [self setBackgroundColor:[UIColor grayColor]];
 }
 
 - (void)updateCellContent
@@ -36,13 +35,6 @@
 
     DSFScorebarView *scorebarView = [[DSFScorebarView alloc] initWithInspections:self.establishment.inspections];
     [self addSubview:scorebarView];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

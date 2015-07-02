@@ -24,6 +24,12 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
 @property (nonatomic, strong) UIView *disableViewOverlay;
 @property (nonatomic, strong) SSPullToRefreshView *pullToRefreshView;
 @property (nonatomic, strong) CLLocation *defaultLocation;
+
+/* Fix problem where cell sometimes still selected when edge panning back, and creates nice fade effect.
+   Keep track of it so we can select again if user cancels edge pan.
+   (Also requires setting clearsSelectionOnViewWillAppear = NO in viewDidLoad) */
+@property (strong, nonatomic) NSIndexPath *savedSelectedIndexPath;
+
 - (void)fetchEstablishments;
 - (void)fetchEstablishmentsWithReset:(BOOL)reset;
 - (void)resetEstablishments;
@@ -45,6 +51,7 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.clearsSelectionOnViewWillAppear = NO;
 
     self.currentLocation = nil;
 
@@ -63,6 +70,30 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
     [self resetEstablishmentsAndShowLoadingCell:YES];
 
     [Flurry logAllPageViews:self.navigationController];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.savedSelectedIndexPath = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    self.savedSelectedIndexPath = [self.tableView indexPathForSelectedRow];
+    if (self.savedSelectedIndexPath) {
+        [self.tableView deselectRowAtIndexPath:self.savedSelectedIndexPath animated:animated];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (self.savedSelectedIndexPath) {
+        [self.tableView selectRowAtIndexPath:self.savedSelectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
 }
 
 - (void)didReceiveMemoryWarning
