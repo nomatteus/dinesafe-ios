@@ -338,7 +338,7 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
         NSLog(@"locationManager didFailWithError (kCLErrorDenied) %@", error);
         self.currentLocation = [[CLLocation alloc] initWithLatitude:DefaultLocationLat longitude:DefaultLocationLng];
         [self.locationManager stopUpdatingLocation];
-        [self fetchEstablishments];
+        [self fetchEstablishmentsWithReset:YES];
     }
 }
 
