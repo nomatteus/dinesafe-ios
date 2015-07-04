@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q0Y-Un-4BN">
+                    <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qC1-w2-DH5">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vIH-XY-nqs">
+                    <rect key="frame" x="0.0" y="108" width="375" height="453"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="qC1-w2-DH5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="D0u-dz-G6a"/>
+                <constraint firstItem="Q0Y-Un-4BN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="EFD-dp-RW7"/>
+                <constraint firstItem="vIH-XY-nqs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FFw-ph-LeP"/>
+                <constraint firstItem="qC1-w2-DH5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HIL-Xn-f58"/>
+                <constraint firstAttribute="trailing" secondItem="vIH-XY-nqs" secondAttribute="trailing" id="HLf-H8-ZdQ"/>
+                <constraint firstItem="Q0Y-Un-4BN" firstAttribute="top" secondItem="qC1-w2-DH5" secondAttribute="bottom" id="Pa3-aM-tXU"/>
+                <constraint firstAttribute="trailing" secondItem="qC1-w2-DH5" secondAttribute="trailing" id="aFc-qR-x1p"/>
+                <constraint firstAttribute="trailing" secondItem="Q0Y-Un-4BN" secondAttribute="trailing" id="cqf-UK-KVq"/>
+                <constraint firstItem="vIH-XY-nqs" firstAttribute="top" secondItem="Q0Y-Un-4BN" secondAttribute="bottom" id="eAP-yU-GIR"/>
+                <constraint firstItem="Q0Y-Un-4BN" firstAttribute="top" secondItem="qC1-w2-DH5" secondAttribute="bottom" id="mz4-s8-XGJ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="408" y="446"/>
+        </view>
+    </objects>
+</document>
