@@ -35,12 +35,6 @@
 
     [self fetchEstablishment];
     [self calculateTableCellHeights];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -124,32 +118,34 @@
 - (void)postToFacebook
 {
     NSLog(@"post to facebook");
-    if ([FrameworkCheck isSocialAvailable]) {
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
-            SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-            [composeViewController setInitialText:self.establishment.shareTextShort];
-            //        [composeViewController addImage:[UIImage imageNamed:@"something.png"]];
-            NSString *shareURL = [NSString stringWithFormat:@"%@?utm_source=app_share&utm_medium=facebook&utm_campaign=dinesafe", self.establishment.shareURL];
-            [composeViewController addURL:[NSURL URLWithString:shareURL]];
-            [composeViewController setCompletionHandler:^(SLComposeViewControllerResult result) {
-              switch (result) {
-                  case SLComposeViewControllerResultCancelled:
-                      NSLog(@"Post canceled");
-                      break;
-                  case SLComposeViewControllerResultDone:
-                      NSLog(@"Post successful");
-                      break;
-                  default:
-                      break;
-              }
-            }];
-            [self presentViewController:composeViewController animated:YES completion:nil];
-        } else {
-            [self openWebFacebookURL];
-        }
-    } else {
+    if (![self canPostToFacebook]) {
         [self openWebFacebookURL];
+        return;
     }
+
+    SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    [composeViewController setInitialText:self.establishment.shareTextShort];
+    //        [composeViewController addImage:[UIImage imageNamed:@"something.png"]];
+    NSString *shareURL = [NSString stringWithFormat:@"%@?utm_source=app_share&utm_medium=facebook&utm_campaign=dinesafe", self.establishment.shareURL];
+    [composeViewController addURL:[NSURL URLWithString:shareURL]];
+    [composeViewController setCompletionHandler:^(SLComposeViewControllerResult result) {
+      switch (result) {
+          case SLComposeViewControllerResultCancelled:
+              NSLog(@"Post canceled");
+              break;
+          case SLComposeViewControllerResultDone:
+              NSLog(@"Post successful");
+              break;
+          default:
+              break;
+      }
+    }];
+    [self presentViewController:composeViewController animated:YES completion:nil];
+}
+
+- (BOOL)canPostToFacebook
+{
+    return [FrameworkCheck isSocialAvailable] && [SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook];
 }
 
 - (void)openWebFacebookURL
@@ -169,32 +165,32 @@
 - (void)postToTwitter
 {
     NSLog(@"post to twitter");
-    if ([FrameworkCheck isSocialAvailable]) {
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-            SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-            [composeViewController setInitialText:self.establishment.shareTextShort];
-            //        [composeViewController addImage:[UIImage imageNamed:@"something.png"]];
-            NSString *shareURL = [NSString stringWithFormat:@"%@?utm_source=app_share&utm_medium=twitter&utm_campaign=dinesafe", self.establishment.shareURL];
-            [composeViewController addURL:[NSURL URLWithString:shareURL]];
-            [composeViewController setCompletionHandler:^(SLComposeViewControllerResult result) {
-              switch (result) {
-                  case SLComposeViewControllerResultCancelled:
-                      NSLog(@"Post canceled");
-                      break;
-                  case SLComposeViewControllerResultDone:
-                      NSLog(@"Post successful");
-                      break;
-                  default:
-                      break;
-              }
-            }];
-            [self presentViewController:composeViewController animated:YES completion:nil];
-        } else {
-            [self openWebTweetURL];
-        }
-    } else {
+    if (![self canPostToTwitter]) {
         [self openWebTweetURL];
+        return;
     }
+    SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    [composeViewController setInitialText:self.establishment.shareTextShort];
+    NSString *shareURL = [NSString stringWithFormat:@"%@?utm_source=app_share&utm_medium=twitter&utm_campaign=dinesafe", self.establishment.shareURL];
+    [composeViewController addURL:[NSURL URLWithString:shareURL]];
+    [composeViewController setCompletionHandler:^(SLComposeViewControllerResult result) {
+      switch (result) {
+          case SLComposeViewControllerResultCancelled:
+              NSLog(@"Post canceled");
+              break;
+          case SLComposeViewControllerResultDone:
+              NSLog(@"Post successful");
+              break;
+          default:
+              break;
+      }
+    }];
+    [self presentViewController:composeViewController animated:YES completion:nil];
+}
+
+- (BOOL)canPostToTwitter
+{
+    return [FrameworkCheck isSocialAvailable] && [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
 }
 
 - (void)openWebTweetURL
@@ -394,19 +390,6 @@
           NSLog(@"%@", error);
 
         }];
-}
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
 }
 
 @end
