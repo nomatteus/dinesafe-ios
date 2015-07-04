@@ -54,7 +54,6 @@
 		B5768E3F5F1642BAA9C412B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD264E67C5A14A179CC93943 /* libPods.a */; };
 		C9718F581B47A15800138370 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9718F571B47A15800138370 /* Launch Screen.xib */; };
 		C9AF2D5C1B46459000A7CF95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9AF2D5B1B46459000A7CF95 /* Images.xcassets */; };
-		C9FD3DE71B479C70007C8205 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9FD3DE61B479C70007C8205 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,7 +135,6 @@
 		ADED2E0216BE054F00DAD58C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		C9718F571B47A15800138370 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		C9AF2D5B1B46459000A7CF95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C9FD3DE61B479C70007C8205 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		FD264E67C5A14A179CC93943 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -184,7 +182,6 @@
 		AD52BF0E1651E4EF0090723E = {
 			isa = PBXGroup;
 			children = (
-				C9FD3DE61B479C70007C8205 /* Default-568h@2x.png */,
 				AD94E99A16CA78B900C6EF8B /* MessageUI.framework */,
 				AD94E99816CA726C00C6EF8B /* Twitter.framework */,
 				AD94E99316CA681A00C6EF8B /* Accounts.framework */,
@@ -420,7 +417,6 @@
 				AD52BF371651E4EF0090723E /* MainStoryboard_iPhone.storyboard in Resources */,
 				AD52BF3A1651E4EF0090723E /* MainStoryboard_iPad.storyboard in Resources */,
 				ADCCD9D916A6838700887821 /* pf_tempesta_five_compressed.ttf in Resources */,
-				C9FD3DE71B479C70007C8205 /* Default-568h@2x.png in Resources */,
 				ADCAAB9816B9435B00E46495 /* Bariol_Bold_Italic.otf in Resources */,
 				ADC13C6816D022760000CE52 /* About.html in Resources */,
 			);
