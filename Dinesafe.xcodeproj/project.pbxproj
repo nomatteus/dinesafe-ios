@@ -54,6 +54,7 @@
 		B5768E3F5F1642BAA9C412B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD264E67C5A14A179CC93943 /* libPods.a */; };
 		C9718F581B47A15800138370 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9718F571B47A15800138370 /* Launch Screen.xib */; };
 		C9AF2D5C1B46459000A7CF95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9AF2D5B1B46459000A7CF95 /* Images.xcassets */; };
+		C9E03DAA1B48F88000EADC20 /* Annotated_Establishment_Record.png in Resources */ = {isa = PBXBuildFile; fileRef = C9E03DA91B48F88000EADC20 /* Annotated_Establishment_Record.png */; };
 		C9E1062C1B487BFE00B81F5A /* DSFInspectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1062B1B487BFE00B81F5A /* DSFInspectionView.m */; };
 /* End PBXBuildFile section */
 
@@ -136,6 +137,7 @@
 		ADED2E0216BE054F00DAD58C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		C9718F571B47A15800138370 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		C9AF2D5B1B46459000A7CF95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C9E03DA91B48F88000EADC20 /* Annotated_Establishment_Record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Annotated_Establishment_Record.png; sourceTree = "<group>"; };
 		C9E1062A1B487BFE00B81F5A /* DSFInspectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInspectionView.h; sourceTree = "<group>"; };
 		C9E1062B1B487BFE00B81F5A /* DSFInspectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInspectionView.m; sourceTree = "<group>"; };
 		FD264E67C5A14A179CC93943 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,6 +245,7 @@
 		AD52BF241651E4EF0090723E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C9E03DA91B48F88000EADC20 /* Annotated_Establishment_Record.png */,
 				AD52BF251651E4EF0090723E /* Dinesafe-Info.plist */,
 				AD52BF261651E4EF0090723E /* InfoPlist.strings */,
 				AD52BF291651E4EF0090723E /* main.m */,
@@ -418,6 +421,7 @@
 			files = (
 				AD52BF281651E4EF0090723E /* InfoPlist.strings in Resources */,
 				C9AF2D5C1B46459000A7CF95 /* Images.xcassets in Resources */,
+				C9E03DAA1B48F88000EADC20 /* Annotated_Establishment_Record.png in Resources */,
 				C9718F581B47A15800138370 /* Launch Screen.xib in Resources */,
 				AD52BF371651E4EF0090723E /* MainStoryboard_iPhone.storyboard in Resources */,
 				AD52BF3A1651E4EF0090723E /* MainStoryboard_iPad.storyboard in Resources */,

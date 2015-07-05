@@ -18,12 +18,18 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aDz-dp-11b">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aDz-dp-11b">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aDz-dp-11b" firstAttribute="top" secondItem="Rqt-gr-1u5" secondAttribute="bottom" id="0nY-Me-4nH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aDz-dp-11b" secondAttribute="trailing" constant="-16" id="NGq-vX-VpP"/>
+                            <constraint firstItem="Fhb-zJ-SAv" firstAttribute="top" secondItem="aDz-dp-11b" secondAttribute="bottom" id="RiM-f2-CJA"/>
+                            <constraint firstItem="aDz-dp-11b" firstAttribute="leading" secondItem="sCg-4w-KPt" secondAttribute="leading" id="isn-cl-1q1"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="webView" destination="aDz-dp-11b" id="qOL-zn-eNv"/>
