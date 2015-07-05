@@ -7,18 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DSFInspection.h"
-#import "DSFInfraction.h"
+
+@class DSFInspection;
 
 @interface DSFInspectionCell : UITableViewCell
 
 @property (nonatomic, strong) DSFInspection *inspection;
 
-@property (nonatomic, strong) IBOutlet UILabel *status;
-@property (nonatomic, strong) IBOutlet UILabel *date;
-@property (nonatomic, strong) IBOutlet UIView *statusBox;
-@property (nonatomic, strong) IBOutlet UIView *infractionsView;
-
-//- (void)updateCellContent;
+- (void)updateCellContentWithHeight:(CGFloat)height;
 
 @end

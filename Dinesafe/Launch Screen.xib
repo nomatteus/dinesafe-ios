@@ -19,7 +19,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vIH-XY-nqs">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vIH-XY-nqs">
                     <rect key="frame" x="0.0" y="108" width="375" height="453"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
@@ -36,6 +36,7 @@
                 <constraint firstAttribute="trailing" secondItem="Q0Y-Un-4BN" secondAttribute="trailing" id="cqf-UK-KVq"/>
                 <constraint firstItem="vIH-XY-nqs" firstAttribute="top" secondItem="Q0Y-Un-4BN" secondAttribute="bottom" id="eAP-yU-GIR"/>
                 <constraint firstItem="Q0Y-Un-4BN" firstAttribute="top" secondItem="qC1-w2-DH5" secondAttribute="bottom" id="mz4-s8-XGJ"/>
+                <constraint firstAttribute="bottom" secondItem="vIH-XY-nqs" secondAttribute="bottom" id="p8m-hg-YJZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="408" y="446"/>
