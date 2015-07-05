@@ -8,11 +8,14 @@
 
 #import "DSFEstablishmentCell.h"
 
+@interface DSFEstablishmentCell ()
+@property (nonatomic, strong) DSFScorebarView *scorebarView;
+@end
+
 @implementation DSFEstablishmentCell
 
 - (void)awakeFromNib
 {
-    // Initialization code
 }
 
 - (void)updateCellContent
@@ -25,16 +28,17 @@
     } else {
         self.distance.text = @"";
     }
+    self.scorebarView.inspections = self.establishment.inspections;
+    [self.scorebarView setNeedsDisplay];
+}
 
-    // Clear out old scorebarView if exists -- TODO: is there a better way to do this?
-    for (UIView *view in self.subviews) {
-        if ([view isKindOfClass:[DSFScorebarView class]]) {
-            [view removeFromSuperview];
-        }
+- (DSFScorebarView *)scorebarView
+{
+    if (!_scorebarView) {
+        _scorebarView = [[DSFScorebarView alloc] initWithInspections:self.establishment.inspections];
+        [self addSubview:_scorebarView];
     }
-
-    DSFScorebarView *scorebarView = [[DSFScorebarView alloc] initWithInspections:self.establishment.inspections];
-    [self addSubview:scorebarView];
+    return _scorebarView;
 }
 
 @end
