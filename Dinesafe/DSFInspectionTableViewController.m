@@ -357,7 +357,7 @@
                                                          self.currentLocation.coordinate.latitude,
                                                          self.currentLocation.coordinate.longitude];
     }
-    NSString *establishmentPath = [NSString stringWithFormat:@"establishments/%d.json", self.establishment.establishmentId];
+    NSString *establishmentPath = [NSString stringWithFormat:@"establishments/%lu.json", (unsigned long)self.establishment.establishmentId];
     [[DSFApiClient sharedInstance] getPath:establishmentPath
         parameters:parameters
         success:

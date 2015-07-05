@@ -389,7 +389,7 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
     }
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                                               [NSString stringWithFormat:@"%d", self._currentPage], @"page",
+                                                               [NSString stringWithFormat:@"%ld", (long)self._currentPage], @"page",
                                                                nil];
     if (self.currentLocation != nil) {
         parameters[@"near"] = [NSString stringWithFormat:@"%f,%f",

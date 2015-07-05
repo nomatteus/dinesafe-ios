@@ -11,17 +11,23 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qC1-w2-DH5">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qC1-w2-DH5">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="AjW-0z-ddc"/>
+                    </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vIH-XY-nqs">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vIH-XY-nqs">
                     <rect key="frame" x="0.0" y="108" width="375" height="453"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xbk-TP-geJ">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbk-TP-geJ">
                     <rect key="frame" x="0.0" y="64" width="375" height="43"/>
                     <color key="backgroundColor" red="0.88430567080624956" green="0.88645121434410334" blue="0.91919191919191923" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="LEb-fr-fx0"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -33,9 +39,9 @@
                 <constraint firstAttribute="trailing" secondItem="vIH-XY-nqs" secondAttribute="trailing" id="HLf-H8-ZdQ"/>
                 <constraint firstAttribute="trailing" secondItem="xbk-TP-geJ" secondAttribute="trailing" id="YdF-OX-Rm8"/>
                 <constraint firstAttribute="trailing" secondItem="qC1-w2-DH5" secondAttribute="trailing" id="aFc-qR-x1p"/>
-                <constraint firstItem="vIH-XY-nqs" firstAttribute="top" secondItem="xbk-TP-geJ" secondAttribute="bottom" id="ekN-BO-vIg"/>
+                <constraint firstItem="vIH-XY-nqs" firstAttribute="top" secondItem="xbk-TP-geJ" secondAttribute="bottom" constant="1" id="ekN-BO-vIg"/>
                 <constraint firstItem="xbk-TP-geJ" firstAttribute="top" secondItem="qC1-w2-DH5" secondAttribute="bottom" id="lOi-g7-zAU"/>
-                <constraint firstAttribute="bottom" secondItem="vIH-XY-nqs" secondAttribute="bottom" id="p8m-hg-YJZ"/>
+                <constraint firstAttribute="bottom" secondItem="vIH-XY-nqs" secondAttribute="bottom" constant="106" id="p8m-hg-YJZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="407.5" y="445.5"/>
