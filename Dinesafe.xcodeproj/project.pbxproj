@@ -54,6 +54,7 @@
 		B5768E3F5F1642BAA9C412B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD264E67C5A14A179CC93943 /* libPods.a */; };
 		C9718F581B47A15800138370 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9718F571B47A15800138370 /* Launch Screen.xib */; };
 		C9AF2D5C1B46459000A7CF95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9AF2D5B1B46459000A7CF95 /* Images.xcassets */; };
+		C9E1062C1B487BFE00B81F5A /* DSFInspectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1062B1B487BFE00B81F5A /* DSFInspectionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,8 @@
 		ADED2E0216BE054F00DAD58C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		C9718F571B47A15800138370 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		C9AF2D5B1B46459000A7CF95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C9E1062A1B487BFE00B81F5A /* DSFInspectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInspectionView.h; sourceTree = "<group>"; };
+		C9E1062B1B487BFE00B81F5A /* DSFInspectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInspectionView.m; sourceTree = "<group>"; };
 		FD264E67C5A14A179CC93943 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -310,6 +313,8 @@
 				ADE4B4B316AD7B1300181CE2 /* DSFMapViewController.m */,
 				ADE4B4B516AD7B3B00181CE2 /* DSFInfoViewController.h */,
 				ADE4B4B616AD7B3B00181CE2 /* DSFInfoViewController.m */,
+				C9E1062A1B487BFE00B81F5A /* DSFInspectionView.h */,
+				C9E1062B1B487BFE00B81F5A /* DSFInspectionView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -479,6 +484,7 @@
 				AD7D769B1661C5E7001BFB20 /* DSFScorebarView.m in Sources */,
 				ADD0C2381662443D00A68A1B /* DSFInspectionTableViewController.m in Sources */,
 				ADC81A771665D01600BD7793 /* DSFInspectionCell.m in Sources */,
+				C9E1062C1B487BFE00B81F5A /* DSFInspectionView.m in Sources */,
 				AD02055C166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m in Sources */,
 				AD16DFEA16783B520058CDCE /* DSFPullToRefreshView.m in Sources */,
 				ADD5D715169AF5470008A6F9 /* DSFEstablishmentAnnotation.m in Sources */,
