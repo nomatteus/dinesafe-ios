@@ -45,7 +45,7 @@ const float kScoreBoxGap = 0; // Gap between boxes
 
     // take subset/slice of inspections. only the last 17, so it will fit on screen.
     NSUInteger inspections_count = [self.inspections count];
-    NSUInteger startIndex = inspections_count > 17 ? inspections_count - 17 - 1 : 0;
+    NSUInteger startIndex = inspections_count > 17 ? inspections_count - 17 : 0;
     NSUInteger subarrayLength = inspections_count > 17 ? 17 : inspections_count;
     NSArray *inspectionsSlice = [self.inspections subarrayWithRange:NSMakeRange(startIndex, subarrayLength)];
 
