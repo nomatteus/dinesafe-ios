@@ -107,7 +107,7 @@
     [[UIColor blackColor] setFill];
     CGRect severityHeadingRect = CGRectMake(16, 84.0, 208, 18);
     [@"Severity" drawInRect:severityHeadingRect withFont:[UIFont fontWithName:@"HelveticaNeue-BoldItalic" size:statusTextFontSize]];
-    CGRect detailsHeadingRect = CGRectMake(104, 84.0, 208, 18);
+    CGRect detailsHeadingRect = CGRectMake(statusRect.size.width + 16, 84.0, 208, 18);
     [@"Details" drawInRect:detailsHeadingRect withFont:[UIFont fontWithName:@"HelveticaNeue-BoldItalic" size:statusTextFontSize]];
 
     // --- draw infractions list. ---
@@ -121,7 +121,8 @@
                           lineBreakMode:NSLineBreakByCharWrapping
                               alignment:NSTextAlignmentLeft];
         // Consider "height" to be a "max height", as we'll dynamically size it depending on length of text
-        CGRect detailsFrame = CGRectMake(104, offsetY, 208, infractionHeight * 5);
+        CGFloat infractionDetailWidth = self.frame.size.width - statusRect.size.width - 16 - 16;
+        CGRect detailsFrame = CGRectMake(statusRect.size.width + 16, offsetY, infractionDetailWidth, infractionHeight * 5);
         UIFont *detailsFont = [UIFont fontWithName:@"HelveticaNeue" size:infractionsFontSize];
         CGSize detailsSize = [infraction heightForSize:detailsFrame.size andFont:detailsFont];
 

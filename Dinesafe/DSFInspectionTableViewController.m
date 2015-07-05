@@ -291,7 +291,7 @@
         int cellHeight;
         if (inspection.infractions.count > 0) {
             // 120 is base height
-            cellHeight = 120 + [inspection heightForInfractionsWithSize:CGSizeMake(208, 1000) andFont:[UIFont fontWithName:@"HelveticaNeue" size:12.0]];
+            cellHeight = 120 + [inspection heightForInfractionsWithSize:CGSizeMake(self.tableView.frame.size.width - 132, 1000) andFont:[UIFont fontWithName:@"HelveticaNeue" size:12.0]];
         } else {
             cellHeight = 40;
         }

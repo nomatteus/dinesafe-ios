@@ -17,6 +17,10 @@
 
 - (void)updateCellContentWithHeight:(CGFloat)height
 {
+    // Sync width with frame
+    self.inspectionView.frame = self.bounds;
+
+    // Update height to match
     CGRect frame = self.inspectionView.frame;
     frame.size.height = height;
     self.inspectionView.frame = frame;
