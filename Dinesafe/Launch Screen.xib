@@ -11,10 +11,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q0Y-Un-4BN">
-                    <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                    <textInputTraits key="textInputTraits"/>
-                </searchBar>
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qC1-w2-DH5">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -23,23 +19,26 @@
                     <rect key="frame" x="0.0" y="108" width="375" height="453"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xbk-TP-geJ">
+                    <rect key="frame" x="0.0" y="64" width="375" height="43"/>
+                    <color key="backgroundColor" red="0.88430567080624956" green="0.88645121434410334" blue="0.91919191919191923" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="xbk-TP-geJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="89W-rO-SBS"/>
                 <constraint firstItem="qC1-w2-DH5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="D0u-dz-G6a"/>
-                <constraint firstItem="Q0Y-Un-4BN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="EFD-dp-RW7"/>
                 <constraint firstItem="vIH-XY-nqs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FFw-ph-LeP"/>
                 <constraint firstItem="qC1-w2-DH5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HIL-Xn-f58"/>
                 <constraint firstAttribute="trailing" secondItem="vIH-XY-nqs" secondAttribute="trailing" id="HLf-H8-ZdQ"/>
-                <constraint firstItem="Q0Y-Un-4BN" firstAttribute="top" secondItem="qC1-w2-DH5" secondAttribute="bottom" id="Pa3-aM-tXU"/>
+                <constraint firstAttribute="trailing" secondItem="xbk-TP-geJ" secondAttribute="trailing" id="YdF-OX-Rm8"/>
                 <constraint firstAttribute="trailing" secondItem="qC1-w2-DH5" secondAttribute="trailing" id="aFc-qR-x1p"/>
-                <constraint firstAttribute="trailing" secondItem="Q0Y-Un-4BN" secondAttribute="trailing" id="cqf-UK-KVq"/>
-                <constraint firstItem="vIH-XY-nqs" firstAttribute="top" secondItem="Q0Y-Un-4BN" secondAttribute="bottom" id="eAP-yU-GIR"/>
-                <constraint firstItem="Q0Y-Un-4BN" firstAttribute="top" secondItem="qC1-w2-DH5" secondAttribute="bottom" id="mz4-s8-XGJ"/>
+                <constraint firstItem="vIH-XY-nqs" firstAttribute="top" secondItem="xbk-TP-geJ" secondAttribute="bottom" id="ekN-BO-vIg"/>
+                <constraint firstItem="xbk-TP-geJ" firstAttribute="top" secondItem="qC1-w2-DH5" secondAttribute="bottom" id="lOi-g7-zAU"/>
                 <constraint firstAttribute="bottom" secondItem="vIH-XY-nqs" secondAttribute="bottom" id="p8m-hg-YJZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="408" y="446"/>
+            <point key="canvasLocation" x="407.5" y="445.5"/>
         </view>
     </objects>
 </document>
