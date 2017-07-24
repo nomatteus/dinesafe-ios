@@ -12,6 +12,9 @@ const float kScoreBoxWidth = 16;
 const float kScoreBoxHeight = 12;
 const float kScoreBoxGap = 0; // Gap between boxes
 
+const float kScoreBarMargin = 20; // e.g. left margin from screen edge
+const float kMaxScoreBoxCount = 30;
+
 @implementation DSFScorebarView
 
 #pragma mark - Init
@@ -19,13 +22,18 @@ const float kScoreBoxGap = 0; // Gap between boxes
 // Custom init method
 - (id)initWithInspections:(NSArray *)inspections
 {
-    CGRect scorebarFrame = CGRectMake(20, 38, 273, 22);
+    // Make the frame wide enough to hold as many as we'll ever need.
+    // However will only choose how many to draw depending on the current screen width
+    CGFloat scorebarWidth = kScoreBoxWidth * kMaxScoreBoxCount;
+    CGRect scorebarFrame = CGRectMake(kScoreBarMargin, 38, scorebarWidth, 22);
     if ((self = [super initWithFrame:scorebarFrame])) {
         self.inspections = inspections;
         [self setBackgroundColor:[UIColor clearColor]];
     }
     return self;
 }
+
+#pragma mark - Calculations to figure out how many inspections can show
 
 #pragma mark - Drawing
 
@@ -34,19 +42,21 @@ const float kScoreBoxGap = 0; // Gap between boxes
     // Drawing code
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
-    //    CGRect bounds = [self bounds]; // Uncomment when needed
-    //    float totalWidth = self.inspections.count * (kScoreBoxWidth + kScoreBoxGap);
-    //    float totalHeight = kScoreBoxHeight;
+    // Screen bounds to figure out how many inspections we can show in scorebar
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    CGFloat scoreBarVisibleWidth = screenBounds.size.width - kScoreBarMargin * 2; // left and right margin
+
+    // Calculate how many inspections in the scorebar can fit on screen.
+    NSUInteger numInspectionsToShow = (NSUInteger) floorf(scoreBarVisibleWidth / (kScoreBoxWidth+kScoreBoxGap));
 
     float xOffset = 0; // Keep track of position of next box -- start at 1
     float yOffset = 0; // Fixed Y offset. Adjust to match shadows
     NSString *previousYear = nil;
     UIFont *yearFont = [UIFont fontWithName:@"PFTempestaFiveCompressed" size:8.0];
 
-    // take subset/slice of inspections. only the last 17, so it will fit on screen.
     NSUInteger inspections_count = [self.inspections count];
-    NSUInteger startIndex = inspections_count > 17 ? inspections_count - 17 : 0;
-    NSUInteger subarrayLength = inspections_count > 17 ? 17 : inspections_count;
+    NSUInteger startIndex = inspections_count > numInspectionsToShow ? inspections_count - numInspectionsToShow : 0;
+    NSUInteger subarrayLength = inspections_count > numInspectionsToShow ? numInspectionsToShow : inspections_count;
     NSArray *inspectionsSlice = [self.inspections subarrayWithRange:NSMakeRange(startIndex, subarrayLength)];
 
     for (id inspection in inspectionsSlice) {

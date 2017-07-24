@@ -4,17 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-AFNetworking.xcscheme</key>
+		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SSPullToRefresh.xcscheme</key>
+		<key>Pods-Dinesafe.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-DinesafeTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SSPullToRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6C396CFDD02345A6ACC7EC6B</key>
+		<key>422BB48A466D52F020B42748B2271D0F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F1BCCDC0B7D4A29AF47D363A</key>
+		<key>5036BDF8348CD45FF6F9340DD80B8411</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F28BB4B7DEFD378F09FF4019</key>
+		<key>86329FAF8A7E606C7F5AEFA8C5AAE590</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E590C7F7211E4698F9D4F65DCA673C1C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

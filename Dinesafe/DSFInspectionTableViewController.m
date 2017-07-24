@@ -34,13 +34,24 @@
     self.tableCellHeights = [[NSMutableArray alloc] init];
 
     [self fetchEstablishment];
-    [self calculateTableCellHeights];
+    [self calculateTableCellHeights:self.view.frame.size];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - view rotation callback
+
+- (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    // Calculate table cell heights for new size
+    [self calculateTableCellHeights:size];
+
+    // Reload data so that the text will fit in the new size
+    [self.tableView reloadData];
 }
 
 #pragma mark - Action button tap & sharing actions
@@ -270,9 +281,8 @@
 
 // Calculates and stores table heights, so we don't have to do the logic/calulations
 //      constantly. i.e. a caching mechanism to avoid laggy scrolling
-- (void)calculateTableCellHeights
+- (void)calculateTableCellHeights:(CGSize)frameSize
 {
-    NSLog(@"calculateTableCellHeights called");
     // Establishment Info
     self.tableCellHeights[0] = [NSNumber numberWithInt:110];
 
@@ -291,7 +301,7 @@
         int cellHeight;
         if (inspection.infractions.count > 0) {
             // 120 is base height
-            cellHeight = 120 + [inspection heightForInfractionsWithSize:CGSizeMake(self.tableView.frame.size.width - 132, 1000) andFont:[UIFont fontWithName:@"HelveticaNeue" size:12.0]];
+            cellHeight = 120 + [inspection heightForInfractionsWithSize:CGSizeMake(frameSize.width - 132, 1000) andFont:[UIFont fontWithName:@"HelveticaNeue" size:12.0]];
         } else {
             cellHeight = 40;
         }
@@ -364,7 +374,7 @@
             ^(AFHTTPRequestOperation *operation, id response) {
 
               [self.establishment updateWithDictionary:response[@"data"]];
-              [self calculateTableCellHeights];
+              [self calculateTableCellHeights:self.view.frame.size];
               [self.tableView reloadData];
 
             }

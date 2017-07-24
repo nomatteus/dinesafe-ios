@@ -102,6 +102,14 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - view rotation callback
+
+- (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    // Reload data so that scorebars resize when orientation changed
+    [self.tableView reloadData];
+}
+
 #pragma mark - Search
 
 - (void)showSearch:(UISearchBar *)searchBar

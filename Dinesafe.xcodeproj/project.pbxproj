@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F3C41A66E23F2987882D164 /* libPods-DinesafeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0951739DF958C6CAC7B799FD /* libPods-DinesafeTests.a */; };
 		AD02055C166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD02055B166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m */; };
 		AD16DFEA16783B520058CDCE /* DSFPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD16DFE916783B520058CDCE /* DSFPullToRefreshView.m */; };
 		AD2D3FC7166175E30050699C /* DSFApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2D3FC6166175E30050699C /* DSFApiClient.m */; };
@@ -51,11 +52,11 @@
 		ADE4B4B416AD7B1300181CE2 /* DSFMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE4B4B316AD7B1300181CE2 /* DSFMapViewController.m */; };
 		ADE4B4B716AD7B3B00181CE2 /* DSFInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE4B4B616AD7B3B00181CE2 /* DSFInfoViewController.m */; };
 		ADED2E0316BE054F00DAD58C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADED2E0216BE054F00DAD58C /* AddressBook.framework */; };
-		B5768E3F5F1642BAA9C412B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD264E67C5A14A179CC93943 /* libPods.a */; };
 		C9718F581B47A15800138370 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9718F571B47A15800138370 /* Launch Screen.xib */; };
 		C9AF2D5C1B46459000A7CF95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9AF2D5B1B46459000A7CF95 /* Images.xcassets */; };
 		C9E03DAA1B48F88000EADC20 /* Annotated_Establishment_Record.png in Resources */ = {isa = PBXBuildFile; fileRef = C9E03DA91B48F88000EADC20 /* Annotated_Establishment_Record.png */; };
 		C9E1062C1B487BFE00B81F5A /* DSFInspectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E1062B1B487BFE00B81F5A /* DSFInspectionView.m */; };
+		F02A8D1531C670118E6333CA /* libPods-Dinesafe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D30271AD38FA06786AAE89BD /* libPods-Dinesafe.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,9 +70,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		24F2C1F6266CD45DB2731042 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		308349F3472EC8D26D92C246 /* Pods.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.adhoc.xcconfig; path = "Pods/Target Support Files/Pods/Pods.adhoc.xcconfig"; sourceTree = "<group>"; };
-		70E4573DEB59B6EB084FD5CF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		0951739DF958C6CAC7B799FD /* libPods-DinesafeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DinesafeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B77714A23BD6076043ACA0A /* Pods-DinesafeTests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DinesafeTests.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-DinesafeTests/Pods-DinesafeTests.adhoc.xcconfig"; sourceTree = "<group>"; };
+		659F5CC3F2DFF406B29FD131 /* Pods-Dinesafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dinesafe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dinesafe/Pods-Dinesafe.debug.xcconfig"; sourceTree = "<group>"; };
+		701B2FE365AAC55204ADA0E4 /* Pods-Dinesafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dinesafe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dinesafe/Pods-Dinesafe.release.xcconfig"; sourceTree = "<group>"; };
 		AD02055A166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFEstablishmentExtendedInfoCell.h; sourceTree = "<group>"; };
 		AD02055B166B24CA00A7B349 /* DSFEstablishmentExtendedInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFEstablishmentExtendedInfoCell.m; sourceTree = "<group>"; };
 		AD16DFE816783B520058CDCE /* DSFPullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFPullToRefreshView.h; sourceTree = "<group>"; };
@@ -140,7 +142,10 @@
 		C9E03DA91B48F88000EADC20 /* Annotated_Establishment_Record.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Annotated_Establishment_Record.png; sourceTree = "<group>"; };
 		C9E1062A1B487BFE00B81F5A /* DSFInspectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFInspectionView.h; sourceTree = "<group>"; };
 		C9E1062B1B487BFE00B81F5A /* DSFInspectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFInspectionView.m; sourceTree = "<group>"; };
-		FD264E67C5A14A179CC93943 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D30271AD38FA06786AAE89BD /* libPods-Dinesafe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dinesafe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D569B1196D4E4E09B68EC231 /* Pods-DinesafeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DinesafeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DinesafeTests/Pods-DinesafeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D63D802D6390DEF8F679CBE4 /* Pods-DinesafeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DinesafeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DinesafeTests/Pods-DinesafeTests.release.xcconfig"; sourceTree = "<group>"; };
+		DEE4417DAA8B7F9EBD752F9B /* Pods-Dinesafe.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dinesafe.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-Dinesafe/Pods-Dinesafe.adhoc.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +163,7 @@
 				AD52BF1E1651E4EF0090723E /* UIKit.framework in Frameworks */,
 				AD52BF201651E4EF0090723E /* Foundation.framework in Frameworks */,
 				AD52BF221651E4EF0090723E /* CoreGraphics.framework in Frameworks */,
-				B5768E3F5F1642BAA9C412B6 /* libPods.a in Frameworks */,
+				F02A8D1531C670118E6333CA /* libPods-Dinesafe.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,22 +173,13 @@
 			files = (
 				AD52BF461651E4EF0090723E /* UIKit.framework in Frameworks */,
 				AD52BF471651E4EF0090723E /* Foundation.framework in Frameworks */,
+				9F3C41A66E23F2987882D164 /* libPods-DinesafeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		25F519345410B4F99C1949B1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				24F2C1F6266CD45DB2731042 /* Pods.debug.xcconfig */,
-				70E4573DEB59B6EB084FD5CF /* Pods.release.xcconfig */,
-				308349F3472EC8D26D92C246 /* Pods.adhoc.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		AD52BF0E1651E4EF0090723E = {
 			isa = PBXGroup;
 			children = (
@@ -200,7 +196,7 @@
 				AD52BF4A1651E4EF0090723E /* DinesafeTests */,
 				AD52BF1C1651E4EF0090723E /* Frameworks */,
 				AD52BF1A1651E4EF0090723E /* Products */,
-				25F519345410B4F99C1949B1 /* Pods */,
+				CB2F769FD6854953264273C0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,7 +215,8 @@
 				AD52BF1D1651E4EF0090723E /* UIKit.framework */,
 				AD52BF1F1651E4EF0090723E /* Foundation.framework */,
 				AD52BF211651E4EF0090723E /* CoreGraphics.framework */,
-				FD264E67C5A14A179CC93943 /* libPods.a */,
+				D30271AD38FA06786AAE89BD /* libPods-Dinesafe.a */,
+				0951739DF958C6CAC7B799FD /* libPods-DinesafeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -340,6 +337,19 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		CB2F769FD6854953264273C0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				659F5CC3F2DFF406B29FD131 /* Pods-Dinesafe.debug.xcconfig */,
+				701B2FE365AAC55204ADA0E4 /* Pods-Dinesafe.release.xcconfig */,
+				DEE4417DAA8B7F9EBD752F9B /* Pods-Dinesafe.adhoc.xcconfig */,
+				D569B1196D4E4E09B68EC231 /* Pods-DinesafeTests.debug.xcconfig */,
+				D63D802D6390DEF8F679CBE4 /* Pods-DinesafeTests.release.xcconfig */,
+				4B77714A23BD6076043ACA0A /* Pods-DinesafeTests.adhoc.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -347,10 +357,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD52BF551651E4EF0090723E /* Build configuration list for PBXNativeTarget "Dinesafe" */;
 			buildPhases = (
+				50A3A816D2A9FCF52AF34204 /* [CP] Check Pods Manifest.lock */,
 				AD52BF151651E4EF0090723E /* Sources */,
 				AD52BF161651E4EF0090723E /* Frameworks */,
 				AD52BF171651E4EF0090723E /* Resources */,
-				1DE0E940B67D4C369A9AE5E0 /* Copy Pods Resources */,
+				3D5C3B00F5863C3D41C893E8 /* [CP] Embed Pods Frameworks */,
+				ABF2EE819D0308A7B86F71BB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -365,10 +377,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD52BF581651E4EF0090723E /* Build configuration list for PBXNativeTarget "DinesafeTests" */;
 			buildPhases = (
+				AE3731C70845AED6DAB0B99B /* [CP] Check Pods Manifest.lock */,
 				AD52BF3E1651E4EF0090723E /* Sources */,
 				AD52BF3F1651E4EF0090723E /* Frameworks */,
 				AD52BF401651E4EF0090723E /* Resources */,
-				AD52BF411651E4EF0090723E /* ShellScript */,
+				EB534463E9981C2CB96296B7 /* [CP] Embed Pods Frameworks */,
+				B6E0E544BF79A4BAAECC0EAE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -393,6 +407,11 @@
 				TargetAttributes = {
 					AD52BF181651E4EF0090723E = {
 						DevelopmentTeam = K6MGT456E4;
+						ProvisioningStyle = Automatic;
+					};
+					AD52BF421651E4EF0090723E = {
+						DevelopmentTeam = K6MGT456E4;
+						TestTargetID = AD52BF181651E4EF0090723E;
 					};
 				};
 			};
@@ -442,32 +461,95 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1DE0E940B67D4C369A9AE5E0 /* Copy Pods Resources */ = {
+		3D5C3B00F5863C3D41C893E8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dinesafe/Pods-Dinesafe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
-		AD52BF411651E4EF0090723E /* ShellScript */ = {
+		50A3A816D2A9FCF52AF34204 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ABF2EE819D0308A7B86F71BB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dinesafe/Pods-Dinesafe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE3731C70845AED6DAB0B99B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B6E0E544BF79A4BAAECC0EAE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DinesafeTests/Pods-DinesafeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB534463E9981C2CB96296B7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DinesafeTests/Pods-DinesafeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -571,6 +653,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -582,7 +665,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -603,11 +686,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Ruten";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Ruten";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D8BCB58-5E5F-4FD6-8D58-7070935049F2";
@@ -619,48 +703,58 @@
 		};
 		AD52BF561651E4EF0090723E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24F2C1F6266CD45DB2731042 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 659F5CC3F2DFF406B29FD131 /* Pods-Dinesafe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.ruten.dinesafe;
 				PRODUCT_NAME = "$(TARGET_NAME) Dev";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		AD52BF571651E4EF0090723E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70E4573DEB59B6EB084FD5CF /* Pods.release.xcconfig */;
+			baseConfigurationReference = 701B2FE365AAC55204ADA0E4 /* Pods-Dinesafe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.ruten.dinesafe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "448e959f-a2f3-4f4e-8d62-270e641443fb";
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
 		AD52BF591651E4EF0090723E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24F2C1F6266CD45DB2731042 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = D569B1196D4E4E09B68EC231 /* Pods-DinesafeTests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Dinesafe.app/Dinesafe";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = K6MGT456E4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -670,15 +764,16 @@
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "DinesafeTests/DinesafeTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dinesafe Dev.app/Dinesafe Dev";
 			};
 			name = Debug;
 		};
 		AD52BF5A1651E4EF0090723E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70E4573DEB59B6EB084FD5CF /* Pods.release.xcconfig */;
+			baseConfigurationReference = D63D802D6390DEF8F679CBE4 /* Pods-DinesafeTests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Dinesafe.app/Dinesafe";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = K6MGT456E4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -688,7 +783,8 @@
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "DinesafeTests/DinesafeTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				PROVISIONING_PROFILE = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dinesafe Dev.app/Dinesafe Dev";
 			};
 			name = Release;
 		};
@@ -705,11 +801,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Ruten";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Ruten";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "C12A37AD-EAE1-4AE4-AB1B-EDBC84877F46";
@@ -723,29 +820,34 @@
 		};
 		ADD0E83B169C3AD60062D454 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 308349F3472EC8D26D92C246 /* Pods.adhoc.xcconfig */;
+			baseConfigurationReference = DEE4417DAA8B7F9EBD752F9B /* Pods-Dinesafe.adhoc.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.ruten.dinesafe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC53E3E4-1A27-49A7-8FDB-96D7A0E78546";
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Adhoc;
 		};
 		ADD0E83C169C3AD60062D454 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 308349F3472EC8D26D92C246 /* Pods.adhoc.xcconfig */;
+			baseConfigurationReference = 4B77714A23BD6076043ACA0A /* Pods-DinesafeTests.adhoc.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Dinesafe.app/Dinesafe";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = K6MGT456E4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -755,7 +857,8 @@
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "DinesafeTests/DinesafeTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
+				PROVISIONING_PROFILE = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dinesafe Dev.app/Dinesafe Dev";
 			};
 			name = Adhoc;
 		};

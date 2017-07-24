@@ -18,7 +18,9 @@
 - (void)updateCellContentWithHeight:(CGFloat)height
 {
     // Sync width with frame
-    self.inspectionView.frame = self.bounds;
+    // Use [[UIScreen mainScreen] bounds] instead of self.bounds as self.bounds was giving
+    //     inaccurate widths that were greater than the screen size.
+    self.inspectionView.frame = [[UIScreen mainScreen] bounds];
 
     // Update height to match
     CGRect frame = self.inspectionView.frame;
