@@ -23,7 +23,12 @@
 {
     self.infractionId = [dictionary[@"id"] intValue];
     self.details = dictionary[@"details"];
-    self.severity = dictionary[@"severity"];
+    // Temporary measure to remap text from API to a shorter version
+    if ([dictionary[@"severity"] isEqualToString:@"NA - Not Applicable"]) {
+        self.severity = @"Other";
+    } else {
+        self.severity = dictionary[@"severity"];
+    }
     self.action = dictionary[@"action"];
     self.courtOutcome = dictionary[@"court_outcome"];
     self.amountFined = [dictionary[@"amount_fined"] doubleValue];
