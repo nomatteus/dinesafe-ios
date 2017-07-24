@@ -34,7 +34,7 @@
     self.tableCellHeights = [[NSMutableArray alloc] init];
 
     [self fetchEstablishment];
-    [self calculateTableCellHeights:self.tableView.frame.size];
+    [self calculateTableCellHeights:self.view.frame.size];
 }
 
 - (void)didReceiveMemoryWarning
@@ -283,7 +283,6 @@
 //      constantly. i.e. a caching mechanism to avoid laggy scrolling
 - (void)calculateTableCellHeights:(CGSize)frameSize
 {
-    NSLog(@"calculateTableCellHeights called");
     // Establishment Info
     self.tableCellHeights[0] = [NSNumber numberWithInt:110];
 
@@ -375,7 +374,7 @@
             ^(AFHTTPRequestOperation *operation, id response) {
 
               [self.establishment updateWithDictionary:response[@"data"]];
-              [self calculateTableCellHeights:self.tableView.frame.size];
+              [self calculateTableCellHeights:self.view.frame.size];
               [self.tableView reloadData];
 
             }
