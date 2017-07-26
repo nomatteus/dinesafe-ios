@@ -96,9 +96,9 @@
 		7F62F3CC00F2D6AAEE0738DAFDD7BB64 /* Pods-DinesafeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DinesafeTests.release.xcconfig"; sourceTree = "<group>"; };
 		81CE7B4264900769EF8FB7DA09A61D69 /* Pods-DinesafeTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DinesafeTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		83C5EA7B94BF4B0A11B8A3918FEA4FF3 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+AFNetworking.h"; path = "AFNetworking/UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
-		83E2164E9EAB62C176D04EDC56E25141 /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libAFNetworking.a; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		83E2164E9EAB62C176D04EDC56E25141 /* libAFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAFNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ACAB8DCD81FAC5B33B89F069577248D /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFXMLRequestOperation.h; path = AFNetworking/AFXMLRequestOperation.h; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		96A305E1141CB3A77A2308F21B22A1D1 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkActivityIndicatorManager.m; path = AFNetworking/AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
 		97BB1F9B3DAD2E42228F8D511590E401 /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFJSONRequestOperation.h; path = AFNetworking/AFJSONRequestOperation.h; sourceTree = "<group>"; };
 		98C39177B47E72B4E78260B2EAD8DEC6 /* Pods-Dinesafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Dinesafe.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,14 +111,14 @@
 		CE21B22A4EE4BFB64728DE5A67865054 /* AFImageRequestOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFImageRequestOperation.h; path = AFNetworking/AFImageRequestOperation.h; sourceTree = "<group>"; };
 		D0CDEAF9A7B094320750DE7B89E4EC5B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		D41CA9384AAE78C60609EDB761FC0B8D /* SSPullToRefreshDefaultContentView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SSPullToRefreshDefaultContentView.h; path = SSPullToRefresh/SSPullToRefreshDefaultContentView.h; sourceTree = "<group>"; };
-		D626B44E6884EF375D5A7CA3339050A7 /* libSSPullToRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSSPullToRefresh.a; path = libSSPullToRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D626B44E6884EF375D5A7CA3339050A7 /* libSSPullToRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSSPullToRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9CAC45100BAE60FA24ABAC9177B3159 /* Pods-Dinesafe-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Dinesafe-acknowledgements.markdown"; sourceTree = "<group>"; };
 		DAFAB8C983B41A26FDAA290464C1B0F4 /* Pods-DinesafeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DinesafeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DBC0F70159FCD1B8CBB1F6BF2E860554 /* Pods-DinesafeTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DinesafeTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		E12EADDB17799B5D29396C89C72DA80D /* libPods-DinesafeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-DinesafeTests.a"; path = "libPods-DinesafeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E12EADDB17799B5D29396C89C72DA80D /* libPods-DinesafeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DinesafeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E534547F71F76A19BA38E6A398991D35 /* Pods-DinesafeTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DinesafeTests-resources.sh"; sourceTree = "<group>"; };
 		E63DEC32F7D7FAE3131FEAC7C7F1758C /* Flurry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Flurry/Flurry.h; sourceTree = "<group>"; };
-		E65C7D5DB742649318B3826504491FC9 /* libPods-Dinesafe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Dinesafe.a"; path = "libPods-Dinesafe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E65C7D5DB742649318B3826504491FC9 /* libPods-Dinesafe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dinesafe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6EA91701DFF6EF5B2CB8BADC754DBDC /* Pods-DinesafeTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DinesafeTests-dummy.m"; sourceTree = "<group>"; };
 		EC24C5F524210E7BD6207FB1FB132FA8 /* AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = AFNetworking/AFNetworking.h; sourceTree = "<group>"; };
 		EE3752CDEC2A26E69745B73E53966856 /* SSPullToRefreshView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SSPullToRefreshView.m; path = SSPullToRefresh/SSPullToRefreshView.m; sourceTree = "<group>"; };
@@ -262,7 +262,6 @@
 				F3A70510D248F822ECB817A024F7C5C8 /* UIImageView+AFNetworking.m */,
 				9943EA429CAB8A46549987C051D2ECAA /* Support Files */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -278,7 +277,6 @@
 				EE3752CDEC2A26E69745B73E53966856 /* SSPullToRefreshView.m */,
 				3CC7857C5B7090A403C03A161CC2475A /* Support Files */,
 			);
-			name = SSPullToRefresh;
 			path = SSPullToRefresh;
 			sourceTree = "<group>";
 		};
@@ -319,7 +317,6 @@
 			children = (
 				20DDD12B44DAA07E36A17278B8CB57BE /* FlurrySDK */,
 			);
-			name = FlurrySDK;
 			path = FlurrySDK;
 			sourceTree = "<group>";
 		};
