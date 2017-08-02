@@ -13,7 +13,7 @@ const float kScoreBoxHeight = 12;
 const float kScoreBoxGap = 0; // Gap between boxes
 
 const float kScoreBarMargin = 20; // e.g. left margin from screen edge
-const float kMaxScoreBoxCount = 30;
+const float kMaxScoreBoxCount = 70;
 
 @implementation DSFScorebarView
 
