@@ -1,20 +1,20 @@
 PODS:
   - AFNetworking (1.3.4)
-  - FlurrySDK (4.3.2):
-    - FlurrySDK/FlurrySDK (= 4.3.2)
-  - FlurrySDK/FlurrySDK (4.3.2)
   - SSPullToRefresh (1.2.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3.3)
-  - FlurrySDK (~> 4.3.0)
   - SSPullToRefresh (~> 1.2.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - SSPullToRefresh
 
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
-  FlurrySDK: 9f09e57ee8f01296bd547950433384da192ea680
   SSPullToRefresh: 369e862c1d6528c7a354fc85cd4763d4e670e9af
 
-PODFILE CHECKSUM: cf8286ce80f83212b24e15a3840ee6b64a3dbc88
+PODFILE CHECKSUM: 0fd10589a9986948a48488b63c0c68cdc5a715ff
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.5.3

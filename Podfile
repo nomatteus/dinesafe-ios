@@ -8,7 +8,6 @@ target 'Dinesafe' do
   # Pods for Dinesafe
   pod 'AFNetworking',     '~> 1.3.3'
   pod 'SSPullToRefresh',  '~> 1.2.0'
-  pod 'FlurrySDK',        '~> 4.3.0'
 
   target 'DinesafeTests' do
     inherit! :search_paths
