@@ -20,6 +20,7 @@
 {
     // Initialization code
     self.tag = kLoadingCellTag;
+    [super awakeFromNib];
 }
 
 - (void)prepareForReuse
