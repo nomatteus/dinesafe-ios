@@ -82,7 +82,7 @@
 		AD2D3FC6166175E30050699C /* DSFApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFApiClient.m; sourceTree = "<group>"; };
 		AD2D3FC9166194810050699C /* DSFLoadingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFLoadingCell.h; sourceTree = "<group>"; };
 		AD2D3FCA166194810050699C /* DSFLoadingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFLoadingCell.m; sourceTree = "<group>"; };
-		AD52BF191651E4EF0090723E /* Dinesafe Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dinesafe Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD52BF191651E4EF0090723E /* Dinesafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dinesafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD52BF1D1651E4EF0090723E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AD52BF1F1651E4EF0090723E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AD52BF211651E4EF0090723E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -203,7 +203,7 @@
 		AD52BF1A1651E4EF0090723E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD52BF191651E4EF0090723E /* Dinesafe Dev.app */,
+				AD52BF191651E4EF0090723E /* Dinesafe.app */,
 				AD52BF431651E4EF0090723E /* DinesafeTests.xctest */,
 			);
 			name = Products;
@@ -368,7 +368,7 @@
 			);
 			name = Dinesafe;
 			productName = Dinesafe;
-			productReference = AD52BF191651E4EF0090723E /* Dinesafe Dev.app */;
+			productReference = AD52BF191651E4EF0090723E /* Dinesafe.app */;
 			productType = "com.apple.product-type.application";
 		};
 		AD52BF421651E4EF0090723E /* DinesafeTests */ = {
@@ -696,15 +696,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1.3.1;
+				CURRENT_PROJECT_VERSION = 1.3.2;
 				DEVELOPMENT_TEAM = K6MGT456E4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = ca.ruten.dinesafe;
-				PRODUCT_NAME = "$(TARGET_NAME) Dev";
+				PRODUCT_NAME = Dinesafe;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -721,15 +721,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1.3.1;
+				CURRENT_PROJECT_VERSION = 1.3.2;
 				DEVELOPMENT_TEAM = K6MGT456E4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = ca.ruten.dinesafe;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Dinesafe;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -755,7 +755,7 @@
 				INFOPLIST_FILE = "DinesafeTests/DinesafeTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.ruten.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dinesafe Dev.app/Dinesafe Dev";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dinesafe.app/Dinesafe";
 			};
 			name = Debug;
 		};
@@ -776,7 +776,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.ruten.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dinesafe Dev.app/Dinesafe Dev";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dinesafe.app/Dinesafe";
 			};
 			name = Release;
 		};
@@ -840,15 +840,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1.3.1;
+				CURRENT_PROJECT_VERSION = 1.3.2;
 				DEVELOPMENT_TEAM = K6MGT456E4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dinesafe/Dinesafe-Prefix.pch";
 				INFOPLIST_FILE = "Dinesafe/Dinesafe-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = ca.ruten.dinesafe;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Dinesafe;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -874,7 +874,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.ruten.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dinesafe Dev.app/Dinesafe Dev";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dinesafe.app/Dinesafe";
 			};
 			name = Adhoc;
 		};
