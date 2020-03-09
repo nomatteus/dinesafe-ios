@@ -6,9 +6,11 @@ target 'Dinesafe' do
   # use_frameworks!
 
   # Pods for Dinesafe
-  pod 'AFNetworking',     '~> 1.3.3'
-  pod 'SSPullToRefresh',  '~> 1.2.0'
-  pod 'FlurrySDK',        '~> 4.3.0'
+  # TODO: Upgrade to AFNetworking 2.x.x (or ideally 3.x.x)
+  # Will require some code changes.
+  # See guide here: https://github.com/AFNetworking/AFNetworking/wiki/AFNetworking-2.0-Migration-Guide
+  pod 'AFNetworking',     '~> 1.3.4'
+  pod 'SSPullToRefresh',  '~> 1.3.0'
 
   target 'DinesafeTests' do
     inherit! :search_paths

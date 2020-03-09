@@ -9,7 +9,6 @@
 #import "DSFInspectionTableViewController.h"
 #import "NSString+URLEncoding.h"
 #import "FrameworkCheck.h"
-#import "Flurry.h"
 
 @interface DSFInspectionTableViewController ()
 @property (nonatomic, strong) NSMutableArray *tableCellHeights;
@@ -68,35 +67,24 @@
                                                     otherButtonTitles:@"Post to Twitter", @"Post to Facebook", @"Email Link", @"Copy Link", @"Open in Maps",
                                                                       nil];
     [actionSheet showFromBarButtonItem:self.actionButton animated:YES];
-    [Flurry logEvent:@"Establishment Action Button Tapped"];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
         case 0:
-            [Flurry logEvent:@"Establishment Action Button Press"
-                withParameters:@{ @"Action" : @"Post to Twitter" }];
             [self postToTwitter];
             break;
         case 1:
-            [Flurry logEvent:@"Establishment Action Button Press"
-                withParameters:@{ @"Action" : @"Post to Facebook" }];
             [self postToFacebook];
             break;
         case 2:
-            [Flurry logEvent:@"Establishment Action Button Press"
-                withParameters:@{ @"Action" : @"Email Link" }];
             [self emailResult];
             break;
         case 3:
-            [Flurry logEvent:@"Establishment Action Button Press"
-                withParameters:@{ @"Action" : @"Copy Link" }];
             [self copyLink];
             break;
         case 4:
-            [Flurry logEvent:@"Establishment Action Button Press"
-                withParameters:@{ @"Action" : @"Open in Maps" }];
             [self openInMaps];
             break;
         default:

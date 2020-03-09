@@ -36,6 +36,7 @@ const double kNavBottomRGB[] = {36, 120, 228};
                                                  UITextAttributeFont,
                                                  [UIColor whiteColor], UITextAttributeTextColor,
                                                  nil];
+    [super awakeFromNib];
 }
 
 // Only override drawRect: if you perform custom drawing.

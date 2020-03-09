@@ -14,6 +14,7 @@
 {
     // Initialization code
     // [self setBackgroundColor:[UIColor grayColor]];
+    [super awakeFromNib];
 }
 
 - (void)updateCellContent

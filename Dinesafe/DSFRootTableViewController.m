@@ -8,7 +8,6 @@
 
 #import "DSFRootTableViewController.h"
 #import "DSFPullToRefreshView.h"
-#import "Flurry.h"
 
 static CLLocationDegrees const DefaultLocationLat = 43.648385;
 static CLLocationDegrees const DefaultLocationLng = -79.397238;
@@ -68,8 +67,6 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
     self.pullToRefreshView.contentView = [[DSFPullToRefreshView alloc] init];
 
     [self resetEstablishmentsAndShowLoadingCell:YES];
-
-    [Flurry logAllPageViews:self.navigationController];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -156,10 +153,6 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
         [self.locationManager startUpdatingLocation]; // Check for updated location
         [self resetEstablishmentsAndShowLoadingCell:YES];
         [self fetchEstablishments];
-        [Flurry logEvent:@"Perform Search"
-            withParameters:[NSDictionary dictionaryWithObjectsAndKeys:
-                                             self.searchText, @"Search Text",
-                                             nil]];
     }
 }
 
@@ -214,12 +207,10 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
 {
     [self.locationManager startUpdatingLocation];
     [self fetchEstablishmentsWithReset:YES];
-    [Flurry logEvent:@"Pull to Refresh" timed:YES];
 }
 
 - (void)pullToRefreshViewDidFinishLoading:(SSPullToRefreshView *)view
 {
-    [Flurry endTimedEvent:@"Pull to Refresh" withParameters:nil];
 }
 
 #pragma mark - Table view data source
@@ -300,7 +291,6 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
         // Update establishments if we're not on the first row (i.e. first load, since first load will be done by location callback)
         if (indexPath.row > 0) {
             [self fetchEstablishments];
-            [Flurry logEvent:@"Loading Cell Viewed (Load Next Page)"];
         }
     }
 }
