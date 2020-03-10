@@ -50,6 +50,7 @@ static CLLocationDegrees const DefaultLocationLng = -79.397238;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.clearsSelectionOnViewWillAppear = NO;
 
     self.currentLocation = nil;

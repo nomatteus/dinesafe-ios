@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="pn9-Cw-8s6">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment version="1792" identifier="iOS"/>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -48,7 +48,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="TxT-EB-HLP">
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" id="TxT-EB-HLP">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="tintColor" red="0.68000000715255737" green="0.68000000715255737" blue="0.68000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -173,34 +173,9 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="TxT-EB-HLP" id="9pr-Jz-rl5"/>
-                        <outlet property="searchDisplayController" destination="eRP-Lg-Ole" id="ewp-U4-LUr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zhu-IN-vWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="SA8-Lr-0dt">
-                    <connections>
-                        <outlet property="delegate" destination="8RN-zg-ogv" id="Bbr-6W-U1p"/>
-                        <outlet property="searchContentsController" destination="8RN-zg-ogv" id="Y8t-mb-zWv"/>
-                        <outlet property="searchResultsDataSource" destination="8RN-zg-ogv" id="8Ki-wA-YFv"/>
-                        <outlet property="searchResultsDelegate" destination="8RN-zg-ogv" id="pzR-xg-wGr"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="vby-Ac-waN">
-                    <connections>
-                        <outlet property="delegate" destination="8RN-zg-ogv" id="12Y-Ic-uHI"/>
-                        <outlet property="searchContentsController" destination="8RN-zg-ogv" id="Qce-vU-JXX"/>
-                        <outlet property="searchResultsDataSource" destination="8RN-zg-ogv" id="f57-Vk-Mjm"/>
-                        <outlet property="searchResultsDelegate" destination="8RN-zg-ogv" id="SQo-Ap-VVi"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="eRP-Lg-Ole">
-                    <connections>
-                        <outlet property="delegate" destination="8RN-zg-ogv" id="hEa-KY-xBc"/>
-                        <outlet property="searchContentsController" destination="8RN-zg-ogv" id="BAJ-0a-zbv"/>
-                        <outlet property="searchResultsDataSource" destination="8RN-zg-ogv" id="xoS-JP-WQK"/>
-                        <outlet property="searchResultsDelegate" destination="8RN-zg-ogv" id="krP-UQ-VCg"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-800.79999999999995" y="-760.56971514242889"/>
         </scene>
@@ -449,18 +424,9 @@ Minimum Inspections Per Year: 3</string>
                     </navigationItem>
                     <connections>
                         <outlet property="actionButton" destination="hIw-v5-lSh" id="wXb-D5-iAV"/>
-                        <outlet property="searchDisplayController" destination="uqt-pi-ihe" id="h6Q-P6-Nzf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0j-5B-zwI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="uqt-pi-ihe">
-                    <connections>
-                        <outlet property="delegate" destination="mXH-Ey-eCF" id="EVS-Gb-bHC"/>
-                        <outlet property="searchContentsController" destination="mXH-Ey-eCF" id="gdL-JR-vMI"/>
-                        <outlet property="searchResultsDataSource" destination="mXH-Ey-eCF" id="AHC-fK-FtP"/>
-                        <outlet property="searchResultsDelegate" destination="mXH-Ey-eCF" id="gyT-8d-jgT"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="858.39999999999998" y="-769.56521739130437"/>
         </scene>
